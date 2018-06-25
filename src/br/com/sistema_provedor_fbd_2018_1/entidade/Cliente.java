@@ -1,0 +1,70 @@
+package br.com.sistema_provedor_fbd_2018_1.entidade;
+
+import java.util.ArrayList;
+
+public class Cliente {
+
+	private Integer id;
+	private String nome, cpf, rg, data_nascimento;
+	//Ver Endereco depois.
+	private ArrayList<Endereco>enderecos;
+
+	public Cliente(Integer id, String nome, String cpf, String rg, String data_nascimento) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.rg = rg;
+		this.data_nascimento = data_nascimento;
+	}
+	public Cliente(Integer id, String nome) {
+		this.nome = nome;
+		this.id = id;
+		
+	}
+	public Cliente() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getRg() {
+		return rg;
+	}
+
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+
+	public String getData_nascimento() {
+		return data_nascimento;
+	}
+
+	public void setData_nascimento(String data_nascimento) {
+		this.data_nascimento = data_nascimento;
+	}
+
+}
