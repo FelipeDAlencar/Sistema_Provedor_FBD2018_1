@@ -43,6 +43,14 @@ public class Cidade {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	
 	
 	

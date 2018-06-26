@@ -10,6 +10,8 @@ public interface IBusinessCidade {
 	
 
 	public void salvarOuEditarCidade(Cidade cidade) throws BusinessException;
+	
+	public ArrayList<Cidade> listarTodos()throws BusinessException;
 
 	public Cidade buscarPorId(int id) throws BusinessException;
 

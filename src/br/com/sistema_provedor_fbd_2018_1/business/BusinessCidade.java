@@ -21,12 +21,27 @@ public class BusinessCidade implements IBusinessCidade {
 	public void salvarOuEditarCidade(Cidade cidade) throws BusinessException {
 		try {
 			validarCidade(cidade);
-			dao.salvar(cidade);
+
+			if (cidade.getId() == null) {
+				dao.salvar(cidade);
+			} else {
+				dao.editar(cidade);
+			}
 
 		} catch (Exception e) {
 			throw new BusinessException(e.getMessage());
 		}
 
+	}
+	@Override
+	public ArrayList<Cidade> listarTodos()throws BusinessException  {
+		try {
+			return dao.listarTodos();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO DO BUSINESS");
+			
+		}
 	}
 
 	@Override
@@ -49,5 +64,7 @@ public class BusinessCidade implements IBusinessCidade {
 			throw new ValidacaoException("CERTIFIQUE-SE DE QUE O CEP SEJA PREENCHIDO");
 		}
 	}
+
+
 
 }

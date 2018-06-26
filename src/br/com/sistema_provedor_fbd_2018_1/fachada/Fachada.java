@@ -126,4 +126,11 @@ public class Fachada implements IFachada{
 		return null;
 	}
 
+	@Override
+	public ArrayList<Cidade> listarTodosCidades()throws BusinessException {
+		return businessCidade.listarTodos();
+	}
+
+	
+
 }

@@ -29,6 +29,9 @@ public class SQLUtil {
 		
 		public static final String SELECT_ALL = "select * from cidade";
 		
+		
+		public static final String UPDATE = "update cidade set  nome = ?, estado = ?, cep = ? where id = ?";
+		
 	}
 
 }
