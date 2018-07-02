@@ -2,22 +2,32 @@ package br.com.sistema_provedor_fbd_2018_1.entidade;
 
 public class Funcionario {
 
-	private Integer id;
-	private String nome, cargo, data_nascimento, data_contrato, login, senha;
+	private Integer id, endereco_id;
+	private String nome, cargo,data_contrato, login, senha;
 
-	public Funcionario(Integer id, String nome, String cargo, String data_nascimento, String data_contrato,
+	public Funcionario(Integer id, String nome, String cargo, String data_contrato,
 			String login, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cargo = cargo;
-		this.data_nascimento = data_nascimento;
+		
 		this.data_contrato = data_contrato;
 		this.login = login;
 		this.senha = senha;
 	}
-	
-	
+
+	public Funcionario(String nome, String cargo ,String data_contrato, String login,
+			String senha) {
+		this.nome = nome;
+		this.cargo = cargo;
+		
+		this.data_contrato = data_contrato;
+		this.login = login;
+		this.senha = senha;
+
+	}
+
 	public Funcionario(Integer id, String nome, String login, String senha) {
 		super();
 		this.id = id;
@@ -25,8 +35,6 @@ public class Funcionario {
 		this.login = login;
 		this.senha = senha;
 	}
-
-
 
 	public Integer getId() {
 		return id;
@@ -52,13 +60,7 @@ public class Funcionario {
 		this.cargo = cargo;
 	}
 
-	public String getData_nascimento() {
-		return data_nascimento;
-	}
-
-	public void setData_nascimento(String data_nascimento) {
-		this.data_nascimento = data_nascimento;
-	}
+	
 
 	public String getData_contrato() {
 		return data_contrato;
@@ -78,6 +80,15 @@ public class Funcionario {
 
 	public String getSenha() {
 		return senha;
+	}
+	
+
+	public Integer getEndereco_id() {
+		return endereco_id;
+	}
+
+	public void setEndereco_id(Integer endereco_id) {
+		this.endereco_id = endereco_id;
 	}
 
 	public void setSenha(String senha) {

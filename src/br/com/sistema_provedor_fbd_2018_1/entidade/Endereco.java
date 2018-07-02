@@ -5,13 +5,17 @@ public class Endereco {
 	private Integer id;
 	private String bairro, complemento, rua;
 	private int numero;
-	public Endereco(Integer id, String bairro, String complemento, String rua, int numero) {
+	private Integer cidade_id;
+	
+	public Endereco(String bairro, String complemento, String rua, int numero) {
 		super();
-		this.id = id;
 		this.bairro = bairro;
 		this.complemento = complemento;
 		this.rua = rua;
 		this.numero = numero;
+	}
+	public Endereco() {
+		
 	}
 	public Endereco(Integer id, String bairro, String rua) {
 		super();
@@ -48,6 +52,12 @@ public class Endereco {
 	}
 	public void setNumero(int numero) {
 		this.numero = numero;
+	}
+	public Integer getCidade_id() {
+		return cidade_id;
+	}
+	public void setCidade_id(Integer cidade_id) {
+		this.cidade_id = cidade_id;
 	}
 	
 	

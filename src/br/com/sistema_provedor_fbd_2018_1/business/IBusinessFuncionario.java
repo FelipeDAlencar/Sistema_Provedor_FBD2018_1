@@ -5,15 +5,16 @@ import java.util.ArrayList;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Funcionario;
+import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 
 public interface IBusinessFuncionario {
 
-	public void salvarOuEditarFuncionario(Cliente cliente);
+	public void salvarOuEditarFuncionario(Funcionario funcionario)throws BusinessException;
 
-	public Funcionario buscarPorId(int id);
+	public Funcionario buscarPorId(int id)throws BusinessException;
 
-	public Funcionario buscarPorCpf(String cpf);
+	public Funcionario buscarPorCpf(String cpf)throws BusinessException;
 
-	public ArrayList<Funcionario> buscarPorBusca(String busca);
+	public ArrayList<Funcionario> buscarPorBusca(String busca)throws BusinessException;
 
 }

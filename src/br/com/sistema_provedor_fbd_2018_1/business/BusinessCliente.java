@@ -19,7 +19,7 @@ public class BusinessCliente implements IBusinessCliente {
 	@Override
 	public void salvarOuEditarCliente(Cliente cliente)throws BusinessException {
 		try {
-			validarCurso(cliente);
+			validar(cliente);
 			dao.salvar(cliente);
 
 		} catch (Exception e) {
@@ -46,7 +46,7 @@ public class BusinessCliente implements IBusinessCliente {
 		return null;
 	}
 
-	private void validarCurso(Cliente cliente) throws ValidacaoException {
+	private void validar(Cliente cliente) throws ValidacaoException {
 		if (cliente == null) {
 			throw new ValidacaoException("CLIENTE NÃO PODE SER INSERIDO");
 		}

@@ -17,5 +17,7 @@ public interface IDaoCliente {
 	public Cliente buscarPorCpf(String cpf);
 
 	public List<Cliente> buscarPorBusca(String busca);
+	
+	
 
 }

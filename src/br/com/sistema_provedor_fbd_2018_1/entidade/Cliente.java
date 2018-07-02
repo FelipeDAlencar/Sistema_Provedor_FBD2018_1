@@ -7,8 +7,15 @@ public class Cliente {
 	private Integer id;
 	private String nome, cpf, rg, data_nascimento;
 	//Ver Endereco depois.
-	private ArrayList<Endereco>enderecos;
+	private Integer endereco_id;
 
+	public Cliente(String nome, String cpf, String rg, String data_nascimento) {
+		super();
+		this.nome = nome;
+		this.cpf = cpf;
+		this.rg = rg;
+		this.data_nascimento = data_nascimento;
+	}
 	public Cliente(Integer id, String nome, String cpf, String rg, String data_nascimento) {
 		super();
 		this.id = id;
@@ -66,5 +73,12 @@ public class Cliente {
 	public void setData_nascimento(String data_nascimento) {
 		this.data_nascimento = data_nascimento;
 	}
+	public Integer getEndereco_id() {
+		return endereco_id;
+	}
+	public void setEndereco_id(Integer endereco_id) {
+		this.endereco_id = endereco_id;
+	}
+	
 
 }
