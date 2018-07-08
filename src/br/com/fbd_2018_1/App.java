@@ -1,5 +1,8 @@
 package br.com.fbd_2018_1;
 
+import javax.swing.UIManager;
+
+import br.com.sistema_provedor_fbd_2018_1.controller.Controller;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Concentrador;
@@ -14,14 +17,21 @@ import br.com.sistema_provedor_fbd_2018_1.sql.SQLUtil.Caixa;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLUtil.Contato;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLUtil.Porta;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLUtil.Servico;
+import br.com.sistema_provedor_fbd_2018_1.view.TelaPrincipal;
 
 public class App {
 	public static void main(String[] args) throws BusinessException {
-
+		String tema_padrao = "com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel";
+        try {  
+              UIManager .setLookAndFeel(tema_padrao);
+            } catch (Exception e) {  
+        }
+        
+        TelaPrincipal telaPrincipal = new TelaPrincipal();
+        Controller controller = new Controller(telaPrincipal);
+		
 		Fachada fachada = new Fachada();
 		
-		Contrato contrato = new Contrato(0, 0, "Teste", "Teste", 0);
-		fachada.salvarOuEditarContrato(contrato);
 		
 		// br.com.sistema_provedor_fbd_2018_1.entidade.Porta porta = new
 		// br.com.sistema_provedor_fbd_2018_1.entidade.Porta(1);
@@ -68,15 +78,13 @@ public class App {
 		// fachada.salvarOuEditarCliente(cliente);
 
 		//
-		// Cidade cidade = fachada.buscarCidadePorId(2);
-
-		// cidade.setCep("100000");
-		// cidade.setNome("Serra Taiada");
-		// cidade.setEstado("PE");
-
-		// cidade.setNome("Serra Talhada");
-		//
-		// fachada.salvarOuEditarCidade(cidade);
+//		 Cidade cidade = new Cidade();
+//
+//		 cidade.setCep("100000");
+//		 cidade.setNome("São José do Belmonte");
+//		 cidade.setEstado("PE");
+//		
+//		 fachada.salvarOuEditarCidade(cidade);
 
 		// System.out.println(fachada.buscarCidadePorId(9).getNome() + "\n");
 

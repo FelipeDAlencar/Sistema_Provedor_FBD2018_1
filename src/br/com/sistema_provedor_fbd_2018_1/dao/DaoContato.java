@@ -31,9 +31,7 @@ public class DaoContato implements IDaoContato{
 			statement = conexao.prepareStatement(SQLUtil.Contato.INSERT_ALL);
 
 			statement.setString(1, contato.getTipo());
-			statement.setString(2, contato.getEmail());
-			statement.setString(3, contato.getTelefone());
-			statement.setString(4, contato.getCelular());
+			statement.setString(2, contato.getContato());
 			statement.setInt(5, cliente_id);
 
 			statement.execute();
