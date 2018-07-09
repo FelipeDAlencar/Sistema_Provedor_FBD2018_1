@@ -75,11 +75,11 @@ public class TelaPrincipal extends Tela{
 	}
 	
 	public void ativarBotoes() {
-		bntAdicionarCliente.setVisible(true);
-		bntVerCliente.setVisible(true);
-		bntAdicionarSwitch.setVisible(true);
-		bntAtendimentos.setVisible(true);
-		bntMovimentacoes.setVisible(true);
+			bntAdicionarCliente.setVisible(true);
+			bntVerCliente.setVisible(true);
+			bntAdicionarSwitch.setVisible(true);
+			bntAtendimentos.setVisible(true);
+			bntMovimentacoes.setVisible(true);
 	}
 
 	public Menu getMenu() {

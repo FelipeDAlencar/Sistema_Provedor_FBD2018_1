@@ -1,5 +1,6 @@
 package br.com.sistema_provedor_fbd_2018_1.view;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ContainerEvent;
@@ -27,8 +28,6 @@ public abstract class TelaInternal extends JInternalFrame{
 		setMaximizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
-		
-
 		inicializar();
 		
 		setVisible(true);
@@ -37,7 +36,16 @@ public abstract class TelaInternal extends JInternalFrame{
 	@Override
 	public void doDefaultCloseAction() {
 		super.doDefaultCloseAction();
-		telaPrincipal.ativarBotoes();
+		if (!isOpen()) {
+			telaPrincipal.ativarBotoes();
+		}
+	}
+	private boolean isOpen() {
+		Component[] components = telaPrincipal.getDesktopPane().getComponents();  
+		if (components.length>1) {
+			return true;
+		}
+		 return false;
 	}
 	public abstract void inicializar() throws BusinessException;
 }

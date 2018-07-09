@@ -10,11 +10,13 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalAdicionarCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalAtendimentos;
+import br.com.sistema_provedor_fbd_2018_1.view.InternalCaixa;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCidade;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalConcentrador;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalFuncionario;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalLocalizarCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalServicos;
+import br.com.sistema_provedor_fbd_2018_1.view.InternalSwitch;
 import br.com.sistema_provedor_fbd_2018_1.view.TelaPrincipal;
 
 public class Controller implements ActionListener{
@@ -30,6 +32,7 @@ public class Controller implements ActionListener{
 		telaPrincipal.getBntAdicionarCliente().addActionListener(this);
 		telaPrincipal.getBntVerCliente().addActionListener(this);
 		telaPrincipal.getBntAtendiemntos().addActionListener(this);
+		telaPrincipal.getBntAdicionarSwitch().addActionListener(this);
 		
 		//Itens Menu Cadatro
 		telaPrincipal.getMenu().getFuncionarioCadastro().addActionListener(this);
@@ -43,14 +46,17 @@ public class Controller implements ActionListener{
 		
 		//itens Menu Network
 		telaPrincipal.getMenu().getConcentradorNetwork().addActionListener(this);
+		//telaPrincipal.getBntAdicionarSwitch().addActionListener(this);
+		telaPrincipal.getMenu().getCaixaNetwork().addActionListener(this);
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {
+			telaPrincipal.desativarBotoes();
 			if(e.getSource()==telaPrincipal.getBntAdicionarCliente()
 					|| e.getSource()==telaPrincipal.getMenu().getAdicionarCliente()) {
-				telaPrincipal.desativarBotoes();
 				InternalAdicionarCliente adicionarCliente;
 				adicionarCliente = new InternalAdicionarCliente(telaPrincipal);
 				telaPrincipal.getDesktopPane().add(adicionarCliente);
@@ -59,32 +65,35 @@ public class Controller implements ActionListener{
 			
 			if(e.getSource()==telaPrincipal.getBntVerCliente()
 					|| e.getSource()==telaPrincipal.getMenu().getVerCliente()) {
-				telaPrincipal.desativarBotoes();
 				InternalLocalizarCliente localizarCliente;
 				localizarCliente = new InternalLocalizarCliente(telaPrincipal);
 				telaPrincipal.getDesktopPane().add(localizarCliente);
 				localizarCliente.setVisible(true);
 			}
-			
 			if(e.getSource()==telaPrincipal.getBntAtendiemntos()
-					|| e.getSource()==telaPrincipal.getMenu().getAtendimentosCliente()) {
-				telaPrincipal.desativarBotoes();
+					|| e.getSource()==telaPrincipal.getMenu().getAtendimentosCliente()) {	
 				InternalAtendimentos telaAtendimentos;
 				telaAtendimentos = new InternalAtendimentos(telaPrincipal);
 				telaPrincipal.getDesktopPane().add(telaAtendimentos);
 				telaAtendimentos.setVisible(true);
 			}
 			
+			if(e.getSource()==telaPrincipal.getBntAdicionarSwitch()
+					|| e.getSource()==telaPrincipal.getMenu().getSwitchNetwork()) {	
+				InternalSwitch telaSwitch;
+				telaSwitch = new InternalSwitch(telaPrincipal);
+				telaPrincipal.getDesktopPane().add(telaSwitch);
+				telaSwitch.setVisible(true);
+			}
+			
 			if(e.getSource()==telaPrincipal.getMenu().getFuncionarioCadastro()) {
-				telaPrincipal.desativarBotoes();
 				InternalFuncionario telaFuncionarios;
 				telaFuncionarios = new InternalFuncionario(telaPrincipal);
 				telaPrincipal.getDesktopPane().add(telaFuncionarios);
 				telaFuncionarios.setVisible(true);
 			}
 			
-			if(e.getSource()==telaPrincipal.getMenu().getServicoCadastro()) {
-				telaPrincipal.desativarBotoes();
+			if(e.getSource()==telaPrincipal.getMenu().getServicoCadastro()) {				
 				InternalServicos telaServicos;
 				telaServicos = new InternalServicos(telaPrincipal);
 				telaPrincipal.getDesktopPane().add(telaServicos);
@@ -95,7 +104,7 @@ public class Controller implements ActionListener{
 				List<Cidade> cidades = new ArrayList<>();
 				cidades = fachada.listarTodosCidades();
 				
-				telaPrincipal.desativarBotoes();
+				
 				InternalCidade telaCidades;
 				telaCidades = new InternalCidade(telaPrincipal);
 				telaPrincipal.getDesktopPane().add(telaCidades);
@@ -103,12 +112,18 @@ public class Controller implements ActionListener{
 				telaCidades.setVisible(true);
 			}
 			
-			if(e.getSource()==telaPrincipal.getMenu().getConcentradorNetwork()) {
-				telaPrincipal.desativarBotoes();
+			if(e.getSource()==telaPrincipal.getMenu().getConcentradorNetwork()) {				
 				InternalConcentrador telaConcentrador;
 				telaConcentrador = new InternalConcentrador(telaPrincipal);
 				telaPrincipal.getDesktopPane().add(telaConcentrador);
 				telaConcentrador.setVisible(true);
+			}
+			
+			if(e.getSource()==telaPrincipal.getMenu().getCaixaNetwork()) {
+				InternalCaixa telaCaixa;
+				telaCaixa = new InternalCaixa(telaPrincipal);
+				telaPrincipal.getDesktopPane().add(telaCaixa);
+				telaCaixa.setVisible(true);
 			}
 			
 		} catch (BusinessException e1) {
