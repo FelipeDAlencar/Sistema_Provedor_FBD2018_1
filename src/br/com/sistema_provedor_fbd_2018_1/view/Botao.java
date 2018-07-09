@@ -16,7 +16,7 @@ public class Botao extends JButton{
 		icone.setBounds(10, 10, 20, 20);
 		
 		tituloBotao = new JLabel(titulo);
-		tituloBotao.setBounds(40, 15, 100, 10);
+		tituloBotao.setBounds(40, 15, 200, 10);
 		tituloBotao.setFont(new Font("Arial", Font.BOLD,14));
 		
 		add(icone);

@@ -18,7 +18,7 @@ import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import javax.swing.JButton;
 
 @SuppressWarnings("serial")
-public class AdicionarCliente extends TelaInterna{
+public class InternalAdicionarCliente extends TelaInternal{
 	private JTabbedPane tabbedPane;
 	private JPanel panelCliente;
 	private PanelContato panelContatos;
@@ -31,16 +31,17 @@ public class AdicionarCliente extends TelaInterna{
 	private JTextField estadoField, cepField;
 	private Botao bntSalvar;
 
-	public AdicionarCliente(TelaPrincipal telaPrincipal) throws BusinessException {
+	public InternalAdicionarCliente(TelaPrincipal telaPrincipal) throws BusinessException {
 		super("Adicionar Cliente", telaPrincipal);
 		setLayout(null);
 		setVisible(false);
 	}
+
 	
 	@Override
 	public void inicializar() throws BusinessException {
 		tabbedPane = new JTabbedPane();
-		tabbedPane.setBounds(0, 0, TelaInterna.LARGURA, TelaInterna.ALTURA-270);
+		tabbedPane.setBounds(0, 0, TelaInternal.LARGURA, TelaInternal.ALTURA-270);
 		
 		panelContatos = new PanelContato();
 		
@@ -48,7 +49,7 @@ public class AdicionarCliente extends TelaInterna{
 		panelCliente.setLayout(null);
 		
 		bntSalvar = new Botao("resource/imagens/botoes/bnt-salvar.png","Salvar");
-		bntSalvar.setBounds(TelaInterna.LARGURA-255, TelaInterna.ALTURA-270,100, 40);
+		bntSalvar.setBounds(TelaInternal.LARGURA-255, TelaInternal.ALTURA-270,100, 40);
 		
 		//Informacoes Cliente
 		nomeLabel = new JLabel("Nome Completo:");

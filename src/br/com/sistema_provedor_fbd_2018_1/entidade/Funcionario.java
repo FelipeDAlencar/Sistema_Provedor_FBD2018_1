@@ -4,6 +4,15 @@ public class Funcionario {
 
 	private Integer id, endereco_id;
 	private String nome, cargo,data_contrato, login, senha;
+	
+	public Funcionario(Integer id, String nome, String cargo, String data_contrato) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.cargo = cargo;
+		
+		this.data_contrato = data_contrato;
+	};
 
 	public Funcionario(Integer id, String nome, String cargo, String data_contrato,
 			String login, String senha) {
@@ -26,14 +35,6 @@ public class Funcionario {
 		this.login = login;
 		this.senha = senha;
 
-	}
-
-	public Funcionario(Integer id, String nome, String login, String senha) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.login = login;
-		this.senha = senha;
 	}
 
 	public Integer getId() {

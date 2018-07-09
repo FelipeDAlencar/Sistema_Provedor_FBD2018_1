@@ -12,11 +12,11 @@ public class TelaPrincipal extends Tela{
 	private BotaoDesktop bntAdicionarCliente;
 	private BotaoDesktop bntVerCliente;
 	private BotaoDesktop bntAdicionarSwitch;
-	private BotaoDesktop bntAdicionarCaixa;
+	private BotaoDesktop bntAtendimentos;
 	private BotaoDesktop bntMovimentacoes;
 	private JLabel bgImage;
 	private JDesktopPane desktopPane;
-	private AdicionarCliente adicionarCliente;
+	private InternalAdicionarCliente adicionarCliente;
 	
 	public TelaPrincipal() {
 		getContentPane().setLayout(null);
@@ -51,8 +51,8 @@ public class TelaPrincipal extends Tela{
 		bntAdicionarSwitch = new BotaoDesktop("resource/imagens/desktop/adicionarSwitch.png", "Adicionar Switch");
 		bntAdicionarSwitch.setBounds(950, 100, 250, 180);
 		
-		bntAdicionarCaixa = new BotaoDesktop("resource/imagens/desktop/atendimento.png", "Atendimentos");
-		bntAdicionarCaixa.setBounds(350, 400, 250, 180);
+		bntAtendimentos = new BotaoDesktop("resource/imagens/desktop/atendimento.png", "Atendimentos");
+		bntAtendimentos.setBounds(350, 400, 250, 180);
 		
 		bntMovimentacoes = new BotaoDesktop("resource/imagens/desktop/movimentacao.png", "Movimentações");
 		bntMovimentacoes.setBounds(750, 400, 250, 180);
@@ -61,7 +61,7 @@ public class TelaPrincipal extends Tela{
 		getContentPane().add(bntAdicionarCliente);
 		getContentPane().add(bntVerCliente);
 		getContentPane().add(bntAdicionarSwitch);
-		getContentPane().add(bntAdicionarCaixa);
+		getContentPane().add(bntAtendimentos);
 		getContentPane().add(bntMovimentacoes);
 		
 	}
@@ -70,7 +70,7 @@ public class TelaPrincipal extends Tela{
 		bntAdicionarCliente.setVisible(false);
 		bntVerCliente.setVisible(false);
 		bntAdicionarSwitch.setVisible(false);
-		bntAdicionarCaixa.setVisible(false);
+		bntAtendimentos.setVisible(false);
 		bntMovimentacoes.setVisible(false);
 	}
 	
@@ -78,7 +78,7 @@ public class TelaPrincipal extends Tela{
 		bntAdicionarCliente.setVisible(true);
 		bntVerCliente.setVisible(true);
 		bntAdicionarSwitch.setVisible(true);
-		bntAdicionarCaixa.setVisible(true);
+		bntAtendimentos.setVisible(true);
 		bntMovimentacoes.setVisible(true);
 	}
 
@@ -98,8 +98,8 @@ public class TelaPrincipal extends Tela{
 		return bntAdicionarSwitch;
 	}
 
-	public BotaoDesktop getBntAdicionarCaixa() {
-		return bntAdicionarCaixa;
+	public BotaoDesktop getBntAtendiemntos() {
+		return bntAtendimentos;
 	}
 
 	public BotaoDesktop getBntMovimentacoes() {
@@ -114,7 +114,7 @@ public class TelaPrincipal extends Tela{
 		return desktopPane;
 	}
 
-	public AdicionarCliente getAdicionarCliente() {
+	public InternalAdicionarCliente getAdicionarCliente() {
 		return adicionarCliente;
 	}
 	

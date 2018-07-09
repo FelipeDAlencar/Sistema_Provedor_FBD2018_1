@@ -3,7 +3,7 @@ package br.com.sistema_provedor_fbd_2018_1.entidade;
 public class Atendimento {
 	
 	private Integer id, cliente_id;
-	private String motivo, protocolo;
+	private String motivo, protocolo, status;
 	
 	
 	public Atendimento() {
@@ -24,6 +24,7 @@ public class Atendimento {
 		this.cliente_id = cliente_id;
 		this.motivo = motivo;
 		this.protocolo = protocolo;
+		this.status = "Fechado";
 	}
 
 
@@ -64,6 +65,16 @@ public class Atendimento {
 
 	public void setProtocolo(String protocolo) {
 		this.protocolo = protocolo;
+	}
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 	

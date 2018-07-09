@@ -14,7 +14,7 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Atendimento;
 @SuppressWarnings("serial")
 public class Menu extends JMenuBar{
 	private JMenu cadastrosMenu, clientesMenu, netwokMenu, financeiroMenu;
-	private JMenuItem funcionarioCadastro, servicoCadastro;
+	private JMenuItem funcionarioCadastro, servicoCadastro, cidadeCadastro;
 	private JMenuItem adicionarCliente, verCliente, atendimentosCliente;
 	private JMenuItem concentradorNetwork, switchNetwork, caixaNetwork;
 	private JMenuItem movimentacoesFinanceiro, caixaFinanceiro;
@@ -38,6 +38,7 @@ public class Menu extends JMenuBar{
 		//Instanciando MenuItems
 		funcionarioCadastro = new JMenuItem("Funcionario");
 		servicoCadastro = new JMenuItem("Serviço");
+		cidadeCadastro = new JMenuItem("Cidade");
 		
 		adicionarCliente = new JMenuItem("Adicionar Cliente");
 		verCliente = new JMenuItem("Ver Cliente");
@@ -59,6 +60,7 @@ public class Menu extends JMenuBar{
 		//Adicionando Incone ao MenuItem
 		funcionarioCadastro.setIcon(new ImageIcon("resource/imagens/icones/icon-funcionario.png"));
 		servicoCadastro.setIcon(new ImageIcon("resource/imagens/icones/icon-servico.png"));
+		cidadeCadastro.setIcon(new ImageIcon("resource/imagens/icones/icon-cidade.png"));
 		
 		adicionarCliente.setIcon(new ImageIcon("resource/imagens/icones/icon-cliente.png"));
 		verCliente.setIcon(new ImageIcon("resource/imagens/icones/icon-cliente.png"));
@@ -75,6 +77,8 @@ public class Menu extends JMenuBar{
 		cadastrosMenu.add(funcionarioCadastro);
 		cadastrosMenu.addSeparator();
 		cadastrosMenu.add(servicoCadastro);
+		cadastrosMenu.addSeparator();
+		cadastrosMenu.add(cidadeCadastro);
 		
 		clientesMenu.add(verCliente);
 		clientesMenu.addSeparator();
@@ -98,5 +102,67 @@ public class Menu extends JMenuBar{
 		add(netwokMenu);
 		add(financeiroMenu);
 	}
+
+	public JMenu getCadastrosMenu() {
+		return cadastrosMenu;
+	}
+
+	public JMenu getClientesMenu() {
+		return clientesMenu;
+	}
+
+	public JMenu getNetwokMenu() {
+		return netwokMenu;
+	}
+
+	public JMenu getFinanceiroMenu() {
+		return financeiroMenu;
+	}
+
+	public JMenuItem getFuncionarioCadastro() {
+		return funcionarioCadastro;
+	}
+
+	public JMenuItem getServicoCadastro() {
+		return servicoCadastro;
+	}
+
+	public JMenuItem getAdicionarCliente() {
+		return adicionarCliente;
+	}
+
+	public JMenuItem getVerCliente() {
+		return verCliente;
+	}
+
+	public JMenuItem getAtendimentosCliente() {
+		return atendimentosCliente;
+	}
+
+	public JMenuItem getConcentradorNetwork() {
+		return concentradorNetwork;
+	}
+
+	public JMenuItem getSwitchNetwork() {
+		return switchNetwork;
+	}
+
+	public JMenuItem getCaixaNetwork() {
+		return caixaNetwork;
+	}
+
+	public JMenuItem getMovimentacoesFinanceiro() {
+		return movimentacoesFinanceiro;
+	}
+
+	public JMenuItem getCaixaFinanceiro() {
+		return caixaFinanceiro;
+	}
+
+	public JMenuItem getCidadeCadastro() {
+		return cidadeCadastro;
+	}
+	
+	
 
 }
