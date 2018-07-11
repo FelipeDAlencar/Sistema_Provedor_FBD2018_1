@@ -8,7 +8,7 @@ import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 
 public interface IDaoConcentrador {
 	
-	public void salvar(Concentrador concentrador)throws DaoException;
+	public void salvar(Concentrador concentrador, String cep)throws DaoException;
 
 	public void editar(Concentrador concentrador)throws DaoException;
 

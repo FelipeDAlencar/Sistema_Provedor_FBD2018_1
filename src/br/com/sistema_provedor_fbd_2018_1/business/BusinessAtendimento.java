@@ -17,13 +17,13 @@ public class BusinessAtendimento implements IBusinessAtendimento {
 	}
 
 	@Override
-	public void salvarOuEditar(Atendimento atendimento) throws BusinessException {
+	public void salvarOuEditar(Atendimento atendimento, String cpfCliente) throws BusinessException {
 		try {
 			validacao();
 			if (atendimento.getId() == null) {
-				dao.salvar(atendimento);
+				dao.salvar(atendimento, cpfCliente);
 			} else {
-				dao.editar(atendimento);
+				dao.editar(atendimento, cpfCliente);
 			}
 
 		} catch (Exception e) {

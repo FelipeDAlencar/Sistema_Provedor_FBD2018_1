@@ -16,12 +16,12 @@ public class BusinessContato implements IBusinessContato {
 	}
 
 	@Override
-	public void salvarOuEditar(Contato contato) throws BusinessException {
+	public void salvarOuEditar(Contato contato, String cpfCliente) throws BusinessException {
 		try {
 			validacao();
 
 			if (contato.getId() == null) {
-				dao.salvar(contato);
+				dao.salvar(contato, cpfCliente);
 			} else {
 				dao.editar(contato);
 			}

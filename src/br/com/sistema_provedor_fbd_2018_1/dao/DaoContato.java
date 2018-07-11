@@ -16,12 +16,12 @@ public class DaoContato implements IDaoContato{
 	private Connection conexao;
 	private PreparedStatement statement;
 	@Override
-	public void salvar(Contato contato) throws DaoException {
+	public void salvar(Contato contato,String cpfCliente) throws DaoException {
 		try {
 
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Cliente.SELECT_CPF);
-			statement.setString(1, "108.590.464-43");
+			statement.setString(1, cpfCliente);
 
 			ResultSet resultSet = statement.executeQuery();
 			resultSet.next();

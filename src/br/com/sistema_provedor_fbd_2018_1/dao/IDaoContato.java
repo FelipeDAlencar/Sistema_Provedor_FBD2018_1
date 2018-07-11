@@ -9,7 +9,7 @@ import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 
 public interface IDaoContato {
 	
-	public void salvar(Contato contato)throws DaoException;
+	public void salvar(Contato contato,String cpfCliente)throws DaoException;
 
 	public void editar(Contato contato)throws DaoException;
 

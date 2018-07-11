@@ -7,7 +7,7 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 
 public interface IBusinessSwitch {
 	
-	public void salvarOuEditar(Switch switch1) throws BusinessException;
+	public void salvarOuEditar(Switch switch1, String nomeCaixa) throws BusinessException;
 
 	public ArrayList<Switch> listarTodos() throws BusinessException;
 

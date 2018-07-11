@@ -17,12 +17,12 @@ public class DaoContrato implements IDaoContrato {
 	private PreparedStatement statement;
 
 	@Override
-	public void salvar(Contrato contrato) throws DaoException {
+	public void salvar(Contrato contrato,String cpfCliente, int numeroPorta) throws DaoException {
 		try {
 			ResultSet resultSet;
 			concexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = concexao.prepareStatement(SQLUtil.Cliente.SELECT_CPF);
-			statement.setString(1, "108.590.464-43");
+			statement.setString(1, cpfCliente);
 
 			resultSet = statement.executeQuery();
 			resultSet.next();
@@ -30,7 +30,7 @@ public class DaoContrato implements IDaoContrato {
 			int cliente_id = resultSet.getInt(1);
 
 			statement = concexao.prepareStatement(SQLUtil.Porta.SELECT_NUMERO);
-			statement.setInt(1, 1);
+			statement.setInt(1, numeroPorta);
 
 			resultSet = statement.executeQuery();
 			resultSet.next();
@@ -46,14 +46,14 @@ public class DaoContrato implements IDaoContrato {
 			statement.setInt(5, contrato.getNumero_parcelas());
 			statement.setInt(6, cliente_id);
 			statement.setInt(7, porta_id);
-			
+
 			statement.execute();
 			statement.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DaoException("ERRO AO TENTRAR INSERIR CONTRATO");
-			
+
 		}
 
 	}

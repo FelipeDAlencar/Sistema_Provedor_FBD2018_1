@@ -54,7 +54,7 @@ public interface IFachada {
 	public ArrayList<Cidade> listarTodosCidades() throws BusinessException;
 
 	// Atendimento
-	public void salvarOuEditarAtendimento(Atendimento atendimento) throws BusinessException;
+	public void salvarOuEditarAtendimento(Atendimento atendimento, String cpfCliente) throws BusinessException;
 
 	public ArrayList<Atendimento> listarTodosAtendimento() throws BusinessException;
 
@@ -63,7 +63,7 @@ public interface IFachada {
 	public ArrayList<Atendimento> buscarAtendimentoPorBusca(String busca);
 
 	// Caixa
-	public void salvarOuEditarCaixa(Caixa caixa) throws BusinessException;
+	public void salvarOuEditarCaixa(Caixa caixa, String cep) throws BusinessException;
 
 	public ArrayList<Caixa> listarTodosCaixa() throws BusinessException;
 
@@ -72,7 +72,7 @@ public interface IFachada {
 	public ArrayList<Caixa> buscarCaixaPorBusca(String busca);
 
 	// Concentrador
-	public void salvarOuEditarConcentrador(Concentrador concentrador) throws BusinessException;
+	public void salvarOuEditarConcentrador(Concentrador concentrador, String cep) throws BusinessException;
 
 	public ArrayList<Concentrador> listarTodosConcentrador() throws BusinessException;
 
@@ -81,7 +81,7 @@ public interface IFachada {
 	public ArrayList<Concentrador> buscarConcentradorPorBusca(String busca);
 
 	// Contato
-	public void salvarOuEditarContato(Contato contato) throws BusinessException;
+	public void salvarOuEditarContato(Contato contato, String cpfCliente) throws BusinessException;
 
 	public ArrayList<Contato> listarTodosContato() throws BusinessException;
 
@@ -90,7 +90,7 @@ public interface IFachada {
 	public ArrayList<Contato> buscarContatoPorBusca(String busca);
 
 	// Contrato
-	public void salvarOuEditarContrato(Contrato contrato) throws BusinessException;
+	public void salvarOuEditarContrato(Contrato contrato, String cpfCliente, int numeroPorta) throws BusinessException;
 
 	public ArrayList<Contrato> listarTodosContrato() throws BusinessException;
 
@@ -99,7 +99,7 @@ public interface IFachada {
 	public ArrayList<Contrato> buscarContratoPorBusca(String busca);
 
 	// Porta
-	public void salvarOuEditarPorta(Porta porta) throws BusinessException;
+	public void salvarOuEditarPorta(Porta porta, String nomeSwitch) throws BusinessException;
 
 	public ArrayList<Porta> listarTodosPorta() throws BusinessException;
 
@@ -117,7 +117,7 @@ public interface IFachada {
 	public ArrayList<Servico> buscarServicoPorBusca(String busca);
 
 	// Switch
-	public void salvarOuEditarSwitch(Switch switch1) throws BusinessException;
+	public void salvarOuEditarSwitch(Switch switch1, String nomeCaixa) throws BusinessException;
 
 	public ArrayList<Switch> listarTodosSwitch() throws BusinessException;
 

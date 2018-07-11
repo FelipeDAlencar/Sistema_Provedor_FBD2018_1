@@ -16,12 +16,12 @@ public class DaoSwitch implements IDaoSwitch{
 	private Connection conexao;
 	private PreparedStatement statement;
 	@Override
-	public void salvar(Switch switch1) throws DaoException {
+	public void salvar(Switch switch1, String nomeCaixa) throws DaoException {
 		try {
 
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Caixa.SELECT_NOME);
-			statement.setString(1, "C1");
+			statement.setString(1, nomeCaixa);
 			
 			ResultSet resultSet = statement.executeQuery();
 			resultSet.next();

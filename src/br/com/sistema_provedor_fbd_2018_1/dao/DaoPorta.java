@@ -17,12 +17,12 @@ public class DaoPorta implements IDaoPorta {
 	private PreparedStatement statement;
 
 	@Override
-	public void salvar(Porta porta) throws DaoException {
+	public void salvar(Porta porta, String nomeSwitch) throws DaoException {
 		try {
 
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Switch.SELECT_NOME);
-			statement.setString(1, "Teste");
+			statement.setString(1, nomeSwitch);
 
 			ResultSet resultSet = statement.executeQuery();
 			resultSet.next();

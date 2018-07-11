@@ -8,7 +8,7 @@ import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 
 public interface IDaoContrato {
 	
-	public void salvar(Contrato contrato)throws DaoException;
+	public void salvar(Contrato contrato,String cpfCliente, int numeroPorta)throws DaoException;
 
 	public void editar(Contrato contrato)throws DaoException;
 

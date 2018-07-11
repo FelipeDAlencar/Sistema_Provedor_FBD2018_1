@@ -7,7 +7,7 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 
 public interface IBusinessContato {
 
-	public void salvarOuEditar(Contato contato) throws BusinessException;
+	public void salvarOuEditar(Contato contato, String cpfCliente) throws BusinessException;
 
 	public ArrayList<Contato> listarTodos() throws BusinessException;
 

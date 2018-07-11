@@ -16,12 +16,12 @@ public class BusinessCaixa implements IBusinessCaixa {
 	}
 
 	@Override
-	public void salvarOuEditar(Caixa caixa) throws BusinessException {
+	public void salvarOuEditar(Caixa caixa, String cep) throws BusinessException {
 		try {
 			validacao();
 
 			if (caixa.getId() == null) {
-				dao.salvar(caixa);
+				dao.salvar(caixa, cep);
 			} else {
 				dao.editar(caixa);
 			}

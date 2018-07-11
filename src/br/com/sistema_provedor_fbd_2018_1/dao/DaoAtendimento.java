@@ -18,12 +18,12 @@ public class DaoAtendimento implements IDaoAtendimento {
 	private PreparedStatement statement;
 
 	@Override
-	public void salvar(Atendimento atendimento) throws DaoException {
+	public void salvar(Atendimento atendimento, String cpfCliente) throws DaoException {
 		try {
 
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Cliente.SELECT_CPF);
-			statement.setString(1, "108.590.464-43");
+			statement.setString(1, cpfCliente);
 
 			ResultSet resultSet = statement.executeQuery();
 			resultSet.next();
@@ -48,7 +48,7 @@ public class DaoAtendimento implements IDaoAtendimento {
 	}
 
 	@Override
-	public void editar(Atendimento atendimento) throws DaoException {
+	public void editar(Atendimento atendimento, String cpfCliente) throws DaoException {
 		// TODO Auto-generated method stub
 
 	}

@@ -17,12 +17,12 @@ public class BusinessConcentrador implements IBusinessConcentrador {
 	}
 
 	@Override
-	public void salvarOuEditar(Concentrador concentrador) throws BusinessException {
+	public void salvarOuEditar(Concentrador concentrador,String cep) throws BusinessException {
 		try {
 			validacao();
 
 			if (concentrador.getId() == null) {
-				dao.salvar(concentrador);
+				dao.salvar(concentrador, cep);
 			} else {
 				dao.editar(concentrador);
 			}

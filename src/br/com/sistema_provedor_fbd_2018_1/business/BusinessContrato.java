@@ -10,30 +10,32 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 public class BusinessContrato implements IBusinessContrato {
 
 	IDaoContrato dao;
-	
+
 	public BusinessContrato() {
 		dao = new DaoContrato();
 	}
+
 	@Override
-	public void salvarOuEditar(Contrato contrato) throws BusinessException {
+	public void salvarOuEditar(Contrato contrato, String cpfCliente, int numeroPorta) throws BusinessException {
 		try {
 			validacao();
-			if(contrato.getId() == null) {
-				dao.salvar(contrato);
-			}else {
+			if (contrato.getId() == null) {
+				dao.salvar(contrato, cpfCliente, numeroPorta);
+			} else {
 				dao.editar(contrato);
 			}
-			
+
 		} catch (Exception e) {
 			throw new BusinessException(e.getMessage());
 		}
-		
+
 	}
 
 	private void validacao() {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	@Override
 	public ArrayList<Contrato> listarTodos() throws BusinessException {
 		// TODO Auto-generated method stub

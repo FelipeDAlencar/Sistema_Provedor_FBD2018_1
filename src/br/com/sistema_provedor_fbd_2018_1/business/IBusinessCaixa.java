@@ -7,7 +7,7 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 
 public interface IBusinessCaixa {
 
-	public void salvarOuEditar(Caixa caixa) throws BusinessException;
+	public void salvarOuEditar(Caixa caixa, String cep) throws BusinessException;
 
 	public ArrayList<Caixa> listarTodos() throws BusinessException;
 

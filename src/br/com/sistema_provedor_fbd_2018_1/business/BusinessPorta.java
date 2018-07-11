@@ -7,34 +7,35 @@ import br.com.sistema_provedor_fbd_2018_1.dao.IDaoPorta;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Porta;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 
-public class BusinessPorta implements IBusinessPorta{
+public class BusinessPorta implements IBusinessPorta {
 
 	IDaoPorta dao;
+
 	public BusinessPorta() {
 		dao = new DaoPorta();
 	}
-	
+
 	@Override
-	public void salvarOuEditar(Porta porta) throws BusinessException {
+	public void salvarOuEditar(Porta porta, String nomeSwitch) throws BusinessException {
 		try {
 			validacao();
-			
-			if(porta.getId() == null) {
-				dao.salvar(porta);
-				
-			}else {
+
+			if (porta.getId() == null) {
+				dao.salvar(porta, nomeSwitch);
+
+			} else {
 				dao.editar(porta);
 			}
-			
+
 		} catch (Exception e) {
 			throw new BusinessException(e.getMessage());
 		}
-		
+
 	}
 
 	private void validacao() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

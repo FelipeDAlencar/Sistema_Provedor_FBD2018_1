@@ -9,7 +9,7 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 
 public interface IBusinessConcentrador {
 
-	public void salvarOuEditar(Concentrador concentrador) throws BusinessException;
+	public void salvarOuEditar(Concentrador concentrador,String cep) throws BusinessException;
 
 	public ArrayList<Concentrador> listarTodos() throws BusinessException;
 

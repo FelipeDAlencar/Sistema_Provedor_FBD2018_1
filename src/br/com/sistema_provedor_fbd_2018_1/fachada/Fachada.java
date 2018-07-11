@@ -63,9 +63,9 @@ public class Fachada implements IFachada {
 		businessCidade = new BusinessCidade();
 		businessAtendimento = new BusinessAtendimento();
 		businessCaixa = new BusinessCaixa();
-		businessConcentrador =  new BusinessConcentrador();
+		businessConcentrador = new BusinessConcentrador();
 		businessContato = new BusinessContato();
-		businessContrato =  new BusinessContrato();
+		businessContrato = new BusinessContrato();
 		businessPorta = new BusinessPorta();
 		businessServico = new BusinessServico();
 		businessSwitch = new BusinessSwitch();
@@ -175,8 +175,8 @@ public class Fachada implements IFachada {
 
 	// ATENDIMENTO
 	@Override
-	public void salvarOuEditarAtendimento(Atendimento atendimento) throws BusinessException {
-		businessAtendimento.salvarOuEditar(atendimento);
+	public void salvarOuEditarAtendimento(Atendimento atendimento, String cpfCliente) throws BusinessException {
+		businessAtendimento.salvarOuEditar(atendimento, cpfCliente);
 
 	}
 
@@ -200,8 +200,8 @@ public class Fachada implements IFachada {
 
 	// CAIXA
 	@Override
-	public void salvarOuEditarCaixa(Caixa caixa) throws BusinessException {
-		businessCaixa.salvarOuEditar(caixa);
+	public void salvarOuEditarCaixa(Caixa caixa, String cep) throws BusinessException {
+		businessCaixa.salvarOuEditar(caixa, cep);
 
 	}
 
@@ -226,8 +226,8 @@ public class Fachada implements IFachada {
 	// CONTATO
 
 	@Override
-	public void salvarOuEditarContato(Contato contato) throws BusinessException {
-		businessContato.salvarOuEditar(contato);
+	public void salvarOuEditarContato(Contato contato, String cpfCliente) throws BusinessException {
+		businessContato.salvarOuEditar(contato, cpfCliente);
 
 	}
 
@@ -251,8 +251,8 @@ public class Fachada implements IFachada {
 
 	// CONTRATO
 	@Override
-	public void salvarOuEditarContrato(Contrato contrato) throws BusinessException {
-		businessContrato.salvarOuEditar(contrato);
+	public void salvarOuEditarContrato(Contrato contrato, String cpfCliente, int numeroPorta) throws BusinessException {
+		businessContrato.salvarOuEditar(contrato, cpfCliente, numeroPorta);
 
 	}
 
@@ -276,8 +276,8 @@ public class Fachada implements IFachada {
 
 	// PORTA
 	@Override
-	public void salvarOuEditarPorta(Porta porta) throws BusinessException {
-		businessPorta.salvarOuEditar(porta);
+	public void salvarOuEditarPorta(Porta porta, String nomeSwitch) throws BusinessException {
+		businessPorta.salvarOuEditar(porta, nomeSwitch);
 
 	}
 
@@ -326,8 +326,8 @@ public class Fachada implements IFachada {
 
 	// SWITCH
 	@Override
-	public void salvarOuEditarSwitch(Switch switch1) throws BusinessException {
-		businessSwitch.salvarOuEditar(switch1);
+	public void salvarOuEditarSwitch(Switch switch1, String nomeCaixa) throws BusinessException {
+		businessSwitch.salvarOuEditar(switch1, nomeCaixa);
 
 	}
 
@@ -351,8 +351,8 @@ public class Fachada implements IFachada {
 
 	// CONCENTRADOR
 	@Override
-	public void salvarOuEditarConcentrador(Concentrador concentrador) throws BusinessException {
-		businessConcentrador.salvarOuEditar(concentrador);
+	public void salvarOuEditarConcentrador(Concentrador concentrador, String cep) throws BusinessException {
+		businessConcentrador.salvarOuEditar(concentrador, cep);
 
 	}
 

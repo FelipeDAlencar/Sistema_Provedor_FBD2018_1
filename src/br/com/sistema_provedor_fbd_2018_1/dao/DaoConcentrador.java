@@ -16,17 +16,17 @@ public class DaoConcentrador implements IDaoConcentrador {
 	private Connection conexao;
 	private PreparedStatement statement;
 	@Override
-	public void salvar(Concentrador concentrador) throws DaoException {
+	public void salvar(Concentrador concentrador, String cep) throws DaoException {
 		try {
 
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
-			statement = conexao.prepareStatement(SQLUtil.Cidade.SELECT_NOME);
-			statement.setString(1, "Ibimirim");
+			statement = conexao.prepareStatement(SQLUtil.Cidade.SELECT_CEP);
+			statement.setString(1, cep);
 
 			ResultSet resultSet = statement.executeQuery();
 			resultSet.next();
 
-			int cliente_id = resultSet.getInt(1);
+			int cidade_id = resultSet.getInt(1);
 
 			statement = conexao.prepareStatement(SQLUtil.Concentrador.INSERT_ALL);
 
@@ -34,7 +34,7 @@ public class DaoConcentrador implements IDaoConcentrador {
 			statement.setString(2, concentrador.getIp());
 			statement.setString(3, concentrador.getLogin());
 			statement.setString(4, concentrador.getSenha());
-			statement.setInt(5, cliente_id);
+			statement.setInt(5, cidade_id);
 
 			statement.execute();
 			conexao.close();

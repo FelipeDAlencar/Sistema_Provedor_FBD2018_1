@@ -8,7 +8,7 @@ import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 
 public interface IDaoCaixa {
 	
-	public void salvar(Caixa caixa)throws DaoException;
+	public void salvar(Caixa caixa, String cep)throws DaoException;
 
 	public void editar(Caixa caixa)throws DaoException;
 

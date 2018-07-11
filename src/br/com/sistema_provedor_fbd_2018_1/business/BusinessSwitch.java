@@ -15,12 +15,12 @@ public class BusinessSwitch implements IBusinessSwitch {
 	}
 	
 	@Override
-	public void salvarOuEditar(Switch switch1) throws BusinessException {
+	public void salvarOuEditar(Switch switch1, String nomeCaixa) throws BusinessException {
 		try {
 			validacao();
 			
 			if(switch1.getId() == null) {
-				dao.salvar(switch1);
+				dao.salvar(switch1, nomeCaixa);
 			}else {
 				dao.editar(switch1);
 			}
