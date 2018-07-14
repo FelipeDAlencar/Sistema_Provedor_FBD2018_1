@@ -1,5 +1,6 @@
 package br.com.sistema_provedor_fbd_2018_1.view;
 
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JScrollPane;
@@ -18,8 +19,8 @@ public class InternalCaixa extends TelaInternal{
 	private DefaultTableModel modelTable;
 	private JScrollPane barraRolagem;
 	private JTable tabela;
-	public InternalCaixa(TelaPrincipal telaPrincipal) throws BusinessException {
-		super("Caixa", telaPrincipal);
+	public InternalCaixa(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
+		super("Caixa", telaPrincipal, actionListener);
 		setBounds(150, 50, 1050, 500);
 		getContentPane().setLayout(null);
 		setVisible(false);

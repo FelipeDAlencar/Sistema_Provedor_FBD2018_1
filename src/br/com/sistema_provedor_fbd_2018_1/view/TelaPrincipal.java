@@ -33,6 +33,9 @@ public class TelaPrincipal extends Tela{
 		desktopPane.add(bgImage);
 		getContentPane().add(desktopPane);	
 		
+		ImageIcon imagemTituloJanela = new ImageIcon("res/icon.png");
+		setIconImage(imagemTituloJanela.getImage());
+		
 		setVisible(true);
 
 	}

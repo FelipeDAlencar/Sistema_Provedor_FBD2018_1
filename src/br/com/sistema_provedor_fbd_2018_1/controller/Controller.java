@@ -22,7 +22,8 @@ import br.com.sistema_provedor_fbd_2018_1.view.TelaPrincipal;
 public class Controller implements ActionListener{
 	private TelaPrincipal telaPrincipal;
 	private Fachada fachada;
-	
+	private InternalAdicionarCliente internalAdicionarCliente;
+	private ControllerCadastroCliente controllerCadastroCliente;
 	public Controller(TelaPrincipal telaPrincipal) {
 		fachada = new Fachada();
 		this.telaPrincipal = telaPrincipal;
@@ -57,78 +58,83 @@ public class Controller implements ActionListener{
 			telaPrincipal.desativarBotoes();
 			if(e.getSource()==telaPrincipal.getBntAdicionarCliente()
 					|| e.getSource()==telaPrincipal.getMenu().getAdicionarCliente()) {
-				InternalAdicionarCliente adicionarCliente;
-				adicionarCliente = new InternalAdicionarCliente(telaPrincipal);
-				telaPrincipal.getDesktopPane().add(adicionarCliente);
-				adicionarCliente.setVisible(true);
+				controllerCadastroCliente =  new ControllerCadastroCliente();
+				internalAdicionarCliente = new InternalAdicionarCliente(telaPrincipal,controllerCadastroCliente);
+				telaPrincipal.getDesktopPane().add(internalAdicionarCliente);
+				internalAdicionarCliente.setVisible(true);
+				controllerCadastroCliente.setAdicionarCliente(internalAdicionarCliente);
+				controllerCadastroCliente.addListenners();
+				                                                                                                                                                                                                         
 			}
 			
-			if(e.getSource()==telaPrincipal.getBntVerCliente()
-					|| e.getSource()==telaPrincipal.getMenu().getVerCliente()) {
-				InternalLocalizarCliente localizarCliente;
-				localizarCliente = new InternalLocalizarCliente(telaPrincipal);
-				telaPrincipal.getDesktopPane().add(localizarCliente);
-				localizarCliente.setVisible(true);
-			}
-			if(e.getSource()==telaPrincipal.getBntAtendiemntos()
-					|| e.getSource()==telaPrincipal.getMenu().getAtendimentosCliente()) {	
-				InternalAtendimentos telaAtendimentos;
-				telaAtendimentos = new InternalAtendimentos(telaPrincipal);
-				telaPrincipal.getDesktopPane().add(telaAtendimentos);
-				telaAtendimentos.setVisible(true);
-			}
-			
-			if(e.getSource()==telaPrincipal.getBntAdicionarSwitch()
-					|| e.getSource()==telaPrincipal.getMenu().getSwitchNetwork()) {	
-				InternalSwitch telaSwitch;
-				telaSwitch = new InternalSwitch(telaPrincipal);
-				telaPrincipal.getDesktopPane().add(telaSwitch);
-				telaSwitch.setVisible(true);
-			}
-			
-			if(e.getSource()==telaPrincipal.getMenu().getFuncionarioCadastro()) {
-				InternalFuncionario telaFuncionarios;
-				telaFuncionarios = new InternalFuncionario(telaPrincipal);
-				telaPrincipal.getDesktopPane().add(telaFuncionarios);
-				telaFuncionarios.setVisible(true);
-			}
-			
-			if(e.getSource()==telaPrincipal.getMenu().getServicoCadastro()) {				
-				InternalServicos telaServicos;
-				telaServicos = new InternalServicos(telaPrincipal);
-				telaPrincipal.getDesktopPane().add(telaServicos);
-				telaServicos.setVisible(true);
-			}
-			
-			if(e.getSource()==telaPrincipal.getMenu().getCidadeCadastro()) {
-				List<Cidade> cidades = new ArrayList<>();
-				cidades = fachada.listarTodosCidades();
-				
-				
-				InternalCidade telaCidades;
-				telaCidades = new InternalCidade(telaPrincipal);
-				telaPrincipal.getDesktopPane().add(telaCidades);
-				telaCidades.carregarCidades(cidades);
-				telaCidades.setVisible(true);
-			}
-			
-			if(e.getSource()==telaPrincipal.getMenu().getConcentradorNetwork()) {				
-				InternalConcentrador telaConcentrador;
-				telaConcentrador = new InternalConcentrador(telaPrincipal);
-				telaPrincipal.getDesktopPane().add(telaConcentrador);
-				telaConcentrador.setVisible(true);
-			}
-			
-			if(e.getSource()==telaPrincipal.getMenu().getCaixaNetwork()) {
-				InternalCaixa telaCaixa;
-				telaCaixa = new InternalCaixa(telaPrincipal);
-				telaPrincipal.getDesktopPane().add(telaCaixa);
-				telaCaixa.setVisible(true);
-			}
-			
+//			if(e.getSource()==telaPrincipal.getBntVerCliente()
+//					|| e.getSource()==telaPrincipal.getMenu().getVerCliente()) {
+//				InternalLocalizarCliente localizarCliente;
+//				//localizarCliente = new InternalLocalizarCliente(telaPrincipal);
+//				telaPrincipal.getDesktopPane().add(localizarCliente);
+//				localizarCliente.setVisible(true);
+//			}
+//			if(e.getSource()==telaPrincipal.getBntAtendiemntos()
+//					|| e.getSource()==telaPrincipal.getMenu().getAtendimentosCliente()) {	
+//				InternalAtendimentos telaAtendimentos;
+//				telaAtendimentos = new InternalAtendimentos(telaPrincipal);
+//				telaPrincipal.getDesktopPane().add(telaAtendimentos);
+//				telaAtendimentos.setVisible(true);
+//			}
+//			
+//			if(e.getSource()==telaPrincipal.getBntAdicionarSwitch()
+//					|| e.getSource()==telaPrincipal.getMenu().getSwitchNetwork()) {	
+//				InternalSwitch telaSwitch;
+//				telaSwitch = new InternalSwitch(telaPrincipal);
+//				telaPrincipal.getDesktopPane().add(telaSwitch);
+//				telaSwitch.setVisible(true);
+//			}
+//			
+//			if(e.getSource()==telaPrincipal.getMenu().getFuncionarioCadastro()) {
+//				InternalFuncionario telaFuncionarios;
+//				telaFuncionarios = new InternalFuncionario(telaPrincipal);
+//				telaPrincipal.getDesktopPane().add(telaFuncionarios);
+//				telaFuncionarios.setVisible(true);
+//			}
+//			
+//			if(e.getSource()==telaPrincipal.getMenu().getServicoCadastro()) {				
+//				InternalServicos telaServicos;
+//				telaServicos = new InternalServicos(telaPrincipal);
+//				telaPrincipal.getDesktopPane().add(telaServicos);
+//				telaServicos.setVisible(true);
+//			}
+//			
+//			if(e.getSource()==telaPrincipal.getMenu().getCidadeCadastro()) {
+//				List<Cidade> cidades = new ArrayList<>();
+//				cidades = fachada.listarTodosCidades();
+//				InternalCidade telaCidades;
+//				telaCidades = new InternalCidade(telaPrincipal);
+//				telaPrincipal.getDesktopPane().add(telaCidades);
+//				telaCidades.carregarCidades(cidades);
+//				telaCidades.setVisible(true);
+//			}
+//			
+//			if(e.getSource()==telaPrincipal.getMenu().getConcentradorNetwork()) {				
+//				InternalConcentrador telaConcentrador;
+//				telaConcentrador = new InternalConcentrador(telaPrincipal);
+//				telaPrincipal.getDesktopPane().add(telaConcentrador);
+//				telaConcentrador.setVisible(true);
+//			}
+//			
+//			if(e.getSource()==telaPrincipal.getMenu().getCaixaNetwork()) {
+//				InternalCaixa telaCaixa;
+//				telaCaixa = new InternalCaixa(telaPrincipal);
+//				telaPrincipal.getDesktopPane().add(telaCaixa);
+//				telaCaixa.setVisible(true);
+//			}
+//			
 		} catch (BusinessException e1) {
 			e1.printStackTrace();
 		}
+	}
+	public static void destroyer(Object object) {
+		object = null;
+		System.gc();
 	}
 
 

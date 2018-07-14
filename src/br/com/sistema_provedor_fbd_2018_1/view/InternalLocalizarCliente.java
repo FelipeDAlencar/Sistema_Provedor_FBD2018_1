@@ -1,5 +1,6 @@
 package br.com.sistema_provedor_fbd_2018_1.view;
 
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +26,8 @@ public class InternalLocalizarCliente extends TelaInternal{
 	private Botao bntFiltrar;
 	
 
-	public InternalLocalizarCliente(TelaPrincipal telaPrincipal) throws BusinessException {
-		super("LocalizarCliente", telaPrincipal);
+	public InternalLocalizarCliente(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
+		super("LocalizarCliente", telaPrincipal, actionListener);
 		setBounds(150, 50, 1050, 500);
 		getContentPane().setLayout(null);
 		setVisible(false);	

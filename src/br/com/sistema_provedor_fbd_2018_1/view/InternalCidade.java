@@ -1,5 +1,6 @@
 package br.com.sistema_provedor_fbd_2018_1.view;
 
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JScrollPane;
@@ -17,8 +18,8 @@ public class InternalCidade extends TelaInternal{
 	private DefaultTableModel modelTable;
 	private JScrollPane barraRolagem;
 	private JTable tabela;
-	public InternalCidade(TelaPrincipal telaPrincipal) throws BusinessException {
-		super("Cidades", telaPrincipal);
+	public InternalCidade(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
+		super("Cidades", telaPrincipal, actionListener);
 		setBounds(150, 50, 1050, 500);
 		getContentPane().setLayout(null);
 		setVisible(false);

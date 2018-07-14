@@ -1,5 +1,6 @@
 package br.com.sistema_provedor_fbd_2018_1.view;
 
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JScrollPane;
@@ -15,8 +16,8 @@ public class InternalAtendimentos extends TelaInternal{
 	private JScrollPane barraRolagem;
 	private JTable tabela;
 
-	public InternalAtendimentos(TelaPrincipal telaPrincipal) throws BusinessException {
-		super("Meus Atendimentos", telaPrincipal);
+	public InternalAtendimentos(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
+		super("Meus Atendimentos", telaPrincipal, actionListener);
 		setBounds(150, 50, 1050, 500);
 		getContentPane().setLayout(null);
 		setVisible(false);	

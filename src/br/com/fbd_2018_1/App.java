@@ -1,5 +1,6 @@
 package br.com.fbd_2018_1;
 
+import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
 import br.com.sistema_provedor_fbd_2018_1.controller.Controller;
@@ -28,10 +29,12 @@ public class App {
 		}
 
 		TelaPrincipal telaPrincipal = new TelaPrincipal();
+		
+	
 		Controller controller = new Controller(telaPrincipal);
 
 		Fachada fachada = new Fachada();
-
+		
 		// br.com.sistema_provedor_fbd_2018_1.entidade.Porta porta = new
 		// br.com.sistema_provedor_fbd_2018_1.entidade.Porta(1);
 		// fachada.salvarOuEditarPorta(porta);
