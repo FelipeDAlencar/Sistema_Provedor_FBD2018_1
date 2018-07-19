@@ -9,7 +9,7 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroCidade;
-import br.com.sistema_provedor_fbd_2018_1.view.Messagens;
+import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 
 public class ControllerCadastroCidade implements Listeners {
 
@@ -26,8 +26,8 @@ public class ControllerCadastroCidade implements Listeners {
 			Cidade cidade = new Cidade(internalCadastroCidade.getNomeField().getText(),
 					internalCadastroCidade.getEstadoField().getText().toUpperCase(),
 					internalCadastroCidade.getCepField().getText());
-			Messagens.messagem("Cidade salva com sucesso!", 1);
-			
+			Menssagens.menssagem("Cidade salva com sucesso!", 1);
+
 			internalCadastroCidade.getNomeField().setText("");
 			internalCadastroCidade.getEstadoField().setText("");
 			internalCadastroCidade.getCepField().setText("");
