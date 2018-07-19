@@ -9,15 +9,15 @@ import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLUtil.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalAdicionarCliente;
 
-public class ControllerCadastroCliente implements ActionListener {
+public class ControllerCliente implements ActionListener {
 	private InternalAdicionarCliente adicionarCliente;
 	private Fachada fachada;
 
-	public ControllerCadastroCliente(InternalAdicionarCliente internalAdicionarCliente) {
+	public ControllerCliente(InternalAdicionarCliente internalAdicionarCliente) {
 		fachada = new Fachada();
 	}
 
-	public ControllerCadastroCliente() {
+	public ControllerCliente() {
 		fachada = new Fachada();
 	}
 

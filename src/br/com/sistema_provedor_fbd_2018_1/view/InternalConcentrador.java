@@ -21,7 +21,7 @@ public class InternalConcentrador extends TelaInternal{
 		super("Concentrador", telaPrincipal, actionListener);
 		setBounds(150, 50, 1050, 500);
 		getContentPane().setLayout(null);
-		setVisible(false);
+		setVisible(true);
 	}
 
 	@Override

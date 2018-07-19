@@ -5,6 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import br.com.sistema_provedor_fbd_2018_1.dao.DaoFuncionario;
 import br.com.sistema_provedor_fbd_2018_1.dao.IDaoFuncionario;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
@@ -21,22 +23,20 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 	}
 
 	@Override
-	public void salvarOuEditarFuncionario(Funcionario funcionario) throws BusinessException{
-		
+	public void salvarOuEditarFuncionario(Funcionario funcionario) throws BusinessException {
+
 		try {
 			Validar(funcionario);
-			if(funcionario.getId() == null){
+			if (funcionario.getId() == null) {
 				dao.salvar(funcionario);
-			}else {
+			} else {
 				dao.editar(funcionario);
 			}
-				
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			throw new BusinessException(e.getMessage());
 		}
 	}
-
-	
 
 	@Override
 	public Funcionario buscarPorId(int id) {
@@ -55,28 +55,24 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	private void Validar(Funcionario funcionario)throws ValidacaoException {
-		if(funcionario.getData_contrato().equals("") || 
-				funcionario.getLogin().equals("") || 
-				funcionario.getSenha().equals("")||
-				funcionario.getNome().equals("")||
-				funcionario.getCargo().equals("")) {
+
+	private void Validar(Funcionario funcionario) throws ValidacaoException {
+		if (funcionario.getData_contrato().equals("") || funcionario.getLogin().equals("")
+				|| funcionario.getSenha().equals("") || funcionario.getNome().equals("")
+				|| funcionario.getCargo().equals("")) {
 			throw new ValidacaoException("ERRO DE VALIDAÇÃO - PREENCHA OS CAMPOS NESCESSÁRIOS");
-			
+
 		}
-		
-		
+
 	}
 
-	public static Date converterParaData(String txt) {
+	public static Date converterParaData(String txt) throws ParseException {
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		java.sql.Date data = null;
-		try {
-			data = new java.sql.Date(format.parse(txt).getTime());
 
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		data = new java.sql.Date(format.parse(txt).getTime());
+
+		JOptionPane.showMessageDialog(null, "Opss Algo errado com a data informada", "Error", 0);
 
 		return data;
 

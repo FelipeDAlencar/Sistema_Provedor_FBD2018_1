@@ -19,35 +19,51 @@ import br.com.sistema_provedor_fbd_2018_1.view.InternalServicos;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalSwitch;
 import br.com.sistema_provedor_fbd_2018_1.view.TelaPrincipal;
 
-public class Controller implements ActionListener{
+public class Controller implements ActionListener {
 	private TelaPrincipal telaPrincipal;
 	private Fachada fachada;
 	private InternalAdicionarCliente internalAdicionarCliente;
-	private ControllerCadastroCliente controllerCadastroCliente;
+	private InternalFuncionario internalFuncionario;
+	private InternalAtendimentos internalAtendimentos;
+	private InternalSwitch internalSwitch;
+	private InternalServicos internalServicos;
+	private InternalCidade internalCidade;
+	private InternalConcentrador internalConcentrador;
+	private InternalCaixa internalCaixa;
+	private InternalLocalizarCliente internalLocalizarCliente;
+	private ControllerCliente controllerCadastroCliente;
+	private ControllerFuncionario controllerFuncionario;
+	private ControllerAtendimentos controllerAtendimentos;
+	private ControllerSwitch controllerSwitch;
+	private ControllerServico controllerServico;
+	private ControllerCidade controllerCidade;
+	private ControllerConcentrador controllerConcentrador;
+	private ControllerCaixa controllerCaixa;
+	private ControllerVisualizar controllerVisualizar;
+
 	public Controller(TelaPrincipal telaPrincipal) {
 		fachada = new Fachada();
 		this.telaPrincipal = telaPrincipal;
-		
-		
-		//Botoes desktop
+
+		// Botoes desktop
 		telaPrincipal.getBntAdicionarCliente().addActionListener(this);
 		telaPrincipal.getBntVerCliente().addActionListener(this);
 		telaPrincipal.getBntAtendiemntos().addActionListener(this);
 		telaPrincipal.getBntAdicionarSwitch().addActionListener(this);
-		
-		//Itens Menu Cadatro
+
+		// Itens Menu Cadatro
 		telaPrincipal.getMenu().getFuncionarioCadastro().addActionListener(this);
 		telaPrincipal.getMenu().getServicoCadastro().addActionListener(this);
 		telaPrincipal.getMenu().getCidadeCadastro().addActionListener(this);
-		
-		//itens Menu Cliente
+
+		// itens Menu Cliente
 		telaPrincipal.getMenu().getAdicionarCliente().addActionListener(this);
 		telaPrincipal.getMenu().getVerCliente().addActionListener(this);
 		telaPrincipal.getMenu().getAtendimentosCliente().addActionListener(this);
-		
-		//itens Menu Network
+
+		// itens Menu Network
 		telaPrincipal.getMenu().getConcentradorNetwork().addActionListener(this);
-		//telaPrincipal.getBntAdicionarSwitch().addActionListener(this);
+		// telaPrincipal.getBntAdicionarSwitch().addActionListener(this);
 		telaPrincipal.getMenu().getCaixaNetwork().addActionListener(this);
 
 	}
@@ -56,86 +72,106 @@ public class Controller implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		try {
 			telaPrincipal.desativarBotoes();
-			if(e.getSource()==telaPrincipal.getBntAdicionarCliente()
-					|| e.getSource()==telaPrincipal.getMenu().getAdicionarCliente()) {
-				controllerCadastroCliente =  new ControllerCadastroCliente();
-				internalAdicionarCliente = new InternalAdicionarCliente(telaPrincipal,controllerCadastroCliente);
+			if (e.getSource() == telaPrincipal.getBntAdicionarCliente()
+					|| e.getSource() == telaPrincipal.getMenu().getAdicionarCliente()) {
+				controllerCadastroCliente = new ControllerCliente();
+				internalAdicionarCliente = new InternalAdicionarCliente(telaPrincipal, controllerCadastroCliente);
 				telaPrincipal.getDesktopPane().add(internalAdicionarCliente);
 				internalAdicionarCliente.setVisible(true);
 				controllerCadastroCliente.setAdicionarCliente(internalAdicionarCliente);
 				controllerCadastroCliente.addListenners();
-				                                                                                                                                                                                                         
+
 			}
-			
-//			if(e.getSource()==telaPrincipal.getBntVerCliente()
-//					|| e.getSource()==telaPrincipal.getMenu().getVerCliente()) {
-//				InternalLocalizarCliente localizarCliente;
-//				//localizarCliente = new InternalLocalizarCliente(telaPrincipal);
-//				telaPrincipal.getDesktopPane().add(localizarCliente);
-//				localizarCliente.setVisible(true);
-//			}
-//			if(e.getSource()==telaPrincipal.getBntAtendiemntos()
-//					|| e.getSource()==telaPrincipal.getMenu().getAtendimentosCliente()) {	
-//				InternalAtendimentos telaAtendimentos;
-//				telaAtendimentos = new InternalAtendimentos(telaPrincipal);
-//				telaPrincipal.getDesktopPane().add(telaAtendimentos);
-//				telaAtendimentos.setVisible(true);
-//			}
-//			
-//			if(e.getSource()==telaPrincipal.getBntAdicionarSwitch()
-//					|| e.getSource()==telaPrincipal.getMenu().getSwitchNetwork()) {	
-//				InternalSwitch telaSwitch;
-//				telaSwitch = new InternalSwitch(telaPrincipal);
-//				telaPrincipal.getDesktopPane().add(telaSwitch);
-//				telaSwitch.setVisible(true);
-//			}
-//			
-//			if(e.getSource()==telaPrincipal.getMenu().getFuncionarioCadastro()) {
-//				InternalFuncionario telaFuncionarios;
-//				telaFuncionarios = new InternalFuncionario(telaPrincipal);
-//				telaPrincipal.getDesktopPane().add(telaFuncionarios);
-//				telaFuncionarios.setVisible(true);
-//			}
-//			
-//			if(e.getSource()==telaPrincipal.getMenu().getServicoCadastro()) {				
-//				InternalServicos telaServicos;
-//				telaServicos = new InternalServicos(telaPrincipal);
-//				telaPrincipal.getDesktopPane().add(telaServicos);
-//				telaServicos.setVisible(true);
-//			}
-//			
-//			if(e.getSource()==telaPrincipal.getMenu().getCidadeCadastro()) {
-//				List<Cidade> cidades = new ArrayList<>();
-//				cidades = fachada.listarTodosCidades();
-//				InternalCidade telaCidades;
-//				telaCidades = new InternalCidade(telaPrincipal);
-//				telaPrincipal.getDesktopPane().add(telaCidades);
-//				telaCidades.carregarCidades(cidades);
-//				telaCidades.setVisible(true);
-//			}
-//			
-//			if(e.getSource()==telaPrincipal.getMenu().getConcentradorNetwork()) {				
-//				InternalConcentrador telaConcentrador;
-//				telaConcentrador = new InternalConcentrador(telaPrincipal);
-//				telaPrincipal.getDesktopPane().add(telaConcentrador);
-//				telaConcentrador.setVisible(true);
-//			}
-//			
-//			if(e.getSource()==telaPrincipal.getMenu().getCaixaNetwork()) {
-//				InternalCaixa telaCaixa;
-//				telaCaixa = new InternalCaixa(telaPrincipal);
-//				telaPrincipal.getDesktopPane().add(telaCaixa);
-//				telaCaixa.setVisible(true);
-//			}
-//			
+
+			if (e.getSource() == telaPrincipal.getBntVerCliente()
+					|| e.getSource() == telaPrincipal.getMenu().getVerCliente()) {
+				controllerVisualizar = new ControllerVisualizar();
+				internalLocalizarCliente = new InternalLocalizarCliente(telaPrincipal, controllerVisualizar);
+				telaPrincipal.getDesktopPane().add(internalLocalizarCliente);
+				internalLocalizarCliente.setVisible(true);
+				controllerVisualizar.setInternalLocalizarCliente(internalLocalizarCliente);
+				controllerVisualizar.addListeners();
+			}
+			if (e.getSource() == telaPrincipal.getBntAtendiemntos()
+					|| e.getSource() == telaPrincipal.getMenu().getAtendimentosCliente()) {
+				controllerAtendimentos = new ControllerAtendimentos();
+				internalAtendimentos = new InternalAtendimentos(telaPrincipal, controllerAtendimentos);
+				telaPrincipal.getDesktopPane().add(internalAtendimentos);
+				internalAtendimentos.setVisible(true);
+				controllerAtendimentos.setInternalAtendimentos(internalAtendimentos);
+				controllerAtendimentos.addListeners();
+			}
+
+			if (e.getSource() == telaPrincipal.getBntAdicionarSwitch()
+					|| e.getSource() == telaPrincipal.getMenu().getSwitchNetwork()) {
+				controllerSwitch = new ControllerSwitch();
+				internalSwitch = new InternalSwitch(telaPrincipal, controllerSwitch);
+				telaPrincipal.getDesktopPane().add(internalSwitch);
+				internalSwitch.setVisible(true);
+				controllerSwitch.setInternalSwitch(internalSwitch);
+				controllerSwitch.addListeners();
+			}
+
+			if (e.getSource() == telaPrincipal.getMenu().getFuncionarioCadastro()) {
+				controllerFuncionario = new ControllerFuncionario(telaPrincipal);
+				internalFuncionario = new InternalFuncionario(telaPrincipal, controllerFuncionario);
+				telaPrincipal.getDesktopPane().add(internalFuncionario);
+				controllerFuncionario.setInternalFuncionario(internalFuncionario);
+				internalFuncionario.setVisible(true);
+				controllerFuncionario.setInternalFuncionario(internalFuncionario);
+				controllerFuncionario.addListeners();
+
+			}
+			if (e.getSource() == telaPrincipal.getMenu().getCidadeCadastro()) {
+				List<Cidade> cidades = new ArrayList<>();
+				cidades = fachada.listarTodosCidades();
+				controllerCidade = new ControllerCidade(telaPrincipal);
+				internalCidade = new InternalCidade(telaPrincipal, controllerCidade);
+				telaPrincipal.getDesktopPane().add(internalCidade);
+				internalCidade.carregarCidades(cidades);
+				internalCidade.setVisible(true);
+				controllerCidade.setInternalCidade(internalCidade);
+				controllerCidade.addListeners();
+
+			}
+
+			if (e.getSource() == telaPrincipal.getMenu().getServicoCadastro()) {
+				controllerServico = new ControllerServico();
+				internalServicos = new InternalServicos(telaPrincipal, controllerServico);
+				telaPrincipal.getDesktopPane().add(internalServicos);
+				internalServicos.setVisible(true);
+				controllerServico.setInternalServicos(internalServicos);
+				controllerServico.addListeners();
+
+			}
+
+			if (e.getSource() == telaPrincipal.getMenu().getConcentradorNetwork()) {
+				controllerConcentrador = new ControllerConcentrador();
+				internalConcentrador = new InternalConcentrador(telaPrincipal, controllerConcentrador);
+				telaPrincipal.getDesktopPane().add(internalConcentrador);
+				internalConcentrador.setVisible(true);
+				controllerConcentrador.setInternalConcentrador(internalConcentrador);
+				controllerConcentrador.addListeners();
+
+			}
+
+			if (e.getSource() == telaPrincipal.getMenu().getCaixaNetwork()) {
+				controllerCaixa = new ControllerCaixa();
+				internalCaixa = new InternalCaixa(telaPrincipal, controllerCaixa);
+				telaPrincipal.getDesktopPane().add(internalCaixa);
+				internalCaixa.setVisible(true);
+				controllerCaixa.setInternalCaixa(internalCaixa);
+				controllerCaixa.addListeners();
+			}
+
 		} catch (BusinessException e1) {
 			e1.printStackTrace();
 		}
 	}
+
 	public static void destroyer(Object object) {
 		object = null;
 		System.gc();
 	}
-
 
 }

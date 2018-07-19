@@ -45,10 +45,6 @@ public class DaoCidade implements IDaoCidade {
 		try {
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Cidade.UPDATE);
-			
-			
-			
-			
 			statement.setString(1, cidade.getNome());
 			statement.setString(2, cidade.getEstado());
 			statement.setString(3, cidade.getCep());

@@ -3,17 +3,21 @@ package br.com.sistema_provedor_fbd_2018_1.view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 
-import br.com.sistema_provedor_fbd_2018_1.controller.ControllerCadastroCliente;
+import br.com.sistema_provedor_fbd_2018_1.controller.ControllerCliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
@@ -27,11 +31,12 @@ public class InternalAdicionarCliente extends TelaInternal {
 	private JLabel nomeLabel, cpfLabel, rgLabel, dataNascimentoLabel;
 	private JLabel bairroLabel, complementoLabel, ruaLabel, numeroLabel;
 	private JLabel cidadeLabel, estadoLabel, cepLabel;
-	private JTextField nomeField, cpfField, rgField, dataNascimentoField;
+	private JTextField nomeField, rgField;
 	private JTextField bairroField, complementoField, ruaField, numeroField;
 	private JComboBox<String> cidadesComboBox;
-	private JTextField estadoField, cepField;
+	private JTextField cepField;
 	private Botao bntSalvar;
+	private JFormattedTextField cpfField, dataNascimentoField, estadoField;
 
 	public InternalAdicionarCliente(TelaPrincipal telaPrincipal, ActionListener actionListener)
 			throws BusinessException {
@@ -67,7 +72,7 @@ public class InternalAdicionarCliente extends TelaInternal {
 		cpfLabel.setBounds(696, 68, 100, 50);
 		panelCliente.add(cpfLabel);
 
-		cpfField = new JTextField();
+		cpfField = new JFormattedTextField();
 		cpfField.setBounds(696, 118, 230, 30);
 		panelCliente.add(cpfField);
 
@@ -83,7 +88,7 @@ public class InternalAdicionarCliente extends TelaInternal {
 		dataNascimentoLabel.setBounds(176, 168, 200, 50);
 		panelCliente.add(dataNascimentoLabel);
 
-		dataNascimentoField = new JTextField();
+		dataNascimentoField = new JFormattedTextField();
 		dataNascimentoField.setBounds(176, 218, 150, 30);
 		panelCliente.add(dataNascimentoField);
 
@@ -133,7 +138,7 @@ public class InternalAdicionarCliente extends TelaInternal {
 		estadoLabel.setBounds(726, 268, 100, 50);
 		panelCliente.add(estadoLabel);
 
-		estadoField = new JTextField();
+		estadoField = new JFormattedTextField();
 		estadoField.setBounds(726, 318, 250, 30);
 		panelCliente.add(estadoField);
 
@@ -150,6 +155,15 @@ public class InternalAdicionarCliente extends TelaInternal {
 
 		getContentPane().add(tabbedPane);
 		getContentPane().add(bntSalvar);
+		
+		try {
+			dataNascimentoField.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
+			cpfField.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("###.###.###-##")));
+			estadoField.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("AA")));
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
 	}
 
@@ -288,7 +302,7 @@ public class InternalAdicionarCliente extends TelaInternal {
 		return cpfField;
 	}
 
-	public void setCpfField(JTextField cpfField) {
+	public void setCpfField(JFormattedTextField cpfField) {
 		this.cpfField = cpfField;
 	}
 
@@ -304,7 +318,7 @@ public class InternalAdicionarCliente extends TelaInternal {
 		return dataNascimentoField;
 	}
 
-	public void setDataNascimentoField(JTextField dataNascimentoField) {
+	public void setDataNascimentoField(JFormattedTextField dataNascimentoField) {
 		this.dataNascimentoField = dataNascimentoField;
 	}
 
@@ -352,7 +366,7 @@ public class InternalAdicionarCliente extends TelaInternal {
 		return estadoField;
 	}
 
-	public void setEstadoField(JTextField estadoField) {
+	public void setEstadoField(JFormattedTextField estadoField) {
 		this.estadoField = estadoField;
 	}
 
@@ -371,5 +385,5 @@ public class InternalAdicionarCliente extends TelaInternal {
 	public void setBntSalvar(Botao bntSalvar) {
 		this.bntSalvar = bntSalvar;
 	}
-	
+
 }

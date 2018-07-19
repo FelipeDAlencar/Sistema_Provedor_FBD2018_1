@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 
 import br.com.sistema_provedor_fbd_2018_1.business.BusinessFuncionario;
@@ -43,7 +44,7 @@ public class DaoFuncionario  implements IDaoFuncionario{
 			
 			
 			
-		} catch (SQLException e) {
+		} catch (Exception e ) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -51,8 +52,28 @@ public class DaoFuncionario  implements IDaoFuncionario{
 	}
 
 	@Override
-	public void editar(Funcionario funcionario) {
-		// TODO Auto-generated method stub
+	public void editar(Funcionario funcionario)  {
+		
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Funcionario.UPDATE);
+			
+			statement.setString(1, funcionario.getNome());
+			statement.setString(2, funcionario.getCargo());
+			statement.setDate(3, BusinessFuncionario.converterParaData(funcionario.getData_contrato()));
+			statement.setString(4, funcionario.getNome());
+			statement.setString(5, funcionario.getSenha());
+			statement.setInt(6,funcionario.getId());
+			statement.setInt(7, funcionario.getEndereco_id());
+
+			statement.execute();
+			conexao.close();
+			
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
 		
 	}
 

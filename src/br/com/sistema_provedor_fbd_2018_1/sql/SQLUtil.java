@@ -26,6 +26,8 @@ public class SQLUtil {
 
 		public static final String SELECT_ID = "select * from funcionario where id = ?";
 
+		public static final String UPDATE = "update funcionario set nome = ?, cargo = ?, data_contrato = ?, login = ?, senha = ?, endereco_id = ? where id = ? ";
+
 	}
 
 	public static class Cidade {
@@ -34,7 +36,7 @@ public class SQLUtil {
 		public static final String SELECT_ID = "select * from cidade where id = ?";
 
 		public static final String SELECT_NOME = "select * from cidade where nome = ?";
-		
+
 		public static final String SELECT_CEP = "select * from cidade where cep = ?";
 
 		public static final String MAXID = "select MAX(id) from cidade";
@@ -95,7 +97,7 @@ public class SQLUtil {
 
 	public static class Porta {
 		public static String INSERT_ALL = "insert into porta (numero, switch_id) " + "values (?,?); ";
-		
+
 		public static String SELECT_NUMERO = "select * from porta where numero = ?";
 	}
 
