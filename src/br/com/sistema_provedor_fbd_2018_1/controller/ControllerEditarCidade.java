@@ -11,21 +11,23 @@ import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarCidade;
 import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 
-public class ControllerEditarCidade implements Listeners, ItemListener {
+public class ControllerEditarCidade implements Listeners {
 	private InternalEditarCidade internalEditarCidade;
 	private Fachada fachada;
+	private Cidade cidade;
 
-	public ControllerEditarCidade() {
+	public ControllerEditarCidade(Cidade cidade) {
 		fachada = new Fachada();
+		this.cidade = cidade;
+		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == internalEditarCidade.getBtnAdd()) {
-
+			
 			try {
-				String id = (String) internalEditarCidade.getComboIDCidade().getSelectedItem();
-				Cidade cidade = new Cidade(Integer.parseInt(id), internalEditarCidade.getNomeField().getText(),
+				Cidade cidade = new Cidade(this.cidade.getId(), internalEditarCidade.getNomeField().getText(),
 						internalEditarCidade.getEstadoField().getText(), internalEditarCidade.getCepField().getText());
 				fachada.salvarOuEditarCidade(cidade);
 				Menssagens.menssagem("Edição realizada com sucesso.", 1);
@@ -40,31 +42,15 @@ public class ControllerEditarCidade implements Listeners, ItemListener {
 
 	}
 
-	@Override
-	public void itemStateChanged(ItemEvent e) {
-
-		String id = (String) internalEditarCidade.getComboIDCidade().getSelectedItem();
-
-		try {
-			for (Cidade cidade : fachada.listarTodosCidades()) {
-				if (cidade.getId() == Integer.parseInt(id)) {
-					internalEditarCidade.getNomeField().setText(cidade.getNome());
-					internalEditarCidade.getEstadoField().setText(cidade.getEstado());
-					internalEditarCidade.getCepField().setText(cidade.getCep());
-
-				}
-			}
-		} catch (BusinessException e1) {
-			e1.getMessage();
-
-		}
+	public void carregarDados() {
+			internalEditarCidade.getNomeField().setText(cidade.getNome());
+			internalEditarCidade.getEstadoField().setText(cidade.getEstado());
+			internalEditarCidade.getCepField().setText(cidade.getCep());
 	}
 
 	@Override
 	public void addListeners() {
 		internalEditarCidade.getBtnAdd().addActionListener(this);
-		internalEditarCidade.getComboIDCidade().addItemListener(this);
-
 	}
 
 	public InternalEditarCidade getInternalEditarCidade() {
@@ -73,6 +59,7 @@ public class ControllerEditarCidade implements Listeners, ItemListener {
 
 	public void setInternalEditarCidade(InternalEditarCidade internalEditarCidade) {
 		this.internalEditarCidade = internalEditarCidade;
+		
 	}
 
 }
