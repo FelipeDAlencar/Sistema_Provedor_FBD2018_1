@@ -326,8 +326,8 @@ public class Fachada implements IFachada {
 
 	// SWITCH
 	@Override
-	public void salvarOuEditarSwitch(Switch switch1, String nomeCaixa) throws BusinessException {
-		businessSwitch.salvarOuEditar(switch1, nomeCaixa);
+	public void salvarOuEditarSwitch(Switch switch1, String nomeCaixa, String nomeConcentrador) throws BusinessException {
+		businessSwitch.salvarOuEditar(switch1, nomeCaixa, nomeConcentrador);
 
 	}
 

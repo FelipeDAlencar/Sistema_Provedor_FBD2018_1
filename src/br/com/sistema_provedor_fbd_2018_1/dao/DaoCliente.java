@@ -5,14 +5,10 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.omg.CORBA.Request;
-
 import br.com.sistema_provedor_fbd_2018_1.entidade.Atendimento;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;

@@ -16,7 +16,7 @@ public class DaoSwitch implements IDaoSwitch{
 	private Connection conexao;
 	private PreparedStatement statement;
 	@Override
-	public void salvar(Switch switch1, String nomeCaixa) throws DaoException {
+	public void salvar(Switch switch1, String nomeCaixa, String nomeConcentrador) throws DaoException {
 		try {
 
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
@@ -29,7 +29,7 @@ public class DaoSwitch implements IDaoSwitch{
 			int caixa_id = resultSet.getInt(1);
 			
 			statement = conexao.prepareStatement(SQLUtil.Concentrador.SELECT_NOME);
-			statement.setString(1, "Teste");
+			statement.setString(1, nomeConcentrador);
 			resultSet =  statement.executeQuery();
 			resultSet.next();
 			

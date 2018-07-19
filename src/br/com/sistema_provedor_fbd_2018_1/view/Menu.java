@@ -1,15 +1,12 @@
 package br.com.sistema_provedor_fbd_2018_1.view;
 
 import java.awt.Dimension;
-import java.awt.PopupMenu;
 import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-
-import br.com.sistema_provedor_fbd_2018_1.entidade.Atendimento;
 
 @SuppressWarnings("serial")
 public class Menu extends JMenuBar{

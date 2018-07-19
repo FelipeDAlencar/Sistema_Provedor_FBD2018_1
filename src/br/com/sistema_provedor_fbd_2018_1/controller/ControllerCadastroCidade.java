@@ -1,9 +1,6 @@
 package br.com.sistema_provedor_fbd_2018_1.controller;
 
 import java.awt.event.ActionEvent;
-
-import javax.swing.JOptionPane;
-
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;

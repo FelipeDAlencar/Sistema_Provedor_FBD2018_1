@@ -117,7 +117,7 @@ public interface IFachada {
 	public ArrayList<Servico> buscarServicoPorBusca(String busca);
 
 	// Switch
-	public void salvarOuEditarSwitch(Switch switch1, String nomeCaixa) throws BusinessException;
+	public void salvarOuEditarSwitch(Switch switch1, String nomeCaixa, String nomeConcentrador) throws BusinessException;
 
 	public ArrayList<Switch> listarTodosSwitch() throws BusinessException;
 

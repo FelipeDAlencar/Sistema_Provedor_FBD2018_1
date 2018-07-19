@@ -5,9 +5,7 @@ import java.awt.event.ActionEvent;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroCaixa;
-import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroCidade;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCaixa;
-import br.com.sistema_provedor_fbd_2018_1.view.Tela;
 import br.com.sistema_provedor_fbd_2018_1.view.TelaPrincipal;
 
 public class ControllerCaixa implements Listeners {

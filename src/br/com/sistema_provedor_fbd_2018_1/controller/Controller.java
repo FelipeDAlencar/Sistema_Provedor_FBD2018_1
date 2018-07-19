@@ -104,7 +104,7 @@ public class Controller implements ActionListener {
 
 			if (e.getSource() == telaPrincipal.getBntAdicionarSwitch()
 					|| e.getSource() == telaPrincipal.getMenu().getSwitchNetwork()) {
-				controllerSwitch = new ControllerSwitch();
+				controllerSwitch = new ControllerSwitch(telaPrincipal);
 				internalSwitch = new InternalSwitch(telaPrincipal, controllerSwitch);
 				telaPrincipal.getDesktopPane().add(internalSwitch);
 				internalSwitch.setVisible(true);
