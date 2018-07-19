@@ -10,7 +10,7 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroFuncionario;
-import br.com.sistema_provedor_fbd_2018_1.view.Messagens;
+import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 
 public class ControllerCadastroFuncionario implements Listeners {
 	private InternalCadastroFuncionario internalCadastroFuncionario;
@@ -36,7 +36,7 @@ public class ControllerCadastroFuncionario implements Listeners {
 					Integer.parseInt(internalCadastroFuncionario.getNumeroFild().getText()));
 			
 			
-			Messagens.messagem("Funcionário salvo com sucesso!", 1);
+			Menssagens.menssagem("Funcionário salvo com sucesso!", 1);
 			
 			internalCadastroFuncionario.getNomeFild().setText("");
 			internalCadastroFuncionario.getCargoField().setText("");

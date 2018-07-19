@@ -8,6 +8,7 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLUtil.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalAdicionarCliente;
+import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 
 public class ControllerCliente implements ActionListener {
 	private InternalAdicionarCliente adicionarCliente;
@@ -36,7 +37,16 @@ public class ControllerCliente implements ActionListener {
 			Endereco endereco = new Endereco(adicionarCliente.getBairroField().getText(),
 					adicionarCliente.getComplementoField().getText(), adicionarCliente.getRuaField().getText(),
 					Integer.parseInt(adicionarCliente.getNumeroField().getText()));
-
+			
+			adicionarCliente.getNomeField().setText("");
+			adicionarCliente.getRgField().setText("");
+			adicionarCliente.getDataNascimentoField().setText("");
+			adicionarCliente.getComplementoField().setText("");
+			adicionarCliente.getBairroField().setText("");
+			adicionarCliente.getRuaField().setText("");
+			adicionarCliente.getNumeroField().setText("");
+			
+			Menssagens.menssagem("Cliente Adicionado com sucesso.", 1);
 			try {
 				fachada.salvarOuEditarEndereco(endereco);
 				fachada.salvarOuEditarCliente(cliente);

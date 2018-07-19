@@ -136,7 +136,7 @@ public class Controller implements ActionListener {
 			}
 
 			if (e.getSource() == telaPrincipal.getMenu().getServicoCadastro()) {
-				controllerServico = new ControllerServico();
+				controllerServico = new ControllerServico(telaPrincipal);
 				internalServicos = new InternalServicos(telaPrincipal, controllerServico);
 				telaPrincipal.getDesktopPane().add(internalServicos);
 				internalServicos.setVisible(true);
@@ -151,12 +151,13 @@ public class Controller implements ActionListener {
 				telaPrincipal.getDesktopPane().add(internalConcentrador);
 				internalConcentrador.setVisible(true);
 				controllerConcentrador.setInternalConcentrador(internalConcentrador);
+				internalConcentrador.setVisible(true);
 				controllerConcentrador.addListeners();
 
 			}
 
 			if (e.getSource() == telaPrincipal.getMenu().getCaixaNetwork()) {
-				controllerCaixa = new ControllerCaixa();
+				controllerCaixa = new ControllerCaixa(telaPrincipal);
 				internalCaixa = new InternalCaixa(telaPrincipal, controllerCaixa);
 				telaPrincipal.getDesktopPane().add(internalCaixa);
 				internalCaixa.setVisible(true);

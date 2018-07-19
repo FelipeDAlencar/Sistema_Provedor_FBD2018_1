@@ -65,4 +65,29 @@ public class InternalCaixa extends TelaInternal{
 		}
 
 	}
+
+	public Botao getBntNovo() {
+		return bntNovo;
+	}
+
+	public Botao getBntEditar() {
+		return bntEditar;
+	}
+
+	public Botao getBntRemover() {
+		return bntRemover;
+	}
+
+	public DefaultTableModel getModelTable() {
+		return modelTable;
+	}
+
+	public JScrollPane getBarraRolagem() {
+		return barraRolagem;
+	}
+
+	public JTable getTabela() {
+		return tabela;
+	}
+	
 }

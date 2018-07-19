@@ -10,6 +10,7 @@ public abstract class Tela extends JFrame{
 		setExtendedState(MAXIMIZED_BOTH);
 		inicializar();
 		
+		
 	
 	}
 	

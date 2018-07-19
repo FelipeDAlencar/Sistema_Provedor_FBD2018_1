@@ -30,13 +30,13 @@ public class InternalAdicionarCliente extends TelaInternal {
 	private PanelContato panelContatos;
 	private JLabel nomeLabel, cpfLabel, rgLabel, dataNascimentoLabel;
 	private JLabel bairroLabel, complementoLabel, ruaLabel, numeroLabel;
-	private JLabel cidadeLabel, estadoLabel, cepLabel;
+	private JLabel cidadeLabel, cepLabel;
 	private JTextField nomeField, rgField;
 	private JTextField bairroField, complementoField, ruaField, numeroField;
 	private JComboBox<String> cidadesComboBox;
-	private JTextField cepField;
+	
 	private Botao bntSalvar;
-	private JFormattedTextField cpfField, dataNascimentoField, estadoField;
+	private JFormattedTextField cpfField, dataNascimentoField;
 
 	public InternalAdicionarCliente(TelaPrincipal telaPrincipal, ActionListener actionListener)
 			throws BusinessException {
@@ -134,21 +134,13 @@ public class InternalAdicionarCliente extends TelaInternal {
 		cidadesComboBox.setBounds(456, 318, 200, 30);
 		panelCliente.add(cidadesComboBox);
 
-		estadoLabel = new JLabel("Estado:");
-		estadoLabel.setBounds(726, 268, 100, 50);
-		panelCliente.add(estadoLabel);
-
-		estadoField = new JFormattedTextField();
-		estadoField.setBounds(726, 318, 250, 30);
-		panelCliente.add(estadoField);
+		
 
 		cepLabel = new JLabel("CEP:");
 		cepLabel.setBounds(1056, 268, 100, 50);
 		panelCliente.add(cepLabel);
 
-		cepField = new JTextField();
-		cepField.setBounds(1056, 318, 150, 30);
-		panelCliente.add(cepField);
+		
 
 		tabbedPane.add("Novo Cliente", panelCliente);
 		tabbedPane.add("Contatos", panelContatos);
@@ -159,7 +151,7 @@ public class InternalAdicionarCliente extends TelaInternal {
 		try {
 			dataNascimentoField.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
 			cpfField.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("###.###.###-##")));
-			estadoField.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("AA")));
+		
 			
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -274,14 +266,7 @@ public class InternalAdicionarCliente extends TelaInternal {
 		this.cidadeLabel = cidadeLabel;
 	}
 
-	public JLabel getEstadoLabel() {
-		return estadoLabel;
-	}
-
-	public void setEstadoLabel(JLabel estadoLabel) {
-		this.estadoLabel = estadoLabel;
-	}
-
+	
 	public JLabel getCepLabel() {
 		return cepLabel;
 	}
@@ -362,21 +347,7 @@ public class InternalAdicionarCliente extends TelaInternal {
 		this.cidadesComboBox = cidadesComboBox;
 	}
 
-	public JTextField getEstadoField() {
-		return estadoField;
-	}
-
-	public void setEstadoField(JFormattedTextField estadoField) {
-		this.estadoField = estadoField;
-	}
-
-	public JTextField getCepField() {
-		return cepField;
-	}
-
-	public void setCepField(JTextField cepField) {
-		this.cepField = cepField;
-	}
+	
 
 	public Botao getBtnSalvar() {
 		return bntSalvar;

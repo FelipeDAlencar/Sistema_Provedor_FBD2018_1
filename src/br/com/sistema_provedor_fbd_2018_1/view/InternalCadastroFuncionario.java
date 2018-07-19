@@ -31,8 +31,7 @@ public class InternalCadastroFuncionario extends TelaInternal {
 	private JTextField numeroFild;
 	private JTextField complementoFild;
 	private JComboBox<String> cidadesCombo;
-	private JTextField cepFild;
-	private JFormattedTextField data_contratoFild, estadoFild;
+	private JFormattedTextField data_contratoFild;
 	private JButton btnAdicionar;
 
 	public InternalCadastroFuncionario(TelaPrincipal telaPrincipal, ActionListener actionListener)
@@ -135,29 +134,15 @@ public class InternalCadastroFuncionario extends TelaInternal {
 		lblNewLabel_2.setBounds(532, 251, 46, 14);
 		getContentPane().add(lblNewLabel_2);
 
-		JLabel lblNewLabel_3 = new JLabel("Estado:");
-		lblNewLabel_3.setBounds(723, 251, 46, 14);
-		getContentPane().add(lblNewLabel_3);
-
-		estadoFild = new JFormattedTextField();
-		estadoFild.setBounds(723, 276, 46, 29);
-		getContentPane().add(estadoFild);
-
-		JLabel lblNewLabel_4 = new JLabel("CEP:");
-		lblNewLabel_4.setBounds(814, 251, 46, 14);
-		getContentPane().add(lblNewLabel_4);
-
-		cepFild = new JTextField();
-		cepFild.setBounds(814, 276, 188, 29);
-		getContentPane().add(cepFild);
-		cepFild.setColumns(10);
+		
+		
 
 		btnAdicionar = new JButton("Adicionar");
-		btnAdicionar.setBounds(922, 366, 89, 29);
+		btnAdicionar.setBounds(913, 368, 89, 29);
 		getContentPane().add(btnAdicionar);
 
 		try {
-			estadoFild.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("AA")));
+			
 			data_contratoFild.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
 
 		} catch (ParseException e) {
@@ -213,17 +198,11 @@ public class InternalCadastroFuncionario extends TelaInternal {
 		return cidadesCombo;
 	}
 
-	public JTextField getCepFild() {
-		return cepFild;
-	}
-
+	
 	public JFormattedTextField getData_contratoFild() {
 		return data_contratoFild;
 	}
 
-	public JFormattedTextField getEstadoFild() {
-		return estadoFild;
-	}
 
 	public JButton getBtnAdicionar() {
 		return btnAdicionar;
