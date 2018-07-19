@@ -2,16 +2,11 @@ package br.com.sistema_provedor_fbd_2018_1.controller;
 
 import java.awt.event.ActionEvent;
 
-import javax.swing.JOptionPane;
-
-import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
-import br.com.sistema_provedor_fbd_2018_1.entidade.Funcionario;
-import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Concentrador;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroConcentrador;
-import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroFuncionario;
-import br.com.sistema_provedor_fbd_2018_1.view.Messagens;
+import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 
 public class ControllerCadastroConcentrador implements Listeners {
 	private InternalCadastroConcentrador internalCadastroConcentrador;
@@ -23,6 +18,26 @@ public class ControllerCadastroConcentrador implements Listeners {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == internalCadastroConcentrador.getBtnAdicionar()) {
+			try {
+				Concentrador concentrador = new Concentrador(internalCadastroConcentrador.getNomeFild().getText(),
+						internalCadastroConcentrador.getIpFild().getText(),
+						internalCadastroConcentrador.getLoginFild().getText(),
+						new String(internalCadastroConcentrador.getSenhaField().getPassword()));
+				fachada.salvarOuEditarConcentrador(concentrador, internalCadastroConcentrador.getCepField().getText());
+				Menssagens.menssagem("Concentrador inserido com sucesso.", 1);
+				
+				internalCadastroConcentrador.getNomeFild().setText("");
+				internalCadastroConcentrador.getIpFild().setText("");
+				internalCadastroConcentrador.getLoginFild().setText("");
+				internalCadastroConcentrador.getSenhaField().setText("");
+				internalCadastroConcentrador.getCepField().setText("");
+				
+
+			} catch (Exception e1) {
+				// TODO: handle exception
+			}
+		}
 	}
 
 	@Override

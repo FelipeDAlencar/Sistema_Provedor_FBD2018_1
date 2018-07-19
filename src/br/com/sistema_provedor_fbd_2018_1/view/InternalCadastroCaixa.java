@@ -21,11 +21,11 @@ public class InternalCadastroCaixa extends TelaInternal {
 	private JTextField latitudeField;
 	private JTextField longitudeField;
 	private JButton btnCadastrar;
-	private JTextField cepField;
+	private JtextFieldGenerico cepField;
 
 	public InternalCadastroCaixa(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
 		super("Cadastro de Caixas", telaPrincipal, actionListener);
-		setBounds(150, 50, 1050, 500);
+		setBounds(300, 100, 800, 400);
 		getContentPane().setLayout(null);
 
 	}
@@ -69,7 +69,7 @@ public class InternalCadastroCaixa extends TelaInternal {
 		lblCidade.setBounds(47, 177, 46, 14);
 		getContentPane().add(lblCidade);
 		
-		cepField = new JTextField();
+		cepField = new JtextFieldGenerico("1234567890.");
 		cepField.setBounds(47, 202, 156, 34);
 		getContentPane().add(cepField);
 		cepField.setColumns(10);

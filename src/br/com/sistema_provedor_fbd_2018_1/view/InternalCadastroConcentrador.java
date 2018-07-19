@@ -24,8 +24,7 @@ public class InternalCadastroConcentrador extends TelaInternal {
 	private JTextField nomeFild;
 	private JTextField LoginFild;
 	private JPasswordField senhaField;
-	private JTextField ipFild;
-	private JComboBox<String> cidadesCombo;
+	private JtextFieldGenerico ipFild, cepField;
 	private JButton btnAdicionar;
 
 	public InternalCadastroConcentrador(TelaPrincipal telaPrincipal, ActionListener actionListener)
@@ -71,16 +70,17 @@ public class InternalCadastroConcentrador extends TelaInternal {
 		lblNewLabel_1.setBounds(470, 64, 46, 14);
 		getContentPane().add(lblNewLabel_1);
 
-		ipFild = new JTextField();
+		ipFild = new JtextFieldGenerico(".1234567890");
 		ipFild.setBounds(470, 89, 229, 29);
 		getContentPane().add(ipFild);
 		ipFild.setColumns(10);
+		ipFild.setMaximoCaracteres(11);
 
-		carregarCidades();
-		cidadesCombo.setBounds(470, 180, 229, 29);
-		getContentPane().add(cidadesCombo);
+		cepField = new JtextFieldGenerico("1234567890.");
+		cepField.setBounds(470, 180, 229, 29);
+		getContentPane().add(cepField);
 
-		JLabel lblNewLabel_2 = new JLabel("Cidade:");
+		JLabel lblNewLabel_2 = new JLabel("CEP:");
 		lblNewLabel_2.setBounds(470, 155, 46, 14);
 		getContentPane().add(lblNewLabel_2);
 
@@ -88,16 +88,6 @@ public class InternalCadastroConcentrador extends TelaInternal {
 		btnAdicionar.setBounds(610, 272, 89, 29);
 		getContentPane().add(btnAdicionar);
 
-	}
-
-	private void carregarCidades() throws BusinessException {
-		List<Cidade> cidadesList = new ArrayList<>();
-		cidadesCombo = new JComboBox<>();
-		Fachada fachada = new Fachada();
-		cidadesList = fachada.listarTodosCidades();
-		for (Cidade cidade : cidadesList) {
-			cidadesCombo.addItem(cidade.getNome());
-		}
 	}
 
 
@@ -113,19 +103,20 @@ public class InternalCadastroConcentrador extends TelaInternal {
 		return senhaField;
 	}
 
-	public JTextField getRuaFild() {
+	public JTextField getIpFild() {
 		return ipFild;
 	}
 
 
-	public JComboBox<String> getCidadesCombo() {
-		return cidadesCombo;
-	}
-
-
+	
 	public JButton getBtnAdicionar() {
 		return btnAdicionar;
 	}
+
+	public JtextFieldGenerico getCepField() {
+		return cepField;
+	}
+	
 
 
 	

@@ -4,12 +4,14 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JTextField;
 
-public final class JtextFieldSomenteNumeros extends JTextField {
+public final class JtextFieldGenerico extends JTextField {
 	private int maximoCaracteres = -1;// definição de -1
+	private String caracteres;
 	// como valor normal de um textfield sem limite de caracters
 
-	public JtextFieldSomenteNumeros() {
+	public JtextFieldGenerico(String carc) {
 		super();
+		this.caracteres = carc;
 		addKeyListener(new java.awt.event.KeyAdapter() {
 			@Override
 			public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -18,8 +20,8 @@ public final class JtextFieldSomenteNumeros extends JTextField {
 		});
 	}
 
-	public void JtextFieldSomenteLetras(int maximo) {
-
+	public void JtextFieldSomenteLetras(int maximo, String caracteres) {
+		this.caracteres = caracteres;
 		setMaximoCaracteres(maximo);// define o tamanho máximo
 		// que deve ser aceito no jtextfield que foi recebido no construtor
 
@@ -33,7 +35,7 @@ public final class JtextFieldSomenteNumeros extends JTextField {
 
 	private void jTextFieldKeyTyped(KeyEvent evt) {
 
-		String caracteres = "0987654321.";// lista de caracters que não devem ser aceitos
+		
 		if (!caracteres.contains(evt.getKeyChar() + "")) {// se o caracter que gerou o evento estiver não estiver na
 															// lista
 			evt.consume();// aciona esse propriedade para eliminar a ação do evento

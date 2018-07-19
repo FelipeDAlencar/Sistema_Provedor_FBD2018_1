@@ -23,7 +23,7 @@ public class InternalCadastroCidade extends TelaInternal {
 
 	public InternalCadastroCidade(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
 		super("Cadastro de Cidades", telaPrincipal, actionListener);
-		setBounds(150, 50, 1050, 500);
+		setBounds(300, 100, 800, 400);
 		getContentPane().setLayout(null);
 
 	}

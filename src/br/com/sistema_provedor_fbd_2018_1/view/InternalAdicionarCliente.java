@@ -30,7 +30,7 @@ public class InternalAdicionarCliente extends TelaInternal {
 	private PanelContato panelContatos;
 	private JLabel nomeLabel, cpfLabel, rgLabel, dataNascimentoLabel;
 	private JLabel bairroLabel, complementoLabel, ruaLabel, numeroLabel;
-	private JLabel cidadeLabel, cepLabel;
+	private JLabel cidadeLabel;
 	private JTextField nomeField, rgField;
 	private JTextField bairroField, complementoField, ruaField, numeroField;
 	private JComboBox<String> cidadesComboBox;
@@ -135,9 +135,7 @@ public class InternalAdicionarCliente extends TelaInternal {
 
 		
 
-		cepLabel = new JLabel("CEP:");
-		cepLabel.setBounds(1056, 268, 100, 50);
-		panelCliente.add(cepLabel);
+		
 
 		
 
@@ -266,13 +264,7 @@ public class InternalAdicionarCliente extends TelaInternal {
 	}
 
 	
-	public JLabel getCepLabel() {
-		return cepLabel;
-	}
-
-	public void setCepLabel(JLabel cepLabel) {
-		this.cepLabel = cepLabel;
-	}
+	
 
 	public JTextField getNomeField() {
 		return nomeField;
