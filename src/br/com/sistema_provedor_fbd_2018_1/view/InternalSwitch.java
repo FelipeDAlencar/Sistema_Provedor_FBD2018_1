@@ -12,7 +12,7 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 
 @SuppressWarnings("serial")
 public class InternalSwitch extends TelaInternal{
-	private Botao bntNovo, bntEditar, bntRemover;
+	private Botao btnNovo, btnEditar, btnRemover;
 	private DefaultTableModel modelTable;
 	private JScrollPane barraRolagem;
 	private JTable tabela;
@@ -26,17 +26,17 @@ public class InternalSwitch extends TelaInternal{
 
 	@Override
 	public void inicializar() throws BusinessException {
-		bntEditar = new Botao("resource/imagens/botoes/abrir-switch.png","Editar Switch");
-		bntEditar.setBounds(50, 20, 160, 40);
-		getContentPane().add(bntEditar);
+		btnEditar = new Botao("resource/imagens/botoes/abrir-switch.png","Editar Switch");
+		btnEditar.setBounds(50, 20, 160, 40);
+		getContentPane().add(btnEditar);
 		
-		bntNovo = new Botao("resource/imagens/botoes/novo-switch.png","Novo Switch");
-		bntNovo.setBounds(230, 20, 160, 40);
-		getContentPane().add(bntNovo);
+		btnNovo = new Botao("resource/imagens/botoes/novo-switch.png","Novo Switch");
+		btnNovo.setBounds(230, 20, 160, 40);
+		getContentPane().add(btnNovo);
 		
-		bntRemover = new Botao("resource/imagens/botoes/novo-switch.png","Remover Switch");
-		bntRemover.setBounds(410, 20, 180, 40);
-		getContentPane().add(bntRemover);
+		btnRemover = new Botao("resource/imagens/botoes/novo-switch.png","Remover Switch");
+		btnRemover.setBounds(410, 20, 180, 40);
+		getContentPane().add(btnRemover);
 		
 		modelTable = new DefaultTableModel();
 		modelTable.addColumn("ID");
@@ -61,5 +61,55 @@ public class InternalSwitch extends TelaInternal{
 			modelTable.addRow(linha);
 		}
 	}
+
+	public Botao getBtnNovo() {
+		return btnNovo;
+	}
+
+	public void setBtnNovo(Botao btnNovo) {
+		this.btnNovo = btnNovo;
+	}
+
+	public Botao getBtnEditar() {
+		return btnEditar;
+	}
+
+	public void setBtnEditar(Botao btnEditar) {
+		this.btnEditar = btnEditar;
+	}
+
+	public Botao getBtnRemover() {
+		return btnRemover;
+	}
+
+	public void setBtnRemover(Botao btnRemover) {
+		this.btnRemover = btnRemover;
+	}
+
+	public DefaultTableModel getModelTable() {
+		return modelTable;
+	}
+
+	public void setModelTable(DefaultTableModel modelTable) {
+		this.modelTable = modelTable;
+	}
+
+	public JScrollPane getBarraRolagem() {
+		return barraRolagem;
+	}
+
+	public void setBarraRolagem(JScrollPane barraRolagem) {
+		this.barraRolagem = barraRolagem;
+	}
+
+	public JTable getTabela() {
+		return tabela;
+	}
+
+	public void setTabela(JTable tabela) {
+		this.tabela = tabela;
+	}
+	
+	
 
 }

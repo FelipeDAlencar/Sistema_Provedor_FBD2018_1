@@ -146,7 +146,7 @@ public class Controller implements ActionListener {
 			}
 
 			if (e.getSource() == telaPrincipal.getMenu().getConcentradorNetwork()) {
-				controllerConcentrador = new ControllerConcentrador();
+				controllerConcentrador = new ControllerConcentrador(telaPrincipal);
 				internalConcentrador = new InternalConcentrador(telaPrincipal, controllerConcentrador);
 				telaPrincipal.getDesktopPane().add(internalConcentrador);
 				internalConcentrador.setVisible(true);

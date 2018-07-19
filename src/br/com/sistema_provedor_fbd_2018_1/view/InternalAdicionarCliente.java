@@ -42,7 +42,6 @@ public class InternalAdicionarCliente extends TelaInternal {
 			throws BusinessException {
 		super("Adicionar Cliente", telaPrincipal, actionListener);
 		setLayout(null);
-		setVisible(false);
 	}
 
 	@Override

@@ -12,13 +12,14 @@ public class ControllerSwitch implements Listeners {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void addListeners() {
-		// TODO Auto-generated method stub
+		internalSwitch.getBtnNovo().addActionListener(this);
+		internalSwitch.getBtnEditar().addActionListener(this);
+		internalSwitch.getBtnRemover().addActionListener(this);
 		
 	}
 

@@ -13,7 +13,7 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 
 @SuppressWarnings("serial")
 public class InternalConcentrador extends TelaInternal{
-	private Botao bntNovo, bntEditar, bntRemover;
+	private Botao btnNovo, btnEditar, btnRemover;
 	private DefaultTableModel modelTable;
 	private JScrollPane barraRolagem;
 	private JTable tabela;
@@ -21,22 +21,22 @@ public class InternalConcentrador extends TelaInternal{
 		super("Concentrador", telaPrincipal, actionListener);
 		setBounds(150, 50, 1050, 500);
 		getContentPane().setLayout(null);
-		setVisible(true);
+		setVisible(false);
 	}
 
 	@Override
 	public void inicializar() throws BusinessException {
-		bntEditar = new Botao("resource/imagens/botoes/editar-concentrador.png","Editar Concentrador");
-		bntEditar.setBounds(50, 20, 210, 40);
-		getContentPane().add(bntEditar);
+		btnEditar = new Botao("resource/imagens/botoes/editar-concentrador.png","Editar Concentrador");
+		btnEditar.setBounds(50, 20, 210, 40);
+		getContentPane().add(btnEditar);
 
-		bntNovo = new Botao("resource/imagens/botoes/adicionar-concentrador.png","Nova Concentrador");
-		bntNovo.setBounds(290, 20, 201, 40);
-		getContentPane().add(bntNovo);
+		btnNovo = new Botao("resource/imagens/botoes/adicionar-concentrador.png","Nova Concentrador");
+		btnNovo.setBounds(290, 20, 201, 40);
+		getContentPane().add(btnNovo);
 
-		bntRemover = new Botao("resource/imagens/botoes/remover-concentrador.png","Remover Concentrador");
-		bntRemover.setBounds(520, 20, 230, 40);
-		getContentPane().add(bntRemover);
+		btnRemover = new Botao("resource/imagens/botoes/remover-concentrador.png","Remover Concentrador");
+		btnRemover.setBounds(520, 20, 230, 40);
+		getContentPane().add(btnRemover);
 
 		modelTable = new DefaultTableModel();
 		modelTable.addColumn("Id");
@@ -62,4 +62,54 @@ public class InternalConcentrador extends TelaInternal{
 		}
 
 	}
+
+	public Botao getBtnNovo() {
+		return btnNovo;
+	}
+
+	public void setBtnNovo(Botao btnNovo) {
+		this.btnNovo = btnNovo;
+	}
+
+	public Botao getBtnEditar() {
+		return btnEditar;
+	}
+
+	public void setBtnEditar(Botao btnEditar) {
+		this.btnEditar = btnEditar;
+	}
+
+	public Botao getBtnRemover() {
+		return btnRemover;
+	}
+
+	public void setBtnRemover(Botao btnRemover) {
+		this.btnRemover = btnRemover;
+	}
+
+	public DefaultTableModel getModelTable() {
+		return modelTable;
+	}
+
+	public void setModelTable(DefaultTableModel modelTable) {
+		this.modelTable = modelTable;
+	}
+
+	public JScrollPane getBarraRolagem() {
+		return barraRolagem;
+	}
+
+	public void setBarraRolagem(JScrollPane barraRolagem) {
+		this.barraRolagem = barraRolagem;
+	}
+
+	public JTable getTabela() {
+		return tabela;
+	}
+
+	public void setTabela(JTable tabela) {
+		this.tabela = tabela;
+	}
+	
+	
 }
