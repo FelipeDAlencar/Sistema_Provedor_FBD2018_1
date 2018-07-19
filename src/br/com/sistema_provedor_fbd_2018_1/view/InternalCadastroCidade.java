@@ -1,11 +1,15 @@
 package br.com.sistema_provedor_fbd_2018_1.view;
 
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 
 public class InternalCadastroCidade extends TelaInternal {
 	/**
@@ -13,7 +17,7 @@ public class InternalCadastroCidade extends TelaInternal {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField nomeField;
-	private JTextField estadoField;
+	private JFormattedTextField estadoField;
 	private JTextField cepField;
 	private JButton btnAdd;
 
@@ -39,7 +43,7 @@ public class InternalCadastroCidade extends TelaInternal {
 		lblEstado.setBounds(394, 68, 46, 14);
 		getContentPane().add(lblEstado);
 
-		estadoField = new JTextField();
+		estadoField = new JFormattedTextField();
 		estadoField.setBounds(394, 93, 46, 31);
 		getContentPane().add(estadoField);
 		estadoField.setColumns(10);
@@ -56,6 +60,13 @@ public class InternalCadastroCidade extends TelaInternal {
 		btnAdd = new JButton("Cadastrar Cidade");
 		btnAdd.setBounds(643, 374, 153, 42);
 		getContentPane().add(btnAdd);
+
+		try {
+			estadoField.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("AA")));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
@@ -78,5 +89,5 @@ public class InternalCadastroCidade extends TelaInternal {
 	public JButton getBtnAdd() {
 		return btnAdd;
 	}
-	 
+
 }

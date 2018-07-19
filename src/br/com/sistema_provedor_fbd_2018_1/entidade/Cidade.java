@@ -2,13 +2,12 @@ package br.com.sistema_provedor_fbd_2018_1.entidade;
 
 public class Cidade {
 	private Integer id;
-	private String nome,estado, cep;
-	
-	
+	private String nome, estado, cep;
+
 	public Cidade() {
-		
+
 	}
-	
+
 	public Cidade(Integer id, String nome, String estado, String cep) {
 		super();
 		this.id = id;
@@ -17,8 +16,12 @@ public class Cidade {
 		this.cep = cep;
 	}
 
-
-
+	public Cidade(String nome, String estado, String cep) {
+		super();
+		this.nome = nome;
+		this.estado = estado;
+		this.cep = cep;
+	}
 
 	public String getNome() {
 		return nome;
@@ -51,8 +54,5 @@ public class Cidade {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	
-	
 
 }
