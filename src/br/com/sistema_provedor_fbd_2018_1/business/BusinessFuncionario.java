@@ -12,6 +12,7 @@ import br.com.sistema_provedor_fbd_2018_1.dao.IDaoFuncionario;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Funcionario;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.exception.ValidacaoException;
 
 public class BusinessFuncionario implements IBusinessFuncionario {
@@ -54,6 +55,16 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 	public ArrayList<Funcionario> buscarPorBusca(String busca) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public ArrayList<Funcionario> listarTodos()throws BusinessException {
+		try {
+			return dao.listarTodos();
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO DO BUS DE FUNCIONARIO");
+		}
 	}
 
 	private void Validar(Funcionario funcionario) throws ValidacaoException {

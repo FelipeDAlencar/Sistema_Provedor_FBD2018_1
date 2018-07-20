@@ -51,9 +51,8 @@ public class InternalFuncionario extends TelaInternal{
 		getContentPane().add(barraRolagem);
 	}
 	
-	public void carregarAtendimentos(List<Funcionario> funcionarios) {
+	public void carregarFuncionarios(List<Funcionario> funcionarios) {
 		for (Funcionario funcionario : funcionarios) {
-			
 			String[] linha = {funcionario.getId().toString(), funcionario.getNome(), funcionario.getCargo(), funcionario.getData_contrato()};
 			modelTable.addRow(linha);
 		}

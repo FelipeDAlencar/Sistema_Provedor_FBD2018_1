@@ -5,6 +5,11 @@ public class Funcionario {
 	private Integer id, endereco_id;
 	private String nome, cargo,data_contrato, login, senha;
 	
+	
+	public Funcionario() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Funcionario(Integer id, String nome, String cargo, String data_contrato) {
 		super();
 		this.id = id;

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Funcionario;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalAdicionarCliente;
@@ -123,6 +124,8 @@ public class Controller extends Thread implements ActionListener {
 				internalFuncionario.setVisible(true);
 				controllerFuncionario.setInternalFuncionario(internalFuncionario);
 				controllerFuncionario.addListeners();
+				System.out.println(internalFuncionario);
+				internalFuncionario.carregarFuncionarios(fachada.listarTodosFuncionarios());
 
 			}
 			if (e.getSource() == telaPrincipal.getMenu().getCidadeCadastro()) {

@@ -42,6 +42,8 @@ public interface IFachada {
 	public Funcionario buscarPorCpf(String cpf);
 
 	public ArrayList<Funcionario> buscarPorBusca(String busca);
+	
+	public ArrayList<Funcionario> listarTodosFuncionarios() throws BusinessException;
 
 	// Cidade
 

@@ -67,16 +67,13 @@ public class DaoCaixa implements IDaoCaixa {
 			statement = conexao.prepareStatement(SQLUtil.Caixa.SELECT_ALL);
 			
 			ArrayList<Caixa> caixas =  new ArrayList<>();
-			Caixa caixa = new Caixa();
+			Caixa caixa;
 			
 			ResultSet resultSet = statement.executeQuery();
 			
 			while(resultSet.next()) {
-				caixa.setId(resultSet.getInt(1));
+				caixa = new Caixa(resultSet.getString(2), resultSet.getString(3),resultSet.getString(4));
 				caixas.add(caixa);
-				caixa.setNome(resultSet.getString(2));
-				caixa.setLatitude(resultSet.getString(3));
-				caixa.setLongitude(resultSet.getString(4));
 				
 			}
 			return caixas;

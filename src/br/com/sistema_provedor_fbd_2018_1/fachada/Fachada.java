@@ -148,6 +148,12 @@ public class Fachada implements IFachada {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public ArrayList<Funcionario> listarTodosFuncionarios() throws BusinessException {
+		return businessFuncionario.listarTodos();
+	}
+
+
 
 	// CIDADE
 

@@ -27,7 +27,8 @@ public class SQLUtil {
 		public static final String SELECT_ID = "select * from funcionario where id = ?";
 
 		public static final String UPDATE = "update funcionario set nome = ?, cargo = ?, data_contrato = ?, login = ?, senha = ?, endereco_id = ? where id = ? ";
-
+		
+		public static String SELECT_ALL = "select * from funcionario";
 	}
 
 	public static class Cidade {

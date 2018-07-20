@@ -68,16 +68,12 @@ public class DaoConcentrador implements IDaoConcentrador {
 			statement =  conexao.prepareStatement(SQLUtil.Concentrador.SELECT_ALL);
 			
 			ArrayList<Concentrador> concentradors = new ArrayList<>();
-			Concentrador concentrador = new Concentrador();
+			Concentrador concentrador;
 			
 			ResultSet resultSet = statement.executeQuery();
 			
 			while(resultSet.next()) {
-				concentrador.setId(resultSet.getInt(1));
-				concentrador.setNome(resultSet.getString(2));
-				concentrador.setIp(resultSet.getString(3));
-				concentrador.setLogin(resultSet.getString(4));
-				concentrador.setSenha(resultSet.getString(5));
+				concentrador =  new Concentrador(resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5));
 				concentradors.add(concentrador);
 			}
 			

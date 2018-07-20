@@ -16,5 +16,7 @@ public interface IBusinessFuncionario {
 	public Funcionario buscarPorCpf(String cpf)throws BusinessException;
 
 	public ArrayList<Funcionario> buscarPorBusca(String busca)throws BusinessException;
+	
+	public ArrayList<Funcionario> listarTodos()throws BusinessException;
 
 }
