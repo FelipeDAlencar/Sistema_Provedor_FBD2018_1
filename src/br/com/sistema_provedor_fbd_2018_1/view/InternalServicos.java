@@ -1,13 +1,9 @@
 package br.com.sistema_provedor_fbd_2018_1.view;
-
 import java.awt.event.ActionListener;
 import java.util.List;
-
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
-import br.com.sistema_provedor_fbd_2018_1.entidade.Funcionario;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 
@@ -27,15 +23,15 @@ public class InternalServicos extends TelaInternal{
 	@Override
 	public void inicializar(){	
 		bntEditar = new Botao("resource/imagens/botoes/editar-servico.png","Editar Serviço");
-		bntEditar.setBounds(50, 20, 200, 40);
+		bntEditar.setBounds(50, 20, 172, 40);
 		getContentPane().add(bntEditar);
 		
 		bntNovo = new Botao("resource/imagens/botoes/adicionar-servico.png","Novo Serviço");
-		bntNovo.setBounds(270, 20, 200, 40);
+		bntNovo.setBounds(250, 20, 162, 40);
 		getContentPane().add(bntNovo);
 		
 		bntRemover = new Botao("resource/imagens/botoes/remover-servico.png","Remover Serviço");
-		bntRemover.setBounds(490, 20, 200, 40);
+		bntRemover.setBounds(437, 20, 184, 40);
 		getContentPane().add(bntRemover);
 		
 		modelTable = new DefaultTableModel();
@@ -56,15 +52,14 @@ public class InternalServicos extends TelaInternal{
 		getContentPane().add(barraRolagem);
 	}
 	
-	public void carregarAtendimentos(List<Servico> servicos) {
+	public void carregarServicos(List<Servico> servicos) {
 		for (Servico servico : servicos) {
-			
 			String[] linha = {servico.getId().toString(), servico.getNome(), Integer.toString(servico.getUpload()), 
 					Integer.toString(servico.getDownload())};
 			modelTable.addRow(linha);
 		}
-		
 	}
+
 
 	public Botao getBntNovo() {
 		return bntNovo;

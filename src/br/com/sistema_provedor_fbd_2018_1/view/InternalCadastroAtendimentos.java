@@ -8,15 +8,15 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 
 @SuppressWarnings("serial")
-public class InternalCadastroServico extends TelaInternal {
+public class InternalCadastroAtendimentos extends TelaInternal {
 	private JtextFieldGenerico downloadField, uploadField;
 	private JTextField servicoField;
 	private JButton btnInserirServio;
 
-	public InternalCadastroServico(TelaPrincipal telaPrincipal, ActionListener actionListener)
+	public InternalCadastroAtendimentos(TelaPrincipal telaPrincipal, ActionListener actionListener)
 			throws BusinessException {
 		super("Novo Serviço", telaPrincipal, actionListener);
-		setBounds(480, 150, 400, 300);
+		setBounds(450, 150, 400, 300);
 		getContentPane().setLayout(null);
 
 	}

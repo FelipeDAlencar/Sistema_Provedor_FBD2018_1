@@ -4,9 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
-import br.com.sistema_provedor_fbd_2018_1.entidade.Funcionario;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Concentrador;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalAdicionarCliente;
@@ -50,10 +50,10 @@ public class Controller extends Thread implements ActionListener {
 		this.telaPrincipal = telaPrincipal;
 
 		// Botoes desktop
-		telaPrincipal.getBntAdicionarCliente().addActionListener(this);
-		telaPrincipal.getBntVerCliente().addActionListener(this);
-		telaPrincipal.getBntAtendiemntos().addActionListener(this);
-		telaPrincipal.getBntAdicionarSwitch().addActionListener(this);
+		telaPrincipal.getBtnAdicionarCliente().addActionListener(this);
+		telaPrincipal.getBtnVerCliente().addActionListener(this);
+		telaPrincipal.getBtnAtendimentos().addActionListener(this);
+		telaPrincipal.getBtnAdicionarSwitch().addActionListener(this);
 
 		// Itens Menu Cadatro
 		telaPrincipal.getMenu().getFuncionarioCadastro().addActionListener(this);
@@ -67,7 +67,7 @@ public class Controller extends Thread implements ActionListener {
 
 		// itens Menu Network
 		telaPrincipal.getMenu().getConcentradorNetwork().addActionListener(this);
-		telaPrincipal.getBntAdicionarSwitch().addActionListener(this);
+		telaPrincipal.getBtnAdicionarSwitch().addActionListener(this);
 		telaPrincipal.getMenu().getCaixaNetwork().addActionListener(this);
 
 	}
@@ -76,7 +76,7 @@ public class Controller extends Thread implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		try {
 			telaPrincipal.desativarBotoes();
-			if (e.getSource() == telaPrincipal.getBntAdicionarCliente()
+			if (e.getSource() == telaPrincipal.getBtnAdicionarCliente()
 					|| e.getSource() == telaPrincipal.getMenu().getAdicionarCliente()) {
 				controllerCadastroCliente = new ControllerCliente();
 				internalAdicionarCliente = new InternalAdicionarCliente(telaPrincipal, controllerCadastroCliente);
@@ -87,7 +87,7 @@ public class Controller extends Thread implements ActionListener {
 
 			}
 
-			if (e.getSource() == telaPrincipal.getBntVerCliente()
+			if (e.getSource() == telaPrincipal.getBtnVerCliente()
 					|| e.getSource() == telaPrincipal.getMenu().getVerCliente()) {
 				controllerVisualizar = new ControllerVisualizar();
 				internalLocalizarCliente = new InternalLocalizarCliente(telaPrincipal, controllerVisualizar);
@@ -96,9 +96,9 @@ public class Controller extends Thread implements ActionListener {
 				controllerVisualizar.setInternalLocalizarCliente(internalLocalizarCliente);
 				controllerVisualizar.addListeners();
 			}
-			if (e.getSource() == telaPrincipal.getBntAtendiemntos()
+			if (e.getSource() == telaPrincipal.getBtnAtendimentos()
 					|| e.getSource() == telaPrincipal.getMenu().getAtendimentosCliente()) {
-				controllerAtendimentos = new ControllerAtendimentos();
+				controllerAtendimentos = new ControllerAtendimentos(telaPrincipal);
 				internalAtendimentos = new InternalAtendimentos(telaPrincipal, controllerAtendimentos);
 				telaPrincipal.getDesktopPane().add(internalAtendimentos);
 				internalAtendimentos.setVisible(true);
@@ -106,7 +106,7 @@ public class Controller extends Thread implements ActionListener {
 				controllerAtendimentos.addListeners();
 			}
 
-			if (e.getSource() == telaPrincipal.getBntAdicionarSwitch()
+			if (e.getSource() == telaPrincipal.getBtnAdicionarSwitch()
 					|| e.getSource() == telaPrincipal.getMenu().getSwitchNetwork()) {
 				controllerSwitch = new ControllerSwitch(telaPrincipal);
 				internalSwitch = new InternalSwitch(telaPrincipal, controllerSwitch);
@@ -141,9 +141,12 @@ public class Controller extends Thread implements ActionListener {
 			}
 
 			if (e.getSource() == telaPrincipal.getMenu().getServicoCadastro()) {
+				List<Servico> servicos = new ArrayList<>();
+				servicos = fachada.listarTodosServico();
 				controllerServico = new ControllerServico(telaPrincipal);
 				internalServicos = new InternalServicos(telaPrincipal, controllerServico);
 				telaPrincipal.getDesktopPane().add(internalServicos);
+				internalServicos.carregarServicos(servicos);
 				internalServicos.setVisible(true);
 				controllerServico.setInternalServicos(internalServicos);
 				controllerServico.addListeners();
@@ -151,9 +154,12 @@ public class Controller extends Thread implements ActionListener {
 			}
 
 			if (e.getSource() == telaPrincipal.getMenu().getConcentradorNetwork()) {
+				List<Concentrador> concentradores = new ArrayList<>();
+				concentradores = fachada.listarTodosConcentrador();
 				controllerConcentrador = new ControllerConcentrador(telaPrincipal);
 				internalConcentrador = new InternalConcentrador(telaPrincipal, controllerConcentrador);
 				telaPrincipal.getDesktopPane().add(internalConcentrador);
+				internalConcentrador.carregarConcentrador(concentradores);
 				internalConcentrador.setVisible(true);
 				controllerConcentrador.setInternalConcentrador(internalConcentrador);
 				internalConcentrador.setVisible(true);

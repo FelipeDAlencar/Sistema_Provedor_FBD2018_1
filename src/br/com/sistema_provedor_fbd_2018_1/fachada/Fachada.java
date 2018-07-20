@@ -312,8 +312,8 @@ public class Fachada implements IFachada {
 
 	@Override
 	public ArrayList<Servico> listarTodosServico() throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		return 	businessServico.listarTodos();
+		
 	}
 
 	@Override

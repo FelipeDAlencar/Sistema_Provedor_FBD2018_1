@@ -24,14 +24,14 @@ public class ControllerCadastroConcentrador implements Listeners {
 						internalCadastroConcentrador.getIpFild().getText(),
 						internalCadastroConcentrador.getLoginFild().getText(),
 						new String(internalCadastroConcentrador.getSenhaField().getPassword()));
-				fachada.salvarOuEditarConcentrador(concentrador, internalCadastroConcentrador.getCepField().getText());
+				fachada.salvarOuEditarConcentrador(concentrador, internalCadastroConcentrador.getCidadesCombo().getSelectedItem().toString());
 				Menssagens.menssagem("Concentrador inserido com sucesso.", 1);
 				
 				internalCadastroConcentrador.getNomeFild().setText("");
 				internalCadastroConcentrador.getIpFild().setText("");
 				internalCadastroConcentrador.getLoginFild().setText("");
 				internalCadastroConcentrador.getSenhaField().setText("");
-				internalCadastroConcentrador.getCepField().setText("");
+				internalCadastroConcentrador.getCidadesCombo().setSelectedIndex(0);
 				
 
 			} catch (Exception e1) {

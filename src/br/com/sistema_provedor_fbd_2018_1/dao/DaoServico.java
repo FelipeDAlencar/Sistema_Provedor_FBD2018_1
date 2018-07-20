@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.sistema_provedor_fbd_2018_1.entidade.Concentrador;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLConnection;
@@ -52,8 +53,29 @@ public class DaoServico implements IDaoServico {
 
 	@Override
 	public ArrayList<Servico> listarTodos() throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement =  conexao.prepareStatement(SQLUtil.Servico.SELECT_ALL);
+
+			ArrayList<Servico> servicos = new ArrayList<>();
+			Servico servico;
+
+			ResultSet resultSet = statement.executeQuery();
+
+			while(resultSet.next()) {
+				servico =  new Servico(resultSet.getInt(1),resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4));
+				servicos.add(servico);
+			}
+			conexao.close();
+			return servicos;
+
+
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO LISTAR TODOS OS  CONCENTRADORES");
+		}
+
 	}
 
 	@Override

@@ -24,7 +24,7 @@ public class ControllerServico implements Listeners {
 		if (e.getSource() == internalServicos.getBntNovo()) {
 			
 			try {
-				controllerCadastroServico = new ControllerCadastroServico();
+				controllerCadastroServico = new ControllerCadastroServico(internalServicos);
 				internalCadastroServico = new InternalCadastroServico(telaPrincipal, controllerCadastroServico);
 				telaPrincipal.getDesktopPane().add(internalCadastroServico);
 				internalCadastroServico.setVisible(true);

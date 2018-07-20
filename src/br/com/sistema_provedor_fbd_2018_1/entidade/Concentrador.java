@@ -9,7 +9,16 @@ public class Concentrador {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Concentrador(Integer id, Integer cidade_id, String nome, String ip, String login, String senha) {
+	public Concentrador(int id, String nome, String ip, String login, String senha) {
+		super();
+		this.id = id;;
+		this.nome = nome;
+		this.ip = ip;
+		this.login = login;
+		this.senha = senha;
+	}
+	
+	public Concentrador(int id, String nome, String ip, String login, String senha, Integer cidade_id) {
 		super();
 		this.id = id;
 		this.cidade_id = cidade_id;

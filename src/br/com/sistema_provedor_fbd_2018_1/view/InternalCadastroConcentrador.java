@@ -24,7 +24,8 @@ public class InternalCadastroConcentrador extends TelaInternal {
 	private JTextField nomeFild;
 	private JTextField LoginFild;
 	private JPasswordField senhaField;
-	private JtextFieldGenerico ipFild, cepField;
+	private JtextFieldGenerico ipFild;
+	private JComboBox<String> cidadesCombo;
 	private JButton btnAdicionar;
 
 	public InternalCadastroConcentrador(TelaPrincipal telaPrincipal, ActionListener actionListener)
@@ -76,11 +77,11 @@ public class InternalCadastroConcentrador extends TelaInternal {
 		ipFild.setColumns(10);
 		ipFild.setMaximoCaracteres(11);
 
-		cepField = new JtextFieldGenerico("1234567890.");
-		cepField.setBounds(470, 180, 229, 29);
-		getContentPane().add(cepField);
+		carregarCidades();
+		cidadesCombo.setBounds(470, 180, 229, 29);
+		getContentPane().add(cidadesCombo);
 
-		JLabel lblNewLabel_2 = new JLabel("CEP:");
+		JLabel lblNewLabel_2 = new JLabel("CIDADE:");
 		lblNewLabel_2.setBounds(470, 155, 46, 14);
 		getContentPane().add(lblNewLabel_2);
 
@@ -88,6 +89,16 @@ public class InternalCadastroConcentrador extends TelaInternal {
 		btnAdicionar.setBounds(610, 272, 89, 29);
 		getContentPane().add(btnAdicionar);
 
+	}
+	
+	private void carregarCidades() throws BusinessException {
+		List<Cidade> cidadesList = new ArrayList<>();
+		cidadesCombo = new JComboBox<>();
+		Fachada fachada = new Fachada();
+		cidadesList = fachada.listarTodosCidades();
+		for (Cidade cidade : cidadesList) {
+			cidadesCombo.addItem(cidade.getNome());
+		}
 	}
 
 
@@ -113,8 +124,8 @@ public class InternalCadastroConcentrador extends TelaInternal {
 		return btnAdicionar;
 	}
 
-	public JtextFieldGenerico getCepField() {
-		return cepField;
+	public JComboBox<String> getCidadesCombo() {
+		return cidadesCombo;
 	}
 	
 

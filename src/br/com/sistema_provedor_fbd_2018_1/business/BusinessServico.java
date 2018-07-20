@@ -7,6 +7,7 @@ import br.com.sistema_provedor_fbd_2018_1.dao.DaoServico;
 import br.com.sistema_provedor_fbd_2018_1.dao.IDaoServico;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 
 public class BusinessServico implements IBusinessServico{
 	
@@ -42,8 +43,12 @@ public class BusinessServico implements IBusinessServico{
 
 	@Override
 	public ArrayList<Servico> listarTodos() throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return dao.listarTodos();
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO AO LISTAR SERVIÇOS - BUS");
+		}
 	}
 
 	@Override

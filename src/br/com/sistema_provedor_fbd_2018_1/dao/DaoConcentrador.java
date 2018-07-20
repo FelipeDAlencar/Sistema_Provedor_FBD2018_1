@@ -16,20 +16,19 @@ public class DaoConcentrador implements IDaoConcentrador {
 	private Connection conexao;
 	private PreparedStatement statement;
 	@Override
-	public void salvar(Concentrador concentrador, String cep) throws DaoException {
+	public void salvar(Concentrador concentrador, String cidade) throws DaoException {
 		try {
 
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
-			statement = conexao.prepareStatement(SQLUtil.Cidade.SELECT_CEP);
-			statement.setString(1, cep);
+			statement = conexao.prepareStatement(SQLUtil.Cidade.SELECT_NOME);
+			statement.setString(1, cidade);
 
 			ResultSet resultSet = statement.executeQuery();
 			resultSet.next();
 
 			int cidade_id = resultSet.getInt(1);
-
+			
 			statement = conexao.prepareStatement(SQLUtil.Concentrador.INSERT_ALL);
-
 
 			statement.setString(1, concentrador.getNome());
 			statement.setString(2, concentrador.getIp());
@@ -67,17 +66,18 @@ public class DaoConcentrador implements IDaoConcentrador {
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement =  conexao.prepareStatement(SQLUtil.Concentrador.SELECT_ALL);
 			
-			ArrayList<Concentrador> concentradors = new ArrayList<>();
+			ArrayList<Concentrador> concentradores = new ArrayList<>();
 			Concentrador concentrador;
 			
 			ResultSet resultSet = statement.executeQuery();
 			
 			while(resultSet.next()) {
-				concentrador =  new Concentrador(resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5));
-				concentradors.add(concentrador);
+				concentrador =  new Concentrador(resultSet.getInt(1),resultSet.getString(2), resultSet.getString(3), resultSet.getString(4),
+						resultSet.getString(5), resultSet.getInt(6));
+				concentradores.add(concentrador);
 			}
-			
-			return concentradors;
+			conexao.close();
+			return concentradores;
 			
 			
 		}catch (Exception e) {

@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Concentrador;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 
 @SuppressWarnings("serial")
 public class InternalConcentrador extends TelaInternal{
@@ -17,11 +18,12 @@ public class InternalConcentrador extends TelaInternal{
 	private DefaultTableModel modelTable;
 	private JScrollPane barraRolagem;
 	private JTable tabela;
+	private Fachada fachada;
 	public InternalConcentrador(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
 		super("Concentrador", telaPrincipal, actionListener);
 		setBounds(150, 50, 1050, 500);
 		getContentPane().setLayout(null);
-		setVisible(false);
+		fachada = new Fachada();
 	}
 
 	@Override
@@ -42,6 +44,7 @@ public class InternalConcentrador extends TelaInternal{
 		modelTable.addColumn("Id");
 		modelTable.addColumn("Nome");
 		modelTable.addColumn("IP");
+		modelTable.addColumn("CIDADE");
 
 		tabela = new JTable(modelTable);
 		tabela.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(100);
@@ -55,10 +58,14 @@ public class InternalConcentrador extends TelaInternal{
 	}
 
 	public void carregarConcentrador(List<Concentrador> concentradores) {
-		for (Concentrador concentrador : concentradores) {
-
-			String[] linha = {concentrador.getId().toString(), concentrador.getNome(), concentrador.getIp()};
+		try {for (Concentrador concentrador : concentradores) {
+			Cidade cidade = fachada.buscarCidadePorId(concentrador.getCidade_id());
+			String[] linha = {concentrador.getId().toString(), concentrador.getNome(), concentrador.getIp(), cidade.getNome()};
 			modelTable.addRow(linha);
+
+		}
+		} catch (BusinessException e) {
+			e.printStackTrace();
 		}
 
 	}
@@ -110,6 +117,6 @@ public class InternalConcentrador extends TelaInternal{
 	public void setTabela(JTable tabela) {
 		this.tabela = tabela;
 	}
-	
-	
+
+
 }

@@ -9,11 +9,11 @@ import javax.swing.JLabel;
 @SuppressWarnings("serial")
 public class TelaPrincipal extends Tela{
 	private Menu menu;
-	private BotaoDesktop bntAdicionarCliente;
-	private BotaoDesktop bntVerCliente;
-	private BotaoDesktop bntAdicionarSwitch;
-	private BotaoDesktop bntAtendimentos;
-	private BotaoDesktop bntMovimentacoes;
+	private BotaoDesktop btnAdicionarCliente;
+	private BotaoDesktop btnVerCliente;
+	private BotaoDesktop btnAdicionarSwitch;
+	private BotaoDesktop btnAtendimentos;
+	private BotaoDesktop btnMovimentacoes;
 	private JLabel bgImage;
 	private JDesktopPane desktopPane;
 	private InternalAdicionarCliente adicionarCliente;
@@ -45,68 +45,68 @@ public class TelaPrincipal extends Tela{
 		menu = new Menu();
 		
 		
-		bntAdicionarCliente = new BotaoDesktop("resource/imagens/desktop/adicionarCliente.png","Adicionar Cliente");
-		bntAdicionarCliente.setBounds(150,100,250,180);
+		btnAdicionarCliente = new BotaoDesktop("resource/imagens/desktop/adicionarCliente.png","Adicionar Cliente");
+		btnAdicionarCliente.setBounds(150,100,250,180);
 		
-		bntVerCliente = new BotaoDesktop("resource/imagens/desktop/verCliente.png", "Localizar Cliente");
-		bntVerCliente.setBounds(550, 100, 250, 180);
+		btnVerCliente = new BotaoDesktop("resource/imagens/desktop/verCliente.png", "Localizar Cliente");
+		btnVerCliente.setBounds(550, 100, 250, 180);
 		
-		bntAdicionarSwitch = new BotaoDesktop("resource/imagens/desktop/adicionarSwitch.png", "Adicionar Switch");
-		bntAdicionarSwitch.setBounds(950, 100, 250, 180);
+		btnAdicionarSwitch = new BotaoDesktop("resource/imagens/desktop/adicionarSwitch.png", "Adicionar Switch");
+		btnAdicionarSwitch.setBounds(950, 100, 250, 180);
 		
-		bntAtendimentos = new BotaoDesktop("resource/imagens/desktop/atendimento.png", "Atendimentos");
-		bntAtendimentos.setBounds(350, 400, 250, 180);
+		btnAtendimentos = new BotaoDesktop("resource/imagens/desktop/atendimento.png", "Atendimentos");
+		btnAtendimentos.setBounds(350, 400, 250, 180);
 		
-		bntMovimentacoes = new BotaoDesktop("resource/imagens/desktop/movimentacao.png", "Movimentações");
-		bntMovimentacoes.setBounds(750, 400, 250, 180);
+		btnMovimentacoes = new BotaoDesktop("resource/imagens/desktop/movimentacao.png", "Movimentações");
+		btnMovimentacoes.setBounds(750, 400, 250, 180);
 		
 		getContentPane().add(menu);
-		getContentPane().add(bntAdicionarCliente);
-		getContentPane().add(bntVerCliente);
-		getContentPane().add(bntAdicionarSwitch);
-		getContentPane().add(bntAtendimentos);
-		getContentPane().add(bntMovimentacoes);
+		getContentPane().add(btnAdicionarCliente);
+		getContentPane().add(btnVerCliente);
+		getContentPane().add(btnAdicionarSwitch);
+		getContentPane().add(btnAtendimentos);
+		getContentPane().add(btnMovimentacoes);
 		
 	}
 	
 	public void desativarBotoes() {
-		bntAdicionarCliente.setVisible(false);
-		bntVerCliente.setVisible(false);
-		bntAdicionarSwitch.setVisible(false);
-		bntAtendimentos.setVisible(false);
-		bntMovimentacoes.setVisible(false);
+		btnAdicionarCliente.setVisible(false);
+		btnVerCliente.setVisible(false);
+		btnAdicionarSwitch.setVisible(false);
+		btnAtendimentos.setVisible(false);
+		btnMovimentacoes.setVisible(false);
 	}
 	
 	public void ativarBotoes() {
-			bntAdicionarCliente.setVisible(true);
-			bntVerCliente.setVisible(true);
-			bntAdicionarSwitch.setVisible(true);
-			bntAtendimentos.setVisible(true);
-			bntMovimentacoes.setVisible(true);
+			btnAdicionarCliente.setVisible(true);
+			btnVerCliente.setVisible(true);
+			btnAdicionarSwitch.setVisible(true);
+			btnAtendimentos.setVisible(true);
+			btnMovimentacoes.setVisible(true);
 	}
 
 	public Menu getMenu() {
 		return menu;
 	}
 
-	public BotaoDesktop getBntAdicionarCliente() {
-		return bntAdicionarCliente;
+	public BotaoDesktop getBtnAdicionarCliente() {
+		return btnAdicionarCliente;
 	}
 
-	public BotaoDesktop getBntVerCliente() {
-		return bntVerCliente;
+	public BotaoDesktop getBtnVerCliente() {
+		return btnVerCliente;
 	}
 
-	public BotaoDesktop getBntAdicionarSwitch() {
-		return bntAdicionarSwitch;
+	public BotaoDesktop getBtnAdicionarSwitch() {
+		return btnAdicionarSwitch;
 	}
 
-	public BotaoDesktop getBntAtendiemntos() {
-		return bntAtendimentos;
+	public BotaoDesktop getBtnAtendimentos() {
+		return btnAtendimentos;
 	}
 
-	public BotaoDesktop getBntMovimentacoes() {
-		return bntMovimentacoes;
+	public BotaoDesktop getBtnMovimentacoes() {
+		return btnMovimentacoes;
 	}
 
 	public JLabel getBgImage() {
@@ -122,6 +122,18 @@ public class TelaPrincipal extends Tela{
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 	
 
 }

@@ -50,7 +50,7 @@ public class SQLUtil {
 
 	public static class Endereco {
 		public static String INSERT_ALL = "insert into endereco (numero, rua, bairro, cidade_id) "
-				+ "values (?,?,?,?); ";
+				+ "values (?,?,?,?)";
 
 		public static String MAXID = "select MAX(id) from endereco";
 
@@ -63,6 +63,8 @@ public class SQLUtil {
 	}
 
 	public static class Servico {
+		public static String SELECT_ALL = "select * from servico";
+		
 		public static String INSERT_ALL = "insert into servico (nome, download, upload) " + "values (?,?,?); ";
 	}
 
