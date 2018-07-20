@@ -62,8 +62,31 @@ public class DaoCaixa implements IDaoCaixa {
 
 	@Override
 	public ArrayList<Caixa> listarTodos() throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			conexao =  SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Caixa.SELECT_ALL);
+			
+			ArrayList<Caixa> caixas =  new ArrayList<>();
+			Caixa caixa = new Caixa();
+			
+			ResultSet resultSet = statement.executeQuery();
+			
+			while(resultSet.next()) {
+				caixa.setId(resultSet.getInt(1));
+				caixas.add(caixa);
+				caixa.setNome(resultSet.getString(2));
+				caixa.setLatitude(resultSet.getString(3));
+				caixa.setLongitude(resultSet.getString(4));
+				
+			}
+			return caixas;
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO LISTAR CAIXAS - DAO");
+		}
+		
+		
 	}
 
 	@Override

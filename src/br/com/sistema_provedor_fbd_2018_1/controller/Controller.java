@@ -63,7 +63,7 @@ public class Controller implements ActionListener {
 
 		// itens Menu Network
 		telaPrincipal.getMenu().getConcentradorNetwork().addActionListener(this);
-		// telaPrincipal.getBntAdicionarSwitch().addActionListener(this);
+		telaPrincipal.getBntAdicionarSwitch().addActionListener(this);
 		telaPrincipal.getMenu().getCaixaNetwork().addActionListener(this);
 
 	}
@@ -164,6 +164,7 @@ public class Controller implements ActionListener {
 				controllerCaixa.setInternalCaixa(internalCaixa);
 				controllerCaixa.addListeners();
 			}
+			
 
 		} catch (BusinessException e1) {
 			e1.printStackTrace();

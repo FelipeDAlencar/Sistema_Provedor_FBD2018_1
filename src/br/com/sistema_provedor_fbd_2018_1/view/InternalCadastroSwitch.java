@@ -108,9 +108,10 @@ public class InternalCadastroSwitch extends TelaInternal {
 	private void carregarConcentrador() throws BusinessException {
 		List<Concentrador> concentradoresList = new ArrayList<>();
 		concentradorCombo = new JComboBox<>();
+		fachada = new Fachada();
 		concentradoresList = fachada.listarTodosConcentrador();
-		for (Concentrador concentrador : concentradoresList) {
-			caixaCombo.addItem(concentrador.getNome());
+		for (Concentrador concentrador : concentradoresList) {	
+			concentradorCombo.addItem(concentrador.getNome());
 		}
 	}
 
@@ -149,6 +150,30 @@ public class InternalCadastroSwitch extends TelaInternal {
 
 	public JtextFieldGenerico getNumeroPortasField() {
 		return numeroPortasField;
+	}
+
+	public JTextField getNomeField() {
+		return nomeField;
+	}
+
+	public JTextField getLoginField() {
+		return LoginField;
+	}
+
+	public JtextFieldGenerico getIpField() {
+		return ipField;
+	}
+
+	public JComboBox<String> getConcentradorCombo() {
+		return concentradorCombo;
+	}
+
+	public JComboBox<String> getCaixaCombo() {
+		return caixaCombo;
+	}
+
+	public Fachada getFachada() {
+		return fachada;
 	}
 	
 

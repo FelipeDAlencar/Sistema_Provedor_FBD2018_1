@@ -30,6 +30,7 @@ public class DaoConcentrador implements IDaoConcentrador {
 
 			statement = conexao.prepareStatement(SQLUtil.Concentrador.INSERT_ALL);
 
+
 			statement.setString(1, concentrador.getNome());
 			statement.setString(2, concentrador.getIp());
 			statement.setString(3, concentrador.getLogin());
@@ -62,8 +63,33 @@ public class DaoConcentrador implements IDaoConcentrador {
 
 	@Override
 	public ArrayList<Concentrador> listarTodos() throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement =  conexao.prepareStatement(SQLUtil.Concentrador.SELECT_ALL);
+			
+			ArrayList<Concentrador> concentradors = new ArrayList<>();
+			Concentrador concentrador = new Concentrador();
+			
+			ResultSet resultSet = statement.executeQuery();
+			
+			while(resultSet.next()) {
+				concentrador.setId(resultSet.getInt(1));
+				concentrador.setNome(resultSet.getString(2));
+				concentrador.setIp(resultSet.getString(3));
+				concentrador.setLogin(resultSet.getString(4));
+				concentrador.setSenha(resultSet.getString(5));
+				concentradors.add(concentrador);
+			}
+			
+			return concentradors;
+			
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO LISTAR TODOS OS  CONCENTRADORES");
+		}
+			
+		
 	}
 
 	@Override

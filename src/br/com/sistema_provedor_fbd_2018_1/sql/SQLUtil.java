@@ -80,6 +80,8 @@ public class SQLUtil {
 				+ "values (?,?,?,?); ";
 
 		public static String SELECT_NOME = "select * from caixa where nome = ?";
+		
+		public static String SELECT_ALL = "select * from caixa";
 	}
 
 	public static class Concentrador {
@@ -87,12 +89,15 @@ public class SQLUtil {
 				+ "values (?,?,?,?,?); ";
 		public static String SELECT_NOME = "select * from concentrador where nome = ?";
 
+		public static String SELECT_ALL = "select * from concentrador";
 	}
 
 	public static class Switch {
 		public static String INSERT_ALL = "insert into switch (nome, numero_de_portas, ip, login, senha, caixa_id, concentrador_id) "
 				+ "values (?,?,?,?,?,?,?); ";
 		public static String SELECT_NOME = "select * from switch where nome = ?";
+		
+		public static String SELECT_ALL = "select * from switch";
 	}
 
 	public static class Porta {

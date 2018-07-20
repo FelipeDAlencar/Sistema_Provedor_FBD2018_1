@@ -1,9 +1,6 @@
 package br.com.fbd_2018_1;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
 import br.com.sistema_provedor_fbd_2018_1.controller.Controller;

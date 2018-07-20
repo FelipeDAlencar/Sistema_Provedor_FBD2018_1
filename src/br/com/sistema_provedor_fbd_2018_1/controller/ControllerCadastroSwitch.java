@@ -20,19 +20,20 @@ public class ControllerCadastroSwitch implements Listeners {
 		if (e.getSource() == internalSwitch.getBtnAdicionar()) {
 			try {
 				Switch switch1 = new Switch(internalSwitch.getNomeFild().getText().trim(),
-						internalSwitch.getIpFild().getText().trim(),
-						internalSwitch.getLoginFild().getText().trim(),
+						internalSwitch.getIpFild().getText().trim(), internalSwitch.getLoginFild().getText().trim(),
 						new String(internalSwitch.getSenhaField().getPassword()),
 						Integer.parseInt(internalSwitch.getNumeroPortasField().getText().trim()));
-				fachada.salvarOuEditarSwitch(switch1,"jhhjh", "");
+				String nomeCaixa = (String) internalSwitch.getCaixaCombo().getSelectedItem();
+				String nomeConcentrador = (String) internalSwitch.getConcentradorCombo().getSelectedItem();
+
+				fachada.salvarOuEditarSwitch(switch1, nomeCaixa, nomeConcentrador);
 				Menssagens.menssagem("Concentrador inserido com sucesso.", 1);
-				
+
 				internalSwitch.getNomeFild().setText("");
 				internalSwitch.getIpFild().setText("");
 				internalSwitch.getLoginFild().setText("");
 				internalSwitch.getSenhaField().setText("");
 				internalSwitch.getNumeroPortasField().setText("");
-				
 
 			} catch (Exception e1) {
 				// TODO: handle exception

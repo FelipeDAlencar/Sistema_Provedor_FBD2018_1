@@ -17,21 +17,23 @@ public class ControllerSwitch implements Listeners {
 	public ControllerSwitch(TelaPrincipal telaPrincipal) {
 		this.telaPrincipal = telaPrincipal;
 	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		try {
-			if (e.getSource() == internalSwitch.getBtnNovo()) {
+		if (e.getSource() == internalSwitch.getBtnNovo()) {
+			try {
+
 				ControllerCadastroSwitch = new ControllerCadastroSwitch();
 				internalCadastroSwitch = new InternalCadastroSwitch(telaPrincipal, ControllerCadastroSwitch);
 				telaPrincipal.getDesktopPane().add(internalCadastroSwitch);
 				internalCadastroSwitch.setVisible(true);
 				ControllerCadastroSwitch.setInternalCadastroSwitch(internalCadastroSwitch);
-				ControllerCadastroSwitch.addListeners();			
-			}
+				ControllerCadastroSwitch.addListeners();
 
-		} catch (BusinessException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			} catch (BusinessException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 
 	}
@@ -51,6 +53,5 @@ public class ControllerSwitch implements Listeners {
 	public void setInternalSwitch(InternalSwitch internalSwitch) {
 		this.internalSwitch = internalSwitch;
 	}
-
 
 }

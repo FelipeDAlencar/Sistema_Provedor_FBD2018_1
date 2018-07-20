@@ -7,6 +7,7 @@ import br.com.sistema_provedor_fbd_2018_1.dao.IDaoConcentrador;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Caixa;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Concentrador;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 
 public class BusinessConcentrador implements IBusinessConcentrador {
 
@@ -17,7 +18,7 @@ public class BusinessConcentrador implements IBusinessConcentrador {
 	}
 
 	@Override
-	public void salvarOuEditar(Concentrador concentrador,String cep) throws BusinessException {
+	public void salvarOuEditar(Concentrador concentrador, String cep) throws BusinessException {
 		try {
 			validacao();
 
@@ -43,8 +44,13 @@ public class BusinessConcentrador implements IBusinessConcentrador {
 
 	@Override
 	public ArrayList<Concentrador> listarTodos() throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+
+		try {
+			return dao.listarTodos();
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO AO LISTAR - BUS");
+		}
 	}
 
 	@Override

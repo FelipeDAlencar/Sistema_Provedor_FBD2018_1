@@ -207,8 +207,8 @@ public class Fachada implements IFachada {
 
 	@Override
 	public ArrayList<Caixa> listarTodosCaixa() throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return businessCaixa.listarTodos();
 	}
 
 	@Override
@@ -334,7 +334,7 @@ public class Fachada implements IFachada {
 	@Override
 	public ArrayList<Switch> listarTodosSwitch() throws BusinessException {
 		// TODO Auto-generated method stub
-		return null;
+		return businessSwitch.listarTodos();
 	}
 
 	@Override
@@ -358,8 +358,7 @@ public class Fachada implements IFachada {
 
 	@Override
 	public ArrayList<Concentrador> listarTodosConcentrador() throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		return businessConcentrador.listarTodos();
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import br.com.sistema_provedor_fbd_2018_1.dao.DaoCaixa;
 import br.com.sistema_provedor_fbd_2018_1.dao.IDaoCaixa;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Caixa;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 
 public class BusinessCaixa implements IBusinessCaixa {
 
@@ -39,8 +40,14 @@ public class BusinessCaixa implements IBusinessCaixa {
 
 	@Override
 	public ArrayList<Caixa> listarTodos() throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+
+		try {
+			return dao.listarTodos();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO AO LISTAR CAIXAS - BUS");
+		}
+
 	}
 
 	@Override
