@@ -65,7 +65,11 @@ public class SQLUtil {
 	public static class Servico {
 		public static String SELECT_ALL = "select * from servico";
 		
-		public static String INSERT_ALL = "insert into servico (nome, download, upload) " + "values (?,?,?); ";
+		public static String INSERT_ALL = "insert into servico (nome, download, upload) values (?,?,?); ";
+		
+		public static String SELECT_ID = "select * from servico where id = ?";
+		
+		public static String UPDATE = "update servico set nome = ?, download = ?, upload = ? where id = ?";
 	}
 
 	public static class Contato {

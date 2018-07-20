@@ -11,7 +11,7 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 
 @SuppressWarnings("serial")
 public class InternalAtendimentos extends TelaInternal{
-	private Botao btnNovo, btnAbrir;
+	private Botao  btnAbrir;
 	private DefaultTableModel modelTable;
 	private JScrollPane barraRolagem;
 	private JTable tabela;
@@ -28,10 +28,6 @@ public class InternalAtendimentos extends TelaInternal{
 		btnAbrir = new Botao("resource/imagens/botoes/abrir-atendimento.png","Abrir Atendimento");
 		btnAbrir.setBounds(50, 20, 200, 40);
 		getContentPane().add(btnAbrir);
-		
-		btnNovo = new Botao("resource/imagens/botoes/novo-atendimento.png","Novo Atendimento");
-		btnNovo.setBounds(270, 20, 200, 40);
-		getContentPane().add(btnNovo);
 		
 		modelTable = new DefaultTableModel();
 		modelTable.addColumn("Protocolo");
@@ -58,9 +54,6 @@ public class InternalAtendimentos extends TelaInternal{
 		}
 	}
 
-	public Botao getBtnNovo() {
-		return btnNovo;
-	}
 
 	public Botao getBtnAbrir() {
 		return btnAbrir;

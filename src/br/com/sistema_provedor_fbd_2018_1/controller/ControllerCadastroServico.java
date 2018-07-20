@@ -12,12 +12,10 @@ import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 
 public class ControllerCadastroServico implements Listeners {
 	private InternalCadastroServico internalCadastroServico;
-	private InternalServicos internalServicos;
 	private Fachada fachada;
 
-	public ControllerCadastroServico(InternalServicos internalServicos) {
+	public ControllerCadastroServico() {
 		fachada = new Fachada();
-		this.internalServicos = internalServicos;
 	}
 
 	@Override

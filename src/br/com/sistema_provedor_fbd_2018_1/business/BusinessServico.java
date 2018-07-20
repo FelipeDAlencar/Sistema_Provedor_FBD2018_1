@@ -10,35 +10,35 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 
 public class BusinessServico implements IBusinessServico{
-	
-	
+
+
 	private IDaoServico dao;
-	
+
 	public BusinessServico() {
 		dao =  new DaoServico();
 	}
-	
-	
+
+
 	@Override
 	public void salvarOuEditar(Servico servico) throws BusinessException {
 		try {
 			validacao();
-			
+
 			if(servico.getId() == null) {
 				dao.salvar(servico);
 			}else {
 				dao.editar(servico);
 			}
-			
+
 		} catch (Exception e) {
 			throw new BusinessException(e.getMessage());
 		}
-		
+
 	}
 
 	private void validacao() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -53,8 +53,12 @@ public class BusinessServico implements IBusinessServico{
 
 	@Override
 	public Servico buscarPorId(int id) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return dao.buscarPorId(id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO NO BUS");
+		}
 	}
 
 	@Override

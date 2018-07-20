@@ -12,9 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 
 public class InternalCadastroCidade extends TelaInternal {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private JTextField nomeField;
 	private JFormattedTextField estadoField;
@@ -23,7 +21,7 @@ public class InternalCadastroCidade extends TelaInternal {
 
 	public InternalCadastroCidade(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
 		super("Cadastro de Cidades", telaPrincipal, actionListener);
-		setBounds(300, 100, 800, 400);
+		setBounds(480, 150, 400, 300);
 		getContentPane().setLayout(null);
 
 	}
@@ -31,34 +29,34 @@ public class InternalCadastroCidade extends TelaInternal {
 	@Override
 	public void inicializar() throws BusinessException {
 		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setBounds(52, 68, 46, 14);
+		lblNome.setBounds(60, 40, 46, 14);
 		getContentPane().add(lblNome);
 
 		nomeField = new JTextField();
-		nomeField.setBounds(52, 93, 218, 31);
+		nomeField.setBounds(60, 65, 270, 31);
 		getContentPane().add(nomeField);
 		nomeField.setColumns(10);
 
 		JLabel lblEstado = new JLabel("Estado:");
-		lblEstado.setBounds(394, 68, 46, 14);
+		lblEstado.setBounds(60, 117, 46, 14);
 		getContentPane().add(lblEstado);
 
 		estadoField = new JFormattedTextField();
-		estadoField.setBounds(394, 93, 46, 31);
+		estadoField.setBounds(60, 142, 46, 31);
 		getContentPane().add(estadoField);
 		estadoField.setColumns(10);
 
 		JLabel lblCep = new JLabel("CEP:");
-		lblCep.setBounds(583, 69, 46, 14);
+		lblCep.setBounds(149, 117, 46, 14);
 		getContentPane().add(lblCep);
 
 		cepField = new JTextField();
-		cepField.setBounds(583, 94, 181, 28);
+		cepField.setBounds(149, 143, 181, 28);
 		getContentPane().add(cepField);
 		cepField.setColumns(10);
 		
 		btnAdd = new JButton("Adicionar Cidade");
-		btnAdd.setBounds(635, 264, 130, 23);
+		btnAdd.setBounds(200, 203, 130, 40);
 		getContentPane().add(btnAdd);
 		
 		try {

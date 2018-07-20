@@ -318,8 +318,7 @@ public class Fachada implements IFachada {
 
 	@Override
 	public Servico buscarServicoPorId(int id) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		return businessServico.buscarPorId(id);
 	}
 
 	@Override

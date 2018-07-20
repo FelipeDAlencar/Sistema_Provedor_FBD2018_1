@@ -5,11 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
-import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
-import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLConnection;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLUtil;
 
@@ -57,7 +54,7 @@ public class DaoEndereco implements IDaoEndereco {
 			statement.setInt(2, endereco.getNumero());
 			statement.setString(3, endereco.getRua());
 			statement.setString(4, endereco.getBairro());
-			
+
 			statement.executeQuery();
 			
 			

@@ -98,7 +98,7 @@ public class Controller extends Thread implements ActionListener {
 			}
 			if (e.getSource() == telaPrincipal.getBtnAtendimentos()
 					|| e.getSource() == telaPrincipal.getMenu().getAtendimentosCliente()) {
-				controllerAtendimentos = new ControllerAtendimentos(telaPrincipal);
+				controllerAtendimentos = new ControllerAtendimentos();
 				internalAtendimentos = new InternalAtendimentos(telaPrincipal, controllerAtendimentos);
 				telaPrincipal.getDesktopPane().add(internalAtendimentos);
 				internalAtendimentos.setVisible(true);

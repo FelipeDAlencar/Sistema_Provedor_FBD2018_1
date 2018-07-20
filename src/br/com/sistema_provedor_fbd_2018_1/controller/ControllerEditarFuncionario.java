@@ -70,6 +70,7 @@ public class ControllerEditarFuncionario implements Listeners {
 		InternalEditarFuncionario.getSenhaField().setText(funcionario.getSenha());
 		InternalEditarFuncionario.getNomeFild().setText(funcionario.getNome());
 		InternalEditarFuncionario.getData_contratoFild().setText(funcionario.getData_contrato());
+		
 
 	}
 

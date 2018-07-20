@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import br.com.sistema_provedor_fbd_2018_1.entidade.Concentrador;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLConnection;
@@ -41,14 +39,49 @@ public class DaoServico implements IDaoServico {
 
 	@Override
 	public void editar(Servico servico) throws DaoException {
-		// TODO Auto-generated method stub
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Servico.UPDATE);
+		
+			statement.setString(1,servico.getNome());
+			statement.setInt(2, servico.getDownload());
+			statement.setInt(3, servico.getUpload());
+			statement.setInt(4, servico.getId());
+			
+			statement.executeQuery();
+			conexao.close();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO EDITAR SERVIÇO - CONTATE A EQUIPE (DAO)");
+		}
 
 	}
 
 	@Override
 	public Servico buscarPorId(int id) throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Servico.SELECT_ID);
+
+			statement.setInt(1, id);
+			ResultSet resultSet = statement.executeQuery();
+
+			Servico servico;
+
+			if (resultSet.next()) {
+				servico = new Servico(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4));
+
+			} else {
+				throw new DaoException("SERVIÇO NÃO CADASTRADO");
+			}
+			conexao.close();
+			return servico;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO BUSCAR SERVIÇO - CONTATE A EQUIPE (DAO)");
+		}
+
 	}
 
 	@Override

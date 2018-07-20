@@ -9,7 +9,7 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 
 @SuppressWarnings("serial")
 public class InternalServicos extends TelaInternal{
-	private Botao bntNovo, bntEditar, bntRemover;
+	private Botao btnNovo, btnEditar, btnRemover;
 	private DefaultTableModel modelTable;
 	private JScrollPane barraRolagem;
 	private JTable tabela;
@@ -22,55 +22,51 @@ public class InternalServicos extends TelaInternal{
 
 	@Override
 	public void inicializar(){	
-		bntEditar = new Botao("resource/imagens/botoes/editar-servico.png","Editar Serviço");
-		bntEditar.setBounds(50, 20, 172, 40);
-		getContentPane().add(bntEditar);
-		
-		bntNovo = new Botao("resource/imagens/botoes/adicionar-servico.png","Novo Serviço");
-		bntNovo.setBounds(250, 20, 162, 40);
-		getContentPane().add(bntNovo);
-		
-		bntRemover = new Botao("resource/imagens/botoes/remover-servico.png","Remover Serviço");
-		bntRemover.setBounds(437, 20, 184, 40);
-		getContentPane().add(bntRemover);
-		
+		btnEditar = new Botao("resource/imagens/botoes/editar-servico.png","Editar Serviço");
+		btnEditar.setBounds(50, 20, 172, 40);
+		getContentPane().add(btnEditar);
+
+		btnNovo = new Botao("resource/imagens/botoes/adicionar-servico.png","Novo Serviço");
+		btnNovo.setBounds(250, 20, 162, 40);
+		getContentPane().add(btnNovo);
+
+		btnRemover = new Botao("resource/imagens/botoes/remover-servico.png","Remover Serviço");
+		btnRemover.setBounds(437, 20, 184, 40);
+		getContentPane().add(btnRemover);
+
 		modelTable = new DefaultTableModel();
 		modelTable.addColumn("Id");
 		modelTable.addColumn("Nome");
-		modelTable.addColumn("Upload");
-		modelTable.addColumn("Download");
 		modelTable.addColumn("Valor");
-		
+
 		tabela = new JTable(modelTable);
 		tabela.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(100);
 		tabela.getTableHeader().getColumnModel().getColumn(0).setMinWidth(100);
 		tabela.setBounds(0,0,600,400);
-		
+
 		barraRolagem = new JScrollPane(tabela);
 		barraRolagem.setBounds(50,60,930,400);
-		
+
 		getContentPane().add(barraRolagem);
 	}
-	
+
 	public void carregarServicos(List<Servico> servicos) {
 		for (Servico servico : servicos) {
-			String[] linha = {servico.getId().toString(), servico.getNome(), Integer.toString(servico.getUpload()), 
-					Integer.toString(servico.getDownload())};
+			String[] linha = {servico.getId().toString(), servico.getNome()};
 			modelTable.addRow(linha);
 		}
 	}
 
-
-	public Botao getBntNovo() {
-		return bntNovo;
+	public Botao getBtnNovo() {
+		return btnNovo;
 	}
 
-	public Botao getBntEditar() {
-		return bntEditar;
+	public Botao getBtnEditar() {
+		return btnEditar;
 	}
 
-	public Botao getBntRemover() {
-		return bntRemover;
+	public Botao getBtnRemover() {
+		return btnRemover;
 	}
 
 	public DefaultTableModel getModelTable() {
@@ -84,7 +80,7 @@ public class InternalServicos extends TelaInternal{
 	public JTable getTabela() {
 		return tabela;
 	}
-	
-	
+
+
 
 }

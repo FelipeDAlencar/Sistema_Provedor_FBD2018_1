@@ -10,7 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Atendimento;
-import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLConnection;
@@ -65,7 +64,7 @@ public class DaoCliente implements IDaoCliente {
 			ArrayList<Atendimento> atendimetos = new ArrayList<>();
 
 			ResultSet resultSet = statement.executeQuery();
-			Cidade cidade;
+			
 			while (resultSet.next()) {
 				Atendimento atendimento =  new Atendimento(resultSet.getInt(1), resultSet.getInt(2),resultSet.getString(3), resultSet.getString(4));
 				atendimetos.add(atendimento);
