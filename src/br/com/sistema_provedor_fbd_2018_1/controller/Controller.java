@@ -19,7 +19,8 @@ import br.com.sistema_provedor_fbd_2018_1.view.InternalServicos;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalSwitch;
 import br.com.sistema_provedor_fbd_2018_1.view.TelaPrincipal;
 
-public class Controller implements ActionListener {
+public class Controller extends Thread implements ActionListener {
+	private boolean loop;
 	private TelaPrincipal telaPrincipal;
 	private Fachada fachada;
 	private InternalAdicionarCliente internalAdicionarCliente;
@@ -42,6 +43,8 @@ public class Controller implements ActionListener {
 	private ControllerVisualizar controllerVisualizar;
 
 	public Controller(TelaPrincipal telaPrincipal) {
+		loop = true;
+		start();
 		fachada = new Fachada();
 		this.telaPrincipal = telaPrincipal;
 
@@ -164,7 +167,6 @@ public class Controller implements ActionListener {
 				controllerCaixa.setInternalCaixa(internalCaixa);
 				controllerCaixa.addListeners();
 			}
-			
 
 		} catch (BusinessException e1) {
 			e1.printStackTrace();
@@ -176,4 +178,21 @@ public class Controller implements ActionListener {
 		System.gc();
 	}
 
+	@Override
+	public void run() {
+		super.run();
+		while (true) {
+			if (loop) {
+				try {
+					//internalCidade.carregarCidades(fachada.listarTodosCidades());
+					sleep(500);
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
+	}
 }

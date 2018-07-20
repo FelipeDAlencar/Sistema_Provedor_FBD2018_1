@@ -49,20 +49,22 @@ public class InternalCadastroCidade extends TelaInternal {
 		estadoField.setColumns(10);
 
 		JLabel lblCep = new JLabel("CEP:");
-		lblCep.setBounds(615, 68, 46, 14);
+		lblCep.setBounds(583, 69, 46, 14);
 		getContentPane().add(lblCep);
 
 		cepField = new JTextField();
-		cepField.setBounds(615, 93, 181, 28);
+		cepField.setBounds(583, 94, 181, 28);
 		getContentPane().add(cepField);
 		cepField.setColumns(10);
-
-		btnAdd = new JButton("Cadastrar Cidade");
-		btnAdd.setBounds(643, 374, 153, 42);
+		
+		btnAdd = new JButton("Adicionar Cidade");
+		btnAdd.setBounds(635, 264, 130, 23);
 		getContentPane().add(btnAdd);
-
+		
 		try {
 			estadoField.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("AA")));
+			
+			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -89,5 +91,4 @@ public class InternalCadastroCidade extends TelaInternal {
 	public JButton getBtnAdd() {
 		return btnAdd;
 	}
-
 }
