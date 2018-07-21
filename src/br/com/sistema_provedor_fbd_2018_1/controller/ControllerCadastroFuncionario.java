@@ -21,33 +21,32 @@ public class ControllerCadastroFuncionario implements Listeners {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == internalCadastroFuncionario.getBtnAdicionar()) {
-			Funcionario funcionario = new Funcionario(internalCadastroFuncionario.getNomeFild().getText(),
-					internalCadastroFuncionario.getCargoField().getText(),
-					internalCadastroFuncionario.getData_contratoFild().getText(),
-					internalCadastroFuncionario.getLoginFild().getText(),
-					new String(internalCadastroFuncionario.getSenhaField().getPassword()));
-			
 
-			Endereco endereco = new Endereco(internalCadastroFuncionario.getBairroFild().getText(),
-					internalCadastroFuncionario.getComplementoFild().getText(),
-					internalCadastroFuncionario.getRuaFild().getText(),
-					Integer.parseInt(internalCadastroFuncionario.getNumeroFild().getText()));
-			
-			
-			Menssagens.menssagem("Funcionário salvo com sucesso!", 1);
-			
-			internalCadastroFuncionario.getNomeFild().setText("");
-			internalCadastroFuncionario.getCargoField().setText("");
-			internalCadastroFuncionario.getData_contratoFild().setText("");
-			internalCadastroFuncionario.getLoginFild().setText("");
-			internalCadastroFuncionario.getSenhaField().setText("");
-			internalCadastroFuncionario.getBairroFild().setText("");
-			internalCadastroFuncionario.getRuaFild().setText("");
-			internalCadastroFuncionario.getNumeroFild().setText("");
-			
 			try {
+				Funcionario funcionario = new Funcionario(internalCadastroFuncionario.getNomeFild().getText(),
+						internalCadastroFuncionario.getCargoField().getText(),
+						internalCadastroFuncionario.getData_contratoFild().getText(),
+						internalCadastroFuncionario.getLoginFild().getText(),
+						new String(internalCadastroFuncionario.getSenhaField().getPassword()));
+
+				Endereco endereco = new Endereco(internalCadastroFuncionario.getBairroFild().getText(),
+						internalCadastroFuncionario.getComplementoFild().getText(),
+						internalCadastroFuncionario.getRuaFild().getText(),
+						Integer.parseInt(internalCadastroFuncionario.getNumeroFild().getText()));
+
 				fachada.salvarOuEditarEndereco(endereco);
 				fachada.salvarOuEditarFuncionario(funcionario);
+				
+				Menssagens.menssagem("Funcionário salvo com sucesso!", 1);
+				
+				internalCadastroFuncionario.getNomeFild().setText("");
+				internalCadastroFuncionario.getCargoField().setText("");
+				internalCadastroFuncionario.getData_contratoFild().setText("");
+				internalCadastroFuncionario.getLoginFild().setText("");
+				internalCadastroFuncionario.getSenhaField().setText("");
+				internalCadastroFuncionario.getBairroFild().setText("");
+				internalCadastroFuncionario.getRuaFild().setText("");
+				internalCadastroFuncionario.getNumeroFild().setText("");
 
 			} catch (BusinessException e1) {
 				e1.printStackTrace();

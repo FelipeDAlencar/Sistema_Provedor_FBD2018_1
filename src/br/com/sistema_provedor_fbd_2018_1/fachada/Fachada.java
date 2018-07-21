@@ -112,9 +112,8 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public Endereco buscarEnderecoPorId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Endereco buscarEnderecoPorId(int id) throws BusinessException {
+		return businessEndereco.buscarPorId(id);
 	}
 
 	@Override
@@ -132,9 +131,8 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public Funcionario buscarPorId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Funcionario buscarFuncionarioPorId(int id)throws BusinessException {
+		return businessFuncionario.buscarPorId(id);
 	}
 
 	@Override

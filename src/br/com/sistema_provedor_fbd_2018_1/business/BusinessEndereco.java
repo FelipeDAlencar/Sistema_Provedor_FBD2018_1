@@ -7,6 +7,7 @@ import br.com.sistema_provedor_fbd_2018_1.dao.IDaoEndereco;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.exception.ValidacaoException;
 
 public class BusinessEndereco implements IBusinessEndereco {
@@ -39,9 +40,12 @@ public class BusinessEndereco implements IBusinessEndereco {
 	}
 
 	@Override
-	public Endereco buscarPorId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Endereco buscarPorId(int id)throws BusinessException {
+		try {
+			return dao.buscarPorId(id);
+		} catch (DaoException e) {
+			throw new BusinessException("ERRO BUS");
+		}
 	}
 	@Override
 	public ArrayList<Endereco> buscarPorBusca(String busca) {

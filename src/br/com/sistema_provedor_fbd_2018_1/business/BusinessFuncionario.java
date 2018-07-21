@@ -25,12 +25,15 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 
 	@Override
 	public void salvarOuEditarFuncionario(Funcionario funcionario) throws BusinessException {
-
+		
 		try {
 			Validar(funcionario);
 			if (funcionario.getId() == null) {
+				
 				dao.salvar(funcionario);
+				
 			} else {
+				System.out.println(funcionario.getId());
 				dao.editar(funcionario);
 			}
 
@@ -40,9 +43,12 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 	}
 
 	@Override
-	public Funcionario buscarPorId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Funcionario buscarPorId(int id)throws BusinessException {
+		try {
+			return dao.buscarPorId(id);
+		} catch (DaoException e) {
+			throw new BusinessException("ERRO NO BUS");
+		}
 	}
 
 	@Override
@@ -82,8 +88,6 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 		java.sql.Date data = null;
 
 		data = new java.sql.Date(format.parse(txt).getTime());
-
-		JOptionPane.showMessageDialog(null, "Opss Algo errado com a data informada", "Error", 0);
 
 		return data;
 

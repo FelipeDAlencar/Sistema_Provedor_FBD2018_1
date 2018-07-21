@@ -37,7 +37,7 @@ public interface IFachada {
 	// Funcionario
 	public void salvarOuEditarFuncionario(Funcionario funcionario) throws BusinessException;
 
-	public Funcionario buscarPorId(int id) throws BusinessException;
+	public Funcionario buscarFuncionarioPorId(int id) throws BusinessException;
 
 	public Funcionario buscarPorCpf(String cpf);
 

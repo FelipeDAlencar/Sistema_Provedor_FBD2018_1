@@ -23,6 +23,16 @@ public class Endereco {
 		this.bairro = bairro;
 		this.rua = rua;
 	}
+	
+	public Endereco(Integer id, String bairro, String complemento, String rua, int numero) {
+		super();
+		this.id = id;
+		this.bairro = bairro;
+		this.complemento = complemento;
+		this.rua = rua;
+		this.numero = numero;
+		
+	}
 	public Integer getId() {
 		return id;
 	}

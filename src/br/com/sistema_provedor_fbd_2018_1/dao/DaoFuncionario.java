@@ -56,14 +56,15 @@ public class DaoFuncionario implements IDaoFuncionario {
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Funcionario.UPDATE);
 
-			statement.setString(1, funcionario.getNome());
-			statement.setString(2, funcionario.getCargo());
-			statement.setDate(3, BusinessFuncionario.converterParaData(funcionario.getData_contrato()));
-			statement.setString(4, funcionario.getNome());
-			statement.setString(5, funcionario.getSenha());
-			statement.setInt(6, funcionario.getId());
+			
+			statement.setInt(1, funcionario.getId());
+			statement.setString(2, funcionario.getNome());
+			statement.setString(3, funcionario.getCargo());
+			statement.setDate(4, BusinessFuncionario.converterParaData(funcionario.getData_contrato()));
+			statement.setString(5, funcionario.getLogin());
+			statement.setString(6, funcionario.getSenha());
 			statement.setInt(7, funcionario.getEndereco_id());
-
+			
 			statement.execute();
 			conexao.close();
 
@@ -75,9 +76,37 @@ public class DaoFuncionario implements IDaoFuncionario {
 	}
 
 	@Override
-	public Funcionario buscarPorId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Funcionario buscarPorId(int id)throws DaoException {
+
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Funcionario.SELECT_ID);
+			
+			statement.setInt(1, id);
+			
+			ResultSet resultSet = statement.executeQuery();
+			
+			Funcionario funcionario;
+			
+			if(resultSet.next()) {
+				funcionario =  new Funcionario(resultSet.getInt(1), resultSet.getInt(7), resultSet.getString(2), resultSet.getString(3),String.valueOf(resultSet.getDate(4)),
+						resultSet.getString(5),resultSet.getString(6));
+				
+			}else {
+				throw new DaoException("FUNCIONARIO NÃO CADASTRADO");
+			}
+			
+			
+			return funcionario;
+			
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO TENTAR BUSCAR FUNCIONARIO - DAO");
+		}
+
 	}
 
 	@Override
@@ -105,8 +134,8 @@ public class DaoFuncionario implements IDaoFuncionario {
 			ResultSet resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {
-				funcionario = new Funcionario(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),String.valueOf(resultSet.getDate(4)), 
-						resultSet.getString(5), resultSet.getString(6));
+				funcionario = new Funcionario(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
+						String.valueOf(resultSet.getDate(4)), resultSet.getString(5), resultSet.getString(6));
 
 				funcionarios.add(funcionario);
 			}

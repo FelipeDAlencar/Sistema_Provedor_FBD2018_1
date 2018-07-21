@@ -124,7 +124,6 @@ public class Controller extends Thread implements ActionListener {
 				internalFuncionario.setVisible(true);
 				controllerFuncionario.setInternalFuncionario(internalFuncionario);
 				controllerFuncionario.addListeners();
-				System.out.println(internalFuncionario);
 				internalFuncionario.carregarFuncionarios(fachada.listarTodosFuncionarios());
 
 			}
