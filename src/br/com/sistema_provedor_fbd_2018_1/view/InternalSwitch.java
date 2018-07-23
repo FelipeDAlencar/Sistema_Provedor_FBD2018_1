@@ -54,10 +54,9 @@ public class InternalSwitch extends TelaInternal{
 		getContentPane().add(barraRolagem);
 	}
 	
-	public void carregarAtendimentos(List<Switch> sws) {
-		for (Switch sw : sws) {
-			
-			String[] linha = {Integer.toString(sw.getId()), sw.getIp(), sw.getNome(), sw.getIp()};
+	public void carregarSwitchs(List<Switch> sws) {
+		for (Switch sw : sws) {			
+			String[] linha = {Integer.toString(sw.getId()), sw.getNome(), sw.getIp()};
 			modelTable.addRow(linha);
 		}
 	}

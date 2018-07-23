@@ -11,6 +11,7 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalAdicionarCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalAtendimentos;
+import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroSwitch;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCaixa;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCidade;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalConcentrador;
@@ -42,6 +43,8 @@ public class Controller extends Thread implements ActionListener {
 	private ControllerConcentrador controllerConcentrador;
 	private ControllerCaixa controllerCaixa;
 	private ControllerVisualizar controllerVisualizar;
+	private ControllerCadastroSwitch controllerCadastroSwitch;
+	private InternalCadastroSwitch internalCadastroSwitch;
 
 	public Controller(TelaPrincipal telaPrincipal) {
 		loop = true;
@@ -67,7 +70,7 @@ public class Controller extends Thread implements ActionListener {
 
 		// itens Menu Network
 		telaPrincipal.getMenu().getConcentradorNetwork().addActionListener(this);
-		telaPrincipal.getBtnAdicionarSwitch().addActionListener(this);
+		telaPrincipal.getMenu().getSwitchNetwork().addActionListener(this);
 		telaPrincipal.getMenu().getCaixaNetwork().addActionListener(this);
 
 	}
@@ -106,14 +109,23 @@ public class Controller extends Thread implements ActionListener {
 				controllerAtendimentos.addListeners();
 			}
 
-			if (e.getSource() == telaPrincipal.getBtnAdicionarSwitch()
-					|| e.getSource() == telaPrincipal.getMenu().getSwitchNetwork()) {
+			if (e.getSource() == telaPrincipal.getMenu().getSwitchNetwork()) {
 				controllerSwitch = new ControllerSwitch(telaPrincipal);
 				internalSwitch = new InternalSwitch(telaPrincipal, controllerSwitch);
 				telaPrincipal.getDesktopPane().add(internalSwitch);
+				internalSwitch.carregarSwitchs(fachada.listarTodosSwitch());
 				internalSwitch.setVisible(true);
 				controllerSwitch.setInternalSwitch(internalSwitch);
 				controllerSwitch.addListeners();
+			}
+			
+			if (e.getSource() == telaPrincipal.getBtnAdicionarSwitch()) {
+				controllerCadastroSwitch = new ControllerCadastroSwitch();
+				internalCadastroSwitch = new InternalCadastroSwitch(telaPrincipal, controllerCadastroSwitch);
+				controllerCadastroSwitch.setInternalCadastroSwitch(internalCadastroSwitch);
+				controllerCadastroSwitch.addListeners();
+				telaPrincipal.getDesktopPane().add(internalCadastroSwitch);
+				internalCadastroSwitch.setVisible(true);
 			}
 
 			if (e.getSource() == telaPrincipal.getMenu().getFuncionarioCadastro()) {
@@ -121,10 +133,10 @@ public class Controller extends Thread implements ActionListener {
 				internalFuncionario = new InternalFuncionario(telaPrincipal, controllerFuncionario);
 				telaPrincipal.getDesktopPane().add(internalFuncionario);
 				controllerFuncionario.setInternalFuncionario(internalFuncionario);
-				internalFuncionario.setVisible(true);
 				controllerFuncionario.setInternalFuncionario(internalFuncionario);
 				controllerFuncionario.addListeners();
 				internalFuncionario.carregarFuncionarios(fachada.listarTodosFuncionarios());
+				internalFuncionario.setVisible(true);
 
 			}
 			if (e.getSource() == telaPrincipal.getMenu().getCidadeCadastro()) {

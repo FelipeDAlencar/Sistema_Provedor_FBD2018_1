@@ -4,12 +4,8 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
-import javax.swing.JOptionPane;
-
 import br.com.sistema_provedor_fbd_2018_1.dao.DaoFuncionario;
 import br.com.sistema_provedor_fbd_2018_1.dao.IDaoFuncionario;
-import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Funcionario;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;

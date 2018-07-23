@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import br.com.sistema_provedor_fbd_2018_1.dao.DaoConcentrador;
 import br.com.sistema_provedor_fbd_2018_1.dao.IDaoConcentrador;
-import br.com.sistema_provedor_fbd_2018_1.entidade.Caixa;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Concentrador;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
@@ -54,9 +53,13 @@ public class BusinessConcentrador implements IBusinessConcentrador {
 	}
 
 	@Override
-	public Caixa buscarPorId(int id) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+	public Concentrador buscarPorId(int id) throws BusinessException {
+		try {
+			return dao.buscarPorId(id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO AO BUCAR CONCENTRADOR - BUS");
+		}
 	}
 
 	@Override

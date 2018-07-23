@@ -33,6 +33,7 @@ public class ControllerEditarServico implements Listeners {
 						Integer.parseInt(internalEditarServico.getDownloadField().getText().trim()),
 						Integer.parseInt(internalEditarServico.getUploadField().getText().trim()));
 				fachada.salvarOuEditarServico(servico);
+				Menssagens.menssagem("SERVIÇO EDITADO COM SUCESSO",1);
 			}
 		} catch (BusinessException e1) {
 			// TODO Auto-generated catch block

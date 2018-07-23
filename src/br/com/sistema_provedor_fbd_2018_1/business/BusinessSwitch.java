@@ -50,8 +50,12 @@ public class BusinessSwitch implements IBusinessSwitch {
 
 	@Override
 	public Switch buscarPorId(int id) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return dao.buscarPorId(id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO AO BUSCAR SWITCH- BUS");
+		}
 	}
 
 	@Override

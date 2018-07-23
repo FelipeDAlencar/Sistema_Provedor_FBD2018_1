@@ -217,8 +217,7 @@ public class Fachada implements IFachada {
 
 	@Override
 	public Caixa buscarCaixaPorId(int id) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		return businessCaixa.buscarPorId(id);
 	}
 
 	@Override
@@ -341,9 +340,8 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public Switch buscarvPorId(int id) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+	public Switch buscarSwitchPorId(int id) throws BusinessException {
+		return businessSwitch.buscarPorId(id);
 	}
 
 	@Override
@@ -354,8 +352,8 @@ public class Fachada implements IFachada {
 
 	// CONCENTRADOR
 	@Override
-	public void salvarOuEditarConcentrador(Concentrador concentrador, String cep) throws BusinessException {
-		businessConcentrador.salvarOuEditar(concentrador, cep);
+	public void salvarOuEditarConcentrador(Concentrador concentrador, String cidade) throws BusinessException {
+		businessConcentrador.salvarOuEditar(concentrador, cidade);
 
 	}
 
@@ -366,8 +364,7 @@ public class Fachada implements IFachada {
 
 	@Override
 	public Concentrador buscarConcentradorPorId(int id) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		return businessConcentrador.buscarPorId(id);
 	}
 
 	@Override

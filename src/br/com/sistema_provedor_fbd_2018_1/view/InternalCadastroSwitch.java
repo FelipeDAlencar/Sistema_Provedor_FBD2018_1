@@ -29,7 +29,7 @@ public class InternalCadastroSwitch extends TelaInternal {
 	public InternalCadastroSwitch(TelaPrincipal telaPrincipal, ActionListener actionListener)
 			throws BusinessException {
 		super("Cadastro de Switch", telaPrincipal, actionListener);
-		setBounds(300, 100, 800, 400);
+		setBounds(330, 100, 690, 400);
 		getContentPane().setLayout(null);
 		fachada = new Fachada();
 		
@@ -39,68 +39,68 @@ public class InternalCadastroSwitch extends TelaInternal {
 	@Override
 	public void inicializar() throws BusinessException {
 		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setBounds(55, 64, 105, 14);
+		lblNome.setBounds(55, 40, 105, 14);
 		getContentPane().add(lblNome);
 
 		nomeField = new JTextField();
-		nomeField.setBounds(55, 89, 365, 29);
+		nomeField.setBounds(55, 65, 277, 29);
 		getContentPane().add(nomeField);
 		nomeField.setColumns(10);
 		
 		JLabel lblLogin = new JLabel("Login:");
-		lblLogin.setBounds(55, 155, 46, 14);
+		lblLogin.setBounds(55, 124, 46, 14);
 		getContentPane().add(lblLogin);
 
 		LoginField = new JTextField();
 		LoginField.setToolTipText("Login");
-		LoginField.setBounds(55, 180, 141, 29);
+		LoginField.setBounds(55, 149, 141, 29);
 		getContentPane().add(LoginField);
 		LoginField.setColumns(10);
 
 		JLabel lblSenha = new JLabel("Senha:");
-		lblSenha.setBounds(246, 155, 46, 14);
+		lblSenha.setBounds(246, 124, 46, 14);
 		getContentPane().add(lblSenha);
 
 		senhaField = new JPasswordField();
-		senhaField.setBounds(246, 180, 174, 29);
+		senhaField.setBounds(246, 149, 174, 29);
 		getContentPane().add(senhaField);
 
 		JLabel lblNewLabel_1 = new JLabel("IP:");
-		lblNewLabel_1.setBounds(470, 64, 46, 14);
+		lblNewLabel_1.setBounds(374, 40, 46, 14);
 		getContentPane().add(lblNewLabel_1);
 
 		ipField = new JtextFieldGenerico(".1234567890");
-		ipField.setBounds(470, 89, 229, 29);
+		ipField.setBounds(374, 65, 229, 29);
 		getContentPane().add(ipField);
 		ipField.setColumns(10);
 		ipField.setMaximoCaracteres(15);
 
 		numeroPortasField = new JtextFieldGenerico("1234567890");
-		numeroPortasField.setBounds(470, 180, 229, 29);
+		numeroPortasField.setBounds(470, 149, 133, 29);
 		getContentPane().add(numeroPortasField);
 
 		JLabel lblNewLabel_2 = new JLabel("Numero de Portas:");
-		lblNewLabel_2.setBounds(470, 155, 46, 14);
+		lblNewLabel_2.setBounds(470, 124, 105, 14);
 		getContentPane().add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Concentrador:");
-		lblNewLabel_3.setBounds(55, 239, 141, 14);
+		lblNewLabel_3.setBounds(55, 212, 141, 14);
 		getContentPane().add(lblNewLabel_3);
 		
 		carregarConcentrador();
-		concentradorCombo.setBounds(55, 264, 141, 29);
+		concentradorCombo.setBounds(55, 237, 248, 29);
 		getContentPane().add(concentradorCombo);
 		
 		JLabel lblNewLabel_4 = new JLabel("Caixa:");
-		lblNewLabel_4.setBounds(246, 239, 46, 14);
+		lblNewLabel_4.setBounds(355, 212, 46, 14);
 		getContentPane().add(lblNewLabel_4);
 		
 		carregarCaixas();
-		caixaCombo.setBounds(246, 264, 141, 29);
+		caixaCombo.setBounds(355, 237, 248, 29);
 		getContentPane().add(caixaCombo);
 
 		btnAdicionar = new JButton("Adicionar");
-		btnAdicionar.setBounds(609, 298, 89, 29);
+		btnAdicionar.setBounds(514, 305, 89, 29);
 		getContentPane().add(btnAdicionar);
 
 	}

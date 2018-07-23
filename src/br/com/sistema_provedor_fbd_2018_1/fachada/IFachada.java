@@ -123,7 +123,7 @@ public interface IFachada {
 
 	public ArrayList<Switch> listarTodosSwitch() throws BusinessException;
 
-	public Switch buscarvPorId(int id) throws BusinessException;
+	public Switch buscarSwitchPorId(int id) throws BusinessException;
 
 	public ArrayList<Switch> buscarSwitchPorBusca(String busca);
 }

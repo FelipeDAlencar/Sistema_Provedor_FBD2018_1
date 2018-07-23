@@ -25,12 +25,12 @@ public class ControllerCadastroCaixa implements Listeners {
 				Caixa caixa = new Caixa(internalCadastroCaixa.getNomeField().getText(),
 						internalCadastroCaixa.getLatitudeField().getText(),
 						internalCadastroCaixa.getLongitudeField().getText());
-				fachada.salvarOuEditarCaixa(caixa, internalCadastroCaixa.getCepField().getText());
+				fachada.salvarOuEditarCaixa(caixa, internalCadastroCaixa.getCidadeCombo().getSelectedItem().toString());
 				Menssagens.menssagem("Caixa cadastrada com sucesso.", 1);
 				internalCadastroCaixa.getNomeField().setText("");
 				internalCadastroCaixa.getLatitudeField().setText("");
 				internalCadastroCaixa.getLongitudeField().setText("");
-				internalCadastroCaixa.getCepField().setText("");
+				internalCadastroCaixa.getCidadeCombo().setSelectedIndex(0);
 			} catch (BusinessException e1) {
 				e1.getMessage();
 			}

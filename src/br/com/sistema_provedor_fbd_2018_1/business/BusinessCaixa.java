@@ -52,8 +52,12 @@ public class BusinessCaixa implements IBusinessCaixa {
 
 	@Override
 	public Caixa buscarPorId(int id) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return dao.buscarPorId(id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO AO BUSCAR CAIXA - BUS");
+		}
 	}
 
 	@Override

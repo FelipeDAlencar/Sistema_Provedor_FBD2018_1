@@ -20,16 +20,16 @@ public class ControllerCadastroConcentrador implements Listeners {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == internalCadastroConcentrador.getBtnAdicionar()) {
 			try {
-				Concentrador concentrador = new Concentrador(internalCadastroConcentrador.getNomeFild().getText(),
-						internalCadastroConcentrador.getIpFild().getText(),
-						internalCadastroConcentrador.getLoginFild().getText(),
+				Concentrador concentrador = new Concentrador(internalCadastroConcentrador.getNomeField().getText(),
+						internalCadastroConcentrador.getIpField().getText(),
+						internalCadastroConcentrador.getLoginField().getText(),
 						new String(internalCadastroConcentrador.getSenhaField().getPassword()));
 				fachada.salvarOuEditarConcentrador(concentrador, internalCadastroConcentrador.getCidadesCombo().getSelectedItem().toString());
 				Menssagens.menssagem("Concentrador inserido com sucesso.", 1);
 				
-				internalCadastroConcentrador.getNomeFild().setText("");
-				internalCadastroConcentrador.getIpFild().setText("");
-				internalCadastroConcentrador.getLoginFild().setText("");
+				internalCadastroConcentrador.getNomeField().setText("");
+				internalCadastroConcentrador.getIpField().setText("");
+				internalCadastroConcentrador.getLoginField().setText("");
 				internalCadastroConcentrador.getSenhaField().setText("");
 				internalCadastroConcentrador.getCidadesCombo().setSelectedIndex(0);
 				

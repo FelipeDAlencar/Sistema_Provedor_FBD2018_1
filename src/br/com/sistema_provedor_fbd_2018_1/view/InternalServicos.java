@@ -17,7 +17,6 @@ public class InternalServicos extends TelaInternal{
 		super("Serviços", telaPrincipal, actionListener);
 		setBounds(150, 50, 1050, 500);
 		getContentPane().setLayout(null);
-		setVisible(false);
 	}
 
 	@Override

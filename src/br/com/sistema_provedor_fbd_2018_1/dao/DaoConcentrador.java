@@ -50,14 +50,47 @@ public class DaoConcentrador implements IDaoConcentrador {
 
 	@Override
 	public void editar(Concentrador concentrador) throws DaoException {
-		// TODO Auto-generated method stub
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Concentrador.UPDATE);
+			
+			statement.setString(1, concentrador.getNome());
+			statement.setString(2, concentrador.getIp());
+			statement.setString(3, concentrador.getLogin());
+			statement.setString(4, concentrador.getSenha());
+			statement.setInt(5, concentrador.getId());
+			
+			statement.execute();
+			
+			conexao.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DaoException("ERRO AO EDITAR CONCETRADOR - CONTATE A EQUIPE RESPONSÁVEL - DAO");
+			}
 		
 	}
 
 	@Override
 	public Concentrador buscarPorId(int id) throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+		conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+		statement = conexao.prepareStatement(SQLUtil.Concentrador.SELECT_ID);
+		
+		statement.setInt(1, id);
+		ResultSet resultSet = statement.executeQuery();
+		Concentrador concentrador;
+		if (resultSet.next()) {
+			concentrador = new Concentrador(resultSet.getInt(1),resultSet.getString(2), resultSet.getString(3), resultSet.getString(4),
+					resultSet.getString(5), resultSet.getInt(6));
+		}else {
+			throw new DaoException("CONCENTRADOR NÃO ENCONTRADO");
+		}
+		conexao.close();
+		return concentrador;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO BUSCAR CONCENTRADOR - DAO");
+		}
 	}
 
 	@Override

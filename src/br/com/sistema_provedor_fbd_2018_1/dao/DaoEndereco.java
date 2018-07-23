@@ -55,7 +55,7 @@ public class DaoEndereco implements IDaoEndereco {
 			statement.setString(3, endereco.getRua());
 			statement.setString(4, endereco.getBairro());
 
-			statement.executeQuery();
+			statement.execute();
 			
 			
 		} catch (SQLException e) {

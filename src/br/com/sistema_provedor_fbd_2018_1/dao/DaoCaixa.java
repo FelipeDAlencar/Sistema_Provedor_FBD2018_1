@@ -18,12 +18,12 @@ public class DaoCaixa implements IDaoCaixa {
 	private PreparedStatement statement;
 
 	@Override
-	public void salvar(Caixa caixa, String cep) throws DaoException {
+	public void salvar(Caixa caixa, String cidade) throws DaoException {
 		try {
 
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
-			statement = conexao.prepareStatement(SQLUtil.Cidade.SELECT_CEP);
-			statement.setString(1, cep);
+			statement = conexao.prepareStatement(SQLUtil.Cidade.SELECT_NOME);
+			statement.setString(1, cidade);
 
 			ResultSet resultSet = statement.executeQuery();
 			resultSet.next();
@@ -56,8 +56,28 @@ public class DaoCaixa implements IDaoCaixa {
 
 	@Override
 	public Caixa buscarPorId(int id) throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Caixa.SELECT_ID);
+			statement.setInt(1, id);
+			
+			ResultSet resultSet = statement.executeQuery();
+			Caixa caixa;
+			if(resultSet.next()) {
+				caixa = new Caixa(
+						resultSet.getInt(1),
+						resultSet.getInt(5),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4));
+			}else {
+				throw new DaoException("CAIXA NÃO ENCONTRADA - DAO");
+			}
+			return caixa;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO BUSCAR CAIXA - DAO");
+		}
 	}
 
 	@Override
@@ -65,25 +85,26 @@ public class DaoCaixa implements IDaoCaixa {
 		try {
 			conexao =  SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Caixa.SELECT_ALL);
-			
+
 			ArrayList<Caixa> caixas =  new ArrayList<>();
 			Caixa caixa;
-			
+
 			ResultSet resultSet = statement.executeQuery();
-			
+
 			while(resultSet.next()) {
 				caixa = new Caixa(resultSet.getString(2), resultSet.getString(3),resultSet.getString(4));
 				caixas.add(caixa);
-				
+
 			}
+			conexao.close();
 			return caixas;
-			
+
 		}catch (Exception e) {
 			e.printStackTrace();
 			throw new DaoException("ERRO AO LISTAR CAIXAS - DAO");
 		}
-		
-		
+
+
 	}
 
 	@Override

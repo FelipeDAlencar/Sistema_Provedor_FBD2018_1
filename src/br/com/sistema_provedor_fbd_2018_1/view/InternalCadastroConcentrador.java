@@ -21,10 +21,10 @@ import javax.swing.JButton;
 @SuppressWarnings("serial")
 public class InternalCadastroConcentrador extends TelaInternal {
 
-	private JTextField nomeFild;
-	private JTextField LoginFild;
+	private JTextField nomeField;
+	private JTextField LoginField;
 	private JPasswordField senhaField;
-	private JtextFieldGenerico ipFild;
+	private JtextFieldGenerico ipField;
 	private JComboBox<String> cidadesCombo;
 	private JButton btnAdicionar;
 
@@ -44,20 +44,20 @@ public class InternalCadastroConcentrador extends TelaInternal {
 		lblNome.setBounds(55, 64, 105, 14);
 		getContentPane().add(lblNome);
 
-		nomeFild = new JTextField();
-		nomeFild.setBounds(55, 89, 365, 29);
-		getContentPane().add(nomeFild);
-		nomeFild.setColumns(10);
+		nomeField = new JTextField();
+		nomeField.setBounds(55, 89, 365, 29);
+		getContentPane().add(nomeField);
+		nomeField.setColumns(10);
 		
 		JLabel lblLogin = new JLabel("Login:");
 		lblLogin.setBounds(55, 155, 46, 14);
 		getContentPane().add(lblLogin);
 
-		LoginFild = new JTextField();
-		LoginFild.setToolTipText("Login");
-		LoginFild.setBounds(55, 180, 141, 29);
-		getContentPane().add(LoginFild);
-		LoginFild.setColumns(10);
+		LoginField = new JTextField();
+		LoginField.setToolTipText("Login");
+		LoginField.setBounds(55, 180, 141, 29);
+		getContentPane().add(LoginField);
+		LoginField.setColumns(10);
 
 		JLabel lblSenha = new JLabel("Senha:");
 		lblSenha.setBounds(246, 155, 46, 14);
@@ -71,22 +71,22 @@ public class InternalCadastroConcentrador extends TelaInternal {
 		lblNewLabel_1.setBounds(470, 64, 46, 14);
 		getContentPane().add(lblNewLabel_1);
 
-		ipFild = new JtextFieldGenerico(".1234567890");
-		ipFild.setBounds(470, 89, 229, 29);
-		getContentPane().add(ipFild);
-		ipFild.setColumns(10);
-		ipFild.setMaximoCaracteres(11);
+		ipField = new JtextFieldGenerico(".1234567890");
+		ipField.setBounds(470, 89, 229, 29);
+		getContentPane().add(ipField);
+		ipField.setColumns(10);
+		ipField.setMaximoCaracteres(15);
 
 		carregarCidades();
 		cidadesCombo.setBounds(470, 180, 229, 29);
 		getContentPane().add(cidadesCombo);
 
-		JLabel lblNewLabel_2 = new JLabel("CIDADE:");
-		lblNewLabel_2.setBounds(470, 155, 46, 14);
+		JLabel lblNewLabel_2 = new JLabel("Cidade:");
+		lblNewLabel_2.setBounds(470, 155, 100, 14);
 		getContentPane().add(lblNewLabel_2);
 
 		btnAdicionar = new JButton("Adicionar");
-		btnAdicionar.setBounds(610, 272, 89, 29);
+		btnAdicionar.setBounds(610, 272, 89, 40);
 		getContentPane().add(btnAdicionar);
 
 	}
@@ -101,34 +101,31 @@ public class InternalCadastroConcentrador extends TelaInternal {
 		}
 	}
 
-
-	public JTextField getNomeFild() {
-		return nomeFild;
+	public JTextField getNomeField() {
+		return nomeField;
 	}
 
-	public JTextField getLoginFild() {
-		return LoginFild;
+	public JTextField getLoginField() {
+		return LoginField;
 	}
 
 	public JPasswordField getSenhaField() {
 		return senhaField;
 	}
 
-	public JTextField getIpFild() {
-		return ipFild;
-	}
-
-
-	
-	public JButton getBtnAdicionar() {
-		return btnAdicionar;
+	public JtextFieldGenerico getIpField() {
+		return ipField;
 	}
 
 	public JComboBox<String> getCidadesCombo() {
 		return cidadesCombo;
 	}
-	
 
+	public JButton getBtnAdicionar() {
+		return btnAdicionar;
+	}
+	
+	
 
 	
 	

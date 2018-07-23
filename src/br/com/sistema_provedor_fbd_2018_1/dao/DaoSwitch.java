@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.rowset.spi.TransactionalWriter;
+
 import br.com.sistema_provedor_fbd_2018_1.entidade.Switch;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLConnection;
@@ -64,28 +66,58 @@ public class DaoSwitch implements IDaoSwitch {
 	}
 
 	@Override
-	public Switch buscarPorId(int id) throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+	public Switch buscarPorId(int id) throws DaoException {	
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Switch.SELECT_ID);
+			statement.setInt(1, id);
+			
+			ResultSet resultSet = statement.executeQuery();
+			Switch sw;
+			if (resultSet.next()) {
+				sw = new Switch(
+						resultSet.getInt(1),
+						resultSet.getInt(7),
+						resultSet.getInt(8),
+						resultSet.getString(2),
+						resultSet.getString(4),
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getInt(3));
+			}else {
+				throw new DaoException("SWITCH NÃO ENCONTRADO - DAO");
+			}
+			
+			
+			return sw;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO BUSCAR SWITCH - DAO");
+		}
 	}
 
 	@Override
 	public ArrayList<Switch> listarTodos() throws DaoException {
 
 		try {
-			statement = conexao.prepareStatement(SQLUtil.Switch.INSERT_ALL);
+
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Switch.SELECT_ALL);
 			ArrayList<Switch> switchs = new ArrayList<>();
-			Switch switch1 = new Switch();
+			Switch switch1;
 
 			ResultSet resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {
-				switch1.setNome(resultSet.getString(1));
-				switch1.setNumero_de_portas(resultSet.getInt(2));
-				switch1.setIp(resultSet.getString(3));
-				switch1.setLogin(resultSet.getString(4));
-				switch1.setSenha(resultSet.getString(5));
+				switch1 = new Switch(
+						resultSet.getInt(1),
+						resultSet.getInt(7),
+						resultSet.getInt(8),
+						resultSet.getString(2),
+						resultSet.getString(4),
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getInt(3));
 
 				switchs.add(switch1);
 			}
