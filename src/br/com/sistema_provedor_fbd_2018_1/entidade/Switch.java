@@ -9,8 +9,15 @@ public class Switch {
 	
 	
 	
-	public Switch() {
-		// TODO Auto-generated constructor stub
+	public Switch(Integer id, String nome, String ip, String login,
+			String senha, int numero_de_portas) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.ip = ip;
+		this.login = login;
+		this.senha = senha;
+		this.numero_de_portas = numero_de_portas;
 	}
 	
 	public Switch(Integer id, Integer caixa_id, Integer concentrador_id, String nome, String ip, String login,

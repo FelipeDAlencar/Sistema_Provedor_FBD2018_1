@@ -49,8 +49,34 @@ public class DaoCaixa implements IDaoCaixa {
 	}
 
 	@Override
-	public void editar(Caixa caixa) throws DaoException {
-		// TODO Auto-generated method stub
+	public void editar(Caixa caixa, String cidade) throws DaoException {
+		try {
+
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Cidade.SELECT_NOME);
+			statement.setString(1, cidade);
+
+			ResultSet resultSet = statement.executeQuery();
+			resultSet.next();
+
+			int cidade_id = resultSet.getInt(1);
+
+			statement = conexao.prepareStatement(SQLUtil.Caixa.UPDATE);
+
+			statement.setString(1, caixa.getNome());
+			statement.setString(2, caixa.getLatitude());
+			statement.setString(3, caixa.getLongitude());
+			statement.setInt(4, cidade_id);
+			statement.setInt(5, caixa.getId());
+
+			statement.execute();
+			conexao.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AOEDITAR CAIXA - CONTACTE A EQUIPE RESPONSÁVEL - DAO");
+
+		}
 
 	}
 
@@ -66,10 +92,10 @@ public class DaoCaixa implements IDaoCaixa {
 			if(resultSet.next()) {
 				caixa = new Caixa(
 						resultSet.getInt(1),
-						resultSet.getInt(5),
 						resultSet.getString(2),
 						resultSet.getString(3),
-						resultSet.getString(4));
+						resultSet.getString(4),
+						resultSet.getInt(5));
 			}else {
 				throw new DaoException("CAIXA NÃO ENCONTRADA - DAO");
 			}
@@ -92,7 +118,8 @@ public class DaoCaixa implements IDaoCaixa {
 			ResultSet resultSet = statement.executeQuery();
 
 			while(resultSet.next()) {
-				caixa = new Caixa(resultSet.getString(2), resultSet.getString(3),resultSet.getString(4));
+				caixa = new Caixa(resultSet.getInt(1),resultSet.getString(2), resultSet.getString(3),resultSet.getString(4), 
+						resultSet.getInt(5));
 				caixas.add(caixa);
 
 			}

@@ -1,14 +1,10 @@
 package br.com.sistema_provedor_fbd_2018_1.controller;
 
 import java.awt.event.ActionEvent;
-
-import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
-import br.com.sistema_provedor_fbd_2018_1.entidade.Funcionario;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
-import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarFuncionario;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarServico;
 import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 

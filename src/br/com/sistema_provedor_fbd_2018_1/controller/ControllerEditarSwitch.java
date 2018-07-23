@@ -25,8 +25,25 @@ public class ControllerEditarSwitch implements Listeners {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		try {
 		if (e.getSource()==internalEditarSwitch.getBtnAdicionar()){
+			Switch sw = new Switch(
+					this.sw.getId(),
+					internalEditarSwitch.getNomeField().getText().trim(),
+					internalEditarSwitch.getIpField().getText().trim(),
+					internalEditarSwitch.getLoginField().getText().trim(),
+					new String(internalEditarSwitch.getSenhaField().getPassword()),
+					Integer.parseInt(internalEditarSwitch.getNumeroPortasField().getText().trim())
+					);
 			
+				fachada.salvarOuEditarSwitch(sw,
+						internalEditarSwitch.getCaixaCombo().getSelectedItem().toString(),
+						internalEditarSwitch.getConcentradorCombo().getSelectedItem().toString());
+			
+		}
+		} catch (BusinessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 	}
 

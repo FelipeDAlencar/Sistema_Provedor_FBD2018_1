@@ -1,7 +1,6 @@
 package br.com.sistema_provedor_fbd_2018_1.view;
 
-import java.awt.Color;
-import java.awt.Font;
+
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -13,15 +12,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
-import javax.swing.border.TitledBorder;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
-import br.com.sistema_provedor_fbd_2018_1.controller.ControllerCliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
-import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 public class InternalAdicionarCliente extends TelaInternal {

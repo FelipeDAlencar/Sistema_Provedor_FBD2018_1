@@ -19,9 +19,10 @@ public class ControllerCadastroCaixa implements Listeners {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == internalCadastroCaixa.getBtnCadastrar()) {
+		try {
+			if (e.getSource() == internalCadastroCaixa.getBtnCadastrar()) {
 
-			try {
+
 				Caixa caixa = new Caixa(internalCadastroCaixa.getNomeField().getText(),
 						internalCadastroCaixa.getLatitudeField().getText(),
 						internalCadastroCaixa.getLongitudeField().getText());
@@ -31,10 +32,12 @@ public class ControllerCadastroCaixa implements Listeners {
 				internalCadastroCaixa.getLatitudeField().setText("");
 				internalCadastroCaixa.getLongitudeField().setText("");
 				internalCadastroCaixa.getCidadeCombo().setSelectedIndex(0);
-			} catch (BusinessException e1) {
-				e1.getMessage();
-			}
 
+
+			}
+			
+		} catch (BusinessException e1) {
+			e1.getMessage();
 		}
 
 	}

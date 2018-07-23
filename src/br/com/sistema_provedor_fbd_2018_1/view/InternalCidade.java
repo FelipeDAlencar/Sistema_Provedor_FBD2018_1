@@ -8,8 +8,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
-import br.com.sistema_provedor_fbd_2018_1.entidade.Funcionario;
-import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 
 @SuppressWarnings("serial")

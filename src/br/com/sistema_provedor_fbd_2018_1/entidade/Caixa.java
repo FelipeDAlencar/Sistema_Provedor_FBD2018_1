@@ -9,7 +9,7 @@ public class Caixa {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Caixa(Integer id, Integer cidade_id, String nome, String latitude, String longitude) {
+	public Caixa(Integer id, String nome, String latitude, String longitude, Integer cidade_id) {
 		super();
 		this.id = id;
 		this.cidade_id = cidade_id;
@@ -18,6 +18,15 @@ public class Caixa {
 		this.longitude = longitude;
 	}
 
+	public Caixa(Integer id, String nome, String latitude, String longitude) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.latitude = latitude;
+		this.longitude = longitude;
+	}
+
+	
 	public Caixa(String nome, String latitude, String longitude) {
 		super();
 		this.nome = nome;

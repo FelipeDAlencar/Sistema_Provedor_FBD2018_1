@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.sistema_provedor_fbd_2018_1.entidade.Caixa;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Concentrador;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
@@ -180,9 +182,11 @@ public class Controller extends Thread implements ActionListener {
 			}
 
 			if (e.getSource() == telaPrincipal.getMenu().getCaixaNetwork()) {
+				List<Caixa> caixas = fachada.listarTodosCaixa();
 				controllerCaixa = new ControllerCaixa(telaPrincipal);
 				internalCaixa = new InternalCaixa(telaPrincipal, controllerCaixa);
 				telaPrincipal.getDesktopPane().add(internalCaixa);
+				internalCaixa.carregarcaixa(caixas);
 				internalCaixa.setVisible(true);
 				controllerCaixa.setInternalCaixa(internalCaixa);
 				controllerCaixa.addListeners();

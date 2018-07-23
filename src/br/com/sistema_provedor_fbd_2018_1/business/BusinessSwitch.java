@@ -24,7 +24,7 @@ public class BusinessSwitch implements IBusinessSwitch {
 			if (switch1.getId() == null) {
 				dao.salvar(switch1, nomeCaixa, nomeConcentrador);
 			} else {
-				dao.editar(switch1);
+				dao.editar(switch1, nomeCaixa, nomeConcentrador);
 			}
 		} catch (Exception e) {
 			throw new BusinessException(e.getMessage());

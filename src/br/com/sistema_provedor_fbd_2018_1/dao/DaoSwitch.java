@@ -6,9 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.sql.rowset.spi.TransactionalWriter;
-
 import br.com.sistema_provedor_fbd_2018_1.entidade.Switch;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLConnection;
@@ -60,8 +57,41 @@ public class DaoSwitch implements IDaoSwitch {
 	}
 
 	@Override
-	public void editar(Switch switch1) throws DaoException {
-		// TODO Auto-generated method stub
+	public void editar(Switch sw, String nomeCaixa, String nomeConcentrador) throws DaoException {
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Caixa.SELECT_NOME);
+			statement.setString(1, nomeCaixa);
+
+			ResultSet resultSet = statement.executeQuery();
+			resultSet.next();
+
+			int caixa_id = resultSet.getInt(1);
+
+			statement = conexao.prepareStatement(SQLUtil.Concentrador.SELECT_NOME);
+			statement.setString(1, nomeConcentrador);
+			resultSet = statement.executeQuery();
+			resultSet.next();
+
+			int con_id = resultSet.getInt(1);
+
+			statement = conexao.prepareStatement(SQLUtil.Switch.UPDATE);
+
+			statement.setString(1, sw.getNome());
+			statement.setInt(2, sw.getNumero_de_portas());
+			statement.setString(3, sw.getIp());
+			statement.setString(4, sw.getLogin());
+			statement.setString(5, sw.getSenha());
+			statement.setInt(6, caixa_id);
+			statement.setInt(7, con_id);
+			statement.setInt(8, sw.getId());
+
+			statement.execute();
+			conexao.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO EDITAR SWITCH - DAO");
+		}
 
 	}
 
@@ -71,7 +101,7 @@ public class DaoSwitch implements IDaoSwitch {
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Switch.SELECT_ID);
 			statement.setInt(1, id);
-			
+
 			ResultSet resultSet = statement.executeQuery();
 			Switch sw;
 			if (resultSet.next()) {
@@ -87,8 +117,8 @@ public class DaoSwitch implements IDaoSwitch {
 			}else {
 				throw new DaoException("SWITCH NÃO ENCONTRADO - DAO");
 			}
-			
-			
+
+			conexao.close();
 			return sw;
 		} catch (SQLException e) {
 			e.printStackTrace();

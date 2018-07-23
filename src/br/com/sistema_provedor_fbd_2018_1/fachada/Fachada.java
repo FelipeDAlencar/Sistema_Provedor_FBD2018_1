@@ -204,8 +204,8 @@ public class Fachada implements IFachada {
 
 	// CAIXA
 	@Override
-	public void salvarOuEditarCaixa(Caixa caixa, String cep) throws BusinessException {
-		businessCaixa.salvarOuEditar(caixa, cep);
+	public void salvarOuEditarCaixa(Caixa caixa, String cidade) throws BusinessException {
+		businessCaixa.salvarOuEditar(caixa, cidade);
 
 	}
 

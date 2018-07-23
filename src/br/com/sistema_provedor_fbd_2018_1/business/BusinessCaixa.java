@@ -17,14 +17,14 @@ public class BusinessCaixa implements IBusinessCaixa {
 	}
 
 	@Override
-	public void salvarOuEditar(Caixa caixa, String cep) throws BusinessException {
+	public void salvarOuEditar(Caixa caixa, String cidade) throws BusinessException {
 		try {
 			validacao();
 
 			if (caixa.getId() == null) {
-				dao.salvar(caixa, cep);
+				dao.salvar(caixa, cidade);
 			} else {
-				dao.editar(caixa);
+				dao.editar(caixa, cidade);
 			}
 
 		} catch (Exception e) {
@@ -40,7 +40,6 @@ public class BusinessCaixa implements IBusinessCaixa {
 
 	@Override
 	public ArrayList<Caixa> listarTodos() throws BusinessException {
-
 		try {
 			return dao.listarTodos();
 		} catch (Exception e) {

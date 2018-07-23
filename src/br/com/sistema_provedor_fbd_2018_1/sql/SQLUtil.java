@@ -91,6 +91,9 @@ public class SQLUtil {
 		public static String SELECT_ALL = "select * from caixa";
 		
 		public static String SELECT_ID = "select * from caixa where id = ?";
+		
+		public static String UPDATE =  "update caixa set nome = ?, latitude = ?, longitude = ?, cidade_id = ? "
+				+ "where id = ? ";
 	}
 
 	public static class Concentrador {
@@ -113,6 +116,8 @@ public class SQLUtil {
 		public static String SELECT_ALL = "select * from switch";
 		
 		public static String SELECT_ID = "select * from switch where id = ?";
+		
+		public static String UPDATE = "update switch set nome = ?, numero_de_portas = ?, ip = ?, login = ?, senha = ?, caixa_id = ?, concentrador_id = ? where id = ?";
 	}
 
 	public static class Porta {

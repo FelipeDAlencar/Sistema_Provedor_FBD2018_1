@@ -9,13 +9,12 @@ import javax.swing.table.DefaultTableModel;
 
 import br.com.sistema_provedor_fbd_2018_1.entidade.Caixa;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
-import br.com.sistema_provedor_fbd_2018_1.entidade.Concentrador;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 
 @SuppressWarnings("serial")
 public class InternalCaixa extends TelaInternal{
-	private Botao bntNovo, bntEditar, bntRemover;
+	private Botao btnNovo, btnEditar, btnRemover;
 	private DefaultTableModel modelTable;
 	private JScrollPane barraRolagem;
 	private JTable tabela;
@@ -28,17 +27,17 @@ public class InternalCaixa extends TelaInternal{
 
 	@Override
 	public void inicializar() throws BusinessException {
-		bntEditar = new Botao("resource/imagens/botoes/editar-caixa.png","Editar caixa");
-		bntEditar.setBounds(50, 20, 210, 40);
-		getContentPane().add(bntEditar);
+		btnEditar = new Botao("resource/imagens/botoes/editar-caixa.png","Editar caixa");
+		btnEditar.setBounds(50, 20, 210, 40);
+		getContentPane().add(btnEditar);
 
-		bntNovo = new Botao("resource/imagens/botoes/adicionar-caixa.png","Nova caixa");
-		bntNovo.setBounds(290, 20, 201, 40);
-		getContentPane().add(bntNovo);
+		btnNovo = new Botao("resource/imagens/botoes/adicionar-caixa.png","Nova caixa");
+		btnNovo.setBounds(290, 20, 201, 40);
+		getContentPane().add(btnNovo);
 
-		bntRemover = new Botao("resource/imagens/botoes/remover-caixa.png","Remover caixa");
-		bntRemover.setBounds(520, 20, 230, 40);
-		getContentPane().add(bntRemover);
+		btnRemover = new Botao("resource/imagens/botoes/remover-caixa.png","Remover caixa");
+		btnRemover.setBounds(520, 20, 230, 40);
+		getContentPane().add(btnRemover);
 
 		modelTable = new DefaultTableModel();
 		modelTable.addColumn("Id");
@@ -59,23 +58,22 @@ public class InternalCaixa extends TelaInternal{
 	public void carregarcaixa(List<Caixa> caixas) throws BusinessException {
 		for (Caixa caixa : caixas) {
 			Cidade cidade = new Fachada().buscarCidadePorId(caixa.getCidade_id());
-			
 			String[] linha = {caixa.getId().toString(), caixa.getNome(), cidade.getNome()};
 			modelTable.addRow(linha);
 		}
 
 	}
 
-	public Botao getBntNovo() {
-		return bntNovo;
+	public Botao getBtnNovo() {
+		return btnNovo;
 	}
 
-	public Botao getBntEditar() {
-		return bntEditar;
+	public Botao getBtnEditar() {
+		return btnEditar;
 	}
 
-	public Botao getBntRemover() {
-		return bntRemover;
+	public Botao getBtnRemover() {
+		return btnRemover;
 	}
 
 	public DefaultTableModel getModelTable() {
@@ -89,5 +87,7 @@ public class InternalCaixa extends TelaInternal{
 	public JTable getTabela() {
 		return tabela;
 	}
-	
+
+
+
 }

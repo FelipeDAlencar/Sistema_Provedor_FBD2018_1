@@ -10,7 +10,7 @@ public interface IDaoSwitch {
 	
 	public void salvar(Switch switch1, String nomeCaixa, String nomeConcentrador)throws DaoException;
 
-	public void editar(Switch switch1)throws DaoException;
+	public void editar(Switch switch1, String nomeCaixa, String nomeConcentrador)throws DaoException;
 
 	public Switch buscarPorId(int id)throws DaoException;
 	

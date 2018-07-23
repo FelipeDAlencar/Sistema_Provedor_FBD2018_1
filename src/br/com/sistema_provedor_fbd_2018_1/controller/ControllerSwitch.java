@@ -1,15 +1,11 @@
 package br.com.sistema_provedor_fbd_2018_1.controller;
 
 import java.awt.event.ActionEvent;
-
-import br.com.sistema_provedor_fbd_2018_1.entidade.Concentrador;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Switch;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroSwitch;
-import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarConcentrador;
-import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarServico;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarSwitch;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalSwitch;
 import br.com.sistema_provedor_fbd_2018_1.view.TelaPrincipal;
@@ -32,8 +28,6 @@ public class ControllerSwitch implements Listeners {
 	public void actionPerformed(ActionEvent e) {
 		try {
 			if (e.getSource() == internalSwitch.getBtnNovo()) {
-
-
 				controllerCadastroSwitch = new ControllerCadastroSwitch();
 				internalCadastroSwitch = new InternalCadastroSwitch(telaPrincipal, controllerCadastroSwitch);
 				telaPrincipal.getDesktopPane().add(internalCadastroSwitch);
@@ -59,7 +53,6 @@ public class ControllerSwitch implements Listeners {
 			}
 
 		} catch (BusinessException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 

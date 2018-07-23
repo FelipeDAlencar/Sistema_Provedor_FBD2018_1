@@ -2,7 +2,6 @@ package br.com.sistema_provedor_fbd_2018_1.controller;
 
 import java.awt.event.ActionEvent;
 
-import br.com.sistema_provedor_fbd_2018_1.business.BusinessConcentrador;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;

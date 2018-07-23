@@ -10,7 +10,7 @@ public interface IDaoCaixa {
 	
 	public void salvar(Caixa caixa, String cep)throws DaoException;
 
-	public void editar(Caixa caixa)throws DaoException;
+	public void editar(Caixa caixa, String cidade)throws DaoException;
 
 	public Caixa buscarPorId(int id)throws DaoException;
 	
