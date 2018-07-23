@@ -18,6 +18,7 @@ import javax.swing.text.MaskFormatter;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
+import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 public class InternalAdicionarCliente extends TelaInternal {
@@ -30,14 +31,17 @@ public class InternalAdicionarCliente extends TelaInternal {
 	private JTextField nomeField, rgField;
 	private JTextField bairroField, complementoField, ruaField, numeroField;
 	private JComboBox<String> cidadesComboBox;
-	
+	private JComboBox<String> comboContato;
 	private Botao bntSalvar;
 	private JFormattedTextField cpfField, dataNascimentoField;
+	private JLabel lblTipo;
+	private JtextFieldGenerico contatoField;
+	private JButton btnNovoContato;
 
 	public InternalAdicionarCliente(TelaPrincipal telaPrincipal, ActionListener actionListener)
 			throws BusinessException {
 		super("Adicionar Cliente", telaPrincipal, actionListener);
-		setLayout(null);
+		getContentPane().setLayout(null);
 	}
 
 	@Override
@@ -105,11 +109,11 @@ public class InternalAdicionarCliente extends TelaInternal {
 		panelCliente.add(numeroField);
 
 		complementoLabel = new JLabel("Complemento:");
-		complementoLabel.setBounds(1026, 168, 100, 50);
+		complementoLabel.setBounds(1006, 168, 100, 50);
 		panelCliente.add(complementoLabel);
 
 		complementoField = new JTextField();
-		complementoField.setBounds(1026, 218, 180, 30);
+		complementoField.setBounds(1006, 218, 200, 30);
 		panelCliente.add(complementoField);
 
 		bairroLabel = new JLabel("Bairro:");
@@ -128,22 +132,52 @@ public class InternalAdicionarCliente extends TelaInternal {
 		carregarCidades();
 		cidadesComboBox.setBounds(456, 318, 200, 30);
 		panelCliente.add(cidadesComboBox);
-
-		
-
-		
-
 		
 
 		tabbedPane.add("Novo Cliente", panelCliente);
 		tabbedPane.add("Contatos", panelContatos);
-
+		
+		comboContato = new JComboBox<String>();
+		comboContato.setBounds(750, 318, 176, 30);
+		panelCliente.add(comboContato);
+		
+		comboContato.addItem("");
+		comboContato.addItem("Email");
+		comboContato.addItem("Telefone");
+		comboContato.addItem("Celular");
+		
+		JLabel lblContato = new JLabel("Contato:");
+		lblContato.setBounds(750, 286, 46, 14);
+		panelCliente.add(lblContato);
+		
+		lblTipo = new JLabel("Tipo:");
+		lblTipo.setBounds(1006, 286, 100, 14);
+		panelCliente.add(lblTipo);
+		lblTipo.setVisible(false);
+		
+		contatoField = new JtextFieldGenerico("abcdefghijlmnopqrstuvxz1234567890.@");
+		contatoField.setBounds(1006, 318, 200, 30);
+		panelCliente.add(contatoField);
+		contatoField.setColumns(10);
+		contatoField.setVisible(false);
+		
 		getContentPane().add(tabbedPane);
 		getContentPane().add(bntSalvar);
 		
+		
+		btnNovoContato = new JButton("Novo contato");
+		btnNovoContato.setBounds(1097, 372, 109, 23);
+		panelCliente.add(btnNovoContato);
+		btnNovoContato.setVisible(false);
 		try {
 			dataNascimentoField.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
 			cpfField.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("###.###.###-##")));
+			
+			
+			
+			
+			
+			
 		
 			
 		} catch (ParseException e) {
@@ -152,7 +186,7 @@ public class InternalAdicionarCliente extends TelaInternal {
 
 	}
 
-	@SuppressWarnings("unused")
+	
 	private void carregarCidades() throws BusinessException {
 		List<Cidade> cidadesList = new ArrayList<>();
 		cidadesComboBox = new JComboBox<>();
@@ -344,4 +378,24 @@ public class InternalAdicionarCliente extends TelaInternal {
 		this.bntSalvar = bntSalvar;
 	}
 
+	public JComboBox<String> getComboContato() {
+		return comboContato;
+	}
+
+	public Botao getBntSalvar() {
+		return bntSalvar;
+	}
+
+	public JLabel getLblTipo() {
+		return lblTipo;
+	}
+
+	public JtextFieldGenerico getContatoField() {
+		return contatoField;
+	}
+
+	public JButton getBtnNovoContato() {
+		return btnNovoContato;
+	}
+	
 }

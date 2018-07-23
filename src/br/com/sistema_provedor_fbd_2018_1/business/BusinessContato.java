@@ -1,6 +1,8 @@
 package br.com.sistema_provedor_fbd_2018_1.business;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import br.com.sistema_provedor_fbd_2018_1.dao.DaoContato;
 import br.com.sistema_provedor_fbd_2018_1.dao.IDaoContato;
@@ -32,9 +34,22 @@ public class BusinessContato implements IBusinessContato {
 	}
 
 	private void validacao() {
-		// TODO Auto-generated method stub
+		
 
 	}
+	public static boolean validar(String email)
+    {
+        boolean isEmailIdValid = false;
+        if (email != null && email.length() > 0) {
+            String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+            Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(email);
+            if (matcher.matches()) {
+                isEmailIdValid = true;
+            }
+        }
+        return isEmailIdValid;
+    }
 
 	@Override
 	public ArrayList<Contato> listarTodos() throws BusinessException {

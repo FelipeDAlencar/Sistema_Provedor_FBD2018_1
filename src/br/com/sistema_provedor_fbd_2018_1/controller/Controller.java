@@ -88,7 +88,7 @@ public class Controller extends Thread implements ActionListener {
 				telaPrincipal.getDesktopPane().add(internalAdicionarCliente);
 				internalAdicionarCliente.setVisible(true);
 				controllerCadastroCliente.setAdicionarCliente(internalAdicionarCliente);
-				controllerCadastroCliente.addListenners();
+				controllerCadastroCliente.addListeners();
 
 			}
 

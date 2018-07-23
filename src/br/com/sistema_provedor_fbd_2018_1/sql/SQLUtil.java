@@ -16,6 +16,8 @@ public class SQLUtil {
 		public static final String SELECT_CPF = "select * from cliente where cpf = ?";
 
 		public static final String SELECT_ALL = "select * from cliente";
+		
+		public static final String MAXID = "select MAX(id) from cliente";
 
 	}
 

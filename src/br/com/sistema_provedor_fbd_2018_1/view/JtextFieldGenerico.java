@@ -2,9 +2,9 @@ package br.com.sistema_provedor_fbd_2018_1.view;
 
 import java.awt.event.KeyEvent;
 
-import javax.swing.JTextField;
+import javax.swing.JFormattedTextField;
 
-public final class JtextFieldGenerico extends JTextField {
+public final class JtextFieldGenerico extends JFormattedTextField {
 	private int maximoCaracteres = -1;// definição de -1
 	private String caracteres;
 	// como valor normal de um textfield sem limite de caracters
