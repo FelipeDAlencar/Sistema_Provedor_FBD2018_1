@@ -55,13 +55,14 @@ public class DaoFuncionario implements IDaoFuncionario {
 			statement = conexao.prepareStatement(SQLUtil.Funcionario.UPDATE);
 
 			
-			statement.setInt(1, funcionario.getId());
-			statement.setString(2, funcionario.getNome());
-			statement.setString(3, funcionario.getCargo());
-			statement.setDate(4, BusinessFuncionario.converterParaData(funcionario.getData_contrato()));
-			statement.setString(5, funcionario.getLogin());
-			statement.setString(6, funcionario.getSenha());
-			statement.setInt(7, funcionario.getEndereco_id());
+			
+			statement.setString(1, funcionario.getNome());
+			statement.setString(2, funcionario.getCargo());
+			statement.setDate(3, BusinessFuncionario.converterParaData(funcionario.getData_contrato()));
+			statement.setString(4, funcionario.getLogin());
+			statement.setString(5, funcionario.getSenha());
+			statement.setInt(6, funcionario.getEndereco_id());
+			statement.setInt(7, funcionario.getId());
 			
 			statement.execute();
 			conexao.close();

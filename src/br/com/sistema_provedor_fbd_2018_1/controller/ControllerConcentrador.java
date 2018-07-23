@@ -10,6 +10,7 @@ import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroConcentrador;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalConcentrador;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarConcentrador;
 import br.com.sistema_provedor_fbd_2018_1.view.TelaPrincipal;
+import br.com.sistema_provedor_fbd_2018_1.controller.ControllerEditarConcentrador;
 
 public class ControllerConcentrador implements Listeners {
 	private Fachada fachada;
@@ -53,8 +54,8 @@ public class ControllerConcentrador implements Listeners {
 		}
 		
 		} catch (BusinessException ex) {
-			// TODO Auto-generated catch block
-			ex.printStackTrace();
+			ex.getMessage();
+			
 		}
 		
 	}

@@ -43,7 +43,7 @@ public class BusinessEndereco implements IBusinessEndereco {
 		try {
 			return dao.buscarPorId(id);
 		} catch (DaoException e) {
-			throw new BusinessException("ERRO BUS");
+			throw new BusinessException(e.getMessage());
 		}
 	}
 	@Override

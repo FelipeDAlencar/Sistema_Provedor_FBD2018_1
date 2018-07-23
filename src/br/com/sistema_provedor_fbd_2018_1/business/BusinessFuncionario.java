@@ -10,6 +10,7 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Funcionario;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.exception.ValidacaoException;
+import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 
 public class BusinessFuncionario implements IBusinessFuncionario {
 
@@ -79,13 +80,20 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 
 	}
 
-	public static Date converterParaData(String txt) throws ParseException {
+	public static Date converterParaData(String txt)  {
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		java.sql.Date data = null;
 
-		data = new java.sql.Date(format.parse(txt).getTime());
-
+		try {
+			data = new java.sql.Date(format.parse(txt).getTime());
+			return data;
+		} catch (ParseException e) {
+			e.printStackTrace();
+			Menssagens.menssagem("ERRO AO CONVERTER DATA", 0);
+		}
 		return data;
+
+		
 
 	}
 

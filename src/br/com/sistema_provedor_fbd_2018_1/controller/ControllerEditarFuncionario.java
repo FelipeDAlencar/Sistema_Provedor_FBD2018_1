@@ -1,7 +1,9 @@
 package br.com.sistema_provedor_fbd_2018_1.controller;
 
 import java.awt.event.ActionEvent;
+import java.text.ParseException;
 
+import br.com.sistema_provedor_fbd_2018_1.business.BusinessFuncionario;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Funcionario;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
@@ -28,10 +30,8 @@ public class ControllerEditarFuncionario implements Listeners {
 		if (e.getSource() == InternalEditarFuncionario.getBtnAdicionar()) {
 
 			try {
-				Funcionario funcionario = new Funcionario(this.funcionario.getId(),InternalEditarFuncionario.getNomeFild().getText(),
-						InternalEditarFuncionario.getCargoField().getText(),
-						InternalEditarFuncionario.getData_contratoFild().getText(),
-						InternalEditarFuncionario.getLoginFild().getText(),
+				Funcionario funcionario = new Funcionario(this.funcionario.getId(), InternalEditarFuncionario.getNomeFild().getText(), 
+						InternalEditarFuncionario.getCargoField().getText(), InternalEditarFuncionario.getData_contratoFild().getText(), InternalEditarFuncionario.getLoginFild().getText(), 
 						new String(InternalEditarFuncionario.getSenhaField().getPassword()), this.endereco.getId());
 
 				Endereco endereco = new Endereco(InternalEditarFuncionario.getBairroFild().getText(),
@@ -70,7 +70,6 @@ public class ControllerEditarFuncionario implements Listeners {
 		InternalEditarFuncionario.getSenhaField().setText(funcionario.getSenha());
 		InternalEditarFuncionario.getNomeFild().setText(funcionario.getNome());
 		InternalEditarFuncionario.getData_contratoFild().setText(funcionario.getData_contrato());
-		
 
 	}
 
