@@ -75,8 +75,8 @@ public class SQLUtil {
 	}
 
 	public static class Contato {
-		public static String INSERT_ALL = "insert into contato (tipo, email, telefone, celular, cliente_id) "
-				+ "values (?,?,?,?,?); ";
+		public static String INSERT_ALL = "insert into contato (responsavel,tipo,contato, cliente_id) "
+				+ "values (?,?,?,?); ";
 	}
 
 	public static class Atendimento {

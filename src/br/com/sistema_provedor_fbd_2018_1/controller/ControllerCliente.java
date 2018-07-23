@@ -22,6 +22,7 @@ import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 public class ControllerCliente implements Listeners, ItemListener {
 	private InternalAdicionarCliente adicionarCliente;
 	private Fachada fachada;
+	ArrayList<Contato> contatos = new ArrayList<>();
 
 	public ControllerCliente(InternalAdicionarCliente internalAdicionarCliente) {
 		fachada = new Fachada();
@@ -33,7 +34,6 @@ public class ControllerCliente implements Listeners, ItemListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		ArrayList<Contato> contatos = new ArrayList<>();
 
 		if (e.getSource() == adicionarCliente.getBtnSalvar()) {
 			try {
@@ -47,7 +47,13 @@ public class ControllerCliente implements Listeners, ItemListener {
 					Endereco endereco = new Endereco(adicionarCliente.getBairroField().getText(),
 							adicionarCliente.getComplementoField().getText(), adicionarCliente.getRuaField().getText(),
 							Integer.parseInt(adicionarCliente.getNumeroField().getText()));
+					
+					fachada.salvarOuEditarEndereco(endereco);
+					fachada.salvarOuEditarCliente(cliente);
 
+					for (Contato contato : contatos) {
+						fachada.salvarOuEditarContato(contato, cliente.getCpf());
+					}
 					adicionarCliente.getNomeField().setText("");
 					adicionarCliente.getRgField().setText("");
 					adicionarCliente.getDataNascimentoField().setText("");
@@ -56,28 +62,25 @@ public class ControllerCliente implements Listeners, ItemListener {
 					adicionarCliente.getRuaField().setText("");
 					adicionarCliente.getNumeroField().setText("");
 
-					
-
-					fachada.salvarOuEditarEndereco(endereco);
-					fachada.salvarOuEditarCliente(cliente);
-					
 					Menssagens.menssagem("Cliente Adicionado com sucesso.", 1);
-				}else {
+				} else {
 					throw new BusinessException("O CLIENTE DEVE TER PELO MENOS UM CONTATO.");
 				}
 			} catch (BusinessException e1) {
-				e1.printStackTrace();;
+				e1.printStackTrace();
+
 			}
 
 		}
-		if(e.getSource() == adicionarCliente.getBtnNovoContato()) {
-			Contato contato = new Contato("",(String)adicionarCliente.getComboContato().getSelectedItem(),
+		if (e.getSource() == adicionarCliente.getBtnNovoContato()) {
+			Contato contato = new Contato(adicionarCliente.getResponsavelField().getText(),
+					(String) adicionarCliente.getComboContato().getSelectedItem(),
 					adicionarCliente.getContatoField().getText());
 			contatos.add(contato);
+			adicionarCliente.getResponsavelField().setText("");
+			adicionarCliente.getContatoField().setText("");
+
 		}
-		
-		
-		
 
 	}
 
@@ -106,6 +109,8 @@ public class ControllerCliente implements Listeners, ItemListener {
 		}
 
 		adicionarCliente.getBtnNovoContato().setVisible(true);
+		adicionarCliente.getResponsavelField().setVisible(true);
+		adicionarCliente.getLblResponsvel().setVisible(true);
 
 	}
 
