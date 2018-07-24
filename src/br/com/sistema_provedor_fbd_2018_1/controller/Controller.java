@@ -11,7 +11,7 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Concentrador;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
-import br.com.sistema_provedor_fbd_2018_1.view.InternalAdicionarCliente;
+import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalAtendimentos;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroSwitch;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCaixa;
@@ -27,7 +27,7 @@ public class Controller extends Thread implements ActionListener {
 	private boolean loop;
 	private TelaPrincipal telaPrincipal;
 	private Fachada fachada;
-	private InternalAdicionarCliente internalAdicionarCliente;
+	private InternalCadastroCliente internalAdicionarCliente;
 	private InternalFuncionario internalFuncionario;
 	private InternalAtendimentos internalAtendimentos;
 	private InternalSwitch internalSwitch;
@@ -83,8 +83,8 @@ public class Controller extends Thread implements ActionListener {
 			telaPrincipal.desativarBotoes();
 			if (e.getSource() == telaPrincipal.getBtnAdicionarCliente()
 					|| e.getSource() == telaPrincipal.getMenu().getAdicionarCliente()) {
-				controllerCadastroCliente = new ControllerCliente();
-				internalAdicionarCliente = new InternalAdicionarCliente(telaPrincipal, controllerCadastroCliente);
+				controllerCadastroCliente = new ControllerCliente(telaPrincipal);
+				internalAdicionarCliente = new InternalCadastroCliente(telaPrincipal, controllerCadastroCliente);
 				telaPrincipal.getDesktopPane().add(internalAdicionarCliente);
 				internalAdicionarCliente.setVisible(true);
 				controllerCadastroCliente.setAdicionarCliente(internalAdicionarCliente);

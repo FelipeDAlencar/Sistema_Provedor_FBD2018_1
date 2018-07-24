@@ -54,6 +54,44 @@ public class PanelContato extends JPanel{
 			modelTable.addRow(linha);
 		}
 	}
+	public Botao getBntAdicionar() {
+		return bntAdicionar;
+	}
+	public void setBntAdicionar(Botao bntAdicionar) {
+		this.bntAdicionar = bntAdicionar;
+	}
+	public Botao getBntEditar() {
+		return bntEditar;
+	}
+	public void setBntEditar(Botao bntEditar) {
+		this.bntEditar = bntEditar;
+	}
+	public Botao getBntExcluir() {
+		return bntExcluir;
+	}
+	public void setBntExcluir(Botao bntExcluir) {
+		this.bntExcluir = bntExcluir;
+	}
+	public DefaultTableModel getModelTable() {
+		return modelTable;
+	}
+	public void setModelTable(DefaultTableModel modelTable) {
+		this.modelTable = modelTable;
+	}
+	public JScrollPane getBarraRolagem() {
+		return barraRolagem;
+	}
+	public void setBarraRolagem(JScrollPane barraRolagem) {
+		this.barraRolagem = barraRolagem;
+	}
+	public JTable getTabela() {
+		return tabela;
+	}
+	public void setTabela(JTable tabela) {
+		this.tabela = tabela;
+	}
+	
+	
 	
 
 }

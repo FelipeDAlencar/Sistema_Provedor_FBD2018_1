@@ -22,7 +22,7 @@ import javax.swing.JButton;
 import javax.swing.JSeparator;
 
 @SuppressWarnings("serial")
-public class InternalAdicionarCliente extends TelaInternal {
+public class InternalCadastroCliente extends TelaInternal {
 	private JTabbedPane tabbedPane;
 	private JPanel panelCliente;
 	private PanelContato panelContatos;
@@ -30,7 +30,8 @@ public class InternalAdicionarCliente extends TelaInternal {
 	private JLabel bairroLabel, complementoLabel, ruaLabel, numeroLabel;
 	private JLabel cidadeLabel;
 	private JTextField nomeField, rgField;
-	private JTextField bairroField, complementoField, ruaField, numeroField;
+	private JTextField bairroField, complementoField, ruaField;
+	private JtextFieldGenerico numeroField;
 	private JComboBox<String> cidadesComboBox;
 	private JComboBox<String> comboContato;
 	private Botao bntSalvar;
@@ -45,7 +46,7 @@ public class InternalAdicionarCliente extends TelaInternal {
 	private JLabel lblContato_1;
 	private JTextField emailField;
 
-	public InternalAdicionarCliente(TelaPrincipal telaPrincipal, ActionListener actionListener)
+	public InternalCadastroCliente(TelaPrincipal telaPrincipal, ActionListener actionListener)
 			throws BusinessException {
 		super("Adicionar Cliente", telaPrincipal, actionListener);
 		getContentPane().setLayout(null);
@@ -54,7 +55,7 @@ public class InternalAdicionarCliente extends TelaInternal {
 	@Override
 	public void inicializar() throws BusinessException {
 		tabbedPane = new JTabbedPane();
-		tabbedPane.setBounds(0, 0, TelaInternal.LARGURA, TelaInternal.ALTURA - 270);
+		tabbedPane.setBounds(0, 0, TelaInternal.LARGURA - 100, TelaInternal.ALTURA - 350);
 
 		panelContatos = new PanelContato();
 
@@ -62,163 +63,97 @@ public class InternalAdicionarCliente extends TelaInternal {
 		panelCliente.setLayout(null);
 
 		bntSalvar = new Botao("resource/imagens/botoes/bnt-salvar.png", "Salvar");
-		bntSalvar.setBounds(TelaInternal.LARGURA - 255, TelaInternal.ALTURA - 270, 100, 40);
+		bntSalvar.setBounds(1090, 429, 100, 40);
 
 		// Informacoes Cliente
 		nomeLabel = new JLabel("Nome Completo:");
-		nomeLabel.setBounds(176, 31, 100, 50);
+		nomeLabel.setBounds(47, 29, 100, 50);
 		panelCliente.add(nomeLabel);
 
 		nomeField = new JTextField();
-		nomeField.setBounds(176, 78, 450, 30);
+		nomeField.setBounds(57, 76, 450, 30);
 		panelCliente.add(nomeField);
 
 		cpfLabel = new JLabel("CPF:");
-		cpfLabel.setBounds(696, 31, 100, 50);
+		cpfLabel.setBounds(567, 29, 100, 50);
 		panelCliente.add(cpfLabel);
 
 		cpfField = new JFormattedTextField();
-		cpfField.setBounds(696, 78, 230, 30);
+		cpfField.setBounds(567, 76, 230, 30);
 		panelCliente.add(cpfField);
 
 		rgLabel = new JLabel("RG:");
-		rgLabel.setBounds(994, 31, 100, 50);
+		rgLabel.setBounds(865, 29, 100, 50);
 		panelCliente.add(rgLabel);
 
 		rgField = new JTextField();
-		rgField.setBounds(994, 78, 200, 30);
+		rgField.setBounds(865, 76, 200, 30);
 		panelCliente.add(rgField);
 
 		dataNascimentoLabel = new JLabel("Data de Nascimento:");
-		dataNascimentoLabel.setBounds(176, 127, 200, 50);
+		dataNascimentoLabel.setBounds(47, 125, 200, 50);
 		panelCliente.add(dataNascimentoLabel);
 
 		dataNascimentoField = new JFormattedTextField();
-		dataNascimentoField.setBounds(176, 178, 150, 30);
+		dataNascimentoField.setBounds(47, 176, 150, 30);
 		panelCliente.add(dataNascimentoField);
 
 		// Informacoes Endereco
 		ruaLabel = new JLabel("Endereço:");
-		ruaLabel.setBounds(406, 127, 100, 50);
+		ruaLabel.setBounds(277, 125, 100, 50);
 		panelCliente.add(ruaLabel);
 
 		ruaField = new JTextField();
-		ruaField.setBounds(406, 178, 420, 30);
+		ruaField.setBounds(277, 176, 420, 30);
 		panelCliente.add(ruaField);
 
 		numeroLabel = new JLabel("Número:");
-		numeroLabel.setBounds(878, 127, 100, 50);
+		numeroLabel.setBounds(749, 125, 100, 50);
 		panelCliente.add(numeroLabel);
 
-		numeroField = new JTextField();
-		numeroField.setBounds(878, 178, 60, 30);
+		numeroField = new JtextFieldGenerico("1234567890");
+		numeroField.setBounds(749, 176, 60, 30);
 		panelCliente.add(numeroField);
 
 		complementoLabel = new JLabel("Complemento:");
-		complementoLabel.setBounds(994, 127, 100, 50);
+		complementoLabel.setBounds(865, 125, 100, 50);
 		panelCliente.add(complementoLabel);
 
 		complementoField = new JTextField();
-		complementoField.setBounds(994, 178, 200, 30);
+		complementoField.setBounds(865, 176, 200, 30);
 		panelCliente.add(complementoField);
 
 		bairroLabel = new JLabel("Bairro:");
-		bairroLabel.setBounds(176, 219, 100, 50);
+		bairroLabel.setBounds(47, 217, 100, 50);
 		panelCliente.add(bairroLabel);
 
 		bairroField = new JTextField();
-		bairroField.setBounds(176, 268, 180, 30);
+		bairroField.setBounds(47, 266, 180, 30);
 		panelCliente.add(bairroField);
 
 		// Informaçoes de Cidade
 		cidadeLabel = new JLabel("Cidade:");
-		cidadeLabel.setBounds(406, 219, 100, 50);
+		cidadeLabel.setBounds(277, 217, 100, 50);
 		panelCliente.add(cidadeLabel);
 
 		carregarCidades();
-		cidadesComboBox.setBounds(406, 268, 200, 30);
+		cidadesComboBox.setBounds(277, 266, 200, 30);
 		panelCliente.add(cidadesComboBox);
 		
 
 		tabbedPane.add("Novo Cliente", panelCliente);
 		tabbedPane.add("Contatos", panelContatos);
-		
-		comboContato = new JComboBox<String>();
-		comboContato.setBounds(176, 381, 176, 30);
-		panelCliente.add(comboContato);
-		
-		comboContato.addItem("");
-		comboContato.addItem("Email");
-		comboContato.addItem("Telefone");
-		comboContato.addItem("Celular");
-		
-		JLabel lblContato = new JLabel("Contato:");
-		lblContato.setBounds(176, 356, 46, 14);
-		panelCliente.add(lblContato);
-		
-		lblTipo = new JLabel("Tipo:");
-		lblTipo.setBounds(406, 356, 100, 14);
-		panelCliente.add(lblTipo);
-		lblTipo.setVisible(false);
-		
-		contatoField = new JtextFieldGenerico("abcdefghijlmnopqrstuvxz1234567890.@");
-		contatoField.setBounds(406, 381, 200, 30);
-		panelCliente.add(contatoField);
-		contatoField.setColumns(10);
-		contatoField.setVisible(false);
-		
+				
 		getContentPane().add(tabbedPane);
 		getContentPane().add(bntSalvar);
 		
-		
-		btnNovoContato = new JButton("Novo contato");
-		btnNovoContato.setBounds(687, 422, 109, 23);
-		panelCliente.add(btnNovoContato);
-		btnNovoContato.setVisible(false);
-		
-		
 
-		JSeparator separator = new JSeparator();
-		separator.setBounds(827, 433, 46, -158);
-		panelCliente.add(separator);
-		
-		lblResponsvel = new JLabel("Respons\u00E1vel:");
-		lblResponsvel.setBounds(658, 356, 92, 14);
-		panelCliente.add(lblResponsvel);
-		lblResponsvel.setVisible(false);
-		
-		responsavelField = new JTextField();
-		responsavelField.setBounds(658, 381, 138, 30);
-		panelCliente.add(responsavelField);
-		responsavelField.setColumns(10);
-		responsavelField.setVisible(false);
-		
-		
-		
-		separator_2 = new JSeparator();
-		separator_2.setBounds(176, 333, 1114, 8);
-		panelCliente.add(separator_2);
-		
-		lblContato_1 = new JLabel("Contato");
-		lblContato_1.setBounds(176, 308, 46, 14);
-		panelCliente.add(lblContato_1);
-		
-		emailField = new JTextField();
-		emailField.setBounds(406, 381, 200, 30);
-		panelCliente.add(emailField);
-		emailField.setColumns(10);
-		emailField.setVisible(false);
-		
 		
 		try {
 			dataNascimentoField.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
 			cpfField.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("###.###.###-##")));
-			
-			
-			
-			
-		
-			
+	
+				
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -395,9 +330,6 @@ public class InternalAdicionarCliente extends TelaInternal {
 		return numeroField;
 	}
 
-	public void setNumeroField(JTextField numeroField) {
-		this.numeroField = numeroField;
-	}
 
 	public JComboBox<String> getCidadesComboBox() {
 		return cidadesComboBox;

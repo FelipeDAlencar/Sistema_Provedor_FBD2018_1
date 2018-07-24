@@ -16,7 +16,7 @@ public class TelaPrincipal extends Tela{
 	private BotaoDesktop btnMovimentacoes;
 	private JLabel bgImage;
 	private JDesktopPane desktopPane;
-	private InternalAdicionarCliente adicionarCliente;
+	private InternalCadastroCliente adicionarCliente;
 	
 	public TelaPrincipal() {
 		getContentPane().setLayout(null);
@@ -117,7 +117,7 @@ public class TelaPrincipal extends Tela{
 		return desktopPane;
 	}
 
-	public InternalAdicionarCliente getAdicionarCliente() {
+	public InternalCadastroCliente getAdicionarCliente() {
 		return adicionarCliente;
 	}
 	

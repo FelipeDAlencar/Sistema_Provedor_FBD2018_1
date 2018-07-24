@@ -16,20 +16,28 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
-import br.com.sistema_provedor_fbd_2018_1.view.InternalAdicionarCliente;
+import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroCliente;
+import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroContato;
 import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
+import br.com.sistema_provedor_fbd_2018_1.view.TelaInternal;
+import br.com.sistema_provedor_fbd_2018_1.view.TelaPrincipal;
 
-public class ControllerCliente implements Listeners, ItemListener {
-	private InternalAdicionarCliente adicionarCliente;
+public class ControllerCliente implements Listeners {
+	private InternalCadastroCliente adicionarCliente;
 	private Fachada fachada;
-	ArrayList<Contato> contatos = new ArrayList<>();
+	private ControllerCadastroContato controllerCadastroContato;
+	private InternalCadastroContato internalCadastroContato;
+	private TelaPrincipal telaPrincipal;
 
-	public ControllerCliente(InternalAdicionarCliente internalAdicionarCliente) {
+	public ControllerCliente(TelaPrincipal telaPrincipal) {
 		fachada = new Fachada();
+		this.telaPrincipal = telaPrincipal;
+		controllerCadastroContato =  new ControllerCadastroContato();
 	}
 
 	public ControllerCliente() {
 		fachada = new Fachada();
+		controllerCadastroContato =  new ControllerCadastroContato();
 	}
 
 	@Override
@@ -37,8 +45,8 @@ public class ControllerCliente implements Listeners, ItemListener {
 
 		if (e.getSource() == adicionarCliente.getBtnSalvar()) {
 			try {
-				if (contatos.isEmpty() == false) {
 
+				if (controllerCadastroContato.getContatos().isEmpty() == false) {
 					br.com.sistema_provedor_fbd_2018_1.entidade.Cliente cliente = new br.com.sistema_provedor_fbd_2018_1.entidade.Cliente(
 							adicionarCliente.getNomeField().getText(), adicionarCliente.getCpfField().getText(),
 							adicionarCliente.getRgField().getText(),
@@ -47,13 +55,14 @@ public class ControllerCliente implements Listeners, ItemListener {
 					Endereco endereco = new Endereco(adicionarCliente.getBairroField().getText(),
 							adicionarCliente.getComplementoField().getText(), adicionarCliente.getRuaField().getText(),
 							Integer.parseInt(adicionarCliente.getNumeroField().getText()));
-					
+
 					fachada.salvarOuEditarEndereco(endereco);
 					fachada.salvarOuEditarCliente(cliente);
 
-					for (Contato contato : contatos) {
+					for (Contato contato : controllerCadastroContato.getContatos()) {
 						fachada.salvarOuEditarContato(contato, cliente.getCpf());
 					}
+
 					adicionarCliente.getNomeField().setText("");
 					adicionarCliente.getRgField().setText("");
 					adicionarCliente.getDataNascimentoField().setText("");
@@ -64,69 +73,46 @@ public class ControllerCliente implements Listeners, ItemListener {
 
 					Menssagens.menssagem("Cliente Adicionado com sucesso.", 1);
 				} else {
-					throw new BusinessException("O CLIENTE DEVE TER PELO MENOS UM CONTATO.");
+					throw new BusinessException("CLIENTE TEM QUE TER AO MENOS UM CONTATO CADASTRADO.");
 				}
+
 			} catch (BusinessException e1) {
 				e1.printStackTrace();
+				
 
 			}
-
-		}
-		if (e.getSource() == adicionarCliente.getBtnNovoContato()) {
-			Contato contato = new Contato(adicionarCliente.getResponsavelField().getText(),
-					(String) adicionarCliente.getComboContato().getSelectedItem(),
-					adicionarCliente.getContatoField().getText());
-			contatos.add(contato);
-			adicionarCliente.getResponsavelField().setText("");
-			adicionarCliente.getContatoField().setText("");
-
 		}
 
-	}
-
-	@Override
-	public void itemStateChanged(ItemEvent e) {
-		if (adicionarCliente.getComboContato().getSelectedIndex() == 2
-				|| adicionarCliente.getComboContato().getSelectedIndex() == 3) {
+		if (e.getSource() == adicionarCliente.getPanelContatos().getBntAdicionar()) {
 			try {
-				adicionarCliente.getContatoField()
-						.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("(###)#####-####")));
-			} catch (ParseException e1) {
+				controllerCadastroContato = new ControllerCadastroContato();
+				internalCadastroContato = new InternalCadastroContato(telaPrincipal, controllerCadastroContato);
+				telaPrincipal.getDesktopPane().add(internalCadastroContato);
+				internalCadastroContato.setVisible(true);
+				controllerCadastroContato.setInternalCadastroContato(internalCadastroContato);
+				controllerCadastroContato.addListeners();
+
+			} catch (BusinessException e1) {
+				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		} else {
-			adicionarCliente.getContatoField().setFormatterFactory(null);
-			adicionarCliente.getContatoField().setText("");
 
 		}
-
-		adicionarCliente.getLblTipo().setVisible(true);
-		adicionarCliente.getContatoField().setVisible(true);
-
-		String op = (String) adicionarCliente.getComboContato().getSelectedItem();
-		if (!op.equals("")) {
-			adicionarCliente.getLblTipo().setText(op + ":");
-		}
-
-		adicionarCliente.getBtnNovoContato().setVisible(true);
-		adicionarCliente.getResponsavelField().setVisible(true);
-		adicionarCliente.getLblResponsvel().setVisible(true);
 
 	}
 
-	public InternalAdicionarCliente getAdicionarCliente() {
+	public InternalCadastroCliente getAdicionarCliente() {
 		return adicionarCliente;
 	}
 
-	public void setAdicionarCliente(InternalAdicionarCliente adicionarCliente) {
+	public void setAdicionarCliente(InternalCadastroCliente adicionarCliente) {
 		this.adicionarCliente = adicionarCliente;
 	}
 
 	@Override
 	public void addListeners() {
 		adicionarCliente.getBtnSalvar().addActionListener(this);
-		adicionarCliente.getComboContato().addItemListener(this);
-		adicionarCliente.getBtnNovoContato().addActionListener(this);
+		adicionarCliente.getPanelContatos().getBntAdicionar().addActionListener(this);
 
 	}
 
