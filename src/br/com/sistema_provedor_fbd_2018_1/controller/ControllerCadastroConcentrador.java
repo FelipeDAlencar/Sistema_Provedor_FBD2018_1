@@ -6,14 +6,17 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Concentrador;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroConcentrador;
+import br.com.sistema_provedor_fbd_2018_1.view.InternalConcentrador;
 import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 
 public class ControllerCadastroConcentrador implements Listeners {
 	private InternalCadastroConcentrador internalCadastroConcentrador;
 	private Fachada fachada;
+	private InternalConcentrador internalConcentrador;
 
-	public ControllerCadastroConcentrador() {
+	public ControllerCadastroConcentrador(InternalConcentrador internalConcentrador) {
 		fachada = new Fachada();
+		this.internalConcentrador = internalConcentrador;
 	}
 
 	@Override
@@ -25,6 +28,8 @@ public class ControllerCadastroConcentrador implements Listeners {
 						internalCadastroConcentrador.getLoginField().getText(),
 						new String(internalCadastroConcentrador.getSenhaField().getPassword()));
 				fachada.salvarOuEditarConcentrador(concentrador, internalCadastroConcentrador.getCidadesCombo().getSelectedItem().toString());
+				internalConcentrador.carregarConcentrador(fachada.listarTodosConcentrador());
+				
 				Menssagens.menssagem("Concentrador inserido com sucesso.", 1);
 				
 				internalCadastroConcentrador.getNomeField().setText("");

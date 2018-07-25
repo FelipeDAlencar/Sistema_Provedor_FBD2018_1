@@ -121,4 +121,34 @@ public class DaoCidade implements IDaoCidade {
 		return null;
 	}
 
+	@Override
+	public Cidade buscarPorNomeEstado(String nome, String estado)throws DaoException {
+		
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Cidade.SELECT_NOMEESTADO);
+			statement.setString(1, nome);
+			statement.setString(2, estado);
+			
+			
+			ResultSet resultSet = statement.executeQuery();
+			Cidade cidade = null;
+			if(resultSet.next()) {
+				cidade = new Cidade(resultSet.getString(2), resultSet.getString(3), resultSet.getString(4));
+				
+			}else {
+				System.out.println("Entrou else");
+			}
+			return cidade;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("Erro ao buscar cidade.");
+		}
+		
+		
+		
+		
+	}
+
 }

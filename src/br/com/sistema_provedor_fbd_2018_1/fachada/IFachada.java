@@ -19,7 +19,7 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 public interface IFachada {
 
 	// Cliente
-	public void salvarOuEditarCliente(Cliente cliente) throws BusinessException;
+	public void salvarOuEditarCliente(Cliente cliente, Endereco endereco, String cep) throws BusinessException;
 
 	public Cliente buscarClientePorId(int id) throws BusinessException;
 
@@ -54,6 +54,8 @@ public interface IFachada {
 	public ArrayList<Cidade> buscarCidadePorBusca(String busca);
 
 	public ArrayList<Cidade> listarTodosCidades() throws BusinessException;
+	public Cidade buscarPorNomeEstado(String nome, String estado)throws BusinessException;
+	
 
 	// Atendimento
 	public void salvarOuEditarAtendimento(Atendimento atendimento, String cpfCliente) throws BusinessException;

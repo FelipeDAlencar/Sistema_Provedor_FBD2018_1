@@ -22,6 +22,23 @@ public class Contato {
 		this.tipo = tipo;
 		this.contato = contato;
 	}
+	
+	public Contato(Integer id, Integer cliente_id, String responsavel, String tipo, String contato) {
+		super();
+		this.id = id;
+		this.cliente_id = cliente_id;
+		this.responsavel = responsavel;
+		this.tipo = tipo;
+		this.contato = contato;
+	}
+
+	public void setResponsavel(String responsavel) {
+		this.responsavel = responsavel;
+	}
+
+	public void setContato(String contato) {
+		this.contato = contato;
+	}
 
 	public Integer getId() {
 		return id;

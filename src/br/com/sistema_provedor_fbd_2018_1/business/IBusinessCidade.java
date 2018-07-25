@@ -15,6 +15,9 @@ public interface IBusinessCidade {
 
 	public Cidade buscarPorId(int id) throws BusinessException;
 
-	public ArrayList<Cidade> buscarPorBusca(String busca);
+	public ArrayList<Cidade> buscarPorBusca(String busca)throws BusinessException;
+	
+	public Cidade buscarPorNomeEstado(String nome, String estado)throws BusinessException;
+	
 
 }

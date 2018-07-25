@@ -55,6 +55,7 @@ public class InternalSwitch extends TelaInternal{
 	}
 	
 	public void carregarSwitchs(List<Switch> sws) {
+		modelTable.setNumRows(0);
 		for (Switch sw : sws) {			
 			String[] linha = {Integer.toString(sw.getId()), sw.getNome(), sw.getIp()};
 			modelTable.addRow(linha);

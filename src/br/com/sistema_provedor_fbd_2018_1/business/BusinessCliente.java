@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import br.com.sistema_provedor_fbd_2018_1.dao.DaoCliente;
 import br.com.sistema_provedor_fbd_2018_1.dao.IDaoCliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.exception.ValidacaoException;
 
@@ -17,10 +18,10 @@ public class BusinessCliente implements IBusinessCliente {
 	}
 
 	@Override
-	public void salvarOuEditarCliente(Cliente cliente)throws BusinessException {
+	public void salvarOuEditarCliente(Cliente cliente, Endereco endereco, String cep)throws BusinessException {
 		try {
 			validar(cliente);
-			dao.salvar(cliente);
+			dao.salvar(cliente, endereco, cep);
 
 		} catch (Exception e) {
 			throw new BusinessException(e.getMessage());

@@ -58,6 +58,7 @@ public class InternalConcentrador extends TelaInternal{
 	}
 
 	public void carregarConcentrador(List<Concentrador> concentradores) {
+		modelTable.setNumRows(0);
 		try {for (Concentrador concentrador : concentradores) {
 			Cidade cidade = fachada.buscarCidadePorId(concentrador.getCidade_id());
 			String[] linha = {concentrador.getId().toString(), concentrador.getNome(), concentrador.getIp(), cidade.getNome()};

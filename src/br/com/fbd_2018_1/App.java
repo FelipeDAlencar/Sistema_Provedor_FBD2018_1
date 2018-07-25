@@ -37,7 +37,12 @@ public class App {
 
 		Fachada fachada = new Fachada();
 		
+		Cidade cidade = fachada.buscarPorNomeEstado("Floresta", "pe");
 		
+		System.out.println("cep:" + cidade.getCep()
+						+" estado:" + cidade.getEstado()+" Nome:" + cidade.getNome());
+				
+		//fachada.salvarOuEditarCliente(new Cliente(),new Endereco(),cidade.getCep());
 		
 		
 		// br.com.sistema_provedor_fbd_2018_1.entidade.Porta porta = new

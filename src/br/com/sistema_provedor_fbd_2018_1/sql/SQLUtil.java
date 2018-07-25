@@ -47,6 +47,8 @@ public class SQLUtil {
 		public static final String SELECT_ALL = "select * from cidade";
 
 		public static final String UPDATE = "update cidade set  nome = ?, estado = ?, cep = ? where id = ?";
+		
+		public static final String SELECT_NOMEESTADO = "select * from cidade where nome = ? and estado = ?";
 
 	}
 
@@ -77,6 +79,9 @@ public class SQLUtil {
 	public static class Contato {
 		public static String INSERT_ALL = "insert into contato (responsavel,tipo,contato, cliente_id) "
 				+ "values (?,?,?,?); ";
+		public static String SELECT_ID = "select * from contato where id = ?";
+		
+		public static String SELECT_ALL = "select * from contato";
 	}
 
 	public static class Atendimento {

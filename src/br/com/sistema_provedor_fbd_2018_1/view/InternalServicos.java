@@ -50,6 +50,7 @@ public class InternalServicos extends TelaInternal{
 	}
 
 	public void carregarServicos(List<Servico> servicos) {
+		modelTable.setNumRows(0);
 		for (Servico servico : servicos) {
 			String[] linha = {servico.getId().toString(), servico.getNome()};
 			modelTable.addRow(linha);

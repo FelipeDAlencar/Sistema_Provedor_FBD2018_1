@@ -56,6 +56,7 @@ public class InternalCaixa extends TelaInternal{
 	}
 
 	public void carregarcaixa(List<Caixa> caixas) throws BusinessException {
+		modelTable.setNumRows(0);
 		for (Caixa caixa : caixas) {
 			Cidade cidade = new Fachada().buscarCidadePorId(caixa.getCidade_id());
 			String[] linha = {caixa.getId().toString(), caixa.getNome(), cidade.getNome()};

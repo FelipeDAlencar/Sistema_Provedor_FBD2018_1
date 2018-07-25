@@ -28,7 +28,7 @@ public class InternalCadastroFuncionario extends TelaInternal {
 	private JPasswordField senhaField;
 	private JTextField ruaFild;
 	private JTextField bairroFild,cargoField;
-	private JTextField numeroFild;
+	private JtextFieldGenerico numeroFild;
 	private JTextField complementoFild;
 	private JComboBox<String> cidadesCombo;
 	private JFormattedTextField data_contratoFild;
@@ -112,7 +112,7 @@ public class InternalCadastroFuncionario extends TelaInternal {
 		lblNumero.setBounds(55, 251, 69, 14);
 		getContentPane().add(lblNumero);
 
-		numeroFild = new JTextField();
+		numeroFild = new JtextFieldGenerico("123456789.");
 		numeroFild.setBounds(55, 276, 86, 29);
 		getContentPane().add(numeroFild);
 		numeroFild.setColumns(10);
@@ -158,7 +158,7 @@ public class InternalCadastroFuncionario extends TelaInternal {
 		Fachada fachada = new Fachada();
 		cidadesList = fachada.listarTodosCidades();
 		for (Cidade cidade : cidadesList) {
-			cidadesCombo.addItem(cidade.getNome());
+			cidadesCombo.addItem(cidade.getNome()+" - " + cidade.getEstado());
 		}
 	}
 

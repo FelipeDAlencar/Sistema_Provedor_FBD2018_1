@@ -49,6 +49,7 @@ public class PanelContato extends JPanel{
 		
 	}
 	public void carregarContatos(List<Contato> contatos) {
+		modelTable.setNumRows(0);
 		for (Contato contato : contatos) {
 			String[] linha = {contato.getResponsavel(),contato.getContato()};
 			modelTable.addRow(linha);
@@ -90,6 +91,7 @@ public class PanelContato extends JPanel{
 	public void setTabela(JTable tabela) {
 		this.tabela = tabela;
 	}
+	
 	
 	
 	

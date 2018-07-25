@@ -30,7 +30,7 @@ public class ControllerServico implements Listeners {
 	public void actionPerformed(ActionEvent e) {
 		try {
 			if (e.getSource() == internalServicos.getBtnNovo()) {
-				controllerCadastroServico = new ControllerCadastroServico();
+				controllerCadastroServico = new ControllerCadastroServico(internalServicos);
 				internalCadastroServico = new InternalCadastroServico(telaPrincipal, controllerCadastroServico);
 				telaPrincipal.getDesktopPane().add(internalCadastroServico);
 				internalCadastroServico.setVisible(true);

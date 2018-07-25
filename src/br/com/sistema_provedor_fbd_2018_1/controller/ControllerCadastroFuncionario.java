@@ -8,14 +8,17 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroFuncionario;
+import br.com.sistema_provedor_fbd_2018_1.view.InternalFuncionario;
 import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 
 public class ControllerCadastroFuncionario implements Listeners {
 	private InternalCadastroFuncionario internalCadastroFuncionario;
 	private Fachada fachada;
+	private InternalFuncionario internalFuncionario;
 
-	public ControllerCadastroFuncionario() {
+	public ControllerCadastroFuncionario(InternalFuncionario internalFuncionario) {
 		fachada = new Fachada();
+		this.internalFuncionario = internalFuncionario;
 	}
 
 	@Override
@@ -36,6 +39,8 @@ public class ControllerCadastroFuncionario implements Listeners {
 
 				fachada.salvarOuEditarEndereco(endereco);
 				fachada.salvarOuEditarFuncionario(funcionario);
+			
+				internalFuncionario.carregarFuncionarios(fachada.listarTodosFuncionarios());
 				
 				Menssagens.menssagem("Funcionário salvo com sucesso!", 1);
 				

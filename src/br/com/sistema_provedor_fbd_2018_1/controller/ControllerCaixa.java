@@ -31,7 +31,7 @@ public class ControllerCaixa implements Listeners {
 			if(e.getSource() == internalCaixa.getBtnNovo()) {
 
 
-				controllerCadastroCaixa = new ControllerCadastroCaixa();
+				controllerCadastroCaixa = new ControllerCadastroCaixa(internalCaixa);
 				internalCadastroCaixa = new InternalCadastroCaixa(telaPrincipal, controllerCadastroCaixa);
 				telaPrincipal.getDesktopPane().add(internalCadastroCaixa);
 				internalCadastroCaixa.setVisible(true);

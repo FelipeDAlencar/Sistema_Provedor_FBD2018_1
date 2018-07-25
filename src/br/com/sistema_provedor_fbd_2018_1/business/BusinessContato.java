@@ -8,6 +8,7 @@ import br.com.sistema_provedor_fbd_2018_1.dao.DaoContato;
 import br.com.sistema_provedor_fbd_2018_1.dao.IDaoContato;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Contato;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 
 public class BusinessContato implements IBusinessContato {
 
@@ -59,8 +60,12 @@ public class BusinessContato implements IBusinessContato {
 
 	@Override
 	public Contato buscarPorId(int id) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return dao.buscarPorId(id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO DE BUS");
+		}
 	}
 
 	@Override

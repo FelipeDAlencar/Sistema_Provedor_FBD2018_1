@@ -12,11 +12,12 @@ import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLConnection;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLUtil;
 
-public class DaoContato implements IDaoContato{
+public class DaoContato implements IDaoContato {
 	private Connection conexao;
 	private PreparedStatement statement;
+
 	@Override
-	public void salvar(Contato contato,String cpfCliente) throws DaoException {
+	public void salvar(Contato contato, String cpfCliente) throws DaoException {
 		try {
 
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
@@ -44,19 +45,31 @@ public class DaoContato implements IDaoContato{
 
 		}
 
-		
 	}
 
 	@Override
 	public void editar(Contato contato) throws DaoException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public Contato buscarPorId(int id) throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Contato.SELECT_ID);
+			statement.setInt(1, id);
+			ResultSet resultSet = statement.executeQuery();
+			Contato contato = null;
+			if (resultSet.next()) {
+				contato = new Contato(resultSet.getInt(4), resultSet.getInt(5), resultSet.getString(2),
+						resultSet.getString(3), resultSet.getString(1));
+			}
+			return contato;
+		} catch (SQLException e) {
+			throw new DaoException("ERRO AO RETORNAR CONTATO POR ID");
+		}
+
 	}
 
 	@Override

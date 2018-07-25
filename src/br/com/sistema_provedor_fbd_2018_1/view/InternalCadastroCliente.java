@@ -71,7 +71,7 @@ public class InternalCadastroCliente extends TelaInternal {
 		panelCliente.add(nomeLabel);
 
 		nomeField = new JTextField();
-		nomeField.setBounds(57, 76, 450, 30);
+		nomeField.setBounds(47, 76, 450, 30);
 		panelCliente.add(nomeField);
 
 		cpfLabel = new JLabel("CPF:");
@@ -167,7 +167,7 @@ public class InternalCadastroCliente extends TelaInternal {
 		Fachada fachada = new Fachada();
 		cidadesList = fachada.listarTodosCidades();
 		for (Cidade cidade : cidadesList) {
-			cidadesComboBox.addItem(cidade.getNome());
+			cidadesComboBox.addItem(cidade.getNome()+" - "+ cidade.getEstado());
 		}
 	}
 
@@ -388,5 +388,11 @@ public class InternalCadastroCliente extends TelaInternal {
 	public JLabel getLblContato_1() {
 		return lblContato_1;
 	}
+
+	public JTextField getEmailField() {
+		return emailField;
+	}
+	
+	
 	
 }

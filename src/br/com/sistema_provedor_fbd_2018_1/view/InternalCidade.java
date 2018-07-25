@@ -55,6 +55,7 @@ public class InternalCidade extends TelaInternal{
 	}
 	
 	public void carregarCidades(List<Cidade> cidades) {
+		modelTable.setNumRows(0);
 		for (Cidade cidade : cidades) {
 			String[] linha = {cidade.getId().toString(), cidade.getNome(), cidade.getEstado(), cidade.getCep()};
 			modelTable.addRow(linha);

@@ -7,14 +7,17 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroServico;
+import br.com.sistema_provedor_fbd_2018_1.view.InternalServicos;
 import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 
 public class ControllerCadastroServico implements Listeners {
 	private InternalCadastroServico internalCadastroServico;
 	private Fachada fachada;
+	private InternalServicos internalServicos;
 
-	public ControllerCadastroServico() {
+	public ControllerCadastroServico(InternalServicos internalServicos) {
 		fachada = new Fachada();
+		this.internalServicos = internalServicos;
 	}
 
 	@Override
@@ -27,6 +30,7 @@ public class ControllerCadastroServico implements Listeners {
 						Integer.parseInt(internalCadastroServico.getUploadField().getText().trim()),
 						Integer.parseInt(internalCadastroServico.getDownloadField().getText().trim()));
 				fachada.salvarOuEditarServico(servico);
+				internalServicos.carregarServicos(fachada.listarTodosServico());
 				Menssagens.menssagem("Serviço Inserido com sucesso.", 1);
 				
 				internalCadastroServico.getServicoField().setText("");

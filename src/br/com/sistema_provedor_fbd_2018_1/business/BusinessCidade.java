@@ -58,6 +58,14 @@ public class BusinessCidade implements IBusinessCidade {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public Cidade buscarPorNomeEstado(String nome, String estado)throws BusinessException {
+		try {
+			return dao.buscarPorNomeEstado(nome, estado);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO NO BUS");
+		}
+	}
 
 	public void validarCidade(Cidade cidade) throws ValidacaoException {
 		if (cidade.getCep() == null || cidade.getCep().equals("")) {

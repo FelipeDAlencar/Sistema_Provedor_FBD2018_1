@@ -30,7 +30,7 @@ public class ControllerCidade implements Listeners {
 		try {
 			if (e.getSource() == internalCidade.getBntNovo()) {
 
-				controllerCadastroCidade = new ControllerCadastroCidade();
+				controllerCadastroCidade = new ControllerCadastroCidade(internalCidade);
 				internalCadastroCidade = new InternalCadastroCidade(telaPrincipal, controllerCadastroCidade);
 				telaPrincipal.getDesktopPane().add(internalCadastroCidade);
 				controllerCadastroCidade.setInternalCadastroCidade(internalCadastroCidade);

@@ -50,7 +50,7 @@ public class InternalCadastroContato extends TelaInternal  {
 		getContentPane().add(lblTipo);
 		
 		
-		contatoField = new JtextFieldGenerico("abcdefghijlmnopqrstuvxz1234567890.@");
+		contatoField = new JtextFieldGenerico("ABCDEFGHIJLMNOPQRSTUVXZWKYabcdefghijlmnopqrstuvxzwky1234567890.@");
 		contatoField.setBounds(64, 181, 200, 30);
 		getContentPane().add(contatoField);
 		contatoField.setColumns(10);
@@ -103,7 +103,7 @@ public class InternalCadastroContato extends TelaInternal  {
 		return contatoField;
 	}
 
-	public JButton getBtnNovoContato() {
+	public JButton getBtnSalvar() {
 		return btnNovoContato;
 	}
 

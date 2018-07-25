@@ -31,7 +31,7 @@ public class ControllerFuncionario implements Listeners {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == internalFuncionario.getBntNovo()) {
 			try {
-				controllerCadastroFuncionario = new ControllerCadastroFuncionario();
+				controllerCadastroFuncionario = new ControllerCadastroFuncionario(internalFuncionario);
 				internalCadastroFuncionario = new InternalCadastroFuncionario(telaPrincipal, controllerCadastroFuncionario);
 				telaPrincipal.getDesktopPane().add(internalCadastroFuncionario);
 				internalCadastroFuncionario.setVisible(true);

@@ -30,7 +30,7 @@ public class ControllerConcentrador implements Listeners {
 	public void actionPerformed(ActionEvent e) {
 		try {
 		if (e.getSource() == internalConcentrador.getBtnNovo()) {
-			controllerCadastroConcentrador = new ControllerCadastroConcentrador();
+			controllerCadastroConcentrador = new ControllerCadastroConcentrador(internalConcentrador);
 			internalCadastroConcentrador = new InternalCadastroConcentrador(telaPrincipal, controllerCadastroConcentrador);
 			telaPrincipal.getDesktopPane().add(internalCadastroConcentrador);
 			internalCadastroConcentrador.setVisible(true);

@@ -28,7 +28,7 @@ public class ControllerSwitch implements Listeners {
 	public void actionPerformed(ActionEvent e) {
 		try {
 			if (e.getSource() == internalSwitch.getBtnNovo()) {
-				controllerCadastroSwitch = new ControllerCadastroSwitch();
+				controllerCadastroSwitch = new ControllerCadastroSwitch(internalSwitch);
 				internalCadastroSwitch = new InternalCadastroSwitch(telaPrincipal, controllerCadastroSwitch);
 				telaPrincipal.getDesktopPane().add(internalCadastroSwitch);
 				internalCadastroSwitch.setVisible(true);

@@ -80,8 +80,8 @@ public class Fachada implements IFachada {
 
 	// CLIENTE
 	@Override
-	public void salvarOuEditarCliente(Cliente cliente) throws BusinessException {
-		this.businessCliente.salvarOuEditarCliente(cliente);
+	public void salvarOuEditarCliente(Cliente cliente, Endereco endereco, String cep) throws BusinessException {
+		this.businessCliente.salvarOuEditarCliente(cliente, endereco,cep);
 
 	}
 
@@ -176,7 +176,11 @@ public class Fachada implements IFachada {
 	public ArrayList<Cidade> listarTodosCidades() throws BusinessException {
 		return businessCidade.listarTodos();
 	}
-
+	
+	@Override
+	public Cidade buscarPorNomeEstado(String nome, String estado) throws BusinessException {
+		return businessCidade.buscarPorNomeEstado(nome, estado);
+	}
 	// ATENDIMENTO
 	@Override
 	public void salvarOuEditarAtendimento(Atendimento atendimento, String cpfCliente) throws BusinessException {
@@ -372,5 +376,7 @@ public class Fachada implements IFachada {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }

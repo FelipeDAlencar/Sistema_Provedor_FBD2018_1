@@ -7,14 +7,17 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroCaixa;
+import br.com.sistema_provedor_fbd_2018_1.view.InternalCaixa;
 import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 
 public class ControllerCadastroCaixa implements Listeners {
 	private InternalCadastroCaixa internalCadastroCaixa;
 	private Fachada fachada;
+	private InternalCaixa internalCaixa;
 
-	public ControllerCadastroCaixa() {
+	public ControllerCadastroCaixa(InternalCaixa internalCaixa) {
 		fachada = new Fachada();
+		this.internalCaixa = internalCaixa;
 	}
 
 	@Override
@@ -27,6 +30,7 @@ public class ControllerCadastroCaixa implements Listeners {
 						internalCadastroCaixa.getLatitudeField().getText(),
 						internalCadastroCaixa.getLongitudeField().getText());
 				fachada.salvarOuEditarCaixa(caixa, internalCadastroCaixa.getCidadeCombo().getSelectedItem().toString());
+				internalCaixa.carregarcaixa(fachada.listarTodosCaixa());
 				Menssagens.menssagem("Caixa cadastrada com sucesso.", 1);
 				internalCadastroCaixa.getNomeField().setText("");
 				internalCadastroCaixa.getLatitudeField().setText("");

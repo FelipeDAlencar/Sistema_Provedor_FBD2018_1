@@ -23,7 +23,7 @@ import br.com.sistema_provedor_fbd_2018_1.view.InternalServicos;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalSwitch;
 import br.com.sistema_provedor_fbd_2018_1.view.TelaPrincipal;
 
-public class Controller extends Thread implements ActionListener {
+public class Controller implements ActionListener {
 	private boolean loop;
 	private TelaPrincipal telaPrincipal;
 	private Fachada fachada;
@@ -50,7 +50,7 @@ public class Controller extends Thread implements ActionListener {
 
 	public Controller(TelaPrincipal telaPrincipal) {
 		loop = true;
-		start();
+		
 		fachada = new Fachada();
 		this.telaPrincipal = telaPrincipal;
 
@@ -120,9 +120,11 @@ public class Controller extends Thread implements ActionListener {
 				controllerSwitch.setInternalSwitch(internalSwitch);
 				controllerSwitch.addListeners();
 			}
-			
+
 			if (e.getSource() == telaPrincipal.getBtnAdicionarSwitch()) {
-				controllerCadastroSwitch = new ControllerCadastroSwitch();
+				controllerSwitch = new ControllerSwitch(telaPrincipal);
+				internalSwitch = new InternalSwitch(telaPrincipal, controllerSwitch);
+				controllerCadastroSwitch = new ControllerCadastroSwitch(internalSwitch);
 				internalCadastroSwitch = new InternalCadastroSwitch(telaPrincipal, controllerCadastroSwitch);
 				controllerCadastroSwitch.setInternalCadastroSwitch(internalCadastroSwitch);
 				controllerCadastroSwitch.addListeners();
@@ -202,21 +204,4 @@ public class Controller extends Thread implements ActionListener {
 		System.gc();
 	}
 
-	@Override
-	public void run() {
-		super.run();
-		while (true) {
-			if (loop) {
-				try {
-					//internalCidade.carregarCidades(fachada.listarTodosCidades());
-					sleep(500);
-
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
-
-	}
 }
