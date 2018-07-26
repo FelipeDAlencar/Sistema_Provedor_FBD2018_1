@@ -39,9 +39,9 @@ public interface IFachada {
 
 	public Funcionario buscarFuncionarioPorId(int id) throws BusinessException;
 
-	public Funcionario buscarPorCpf(String cpf);
+	public Funcionario buscarPorCpf(String cpf)throws BusinessException;
 
-	public ArrayList<Funcionario> buscarPorBusca(String busca);
+	public ArrayList<Funcionario> buscarFuncionarioPorBusca(String busca)throws BusinessException;
 	
 	public ArrayList<Funcionario> listarTodosFuncionarios() throws BusinessException;
 

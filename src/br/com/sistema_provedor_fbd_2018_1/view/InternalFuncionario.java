@@ -1,8 +1,10 @@
 package br.com.sistema_provedor_fbd_2018_1.view;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -10,16 +12,20 @@ import javax.swing.table.DefaultTableModel;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Atendimento;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Funcionario;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import javax.swing.JTextField;
+import javax.swing.JButton;
 
 public class InternalFuncionario extends TelaInternal{
-	private Botao bntNovo, bntEditar;
+	private Botao bntNovo, bntEditar,btnBuscar;
 	private DefaultTableModel modelTable;
 	private JScrollPane barraRolagem;
 	private JTable tabela;
+	private JTextField buscaField;
+	
 	
 	public InternalFuncionario(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
 		super("Funcionarios", telaPrincipal, actionListener);
-		setBounds(150, 50, 1050, 500);
+		setBounds(150, 20, 1050, 610);
 		getContentPane().setLayout(null);
 		setVisible(false);	
 	}
@@ -27,7 +33,7 @@ public class InternalFuncionario extends TelaInternal{
 	@Override
 	public void inicializar() throws BusinessException {
 		bntEditar = new Botao("resource/imagens/botoes/editar-funcionario.png","Editar Funcionario");
-		bntEditar.setBounds(50, 20, 200, 40);
+		bntEditar.setBounds(51, 20, 200, 40);
 		getContentPane().add(bntEditar);
 		
 		bntNovo = new Botao("resource/imagens/botoes/novo-funcionario.png","Novo Funcionario");
@@ -43,16 +49,30 @@ public class InternalFuncionario extends TelaInternal{
 		tabela = new JTable(modelTable);
 		tabela.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(100);
 		tabela.getTableHeader().getColumnModel().getColumn(0).setMinWidth(100);
-		tabela.setBounds(0,0,600,400);
+		tabela.setBounds(0,0,600,100);
 		
 		barraRolagem = new JScrollPane(tabela);
-		barraRolagem.setBounds(50,60,930,400);
+		barraRolagem.setBounds(51,192,930,367);
 		
 		getContentPane().add(barraRolagem);
+		
+		JLabel lblBusca = new JLabel("Busca:");
+		lblBusca.setBounds(50, 82, 46, 14);
+		getContentPane().add(lblBusca);
+		
+		buscaField = new JTextField();
+		buscaField.setBounds(50, 102, 200, 28);
+		getContentPane().add(buscaField);
+		buscaField.setColumns(10);
+		
+		btnBuscar = new Botao("resource/imagens/botoes/busca.jpg", "Buscar");
+		btnBuscar.setBounds(51, 141, 100, 40);
+		getContentPane().add(btnBuscar);
 	}
 	
-	public void carregarFuncionarios(List<Funcionario> funcionarios) {
+	public void carregarFuncionarios(ArrayList<Funcionario> funcionarios) {
 		modelTable.setNumRows(0);
+		System.out.println(funcionarios);
 		for (Funcionario funcionario : funcionarios) {
 			String[] linha = {funcionario.getId().toString(), funcionario.getNome(), funcionario.getCargo(), funcionario.getData_contrato()};
 			modelTable.addRow(linha);
@@ -79,7 +99,13 @@ public class InternalFuncionario extends TelaInternal{
 	public JTable getTabela() {
 		return tabela;
 	}
-	
-	
 
+	public Botao getBtnBuscar() {
+		return btnBuscar;
+	}
+
+	public JTextField getBuscaField() {
+		return buscaField;
+	}
+	
 }

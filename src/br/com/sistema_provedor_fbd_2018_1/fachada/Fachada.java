@@ -142,9 +142,8 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public ArrayList<Funcionario> buscarPorBusca(String busca) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Funcionario> buscarFuncionarioPorBusca(String busca) throws BusinessException {
+		return businessFuncionario.buscarPorBusca(busca);
 	}
 	@Override
 	public ArrayList<Funcionario> listarTodosFuncionarios() throws BusinessException {

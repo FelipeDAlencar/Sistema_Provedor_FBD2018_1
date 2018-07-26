@@ -23,7 +23,7 @@ public class ControllerFuncionario implements Listeners {
 
 	public ControllerFuncionario(TelaPrincipal telaPrincipal) {
 		this.telaPrincipal = telaPrincipal;
-		fachada =  new Fachada();
+		fachada = new Fachada();
 
 	}
 
@@ -32,24 +32,25 @@ public class ControllerFuncionario implements Listeners {
 		if (e.getSource() == internalFuncionario.getBntNovo()) {
 			try {
 				controllerCadastroFuncionario = new ControllerCadastroFuncionario(internalFuncionario);
-				internalCadastroFuncionario = new InternalCadastroFuncionario(telaPrincipal, controllerCadastroFuncionario);
+				internalCadastroFuncionario = new InternalCadastroFuncionario(telaPrincipal,
+						controllerCadastroFuncionario);
 				telaPrincipal.getDesktopPane().add(internalCadastroFuncionario);
 				internalCadastroFuncionario.setVisible(true);
 				controllerCadastroFuncionario.setInternalCadastroFuncionario(internalCadastroFuncionario);
 				controllerCadastroFuncionario.addListeners();
-				
+
 			} catch (BusinessException e1) {
 				e1.printStackTrace();
 			}
 		}
-		if(e.getSource() == internalFuncionario.getBntEditar()) {
+		if (e.getSource() == internalFuncionario.getBntEditar()) {
 			int linha = internalFuncionario.getTabela().getSelectedRow();
 			int id = Integer.parseInt(internalFuncionario.getTabela().getValueAt(linha, 0).toString());
-			
+
 			try {
 				Funcionario funcionario = fachada.buscarFuncionarioPorId(id);
-				Endereco endereco =  fachada.buscarEnderecoPorId(funcionario.getEndereco_id());
-				
+				Endereco endereco = fachada.buscarEnderecoPorId(funcionario.getEndereco_id());
+
 				controllerEditarFuncionario = new ControllerEditarFuncionario(funcionario, endereco);
 				internalEditarFuncionario = new InternalEditarFuncionario(telaPrincipal, controllerEditarFuncionario);
 				telaPrincipal.getDesktopPane().add(internalEditarFuncionario);
@@ -57,12 +58,29 @@ public class ControllerFuncionario implements Listeners {
 				controllerEditarFuncionario.setInternalEditarFuncionario(internalEditarFuncionario);
 				controllerEditarFuncionario.addListeners();
 				controllerEditarFuncionario.preencherCampos();
-				
+
 			} catch (BusinessException e1) {
 				e1.printStackTrace();
 			}
-			
-			
+
+		}
+
+		if (e.getSource() == internalFuncionario.getBtnBuscar()) {
+			try {
+				String busca = internalFuncionario.getBuscaField().getText();
+
+				if (busca.equals("")) {
+					internalFuncionario.carregarFuncionarios(fachada.listarTodosFuncionarios());
+
+				} else {
+
+					internalFuncionario.carregarFuncionarios(fachada.buscarFuncionarioPorBusca(busca));
+				}
+			} catch (BusinessException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
 		}
 
 	}
@@ -88,6 +106,7 @@ public class ControllerFuncionario implements Listeners {
 	public void addListeners() {
 		internalFuncionario.getBntNovo().addActionListener(this);
 		internalFuncionario.getBntEditar().addActionListener(this);
+		internalFuncionario.getBtnBuscar().addActionListener(this);
 	}
 
 }

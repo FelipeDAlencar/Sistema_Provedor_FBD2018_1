@@ -17,7 +17,7 @@ public interface IDaoFuncionario {
 
 	public Funcionario buscarPorCpf(String cpf)throws DaoException;
 
-	public List<Funcionario> buscarPorBusca(String busca)throws DaoException;
+	public ArrayList<Funcionario> buscarPorBusca(String busca)throws DaoException;
 	
 	public ArrayList<Funcionario> listarTodos()throws DaoException;
 	

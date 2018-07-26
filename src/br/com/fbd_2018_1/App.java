@@ -37,10 +37,15 @@ public class App {
 
 		Fachada fachada = new Fachada();
 		
-		Cidade cidade = fachada.buscarPorNomeEstado("Floresta", "pe");
 		
-		System.out.println("cep:" + cidade.getCep()
-						+" estado:" + cidade.getEstado()+" Nome:" + cidade.getNome());
+		
+		
+		for(Funcionario funcionario: fachada.buscarFuncionarioPorBusca("L")) {
+			System.out.println(funcionario.getNome());
+		}
+		
+		
+	
 				
 		//fachada.salvarOuEditarCliente(new Cliente(),new Endereco(),cidade.getCep());
 		

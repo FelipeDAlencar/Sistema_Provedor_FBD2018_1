@@ -55,9 +55,14 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 	}
 
 	@Override
-	public ArrayList<Funcionario> buscarPorBusca(String busca) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Funcionario> buscarPorBusca(String busca)throws BusinessException {
+		
+		try {
+			return dao.buscarPorBusca(busca);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO NOS BUS");
+		}
 	}
 
 	@Override
@@ -77,23 +82,6 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 			throw new ValidacaoException("ERRO DE VALIDAÇÃO - PREENCHA OS CAMPOS NESCESSÁRIOS");
 
 		}
-
-	}
-
-	public static Date converterParaData(String txt)  {
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-		java.sql.Date data = null;
-
-		try {
-			data = new java.sql.Date(format.parse(txt).getTime());
-			return data;
-		} catch (ParseException e) {
-			e.printStackTrace();
-			Menssagens.menssagem("ERRO AO CONVERTER DATA", 0);
-		}
-		return data;
-
-		
 
 	}
 

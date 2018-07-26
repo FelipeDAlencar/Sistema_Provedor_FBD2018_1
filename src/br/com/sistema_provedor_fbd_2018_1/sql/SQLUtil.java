@@ -34,6 +34,9 @@ public class SQLUtil {
 		public static final String UPDATE = "update funcionario set nome = ?, cargo = ?, data_contrato = ?, login = ?, senha = ?, endereco_id = ? where id = ? ";
 		
 		public static String SELECT_ALL = "select * from funcionario";
+		
+		public static String SELECT_PORBUSCA = "select * from funcionario where nome ilike 	? or cargo ilike ? "
+				+ "or login ilike ?";
 	}
 
 	public static class Cidade {
