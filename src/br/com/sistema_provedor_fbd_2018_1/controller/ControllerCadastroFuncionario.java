@@ -8,7 +8,7 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Funcionario;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
-import br.com.sistema_provedor_fbd_2018_1.sql.Ultil;
+import br.com.sistema_provedor_fbd_2018_1.model.Ultil;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroFuncionario;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalFuncionario;
 import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;

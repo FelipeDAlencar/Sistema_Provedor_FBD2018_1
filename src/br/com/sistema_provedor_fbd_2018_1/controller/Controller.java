@@ -24,7 +24,7 @@ import br.com.sistema_provedor_fbd_2018_1.view.InternalSwitch;
 import br.com.sistema_provedor_fbd_2018_1.view.TelaPrincipal;
 
 public class Controller implements ActionListener {
-	private boolean loop;
+
 	private TelaPrincipal telaPrincipal;
 	private Fachada fachada;
 	private InternalCadastroCliente internalAdicionarCliente;
@@ -49,8 +49,8 @@ public class Controller implements ActionListener {
 	private InternalCadastroSwitch internalCadastroSwitch;
 
 	public Controller(TelaPrincipal telaPrincipal) {
-		loop = true;
-		
+	
+
 		fachada = new Fachada();
 		this.telaPrincipal = telaPrincipal;
 
@@ -69,7 +69,7 @@ public class Controller implements ActionListener {
 		telaPrincipal.getMenu().getAdicionarCliente().addActionListener(this);
 		telaPrincipal.getMenu().getVerCliente().addActionListener(this);
 		telaPrincipal.getMenu().getAtendimentosCliente().addActionListener(this);
-
+		
 		// itens Menu Network
 		telaPrincipal.getMenu().getConcentradorNetwork().addActionListener(this);
 		telaPrincipal.getMenu().getSwitchNetwork().addActionListener(this);
@@ -101,6 +101,11 @@ public class Controller implements ActionListener {
 				controllerVisualizar.setInternalLocalizarCliente(internalLocalizarCliente);
 				controllerVisualizar.addListeners();
 			}
+			
+			
+		
+			
+			
 			if (e.getSource() == telaPrincipal.getBtnAtendimentos()
 					|| e.getSource() == telaPrincipal.getMenu().getAtendimentosCliente()) {
 				controllerAtendimentos = new ControllerAtendimentos();

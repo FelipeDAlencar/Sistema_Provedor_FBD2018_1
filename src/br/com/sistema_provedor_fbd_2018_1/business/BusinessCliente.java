@@ -11,17 +11,22 @@ import br.com.sistema_provedor_fbd_2018_1.exception.ValidacaoException;
 
 public class BusinessCliente implements IBusinessCliente {
 
-	private static IDaoCliente  dao;
+	private static IDaoCliente dao;
 
 	public BusinessCliente() {
 		dao = new DaoCliente();
 	}
 
 	@Override
-	public void salvarOuEditarCliente(Cliente cliente, Endereco endereco, String cep)throws BusinessException {
+	public void salvarOuEditarCliente(Cliente cliente, Endereco endereco, String cep) throws BusinessException {
 		try {
 			validar(cliente);
-			dao.salvar(cliente, endereco, cep);
+
+			if (cliente.getId() == null) {
+				dao.salvar(cliente, endereco, cep);
+			} else {
+				dao.editar(cliente);
+			}
 
 		} catch (Exception e) {
 			throw new BusinessException(e.getMessage());

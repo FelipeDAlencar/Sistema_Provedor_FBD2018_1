@@ -18,6 +18,9 @@ public class SQLUtil {
 		public static final String SELECT_ALL = "select * from cliente";
 		
 		public static final String MAXID = "select MAX(id) from cliente";
+		
+		public static final String UPDATE = "update cliente set nome = ?, cpf = ?, rg = ?, data_nascimento = ? endereco = id ? where id = ? ";
+		
 
 	}
 

@@ -16,6 +16,7 @@ public class Menu extends JMenuBar{
 	private JMenuItem concentradorNetwork, switchNetwork, caixaNetwork;
 	private JMenuItem movimentacoesFinanceiro, caixaFinanceiro;
 	
+	
 	public Menu() {
 		 Dimension tela = Toolkit.getDefaultToolkit().getScreenSize();
 	     int lar = (int) tela.getWidth();
@@ -40,6 +41,7 @@ public class Menu extends JMenuBar{
 		adicionarCliente = new JMenuItem("Adicionar Cliente");
 		verCliente = new JMenuItem("Ver Cliente");
 		atendimentosCliente = new JMenuItem("Atendimentos");
+		
 		
 		concentradorNetwork = new JMenuItem("Concentrador");
 		switchNetwork = new JMenuItem("Switch");
@@ -82,6 +84,8 @@ public class Menu extends JMenuBar{
 		clientesMenu.add(adicionarCliente);
 		clientesMenu.addSeparator();
 		clientesMenu.add(atendimentosCliente);
+		clientesMenu.addSeparator();
+		
 		
 		netwokMenu.add(concentradorNetwork);
 		netwokMenu.addSeparator();
@@ -159,6 +163,8 @@ public class Menu extends JMenuBar{
 	public JMenuItem getCidadeCadastro() {
 		return cidadeCadastro;
 	}
+
+	
 	
 	
 

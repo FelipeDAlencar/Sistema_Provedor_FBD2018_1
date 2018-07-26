@@ -13,6 +13,7 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Atendimento;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
+import br.com.sistema_provedor_fbd_2018_1.model.Ultil;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLConnection;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLUtil;
 
@@ -24,39 +25,39 @@ public class DaoCliente implements IDaoCliente {
 	public void salvar(Cliente cliente, Endereco endereco, String cep) throws DaoException {
 		try {
 			this.conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
-	
-			//CIDADE
+
+			// CIDADE
 			statement = conexao.prepareStatement(SQLUtil.Cidade.SELECT_CEP);
 			statement.setString(1, cep);
-			
+
 			ResultSet resultSet1 = statement.executeQuery();
 			resultSet1.next();
 			int cidade_id = resultSet1.getInt(1);
-			
+
 			System.out.println("ID CIDADE:" + cidade_id);
-			
-			//ENDERECO
+
+			// ENDERECO
 			statement = conexao.prepareStatement(SQLUtil.Endereco.INSERT_ALL);
 			statement.setInt(1, endereco.getNumero());
 			statement.setString(2, endereco.getRua());
 			statement.setString(3, endereco.getBairro());
 			statement.setInt(4, cidade_id);
-			statement.execute();	
-			
+			statement.execute();
+
 			this.statement = conexao.prepareStatement(SQLUtil.Endereco.MAXID);
 			ResultSet resultSet = statement.executeQuery();
 			resultSet.next();
 			int endereco_id = resultSet.getInt(1);
-			
-			
-			//CLIENTE
+
+			// CLIENTE
 			statement = conexao.prepareStatement(SQLUtil.Cliente.INSERT_ALL);
 			// statement.setString(Indice, valor);
 			statement.setString(1, cliente.getNome());
 			statement.setString(2, cliente.getCpf());
 			statement.setString(3, cliente.getRg());
-			statement.setDate(4, converterParaData(cliente.getData_nascimento()));
+			statement.setDate(4, Ultil.converterParaData(cliente.getData_nascimento()));
 			statement.setInt(5, endereco_id);
+
 			statement.execute();
 			conexao.close();
 
@@ -68,24 +69,45 @@ public class DaoCliente implements IDaoCliente {
 	}
 
 	@Override
-	public void editar(Cliente cliente, Endereco endereco) {
-		// TODO Auto-generated method stub
+	public void editar(Cliente cliente)throws DaoException {
+
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Cliente.UPDATE);
+
+			statement.setString(1, cliente.getNome());
+			statement.setString(2, cliente.getCpf());
+			statement.setString(3, cliente.getRg());
+			statement.setDate(4, Ultil.converterParaData(cliente.getData_nascimento()));
+			statement.setInt(5, cliente.getEndereco_id());
+			statement.setInt(6, cliente.getId());
+
+			conexao.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO ATUALIZAR CLIENTE.");
+		}
+
 	}
-	
-	public ArrayList<Atendimento> listarTodos()throws DaoException{
-		
+
+	public ArrayList<Atendimento> listarTodos() throws DaoException {
+
 		try {
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Cidade.SELECT_ALL);
 			ArrayList<Atendimento> atendimetos = new ArrayList<>();
 
 			ResultSet resultSet = statement.executeQuery();
-			
+
 			while (resultSet.next()) {
-				Atendimento atendimento =  new Atendimento(resultSet.getInt(1), resultSet.getInt(2),resultSet.getString(3), resultSet.getString(4));
+				Atendimento atendimento = new Atendimento(resultSet.getInt(1), resultSet.getInt(2),
+						resultSet.getString(3), resultSet.getString(4));
 				atendimetos.add(atendimento);
 
 			}
+
+			conexao.close();
 			return atendimetos;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -128,22 +150,6 @@ public class DaoCliente implements IDaoCliente {
 	public List<Cliente> buscarPorBusca(String busca) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	public Date converterParaData(String txt) {
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-		java.sql.Date data = null;
-		try {
-			data = new java.sql.Date(format.parse(txt).getTime());
-			
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		 
-
-		return data ;
-
 	}
 
 }

@@ -11,7 +11,7 @@ public interface IDaoCliente {
 
 	public void salvar(Cliente cliente, Endereco endereco, String cep)throws DaoException;
 
-	public void editar(Cliente cliente, Endereco endereco);
+	public void editar(Cliente cliente) throws DaoException;
 
 	public Cliente buscarPorId(int id)throws DaoException;
 
