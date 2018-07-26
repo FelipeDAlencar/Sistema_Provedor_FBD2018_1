@@ -40,7 +40,7 @@ public class ControllerEditarFuncionario implements Listeners {
 						Integer.parseInt(InternalEditarFuncionario.getNumeroFild().getText()));
 
 				fachada.salvarOuEditarEndereco(endereco);
-				fachada.salvarOuEditarFuncionario(funcionario);
+				fachada.salvarOuEditarFuncionario(funcionario, endereco, null);
 
 				Menssagens.menssagem("Funcionário Editado com sucesso!", 1);
 

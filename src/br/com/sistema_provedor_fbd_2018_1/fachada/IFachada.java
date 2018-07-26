@@ -35,7 +35,7 @@ public interface IFachada {
 	public ArrayList<Endereco> buscarEnderecoPorBusca(String busca);
 
 	// Funcionario
-	public void salvarOuEditarFuncionario(Funcionario funcionario) throws BusinessException;
+	public void salvarOuEditarFuncionario(Funcionario funcionario, Endereco endereco, String cep) throws BusinessException;
 
 	public Funcionario buscarFuncionarioPorId(int id) throws BusinessException;
 

@@ -24,8 +24,7 @@ public class DaoCliente implements IDaoCliente {
 	public void salvar(Cliente cliente, Endereco endereco, String cep) throws DaoException {
 		try {
 			this.conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
-			
-			
+	
 			//CIDADE
 			statement = conexao.prepareStatement(SQLUtil.Cidade.SELECT_CEP);
 			statement.setString(1, cep);

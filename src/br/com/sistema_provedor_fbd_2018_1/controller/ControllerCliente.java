@@ -20,6 +20,7 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
+import br.com.sistema_provedor_fbd_2018_1.sql.Ultil;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroContato;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarContato;
@@ -65,11 +66,10 @@ public class ControllerCliente implements Listeners {
 					
 					String cidadeString = (String)internalCliente.getCidadesComboBox().getSelectedItem();
 					
-					String nomeCidade = separarString(cidadeString.trim(), 0);
-					String estado = separarString(cidadeString.trim(), 1);
+					String nomeCidade = Ultil.separarString(cidadeString.trim(), 0);
+					String estado = Ultil.separarString(cidadeString.trim(), 1);
 					
-					System.out.println(nomeCidade);
-					System.out.println(estado);
+					
 					
 					Cidade  cidade = fachada.buscarPorNomeEstado(nomeCidade, estado);
 					
@@ -154,9 +154,6 @@ public class ControllerCliente implements Listeners {
 	public void setAdicionarCliente(InternalCadastroCliente adicionarCliente) {
 		this.internalCliente = adicionarCliente;
 	}
-	public String separarString(String txt, int parte) {
-		String [] split = txt.split("-");
-		return split[parte].trim();
-	}
+	
 
 }

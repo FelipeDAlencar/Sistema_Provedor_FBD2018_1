@@ -2,11 +2,13 @@ package br.com.sistema_provedor_fbd_2018_1.controller;
 
 import java.awt.event.ActionEvent;
 
+import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Funcionario;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
+import br.com.sistema_provedor_fbd_2018_1.sql.Ultil;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroFuncionario;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalFuncionario;
 import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
@@ -36,9 +38,16 @@ public class ControllerCadastroFuncionario implements Listeners {
 						internalCadastroFuncionario.getComplementoFild().getText(),
 						internalCadastroFuncionario.getRuaFild().getText(),
 						Integer.parseInt(internalCadastroFuncionario.getNumeroFild().getText()));
-
+				
+				String NomeEstado = (String)internalCadastroFuncionario.getCidadesCombo().getSelectedItem();
+				
+				String nomeCidade = Ultil.separarString(NomeEstado, 0);
+				String estado = Ultil.separarString(NomeEstado, 1);
+				
+				Cidade cidade = fachada.buscarPorNomeEstado(nomeCidade, estado);
+				
 				fachada.salvarOuEditarEndereco(endereco);
-				fachada.salvarOuEditarFuncionario(funcionario);
+				fachada.salvarOuEditarFuncionario(funcionario, endereco,cidade.getCep());
 			
 				internalFuncionario.carregarFuncionarios(fachada.listarTodosFuncionarios());
 				

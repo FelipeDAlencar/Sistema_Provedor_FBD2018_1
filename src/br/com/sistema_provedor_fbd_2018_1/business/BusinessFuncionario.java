@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import br.com.sistema_provedor_fbd_2018_1.dao.DaoFuncionario;
 import br.com.sistema_provedor_fbd_2018_1.dao.IDaoFuncionario;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Funcionario;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
@@ -21,16 +22,15 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 	}
 
 	@Override
-	public void salvarOuEditarFuncionario(Funcionario funcionario) throws BusinessException {
+	public void salvarOuEditarFuncionario(Funcionario funcionario, Endereco endereco, String cep) throws BusinessException {
 		
 		try {
 			Validar(funcionario);
 			if (funcionario.getId() == null) {
 				
-				dao.salvar(funcionario);
+				dao.salvar(funcionario, endereco, cep);
 				
 			} else {
-				System.out.println(funcionario.getId());
 				dao.editar(funcionario);
 			}
 

@@ -137,5 +137,5 @@ public class SQLUtil {
 		public static String INSERT_ALL = "insert into contrato (valor_instalacao, valor_mensal, login, senha, numero_parcelas, cliente_id, porta_id) "
 				+ "values (?,?,?,?,?,?,?); ";
 	}
-
+	
 }
