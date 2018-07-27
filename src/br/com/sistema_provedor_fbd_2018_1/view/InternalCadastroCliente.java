@@ -29,7 +29,7 @@ public class InternalCadastroCliente extends TelaInternal {
 	private JLabel nomeLabel, cpfLabel, rgLabel, dataNascimentoLabel;
 	private JLabel bairroLabel, complementoLabel, ruaLabel, numeroLabel;
 	private JLabel cidadeLabel;
-	private JTextField nomeField, rgField;
+	private JtextFieldGenerico nomeField, rgField;
 	private JTextField bairroField, complementoField, ruaField;
 	private JtextFieldGenerico numeroField;
 	private JComboBox<String> cidadesComboBox;
@@ -70,7 +70,7 @@ public class InternalCadastroCliente extends TelaInternal {
 		nomeLabel.setBounds(47, 29, 100, 50);
 		panelCliente.add(nomeLabel);
 
-		nomeField = new JTextField();
+		nomeField = new JtextFieldGenerico("ABCDEFGHIJLMNOPQRSTUVXZWYÇXabcdefghijlmnopqrstuvxyzç´^");
 		nomeField.setBounds(47, 76, 450, 30);
 		panelCliente.add(nomeField);
 
@@ -86,7 +86,7 @@ public class InternalCadastroCliente extends TelaInternal {
 		rgLabel.setBounds(865, 29, 100, 50);
 		panelCliente.add(rgLabel);
 
-		rgField = new JTextField();
+		rgField = new JtextFieldGenerico("1234567890.");
 		rgField.setBounds(865, 76, 200, 30);
 		panelCliente.add(rgField);
 
@@ -274,7 +274,7 @@ public class InternalCadastroCliente extends TelaInternal {
 		return nomeField;
 	}
 
-	public void setNomeField(JTextField nomeField) {
+	public void setNomeField(JtextFieldGenerico nomeField) {
 		this.nomeField = nomeField;
 	}
 
@@ -290,7 +290,7 @@ public class InternalCadastroCliente extends TelaInternal {
 		return rgField;
 	}
 
-	public void setRgField(JTextField rgField) {
+	public void setRgField(JtextFieldGenerico rgField) {
 		this.rgField = rgField;
 	}
 

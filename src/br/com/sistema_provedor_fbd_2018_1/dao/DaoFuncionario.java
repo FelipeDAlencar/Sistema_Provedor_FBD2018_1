@@ -140,6 +140,7 @@ public class DaoFuncionario implements IDaoFuncionario {
 			statement.setString(1, '%' + busca + '%');
 			statement.setString(2, '%' + busca + '%');
 			statement.setString(3, '%' + busca + '%');
+			statement.setString(4, '%' + busca + '%');
 
 			ResultSet resultSet = statement.executeQuery();
 			ArrayList<Funcionario> funcionarios = new ArrayList<>();

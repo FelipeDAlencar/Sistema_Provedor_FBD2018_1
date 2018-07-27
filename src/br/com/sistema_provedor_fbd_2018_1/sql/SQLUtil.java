@@ -36,7 +36,7 @@ public class SQLUtil {
 		public static String SELECT_ALL = "select * from funcionario";
 		
 		public static String SELECT_PORBUSCA = "select * from funcionario where nome ilike 	? or cargo ilike ? "
-				+ "or login ilike ?";
+				+ "or login ilike ? or to_char(data_contrato, 'yyyy/MM/dd hh:mm:ss')   like ?";
 	}
 
 	public static class Cidade {
