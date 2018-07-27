@@ -60,9 +60,14 @@ public class BusinessCaixa implements IBusinessCaixa {
 	}
 
 	@Override
-	public ArrayList<Caixa> buscarPorBusca(String busca) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Caixa> buscarPorBusca(String busca) throws BusinessException{
+		try {
+			return dao.buscarPorBusca(busca);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO NO BUS");
+		}
+
 	}
 
 }

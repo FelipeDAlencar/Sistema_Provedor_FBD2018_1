@@ -51,6 +51,15 @@ public class ControllerServico implements Listeners {
 				controllerEditarServico.preencherCampos();
 				internalEditarServico.setVisible(true);
 			}
+			if(e.getSource() == internalServicos.getBtnBuscar()) {
+				String busca = internalServicos.getBuscarField().getText();
+				
+				if(busca.equals("")) {
+					internalServicos.carregarServicos(fachada.listarTodosServico());
+				}else {
+					internalServicos.carregarServicos(fachada.buscarServicoPorBusca(busca));
+				}
+			}
 		} catch (BusinessException e1) {
 			e1.getMessage();
 		}
@@ -61,6 +70,7 @@ public class ControllerServico implements Listeners {
 	public void addListeners() {
 		internalServicos.getBtnNovo().addActionListener(this);
 		internalServicos.getBtnEditar().addActionListener(this);
+		internalServicos.getBtnBuscar().addActionListener(this);
 
 	}
 

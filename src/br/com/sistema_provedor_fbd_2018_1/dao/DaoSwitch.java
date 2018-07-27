@@ -161,9 +161,35 @@ public class DaoSwitch implements IDaoSwitch {
 	}
 
 	@Override
-	public List<Switch> buscarPorBusca(String busca) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Switch> buscarPorBusca(String busca)throws DaoException {
+		
+		try {
+			conexao =  SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Switch.SELECT_PORBUSCA);
+			
+			statement.setString(1, '%' + busca + '%');
+			statement.setString(2, '%' + busca + '%');
+			statement.setString(3, '%' + busca + '%');
+			
+			ResultSet resultSet = statement.executeQuery();
+			
+			ArrayList<Switch> switchs =  new ArrayList<>();
+			Switch switch1;
+			
+			while(resultSet.next()) {
+				switch1 = new Switch(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("ip"), resultSet.getString("login"), "", resultSet.getInt("numero_de_portas"));
+				switchs.add(switch1);
+			
+			}
+			return switchs;
+				
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO BUSCAR SWITCH");
+		}
+		
+
 	}
 
 }

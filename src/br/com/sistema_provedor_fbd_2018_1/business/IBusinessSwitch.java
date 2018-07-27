@@ -13,6 +13,6 @@ public interface IBusinessSwitch {
 
 	public Switch buscarPorId(int id) throws BusinessException;
 
-	public ArrayList<Switch> buscarPorBusca(String busca);
+	public ArrayList<Switch> buscarPorBusca(String busca) throws BusinessException;
 
 }

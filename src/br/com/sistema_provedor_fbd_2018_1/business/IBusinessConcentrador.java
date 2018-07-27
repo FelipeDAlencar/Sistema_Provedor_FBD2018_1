@@ -12,6 +12,6 @@ public interface IBusinessConcentrador {
 
 	public Concentrador buscarPorId(int id) throws BusinessException;
 
-	public ArrayList<Concentrador> buscarPorBusca(String busca);
+	public ArrayList<Concentrador> buscarPorBusca(String busca) throws BusinessException;
 
 }

@@ -62,9 +62,13 @@ public class BusinessServico implements IBusinessServico{
 	}
 
 	@Override
-	public ArrayList<Servico> buscarPorBusca(String busca) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Servico> buscarPorBusca(String busca)throws BusinessException {
+		try {
+			return dao.buscarPorBusca(busca);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO NO BUS");
+		}
 	}
 
 }

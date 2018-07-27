@@ -63,9 +63,15 @@ public class BusinessConcentrador implements IBusinessConcentrador {
 	}
 
 	@Override
-	public ArrayList<Concentrador> buscarPorBusca(String busca) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Concentrador> buscarPorBusca(String busca)throws BusinessException {
+		
+		try {
+			return dao.buscarPorBusca(busca);
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new BusinessException("ERRO NO BUS");
+		}
 	}
 
 }

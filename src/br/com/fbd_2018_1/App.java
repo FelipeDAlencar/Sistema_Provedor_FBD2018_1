@@ -39,11 +39,7 @@ public class App {
 		
 		
 		
-		
-		for(Funcionario funcionario: fachada.buscarFuncionarioPorBusca("L")) {
-			System.out.println(funcionario.getNome());
-		}
-		
+
 		
 	
 				

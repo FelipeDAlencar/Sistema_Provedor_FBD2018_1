@@ -53,6 +53,20 @@ public class ControllerConcentrador implements Listeners {
 			internalEditarConcentrador.setVisible(true);
 		}
 		
+		
+		if(e.getSource() == internalConcentrador.getBtnBuscar()) {
+			
+			String busca = internalConcentrador.getBuscarField().getText();
+			
+			if(busca.equals("")) {
+				internalConcentrador.carregarConcentrador(fachada.listarTodosConcentrador());
+			}else {
+				internalConcentrador.carregarConcentrador(fachada.buscarConcentradorPorBusca(busca));
+				
+			}
+			
+			
+		}
 		} catch (BusinessException ex) {
 			ex.getMessage();
 			
@@ -65,6 +79,7 @@ public class ControllerConcentrador implements Listeners {
 		internalConcentrador.getBtnNovo().addActionListener(this);
 		internalConcentrador.getBtnEditar().addActionListener(this);
 		internalConcentrador.getBtnRemover().addActionListener(this);
+		internalConcentrador.getBtnBuscar().addActionListener(this);
 		
 	}
 

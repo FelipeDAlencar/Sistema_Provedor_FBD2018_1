@@ -37,23 +37,30 @@ public class ControllerCidade implements Listeners {
 				internalCadastroCidade.setVisible(true);
 				controllerCadastroCidade.setInternalCadastroCidade(internalCadastroCidade);
 				controllerCadastroCidade.addListeners();
-			}else {
+			}
+			if (e.getSource() == internalCidade.getBntEditar()) {
 
 				int row = internalCidade.getTabela().getSelectedRow();
-				int id = Integer.parseInt(internalCidade.getTabela().getValueAt(row,0).toString());
+				int id = Integer.parseInt(internalCidade.getTabela().getValueAt(row, 0).toString());
 				Cidade cidade = fachada.buscarCidadePorId(id);
-				
-				if (e.getSource() == internalCidade.getBntEditar()) {
-					controllerEditarCidade = new ControllerEditarCidade(cidade);
-					internalEditarCidade = new InternalEditarCidade(telaPrincipal, controllerEditarCidade);
-					telaPrincipal.getDesktopPane().add(internalEditarCidade);
-					internalEditarCidade.setVisible(true);
-					controllerEditarCidade.setInternalEditarCidade(internalEditarCidade);
-					controllerEditarCidade.addListeners();
-					controllerEditarCidade.carregarDados();
-				}
-				if (e.getSource() == internalCidade.getBntRemover()) {
-					
+
+				controllerEditarCidade = new ControllerEditarCidade(cidade);
+				internalEditarCidade = new InternalEditarCidade(telaPrincipal, controllerEditarCidade);
+				telaPrincipal.getDesktopPane().add(internalEditarCidade);
+				internalEditarCidade.setVisible(true);
+				controllerEditarCidade.setInternalEditarCidade(internalEditarCidade);
+				controllerEditarCidade.addListeners();
+				controllerEditarCidade.carregarDados();
+
+			}
+			if (e.getSource() == internalCidade.getBtnBuscar()) {
+				String busca = internalCidade.getBuscaField().getText();
+				System.out.println("Entrou");
+
+				if (busca.equals("")) {
+					internalCidade.carregarCidades(fachada.listarTodosCidades());
+				} else {
+					internalCidade.carregarCidades(fachada.buscarCidadePorBusca(busca));
 				}
 			}
 		} catch (BusinessException e1) {
@@ -67,6 +74,7 @@ public class ControllerCidade implements Listeners {
 	public void addListeners() {
 		internalCidade.getBntNovo().addActionListener(this);
 		internalCidade.getBntEditar().addActionListener(this);
+		internalCidade.getBtnBuscar().addActionListener(this);
 	}
 
 	public InternalCidade getInternalCidade() {

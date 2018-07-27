@@ -6,6 +6,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 public class InternalServicos extends TelaInternal{
@@ -13,9 +16,12 @@ public class InternalServicos extends TelaInternal{
 	private DefaultTableModel modelTable;
 	private JScrollPane barraRolagem;
 	private JTable tabela;
+	private JLabel lblBuscar;
+	private JTextField buscarField;
+	private Botao btnBuscar;
 	public InternalServicos(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
 		super("Serviços", telaPrincipal, actionListener);
-		setBounds(150, 50, 1050, 500);
+		setBounds(150, 20, 1050, 610);
 		getContentPane().setLayout(null);
 	}
 
@@ -36,7 +42,8 @@ public class InternalServicos extends TelaInternal{
 		modelTable = new DefaultTableModel();
 		modelTable.addColumn("Id");
 		modelTable.addColumn("Nome");
-		modelTable.addColumn("Valor");
+		modelTable.addColumn("Download");
+		modelTable.addColumn("Upload");
 
 		tabela = new JTable(modelTable);
 		tabela.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(100);
@@ -44,15 +51,28 @@ public class InternalServicos extends TelaInternal{
 		tabela.setBounds(0,0,600,400);
 
 		barraRolagem = new JScrollPane(tabela);
-		barraRolagem.setBounds(50,60,930,400);
+		barraRolagem.setBounds(50,191,928,320);
 
 		getContentPane().add(barraRolagem);
+		
+		lblBuscar = new JLabel("Buscar:");
+		lblBuscar.setBounds(50, 71, 46, 14);
+		getContentPane().add(lblBuscar);
+		
+		buscarField = new JTextField();
+		buscarField.setBounds(50, 102, 200, 28);
+		getContentPane().add(buscarField);
+		buscarField.setColumns(10);
+		
+		btnBuscar = new Botao("", "Buscar");
+		btnBuscar.setBounds(50, 140, 107, 40);
+		getContentPane().add(btnBuscar);
 	}
 
 	public void carregarServicos(List<Servico> servicos) {
 		modelTable.setNumRows(0);
 		for (Servico servico : servicos) {
-			String[] linha = {servico.getId().toString(), servico.getNome()};
+			String[] linha = {servico.getId().toString(), servico.getNome(), String.valueOf(servico.getDownload()),String.valueOf(servico.getUpload())};
 			modelTable.addRow(linha);
 		}
 	}
@@ -80,6 +100,15 @@ public class InternalServicos extends TelaInternal{
 	public JTable getTabela() {
 		return tabela;
 	}
+
+	public JTextField getBuscarField() {
+		return buscarField;
+	}
+
+	public Botao getBtnBuscar() {
+		return btnBuscar;
+	}
+	
 
 
 

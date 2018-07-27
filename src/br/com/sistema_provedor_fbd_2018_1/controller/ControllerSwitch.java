@@ -51,6 +51,18 @@ public class ControllerSwitch implements Listeners {
 				telaPrincipal.getDesktopPane().add(internalEditarSwitch);
 				internalEditarSwitch.setVisible(true);
 			}
+			
+			if(e.getSource() ==  internalSwitch.getBtnBuscar()) {
+				
+				String busca =  internalSwitch.getBuscaField().getText();
+				
+				if(busca.equals("")) {
+					internalSwitch.carregarSwitchs(fachada.listarTodosSwitch());
+				}else {
+					internalSwitch.carregarSwitchs(fachada.buscarSwitchPorBusca(busca));
+				}
+				
+			}
 
 		} catch (BusinessException e1) {
 			e1.printStackTrace();
@@ -64,6 +76,7 @@ public class ControllerSwitch implements Listeners {
 		internalSwitch.getBtnNovo().addActionListener(this);
 		internalSwitch.getBtnEditar().addActionListener(this);
 		internalSwitch.getBtnRemover().addActionListener(this);
+		internalSwitch.getBtnBuscar().addActionListener(this);
 
 	}
 

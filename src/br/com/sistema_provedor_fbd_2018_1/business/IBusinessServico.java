@@ -13,6 +13,6 @@ public interface IBusinessServico {
 
 	public Servico buscarPorId(int id) throws BusinessException;
 
-	public ArrayList<Servico> buscarPorBusca(String busca);
+	public ArrayList<Servico> buscarPorBusca(String busca) throws BusinessException;
 
 }

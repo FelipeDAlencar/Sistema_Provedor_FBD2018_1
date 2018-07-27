@@ -16,6 +16,6 @@ public interface IDaoSwitch {
 	
 	public ArrayList<Switch> listarTodos()throws DaoException;
 	
-	public List<Switch> buscarPorBusca(String busca);
+	public ArrayList<Switch> buscarPorBusca(String busca) throws DaoException;
 
 }

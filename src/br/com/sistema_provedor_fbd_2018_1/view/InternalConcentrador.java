@@ -1,10 +1,13 @@
 package br.com.sistema_provedor_fbd_2018_1.view;
 
+import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
@@ -19,9 +22,12 @@ public class InternalConcentrador extends TelaInternal{
 	private JScrollPane barraRolagem;
 	private JTable tabela;
 	private Fachada fachada;
+	private JLabel lblBuscar;
+	private JTextField buscarField;
+	private Botao btnBuscar;
 	public InternalConcentrador(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
 		super("Concentrador", telaPrincipal, actionListener);
-		setBounds(150, 50, 1050, 500);
+		setBounds(150, 20, 1050, 610);
 		getContentPane().setLayout(null);
 		fachada = new Fachada();
 	}
@@ -52,9 +58,23 @@ public class InternalConcentrador extends TelaInternal{
 		tabela.setBounds(0,0,600,400);
 
 		barraRolagem = new JScrollPane(tabela);
-		barraRolagem.setBounds(50,60,930,400);
+		barraRolagem.setBounds(50,197,926,361);
 
 		getContentPane().add(barraRolagem);
+		
+		
+		lblBuscar = new JLabel("Buscar:");
+		lblBuscar.setBounds(50, 71, 46, 14);
+		getContentPane().add(lblBuscar);
+		
+		buscarField = new JTextField();
+		buscarField.setBounds(50, 102, 200, 28);
+		getContentPane().add(buscarField);
+		buscarField.setColumns(10);
+		
+		btnBuscar = new Botao("", "Buscar");
+		btnBuscar.setBounds(50, 140, 107, 40);
+		getContentPane().add(btnBuscar);
 	}
 
 	public void carregarConcentrador(List<Concentrador> concentradores) {
@@ -117,6 +137,14 @@ public class InternalConcentrador extends TelaInternal{
 
 	public void setTabela(JTable tabela) {
 		this.tabela = tabela;
+	}
+
+	public JTextField getBuscarField() {
+		return buscarField;
+	}
+
+	public Botao getBtnBuscar() {
+		return btnBuscar;
 	}
 
 

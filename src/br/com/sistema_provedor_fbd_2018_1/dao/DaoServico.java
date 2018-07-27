@@ -42,15 +42,15 @@ public class DaoServico implements IDaoServico {
 		try {
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Servico.UPDATE);
-		
-			statement.setString(1,servico.getNome());
+
+			statement.setString(1, servico.getNome());
 			statement.setInt(2, servico.getDownload());
 			statement.setInt(3, servico.getUpload());
 			statement.setInt(4, servico.getId());
-			
+
 			statement.executeQuery();
 			conexao.close();
-		
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DaoException("ERRO AO EDITAR SERVIÇO - CONTATE A EQUIPE (DAO)");
@@ -70,7 +70,8 @@ public class DaoServico implements IDaoServico {
 			Servico servico;
 
 			if (resultSet.next()) {
-				servico = new Servico(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4));
+				servico = new Servico(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3),
+						resultSet.getInt(4));
 
 			} else {
 				throw new DaoException("SERVIÇO NÃO CADASTRADO");
@@ -89,22 +90,22 @@ public class DaoServico implements IDaoServico {
 
 		try {
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
-			statement =  conexao.prepareStatement(SQLUtil.Servico.SELECT_ALL);
+			statement = conexao.prepareStatement(SQLUtil.Servico.SELECT_ALL);
 
 			ArrayList<Servico> servicos = new ArrayList<>();
 			Servico servico;
 
 			ResultSet resultSet = statement.executeQuery();
 
-			while(resultSet.next()) {
-				servico =  new Servico(resultSet.getInt(1),resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4));
+			while (resultSet.next()) {
+				servico = new Servico(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3),
+						resultSet.getInt(4));
 				servicos.add(servico);
 			}
 			conexao.close();
 			return servicos;
 
-
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DaoException("ERRO AO LISTAR TODOS OS  CONCENTRADORES");
 		}
@@ -112,9 +113,30 @@ public class DaoServico implements IDaoServico {
 	}
 
 	@Override
-	public List<Servico> buscarPorBusca(String busca) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Servico> buscarPorBusca(String busca) throws DaoException {
+
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Servico.SELECT_PORBUSCA);
+
+			statement.setString(1, '%' + busca + '%');
+
+			ResultSet resultSet = statement.executeQuery();
+			ArrayList<Servico> servicos = new ArrayList<>();
+			Servico servico;
+
+			while (resultSet.next()) {
+				servico = new Servico(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getInt("upload"),
+						resultSet.getInt("download"));
+				servicos.add(servico);
+			}
+			return servicos;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO BUSCAR SERVICO");
+		}
+
 	}
 
 }

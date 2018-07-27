@@ -9,6 +9,7 @@ import java.util.List;
 
 import br.com.sistema_provedor_fbd_2018_1.entidade.Concentrador;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
+import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLConnection;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLUtil;
 
@@ -122,9 +123,36 @@ public class DaoConcentrador implements IDaoConcentrador {
 	}
 
 	@Override
-	public List<Concentrador> buscarPorBusca(String busca) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Concentrador> buscarPorBusca(String busca) throws DaoException{
+		
+		try {
+			conexao =  SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement =  conexao.prepareStatement(SQLUtil.Concentrador.SELECT_PORBUSCA);
+			
+			statement.setString(1, '%'+ busca + '%');
+			statement.setString(2, '%'+ busca + '%');
+			
+			
+			ResultSet resultSet = statement.executeQuery();
+			ArrayList<Concentrador>concentradors =  new ArrayList<>();
+			Concentrador concentrador;
+			
+			
+			while(resultSet.next()) {
+				concentrador = new Concentrador(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("ip"),
+						resultSet.getString("login"), "", resultSet.getInt("cidade_id"));
+				concentradors.add(concentrador);
+			}
+			
+			return concentradors;
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO BUSCAR CONCENTRADOR");
+		}
+	
 	}
 
 }

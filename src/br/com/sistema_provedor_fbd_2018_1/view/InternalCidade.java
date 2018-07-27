@@ -9,16 +9,20 @@ import javax.swing.table.DefaultTableModel;
 
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 public class InternalCidade extends TelaInternal{
-	private Botao bntNovo, bntEditar, bntRemover;
+	private Botao bntNovo, bntEditar, bntRemover, btnBuscar ;
 	private DefaultTableModel modelTable;
 	private JScrollPane barraRolagem;
 	private JTable tabela;
+	private JTextField buscaField;
 	public InternalCidade(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
 		super("Cidades", telaPrincipal, actionListener);
-		setBounds(150, 50, 1050, 500);
+		setBounds(150, 20, 1050, 610);
 		getContentPane().setLayout(null);
 		setVisible(false);
 	}
@@ -49,9 +53,22 @@ public class InternalCidade extends TelaInternal{
 		tabela.setBounds(0,0,600,400);
 		
 		barraRolagem = new JScrollPane(tabela);
-		barraRolagem.setBounds(50,60,930,400);
+		barraRolagem.setBounds(50,191,907,289);
 		
 		getContentPane().add(barraRolagem);
+		
+		JLabel lblBusca = new JLabel("Busca:");
+		lblBusca.setBounds(50, 71, 46, 14);
+		getContentPane().add(lblBusca);
+		
+		buscaField = new JTextField();
+		buscaField.setBounds(50, 102, 200, 28);
+		getContentPane().add(buscaField);
+		buscaField.setColumns(10);
+		
+		btnBuscar = new Botao("", "Buscar");
+		btnBuscar.setBounds(49, 140, 107, 40);
+		getContentPane().add(btnBuscar);
 	}
 	
 	public void carregarCidades(List<Cidade> cidades) {
@@ -86,6 +103,14 @@ public class InternalCidade extends TelaInternal{
 	public JTable getTabela() {
 		return tabela;
 	}
-	
 
+	public Botao getBtnBuscar() {
+		return btnBuscar;
+	}
+
+	public JTextField getBuscaField() {
+		return buscaField;
+	}
+	
+	
 }

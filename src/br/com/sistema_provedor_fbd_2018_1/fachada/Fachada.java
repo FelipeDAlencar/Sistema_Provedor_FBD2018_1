@@ -166,9 +166,8 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public ArrayList<Cidade> buscarCidadePorBusca(String busca) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Cidade> buscarCidadePorBusca(String busca)throws BusinessException {
+		return businessCidade.buscarPorBusca(busca);
 	}
 
 	@Override
@@ -201,7 +200,6 @@ public class Fachada implements IFachada {
 
 	@Override
 	public ArrayList<Atendimento> buscarAtendimentoPorBusca(String busca) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -224,9 +222,8 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public ArrayList<Caixa> buscarCaixaPorBusca(String busca) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Caixa> buscarCaixaPorBusca(String busca) throws BusinessException {
+		return businessCaixa.buscarPorBusca(busca);
 	}
 
 	// CONTATO
@@ -324,9 +321,8 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public ArrayList<Servico> buscarServicoPorBusca(String busca) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Servico> buscarServicoPorBusca(String busca)throws BusinessException {
+		return businessServico.buscarPorBusca(busca);
 	}
 
 	// SWITCH
@@ -348,9 +344,8 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public ArrayList<Switch> buscarSwitchPorBusca(String busca) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Switch> buscarSwitchPorBusca(String busca) throws BusinessException {
+		return businessSwitch.buscarPorBusca(busca);
 	}
 
 	// CONCENTRADOR
@@ -371,9 +366,8 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public ArrayList<Concentrador> buscarConcentradorPorBusca(String busca) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Concentrador> buscarConcentradorPorBusca(String busca) throws BusinessException {
+		return businessConcentrador.buscarPorBusca(busca);
 	}
 
 	

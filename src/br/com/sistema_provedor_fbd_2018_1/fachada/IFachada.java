@@ -51,7 +51,7 @@ public interface IFachada {
 
 	public Cidade buscarCidadePorId(int id) throws BusinessException;
 
-	public ArrayList<Cidade> buscarCidadePorBusca(String busca);
+	public ArrayList<Cidade> buscarCidadePorBusca(String busca) throws BusinessException;
 
 	public ArrayList<Cidade> listarTodosCidades() throws BusinessException;
 	public Cidade buscarPorNomeEstado(String nome, String estado)throws BusinessException;
@@ -64,7 +64,7 @@ public interface IFachada {
 
 	public Atendimento buscarAtendimentoPorId(int id) throws BusinessException;
 
-	public ArrayList<Atendimento> buscarAtendimentoPorBusca(String busca);
+	public ArrayList<Atendimento> buscarAtendimentoPorBusca(String busca) throws BusinessException;
 
 	// Caixa
 	public void salvarOuEditarCaixa(Caixa caixa, String cep) throws BusinessException;
@@ -73,7 +73,7 @@ public interface IFachada {
 
 	public Caixa buscarCaixaPorId(int id) throws BusinessException;
 
-	public ArrayList<Caixa> buscarCaixaPorBusca(String busca);
+	public ArrayList<Caixa> buscarCaixaPorBusca(String busca) throws BusinessException;
 
 	// Concentrador
 	public void salvarOuEditarConcentrador(Concentrador concentrador, String cep) throws BusinessException;
@@ -82,7 +82,7 @@ public interface IFachada {
 
 	public Concentrador buscarConcentradorPorId(int id) throws BusinessException;
 
-	public ArrayList<Concentrador> buscarConcentradorPorBusca(String busca);
+	public ArrayList<Concentrador> buscarConcentradorPorBusca(String busca) throws BusinessException;
 
 	// Contato
 	public void salvarOuEditarContato(Contato contato, String cpfCliente) throws BusinessException;
@@ -118,7 +118,7 @@ public interface IFachada {
 
 	public Servico buscarServicoPorId(int id) throws BusinessException;
 
-	public ArrayList<Servico> buscarServicoPorBusca(String busca);
+	public ArrayList<Servico> buscarServicoPorBusca(String busca) throws BusinessException;
 
 	// Switch
 	public void salvarOuEditarSwitch(Switch switch1, String nomeCaixa, String nomeConcentrador) throws BusinessException;
@@ -127,5 +127,5 @@ public interface IFachada {
 
 	public Switch buscarSwitchPorId(int id) throws BusinessException;
 
-	public ArrayList<Switch> buscarSwitchPorBusca(String busca);
+	public ArrayList<Switch> buscarSwitchPorBusca(String busca) throws BusinessException;
 }

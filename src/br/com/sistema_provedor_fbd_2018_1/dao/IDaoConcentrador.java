@@ -16,6 +16,6 @@ public interface IDaoConcentrador {
 	
 	public ArrayList<Concentrador> listarTodos()throws DaoException;
 	
-	public List<Concentrador> buscarPorBusca(String busca);
+	public ArrayList<Concentrador> buscarPorBusca(String busca) throws DaoException;
 
 }

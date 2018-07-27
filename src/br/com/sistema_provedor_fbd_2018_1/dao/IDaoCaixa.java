@@ -16,6 +16,6 @@ public interface IDaoCaixa {
 	
 	public ArrayList<Caixa> listarTodos()throws DaoException;
 	
-	public List<Caixa> buscarPorBusca(String busca);
+	public ArrayList<Caixa> buscarPorBusca(String busca) throws DaoException;
 
 }

@@ -116,9 +116,29 @@ public class DaoCidade implements IDaoCidade {
 
 
 	@Override
-	public List<Cidade> buscarPorBusca(String busca) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Cidade> buscarPorBusca(String busca)throws DaoException {
+		
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Cidade.SELECT_PORBUSCA);
+			
+			statement.setString(1, '%' + busca + '%');
+			statement.setString(2, '%' + busca + '%');
+			statement.setString(3, '%' + busca + '%');
+			
+			ResultSet resultSet =  statement.executeQuery();
+			ArrayList<Cidade> cidades = new ArrayList<>();
+			Cidade cidade;
+			while(resultSet.next()) {
+				cidade = new Cidade(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("estado"), resultSet.getString("cep"));
+				cidades.add(cidade);
+			}
+			
+			return cidades;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO BUSCAR CIDADE");
+		}
 	}
 
 	@Override

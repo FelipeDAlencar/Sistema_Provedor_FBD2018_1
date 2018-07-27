@@ -59,8 +59,13 @@ public class BusinessSwitch implements IBusinessSwitch {
 	}
 
 	@Override
-	public ArrayList<Switch> buscarPorBusca(String busca) {
-		// TODO Auto-generated method stub
+	public ArrayList<Switch> buscarPorBusca(String busca)throws BusinessException {
+		try {
+			return dao.buscarPorBusca(busca);
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 

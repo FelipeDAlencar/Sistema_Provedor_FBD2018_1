@@ -9,6 +9,9 @@ import javax.swing.table.DefaultTableModel;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Atendimento;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Switch;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class InternalSwitch extends TelaInternal{
@@ -16,10 +19,14 @@ public class InternalSwitch extends TelaInternal{
 	private DefaultTableModel modelTable;
 	private JScrollPane barraRolagem;
 	private JTable tabela;
+	private JLabel lblBusca;
+	private JButton btnBuscar;
+	private JTextField buscaField;
+	
 
 	public InternalSwitch(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
 		super("Meus Atendimentos", telaPrincipal, actionListener);
-		setBounds(150, 50, 1050, 500);
+		setBounds(150, 20, 1050, 610);
 		getContentPane().setLayout(null);
 		setVisible(false);	
 	}
@@ -42,6 +49,7 @@ public class InternalSwitch extends TelaInternal{
 		modelTable.addColumn("ID");
 		modelTable.addColumn("Nome");
 		modelTable.addColumn("IP");
+		modelTable.addColumn("Nº de portas");
 		
 		tabela = new JTable(modelTable);
 		tabela.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(100);
@@ -49,15 +57,28 @@ public class InternalSwitch extends TelaInternal{
 		tabela.setBounds(0,0,600,400);
 		
 		barraRolagem = new JScrollPane(tabela);
-		barraRolagem.setBounds(50,60,930,400);
+		barraRolagem.setBounds(50,191,930,379);
 		
 		getContentPane().add(barraRolagem);
+		
+		JLabel lblBusca = new JLabel("Busca:");
+		lblBusca.setBounds(50, 71, 46, 14);
+		getContentPane().add(lblBusca);
+		
+		buscaField = new JTextField();
+		buscaField.setBounds(50, 102, 200, 28);
+		getContentPane().add(buscaField);
+		buscaField.setColumns(10);
+		
+		btnBuscar = new Botao("", "Buscar");
+		btnBuscar.setBounds(49, 140, 107, 40);
+		getContentPane().add(btnBuscar);
 	}
 	
 	public void carregarSwitchs(List<Switch> sws) {
 		modelTable.setNumRows(0);
 		for (Switch sw : sws) {			
-			String[] linha = {Integer.toString(sw.getId()), sw.getNome(), sw.getIp()};
+			String[] linha = {Integer.toString(sw.getId()), sw.getNome(), sw.getIp(), String.valueOf(sw.getNumero_de_portas())};
 			modelTable.addRow(linha);
 		}
 	}
@@ -109,6 +130,15 @@ public class InternalSwitch extends TelaInternal{
 	public void setTabela(JTable tabela) {
 		this.tabela = tabela;
 	}
+
+	public JButton getBtnBuscar() {
+		return btnBuscar;
+	}
+
+	public JTextField getBuscaField() {
+		return buscaField;
+	}
+	
 	
 	
 

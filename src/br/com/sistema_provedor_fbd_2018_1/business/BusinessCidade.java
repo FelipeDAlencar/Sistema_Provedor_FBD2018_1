@@ -54,9 +54,13 @@ public class BusinessCidade implements IBusinessCidade {
 	}
 
 	@Override
-	public ArrayList<Cidade> buscarPorBusca(String busca) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Cidade> buscarPorBusca(String busca)throws BusinessException {
+		try {
+			return dao.buscarPorBusca(busca);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO NOS BUS - CIDADE");
+		}
 	}
 	public Cidade buscarPorNomeEstado(String nome, String estado)throws BusinessException {
 		try {

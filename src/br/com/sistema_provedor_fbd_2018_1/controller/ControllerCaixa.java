@@ -54,6 +54,19 @@ public class ControllerCaixa implements Listeners {
 				controllerEditarCaixa.addListeners();
 				controllerEditarCaixa.preencherCampos();
 			}
+			
+			if(e.getSource() == internalCaixa.getBtnBuscar()) {
+				
+				String busca = internalCaixa.getBuscarField().getText();
+				
+				if(busca.equals("")) {
+					internalCaixa.carregarcaixa(fachada.listarTodosCaixa());
+				}else {
+					internalCaixa.carregarcaixa(fachada.buscarCaixaPorBusca(busca));
+				}
+				
+				
+			}
 		} catch (BusinessException e1) {
 			e1.printStackTrace();
 		}
@@ -65,6 +78,7 @@ public class ControllerCaixa implements Listeners {
 	public void addListeners() {
 		internalCaixa.getBtnNovo().addActionListener(this);
 		internalCaixa.getBtnEditar().addActionListener(this);
+		internalCaixa.getBtnBuscar().addActionListener(this);
 
 	}
 

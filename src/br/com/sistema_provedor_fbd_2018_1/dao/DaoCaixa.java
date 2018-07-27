@@ -86,17 +86,13 @@ public class DaoCaixa implements IDaoCaixa {
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Caixa.SELECT_ID);
 			statement.setInt(1, id);
-			
+
 			ResultSet resultSet = statement.executeQuery();
 			Caixa caixa;
-			if(resultSet.next()) {
-				caixa = new Caixa(
-						resultSet.getInt(1),
-						resultSet.getString(2),
-						resultSet.getString(3),
-						resultSet.getString(4),
-						resultSet.getInt(5));
-			}else {
+			if (resultSet.next()) {
+				caixa = new Caixa(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
+						resultSet.getString(4), resultSet.getInt(5));
+			} else {
 				throw new DaoException("CAIXA NÃO ENCONTRADA - DAO");
 			}
 			return caixa;
@@ -109,35 +105,61 @@ public class DaoCaixa implements IDaoCaixa {
 	@Override
 	public ArrayList<Caixa> listarTodos() throws DaoException {
 		try {
-			conexao =  SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Caixa.SELECT_ALL);
 
-			ArrayList<Caixa> caixas =  new ArrayList<>();
+			ArrayList<Caixa> caixas = new ArrayList<>();
 			Caixa caixa;
 
 			ResultSet resultSet = statement.executeQuery();
 
-			while(resultSet.next()) {
-				caixa = new Caixa(resultSet.getInt(1),resultSet.getString(2), resultSet.getString(3),resultSet.getString(4), 
-						resultSet.getInt(5));
+			while (resultSet.next()) {
+				caixa = new Caixa(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
+						resultSet.getString(4), resultSet.getInt(5));
 				caixas.add(caixa);
 
 			}
 			conexao.close();
 			return caixas;
 
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DaoException("ERRO AO LISTAR CAIXAS - DAO");
 		}
 
-
 	}
 
 	@Override
-	public List<Caixa> buscarPorBusca(String busca) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Caixa> buscarPorBusca(String busca)throws DaoException {
+		
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Caixa.SELECT_PORBUSCA);
+			statement.setString(1, '%'+busca+'%');
+			statement.setString(2, '%'+busca+'%');
+			statement.setString(3, '%'+busca+'%');
+			
+			ResultSet resultSet =  statement.executeQuery();
+			ArrayList<Caixa> caixas = new ArrayList<>();
+			Caixa caixa;
+			
+			while(resultSet.next()) {
+				caixa = new Caixa(resultSet.getInt("id"),resultSet.getString("nome"), resultSet.getString("latitude"), 
+						resultSet.getString("longitude"), resultSet.getInt("cidade_id"));
+				caixas.add(caixa);
+			}
+			return caixas;
+			
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO BUSCAR CAIXAS.");
+		}
+		
+		
+		
 	}
 
 }

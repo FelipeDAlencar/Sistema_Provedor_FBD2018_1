@@ -55,6 +55,9 @@ public class SQLUtil {
 		public static final String UPDATE = "update cidade set  nome = ?, estado = ?, cep = ? where id = ?";
 		
 		public static final String SELECT_NOMEESTADO = "select * from cidade where nome = ? and estado = ?";
+		
+		public static final String SELECT_PORBUSCA = "select * from cidade where nome  ilike ? or estado ilike ? or "
+				+ "cep ilike ?";
 
 	}
 
@@ -80,6 +83,8 @@ public class SQLUtil {
 		public static String SELECT_ID = "select * from servico where id = ?";
 		
 		public static String UPDATE = "update servico set nome = ?, download = ?, upload = ? where id = ?";
+		
+		public static String SELECT_PORBUSCA = "select * from servico where nome ilike ?";
 	}
 
 	public static class Contato {
@@ -107,9 +112,15 @@ public class SQLUtil {
 		
 		public static String UPDATE =  "update caixa set nome = ?, latitude = ?, longitude = ?, cidade_id = ? "
 				+ "where id = ? ";
+		
+		public static String SELECT_PORBUSCA = "select * from caixa where nome ilike ? "
+				+ "or latitude ilike ? or longitude ilike ?";
 	}
 
 	public static class Concentrador {
+		public static final String SELECT_PORBUSCA = "select * from concentrador where nome ilike ? or "
+				+ "ip ilike ?";
+		
 		public static String INSERT_ALL = "insert into concentrador (nome, ip, login, senha, cidade_id) "
 				+ "values (?,?,?,?,?); ";
 		public static String SELECT_NOME = "select * from concentrador where nome = ?";
@@ -131,6 +142,10 @@ public class SQLUtil {
 		public static String SELECT_ID = "select * from switch where id = ?";
 		
 		public static String UPDATE = "update switch set nome = ?, numero_de_portas = ?, ip = ?, login = ?, senha = ?, caixa_id = ?, concentrador_id = ? where id = ?";
+	
+		public static String SELECT_PORBUSCA = "select * from switch where nome ilike ? or "
+				+ "ip ilike ? or login ilike ?";
+	
 	}
 
 	public static class Porta {
