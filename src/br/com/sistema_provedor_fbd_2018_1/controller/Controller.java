@@ -80,7 +80,7 @@ public class Controller implements ActionListener {
 		
 		//ITENS FINANCEITO
 		telaPrincipal.getMenu().getMovimentacoesFinanceiro().addActionListener(this);
-		telaPrincipal.getMenu().getCaixaFinanceiro().addActionListener(this);
+		
 	}
 
 	@Override

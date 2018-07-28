@@ -14,7 +14,7 @@ public class Menu extends JMenuBar{
 	private JMenuItem funcionarioCadastro, servicoCadastro, cidadeCadastro;
 	private JMenuItem adicionarCliente, verCliente, atendimentosCliente;
 	private JMenuItem concentradorNetwork, switchNetwork, caixaNetwork;
-	private JMenuItem movimentacoesFinanceiro, caixaFinanceiro;
+	private JMenuItem movimentacoesFinanceiro;
 	
 	
 	public Menu() {
@@ -48,7 +48,7 @@ public class Menu extends JMenuBar{
 		caixaNetwork = new JMenuItem("Caixa");
 		
 		movimentacoesFinanceiro = new JMenuItem("Movimentações");
-		caixaFinanceiro = new JMenuItem("Caixa");
+		
 		
 		//Adicionando Incone ao Menu
 		cadastrosMenu.setIcon(new ImageIcon("resource/imagens/botoes/menu-toolbar.png"));
@@ -70,7 +70,7 @@ public class Menu extends JMenuBar{
 		caixaNetwork.setIcon(new ImageIcon("resource/imagens/icones/icon-caixa.png"));
 		
 		movimentacoesFinanceiro.setIcon(new ImageIcon("resource/imagens/icones/icon-movimentacao.png"));
-		caixaFinanceiro.setIcon(new ImageIcon("resource/imagens/icones/icon-caixa-financeiro.png"));
+		
 		
 		//Adiconando MenusItens
 		cadastrosMenu.add(funcionarioCadastro);
@@ -95,7 +95,7 @@ public class Menu extends JMenuBar{
 		
 		financeiroMenu.add(movimentacoesFinanceiro);
 		financeiroMenu.addSeparator();
-		financeiroMenu.add(caixaFinanceiro);
+		
 		
 		//Adicionando Menus
 		add(cadastrosMenu);
@@ -156,9 +156,7 @@ public class Menu extends JMenuBar{
 		return movimentacoesFinanceiro;
 	}
 
-	public JMenuItem getCaixaFinanceiro() {
-		return caixaFinanceiro;
-	}
+	
 
 	public JMenuItem getCidadeCadastro() {
 		return cidadeCadastro;
