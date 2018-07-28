@@ -11,6 +11,7 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Contato;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Contrato;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Funcionario;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Movimentacao;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Porta;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Switch;
@@ -128,4 +129,13 @@ public interface IFachada {
 	public Switch buscarSwitchPorId(int id) throws BusinessException;
 
 	public ArrayList<Switch> buscarSwitchPorBusca(String busca) throws BusinessException;
+	
+	//MOVIMENTACAO
+	public void salvarOuEditarMovimentacao(Movimentacao movimentacao) throws BusinessException;
+
+	public ArrayList<Movimentacao> listarTodosMovimentacao() throws BusinessException;
+
+	public Movimentacao buscarPorIdMovimentacao(int id) throws BusinessException;
+
+	public ArrayList<Movimentacao> buscarPorBuscaMovimentacao(String busca) throws BusinessException;
 }

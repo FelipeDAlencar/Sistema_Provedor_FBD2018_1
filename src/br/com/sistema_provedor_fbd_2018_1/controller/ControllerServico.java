@@ -9,6 +9,7 @@ import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroServico;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarServico;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalServicos;
+import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 import br.com.sistema_provedor_fbd_2018_1.view.TelaPrincipal;
 
 public class ControllerServico implements Listeners {
@@ -62,6 +63,8 @@ public class ControllerServico implements Listeners {
 			}
 		} catch (BusinessException e1) {
 			e1.getMessage();
+		}catch (IndexOutOfBoundsException e2) {
+			Menssagens.menssagem("SELECIONE UM CAMPO DA TABELA PARA EDITAR.", 0);
 		}
 
 	}

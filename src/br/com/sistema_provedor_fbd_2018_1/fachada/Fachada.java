@@ -11,6 +11,7 @@ import br.com.sistema_provedor_fbd_2018_1.business.BusinessContato;
 import br.com.sistema_provedor_fbd_2018_1.business.BusinessContrato;
 import br.com.sistema_provedor_fbd_2018_1.business.BusinessEndereco;
 import br.com.sistema_provedor_fbd_2018_1.business.BusinessFuncionario;
+import br.com.sistema_provedor_fbd_2018_1.business.BusinessMovimentacao;
 import br.com.sistema_provedor_fbd_2018_1.business.BusinessPorta;
 import br.com.sistema_provedor_fbd_2018_1.business.BusinessServico;
 import br.com.sistema_provedor_fbd_2018_1.business.BusinessSwitch;
@@ -23,6 +24,7 @@ import br.com.sistema_provedor_fbd_2018_1.business.IBusinessContato;
 import br.com.sistema_provedor_fbd_2018_1.business.IBusinessContrato;
 import br.com.sistema_provedor_fbd_2018_1.business.IBusinessEndereco;
 import br.com.sistema_provedor_fbd_2018_1.business.IBusinessFuncionario;
+import br.com.sistema_provedor_fbd_2018_1.business.IBusinessMovimentacao;
 import br.com.sistema_provedor_fbd_2018_1.business.IBusinessPorta;
 import br.com.sistema_provedor_fbd_2018_1.business.IBusinessServico;
 import br.com.sistema_provedor_fbd_2018_1.business.IBusinessSwitch;
@@ -35,6 +37,7 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Contato;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Contrato;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Funcionario;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Movimentacao;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Porta;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Switch;
@@ -55,6 +58,7 @@ public class Fachada implements IFachada {
 	private IBusinessServico businessServico;
 	private IBusinessSwitch businessSwitch;
 	private IBusinessCaixa businessCaixa;
+	private IBusinessMovimentacao businessMovimentacao;
 
 	public Fachada() {
 		businessCliente = new BusinessCliente();
@@ -64,6 +68,7 @@ public class Fachada implements IFachada {
 		businessAtendimento = new BusinessAtendimento();
 		businessCaixa = new BusinessCaixa();
 		businessConcentrador = new BusinessConcentrador();
+		businessMovimentacao = new BusinessMovimentacao();
 		businessContato = new BusinessContato();
 		businessContrato = new BusinessContrato();
 		businessPorta = new BusinessPorta();
@@ -368,6 +373,29 @@ public class Fachada implements IFachada {
 	@Override
 	public ArrayList<Concentrador> buscarConcentradorPorBusca(String busca) throws BusinessException {
 		return businessConcentrador.buscarPorBusca(busca);
+	}
+
+	
+	//	MOVIMENTACAO
+	@Override
+	public void salvarOuEditarMovimentacao(Movimentacao movimentacao) throws BusinessException {
+		businessMovimentacao.salvarOuEditar(movimentacao);
+		
+	}
+
+	@Override
+	public ArrayList<Movimentacao> listarTodosMovimentacao() throws BusinessException {
+		return businessMovimentacao.listarTodos();
+	}
+
+	@Override
+	public Movimentacao buscarPorIdMovimentacao(int id) throws BusinessException {
+		return businessMovimentacao.buscarPorId(id);
+	}
+
+	@Override
+	public ArrayList<Movimentacao> buscarPorBuscaMovimentacao(String busca) throws BusinessException {
+		return  businessMovimentacao.buscarPorBusca(busca);
 	}
 
 	

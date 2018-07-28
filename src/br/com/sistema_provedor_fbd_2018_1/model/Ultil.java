@@ -25,5 +25,8 @@ public class Ultil {
 		return data ;
 
 	}
+	public static String converterDataParaString(Date date) {
+		return new SimpleDateFormat("dd/MM/yyyy").format(date);
+	}
 
 }

@@ -19,6 +19,7 @@ import br.com.sistema_provedor_fbd_2018_1.view.InternalCidade;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalConcentrador;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalFuncionario;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalLocalizarCliente;
+import br.com.sistema_provedor_fbd_2018_1.view.InternalMovimentacao;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalServicos;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalSwitch;
 import br.com.sistema_provedor_fbd_2018_1.view.TelaPrincipal;
@@ -45,8 +46,10 @@ public class Controller implements ActionListener {
 	private ControllerConcentrador controllerConcentrador;
 	private ControllerCaixa controllerCaixa;
 	private ControllerVisualizar controllerVisualizar;
+	private ControllerMovimentacao controllerMovimentacao;
 	private ControllerCadastroSwitch controllerCadastroSwitch;
 	private InternalCadastroSwitch internalCadastroSwitch;
+	private InternalMovimentacao internalMovimentacao;
 
 	public Controller(TelaPrincipal telaPrincipal) {
 	
@@ -74,7 +77,10 @@ public class Controller implements ActionListener {
 		telaPrincipal.getMenu().getConcentradorNetwork().addActionListener(this);
 		telaPrincipal.getMenu().getSwitchNetwork().addActionListener(this);
 		telaPrincipal.getMenu().getCaixaNetwork().addActionListener(this);
-
+		
+		//ITENS FINANCEITO
+		telaPrincipal.getMenu().getMovimentacoesFinanceiro().addActionListener(this);
+		telaPrincipal.getMenu().getCaixaFinanceiro().addActionListener(this);
 	}
 
 	@Override
@@ -197,6 +203,16 @@ public class Controller implements ActionListener {
 				internalCaixa.setVisible(true);
 				controllerCaixa.setInternalCaixa(internalCaixa);
 				controllerCaixa.addListeners();
+			}
+			
+			if(e.getSource() == telaPrincipal.getMenu().getMovimentacoesFinanceiro()) {
+				controllerMovimentacao = new ControllerMovimentacao(telaPrincipal);
+				internalMovimentacao = new InternalMovimentacao(telaPrincipal, controllerMovimentacao);
+				telaPrincipal.getDesktopPane().add(internalMovimentacao);
+				internalMovimentacao.setVisible(true);
+				controllerMovimentacao.setInternalMovimentacao(internalMovimentacao);
+				internalMovimentacao.carregarMovimentacoes(fachada.listarTodosMovimentacao());
+				controllerMovimentacao.addListeners();
 			}
 
 		} catch (BusinessException e1) {

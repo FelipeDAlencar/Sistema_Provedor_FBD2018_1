@@ -9,6 +9,7 @@ import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroCaixa;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCaixa;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarCaixa;
+import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 import br.com.sistema_provedor_fbd_2018_1.view.TelaPrincipal;
 
 public class ControllerCaixa implements Listeners {
@@ -69,6 +70,8 @@ public class ControllerCaixa implements Listeners {
 			}
 		} catch (BusinessException e1) {
 			e1.printStackTrace();
+		}catch (IndexOutOfBoundsException e2) {
+			Menssagens.menssagem("SELECIONE UM CAMPO DA TABELA PARA EDITAR.", 0);
 		}
 
 

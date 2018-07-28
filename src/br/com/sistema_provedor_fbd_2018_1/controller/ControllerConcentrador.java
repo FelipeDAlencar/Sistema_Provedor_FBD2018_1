@@ -9,6 +9,7 @@ import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroConcentrador;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalConcentrador;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarConcentrador;
+import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 import br.com.sistema_provedor_fbd_2018_1.view.TelaPrincipal;
 import br.com.sistema_provedor_fbd_2018_1.controller.ControllerEditarConcentrador;
 
@@ -70,8 +71,10 @@ public class ControllerConcentrador implements Listeners {
 		} catch (BusinessException ex) {
 			ex.getMessage();
 			
+		} catch (IndexOutOfBoundsException e2) {
+			Menssagens.menssagem("SELECIONE UM CAMPO DA TABELA PARA EDITAR.", 0);
 		}
-		
+
 	}
 
 	@Override

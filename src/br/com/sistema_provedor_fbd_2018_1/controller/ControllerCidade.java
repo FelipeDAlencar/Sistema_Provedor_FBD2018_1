@@ -9,6 +9,7 @@ import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroCidade;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCidade;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarCidade;
+import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 import br.com.sistema_provedor_fbd_2018_1.view.TelaPrincipal;
 
 public class ControllerCidade implements Listeners {
@@ -66,6 +67,8 @@ public class ControllerCidade implements Listeners {
 		} catch (BusinessException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		}catch (IndexOutOfBoundsException e2) {
+			Menssagens.menssagem("SELECIONE UM CAMPO DA TABELA PARA EDITAR.", 0);
 		}
 
 	}

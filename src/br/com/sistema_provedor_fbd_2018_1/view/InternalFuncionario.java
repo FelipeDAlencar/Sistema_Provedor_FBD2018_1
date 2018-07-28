@@ -72,7 +72,6 @@ public class InternalFuncionario extends TelaInternal{
 	
 	public void carregarFuncionarios(ArrayList<Funcionario> funcionarios) {
 		modelTable.setNumRows(0);
-		System.out.println(funcionarios);
 		for (Funcionario funcionario : funcionarios) {
 			String[] linha = {funcionario.getId().toString(), funcionario.getNome(), funcionario.getCargo(), funcionario.getData_contrato()};
 			modelTable.addRow(linha);

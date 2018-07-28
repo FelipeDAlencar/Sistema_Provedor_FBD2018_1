@@ -10,6 +10,7 @@ import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroFuncionario;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarFuncionario;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalFuncionario;
+import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 import br.com.sistema_provedor_fbd_2018_1.view.TelaPrincipal;
 
 public class ControllerFuncionario implements Listeners {
@@ -29,8 +30,9 @@ public class ControllerFuncionario implements Listeners {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == internalFuncionario.getBntNovo()) {
-			try {
+		try {
+			if (e.getSource() == internalFuncionario.getBntNovo()) {
+
 				controllerCadastroFuncionario = new ControllerCadastroFuncionario(internalFuncionario);
 				internalCadastroFuncionario = new InternalCadastroFuncionario(telaPrincipal,
 						controllerCadastroFuncionario);
@@ -39,15 +41,11 @@ public class ControllerFuncionario implements Listeners {
 				controllerCadastroFuncionario.setInternalCadastroFuncionario(internalCadastroFuncionario);
 				controllerCadastroFuncionario.addListeners();
 
-			} catch (BusinessException e1) {
-				e1.printStackTrace();
 			}
-		}
-		if (e.getSource() == internalFuncionario.getBntEditar()) {
-			int linha = internalFuncionario.getTabela().getSelectedRow();
-			int id = Integer.parseInt(internalFuncionario.getTabela().getValueAt(linha, 0).toString());
+			if (e.getSource() == internalFuncionario.getBntEditar()) {
+				int linha = internalFuncionario.getTabela().getSelectedRow();
+				int id = Integer.parseInt(internalFuncionario.getTabela().getValueAt(linha, 0).toString());
 
-			try {
 				Funcionario funcionario = fachada.buscarFuncionarioPorId(id);
 				Endereco endereco = fachada.buscarEnderecoPorId(funcionario.getEndereco_id());
 
@@ -59,14 +57,10 @@ public class ControllerFuncionario implements Listeners {
 				controllerEditarFuncionario.addListeners();
 				controllerEditarFuncionario.preencherCampos();
 
-			} catch (BusinessException e1) {
-				e1.printStackTrace();
 			}
 
-		}
+			if (e.getSource() == internalFuncionario.getBtnBuscar()) {
 
-		if (e.getSource() == internalFuncionario.getBtnBuscar()) {
-			try {
 				String busca = internalFuncionario.getBuscaField().getText();
 
 				if (busca.equals("")) {
@@ -76,11 +70,13 @@ public class ControllerFuncionario implements Listeners {
 
 					internalFuncionario.carregarFuncionarios(fachada.buscarFuncionarioPorBusca(busca));
 				}
-			} catch (BusinessException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
 
+			}
+		} catch (BusinessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IndexOutOfBoundsException e2) {
+			Menssagens.menssagem("SELECIONE UM CAMPO DA TABELA PARA EDITAR.", 0);
 		}
 
 	}

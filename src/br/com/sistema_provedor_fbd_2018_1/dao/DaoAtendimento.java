@@ -66,7 +66,7 @@ public class DaoAtendimento implements IDaoAtendimento {
 	}
 
 	@Override
-	public List<Atendimento> buscarPorBusca(String busca) {
+	public ArrayList<Atendimento> buscarPorBusca(String busca) {
 		// TODO Auto-generated method stub
 		return null;
 	}

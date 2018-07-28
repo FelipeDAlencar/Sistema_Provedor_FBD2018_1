@@ -159,4 +159,20 @@ public class SQLUtil {
 				+ "values (?,?,?,?,?,?,?); ";
 	}
 	
+	
+	public static class Movimentacao{
+		public static final String INSERT_ALL = "insert into movimentacao (descricao, situacao, valor, data_movimentacao, status, tipo) values (?,?,?,?,?,?)  ";
+		
+		public static final String SELECT_ALL = "select * from movimentacao where status = true";
+		
+		public static final String SELECT_ID = "select * from movimentacao where id = ? and status = true";
+		
+		public static final String SELECT_PORBUSCA = "select * from movimentacao where descricao ilike ? or situacao ilike ?"
+				+ "or to_char(valor, '999D99S') like ? or to_char(data_movimentacao, 'yyyy/MM/dd hh:mm:ss') ilike ?"
+				+ "or tipo ilike ?";
+		
+		public static final String  UPDATE = "update movimentacao set descricao = ?, situacao = ?, valor = ?, data_movimentacao = ?, tipo = ? where id = ?";
+		
+	}
+	
 }

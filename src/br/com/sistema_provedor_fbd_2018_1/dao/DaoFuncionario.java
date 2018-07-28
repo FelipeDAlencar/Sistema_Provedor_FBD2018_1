@@ -109,7 +109,7 @@ public class DaoFuncionario implements IDaoFuncionario {
 
 			if (resultSet.next()) {
 				funcionario = new Funcionario(resultSet.getInt(1), resultSet.getInt(7), resultSet.getString(2),
-						resultSet.getString(3), String.valueOf(resultSet.getDate(4)), resultSet.getString(5),
+						resultSet.getString(3), Ultil.converterDataParaString(resultSet.getDate(4)), resultSet.getString(5),
 						resultSet.getString(6));
 
 			} else {
@@ -149,7 +149,7 @@ public class DaoFuncionario implements IDaoFuncionario {
 			while (resultSet.next()) {
 
 				funcionario = new Funcionario(resultSet.getInt("id"), resultSet.getString("nome"),
-						resultSet.getString("cargo"), String.valueOf(resultSet.getDate("data_contrato")),
+						resultSet.getString("cargo"), Ultil.converterDataParaString(resultSet.getDate("data_contrato")),
 						resultSet.getString("login"), resultSet.getString("senha"));
 				funcionarios.add(funcionario);
 			}
@@ -176,7 +176,7 @@ public class DaoFuncionario implements IDaoFuncionario {
 
 			while (resultSet.next()) {
 				funcionario = new Funcionario(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
-						String.valueOf(resultSet.getDate(4)), resultSet.getString(5), resultSet.getString(6));
+						Ultil.converterDataParaString(resultSet.getDate(4)), resultSet.getString(5), resultSet.getString(6));
 
 				funcionarios.add(funcionario);
 			}
