@@ -112,7 +112,9 @@ public interface IFachada {
 	public ArrayList<Porta> listarTodosPorta() throws BusinessException;
 
 	public Porta buscarPortaPorId(int id) throws BusinessException;
-
+	
+	public ArrayList<Porta> buscarPortaPorSwitch(int switch_id) throws BusinessException;
+	
 	public ArrayList<Porta> buscarPortaPorBusca(String busca);
 
 	// Servico
@@ -132,6 +134,8 @@ public interface IFachada {
 	public Switch buscarSwitchPorId(int id) throws BusinessException;
 
 	public ArrayList<Switch> buscarSwitchPorBusca(String busca) throws BusinessException;
+	
+	public Switch buscarSwitchPorNome(String nome) throws BusinessException;
 	
 	//MOVIMENTACAO
 	public void salvarOuEditarMovimentacao(Movimentacao movimentacao) throws BusinessException;

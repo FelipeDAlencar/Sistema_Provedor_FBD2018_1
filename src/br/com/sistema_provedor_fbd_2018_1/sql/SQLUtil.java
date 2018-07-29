@@ -153,6 +153,8 @@ public class SQLUtil {
 		public static String INSERT_ALL = "insert into porta (numero, switch_id) " + "values (?,?); ";
 
 		public static String SELECT_NUMERO = "select * from porta where numero = ?";
+		
+		public static String SELECT_SWITCH = "select * from porta where switch_id = ?";
 	}
 
 	public static class Contrato {

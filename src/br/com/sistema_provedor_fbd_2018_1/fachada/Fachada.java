@@ -299,6 +299,11 @@ public class Fachada implements IFachada {
 		businessPorta.salvarOuEditar(porta, nomeSwitch);
 
 	}
+	
+	@Override
+	public ArrayList<Porta> buscarPortaPorSwitch(int switch_id) throws BusinessException {
+		return businessPorta.buscarPorSwitch(switch_id);
+	}
 
 	@Override
 	public ArrayList<Porta> listarTodosPorta() throws BusinessException {
@@ -310,7 +315,8 @@ public class Fachada implements IFachada {
 	public Porta buscarPortaPorId(int id) throws BusinessException {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	} 
+	
 
 	@Override
 	public ArrayList<Porta> buscarPortaPorBusca(String busca) {
@@ -347,6 +353,12 @@ public class Fachada implements IFachada {
 		businessSwitch.salvarOuEditar(switch1, nomeCaixa, nomeConcentrador);
 
 	}
+	
+	@Override
+	public Switch buscarSwitchPorNome(String nome) throws BusinessException {
+		return businessSwitch.buscarPorNome(nome);
+	}
+
 
 	@Override
 	public ArrayList<Switch> listarTodosSwitch() throws BusinessException {
@@ -430,6 +442,8 @@ public class Fachada implements IFachada {
 	public ArrayList<Parcela> listarTodos() throws BusinessException {
 		return businessParcela.listarTodos();
 	}
+
+
 
 	
 	//Parcela

@@ -15,4 +15,6 @@ public interface IBusinessSwitch {
 
 	public ArrayList<Switch> buscarPorBusca(String busca) throws BusinessException;
 
+	public Switch buscarPorNome(String nome) throws BusinessException;
+
 }

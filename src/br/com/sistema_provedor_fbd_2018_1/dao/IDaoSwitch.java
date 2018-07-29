@@ -18,4 +18,6 @@ public interface IDaoSwitch {
 	
 	public ArrayList<Switch> buscarPorBusca(String busca) throws DaoException;
 
+	public Switch buscarPorNome(String nome) throws DaoException;
+
 }

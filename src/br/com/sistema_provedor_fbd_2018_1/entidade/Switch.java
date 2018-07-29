@@ -41,6 +41,11 @@ public class Switch {
 		this.senha = senha;
 		this.numero_de_portas = numero_de_portas;
 	}
+	
+	public Switch(int id , String nome) {
+		this.id = id;
+		this.nome = nome;
+	}
 
 	public Integer getId() {
 		return id;

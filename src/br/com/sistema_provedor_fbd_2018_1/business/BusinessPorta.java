@@ -6,6 +6,7 @@ import br.com.sistema_provedor_fbd_2018_1.dao.DaoPorta;
 import br.com.sistema_provedor_fbd_2018_1.dao.IDaoPorta;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Porta;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 
 public class BusinessPorta implements IBusinessPorta {
 
@@ -54,6 +55,16 @@ public class BusinessPorta implements IBusinessPorta {
 	public ArrayList<Porta> buscarPorBusca(String busca) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public ArrayList<Porta> buscarPorSwitch(int switch_id) throws BusinessException {
+		try {
+			return dao.buscarPorSwitch(switch_id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO AO BUSCAR PORTAS CONTATE A EQUIPE RESPONSAVEL - BUS");
+		}
 	}
 
 }

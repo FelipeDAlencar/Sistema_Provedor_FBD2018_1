@@ -69,4 +69,14 @@ public class BusinessSwitch implements IBusinessSwitch {
 		return null;
 	}
 
+	@Override
+	public Switch buscarPorNome(String nome) throws BusinessException {
+		try {
+			return dao.buscarPorNome(nome);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO AO BUSCAR SWITCH - BUS");
+		}
+	}
+
 }

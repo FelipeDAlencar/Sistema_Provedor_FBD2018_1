@@ -58,13 +58,38 @@ public class DaoPorta implements IDaoPorta {
 	}
 
 	@Override
+	public ArrayList<Porta> buscarPorSwitch(int switch_id) throws DaoException {
+		try {
+			ArrayList<Porta> portas = new ArrayList<>();
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Porta.SELECT_SWITCH);
+			statement.setInt(1, switch_id);
+			
+			ResultSet resultSet = statement.executeQuery();
+			
+			while (resultSet.next()) {
+				Porta porta = new Porta(resultSet.getInt("id"), resultSet.getInt("numero"), resultSet.getInt("switch_id"));
+				portas.add(porta);
+			}
+
+			return portas;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AAO BUSCAR PORTAS - DAO");
+		}
+	}
+
+
+
+	@Override
 	public ArrayList<Porta> listarTodos() throws DaoException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Porta> buscarPorBusca(String busca) {
+	public ArrayList<Porta> buscarPorBusca(String busca) {
 		// TODO Auto-generated method stub
 		return null;
 	}

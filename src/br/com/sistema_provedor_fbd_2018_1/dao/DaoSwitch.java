@@ -162,34 +162,59 @@ public class DaoSwitch implements IDaoSwitch {
 
 	@Override
 	public ArrayList<Switch> buscarPorBusca(String busca)throws DaoException {
-		
+
 		try {
 			conexao =  SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Switch.SELECT_PORBUSCA);
-			
+
 			statement.setString(1, '%' + busca + '%');
 			statement.setString(2, '%' + busca + '%');
 			statement.setString(3, '%' + busca + '%');
-			
+
 			ResultSet resultSet = statement.executeQuery();
-			
+
 			ArrayList<Switch> switchs =  new ArrayList<>();
 			Switch switch1;
-			
+
 			while(resultSet.next()) {
 				switch1 = new Switch(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("ip"), resultSet.getString("login"), "", resultSet.getInt("numero_de_portas"));
 				switchs.add(switch1);
-			
+
 			}
 			return switchs;
-				
-			
+
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DaoException("ERRO AO BUSCAR SWITCH");
 		}
-		
+
 
 	}
+
+	@Override
+	public Switch buscarPorNome(String nome) throws DaoException {
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Switch.SELECT_NOME);
+			
+			statement.setString(1, nome);
+			
+			ResultSet resultSet = statement.executeQuery();
+			Switch switch1;
+			if (resultSet.next()) {
+				switch1 = new Switch(resultSet.getInt("id"), resultSet.getString("nome"));
+			}else {
+				throw new DaoException("SWITCH NÃO ENCONTRADO - DAO");
+			}
+			
+			return switch1;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO BUSCAR SWITCH CONTATE A EQUIPE RESPONSAVEL - DAO");
+		}
+		
+	}
+
 
 }

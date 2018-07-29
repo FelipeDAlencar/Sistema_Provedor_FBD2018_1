@@ -4,10 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-
 import br.com.sistema_provedor_fbd_2018_1.entidade.Caixa;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
-import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Concentrador;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
@@ -38,7 +36,7 @@ public class Controller implements ActionListener {
 	private InternalConcentrador internalConcentrador;
 	private InternalCaixa internalCaixa;
 	private InternalLocalizarCliente internalLocalizarCliente;
-	private ControllerCliente controllerCadastroCliente;
+	private ControllerCadastroCliente controllerCadastroCliente;
 	private ControllerFuncionario controllerFuncionario;
 	private ControllerAtendimentos controllerAtendimentos;
 	private ControllerSwitch controllerSwitch;
@@ -90,7 +88,7 @@ public class Controller implements ActionListener {
 			telaPrincipal.desativarBotoes();
 			if (e.getSource() == telaPrincipal.getBtnAdicionarCliente()
 					|| e.getSource() == telaPrincipal.getMenu().getAdicionarCliente()) {
-				controllerCadastroCliente = new ControllerCliente(telaPrincipal);
+				controllerCadastroCliente = new ControllerCadastroCliente(telaPrincipal);
 				internalAdicionarCliente = new InternalCadastroCliente(telaPrincipal, controllerCadastroCliente);
 				telaPrincipal.getDesktopPane().add(internalAdicionarCliente);
 				internalAdicionarCliente.setVisible(true);

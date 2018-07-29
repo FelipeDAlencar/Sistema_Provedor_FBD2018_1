@@ -6,16 +6,16 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 
-import br.com.sistema_provedor_fbd_2018_1.entidade.Contato;
-
-public class ContratoPanel extends JPanel {
+@SuppressWarnings("serial")
+public class PanelServico extends JPanel {
 	private Botao bntAdicionar, bntEditar, bntExcluir;
 	private DefaultTableModel modelTable;
 	private JScrollPane barraRolagem;
 	private JTable tabela;
 	
-	public ContratoPanel() {
+	public PanelServico() {
 		setLayout(null);
 		bntAdicionar = new Botao("resource/imagens/botoes/adicionar-contato.png","Adicionar");
 		bntAdicionar.setLocation(50, 10);
@@ -33,9 +33,8 @@ public class ContratoPanel extends JPanel {
 		add(bntExcluir);
 		
 		modelTable = new DefaultTableModel();
-		modelTable.addColumn("ID");
-		modelTable.addColumn("Valor Mensal");
-		modelTable.addColumn("Numero de Parcelas");
+		modelTable.addColumn("Código");
+		modelTable.addColumn("Descricão");
 		
 		
 		
@@ -50,13 +49,13 @@ public class ContratoPanel extends JPanel {
 		add(barraRolagem);
 		
 	}
-//	public void carregarContatos(List<Contato> contatos) {
-//		modelTable.setNumRows(0);
-//		for (Contato contato : contatos) {
-//			String[] linha = {contato.getResponsavel(),contato.getContato()};
-//			modelTable.addRow(linha);
-//		}
-//	}
+	public void carregarServicos(List<Servico> servicos) {
+		modelTable.setNumRows(0);
+		for (Servico servico : servicos) {
+			String[] linha = {String.valueOf(servico.getId()),servico.getNome()};
+			modelTable.addRow(linha);
+		}
+	}
 	public Botao getBntAdicionar() {
 		return bntAdicionar;
 	}

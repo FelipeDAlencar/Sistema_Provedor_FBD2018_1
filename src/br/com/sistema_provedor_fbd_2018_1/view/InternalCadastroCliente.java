@@ -45,7 +45,8 @@ public class InternalCadastroCliente extends TelaInternal {
 	private JSeparator separator_2;
 	private JLabel lblContato_1;
 	private JTextField emailField;
-	private ContratoPanel contratoPanel;
+	private PanelContrato panelContrato;
+	private PanelServico panelServico;
 
 	public InternalCadastroCliente(TelaPrincipal telaPrincipal, ActionListener actionListener)
 			throws BusinessException {
@@ -65,8 +66,11 @@ public class InternalCadastroCliente extends TelaInternal {
 		panelCliente = new JPanel();
 		panelCliente.setLayout(null);
 		
-		contratoPanel = new ContratoPanel();
-		contratoPanel.getBarraRolagem().setBounds(50, 60, 940, 269);
+		panelServico = new PanelServico();
+		panelServico.getBarraRolagem().setBounds(50, 60, 940, 269);
+		
+		panelContrato = new PanelContrato();
+		panelContrato.getBarraRolagem().setBounds(50, 60, 940, 269);
 		
 		
 
@@ -151,7 +155,8 @@ public class InternalCadastroCliente extends TelaInternal {
 
 		tabbedPane.add("Novo Cliente", panelCliente);
 		tabbedPane.add("Contatos", panelContatos);
-		tabbedPane.addTab("Contrato", contratoPanel);
+		tabbedPane.addTab("Serviço", panelServico);
+		tabbedPane.addTab("Contrato", panelContrato);
 				
 		getContentPane().add(tabbedPane);
 		getContentPane().add(bntSalvar);
@@ -401,7 +406,14 @@ public class InternalCadastroCliente extends TelaInternal {
 	public JTextField getEmailField() {
 		return emailField;
 	}
-	
-	
+
+	public PanelContrato getPanelContrato() {
+		return panelContrato;
+	}
+
+	public PanelServico getPanelServico() {
+		return panelServico;
+	}
+
 	
 }
