@@ -1,6 +1,7 @@
 package br.com.sistema_provedor_fbd_2018_1.fachada;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.com.sistema_provedor_fbd_2018_1.business.BusinessAtendimento;
 import br.com.sistema_provedor_fbd_2018_1.business.BusinessCaixa;
@@ -92,10 +93,15 @@ public class Fachada implements IFachada {
 
 	}
 
+	
 	@Override
 	public Cliente buscarClientePorId(int id) throws BusinessException {
-
-		return this.buscarClientePorId(id);
+		try {
+			return this.businessCliente.buscarPorId(id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO AO BUSCAR CLIENTE - BUS");
+		}
 	}
 
 	@Override
@@ -105,9 +111,8 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public ArrayList<Cliente> buscarClientePorBusca(String busca) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Cliente> buscarClientePorBusca(String busca) throws BusinessException {
+		return businessCliente.buscarPorBusca(busca);
 	}
 
 	// ENDERECO

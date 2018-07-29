@@ -33,6 +33,16 @@ public class Endereco {
 		this.numero = numero;
 		
 	}
+	public Endereco(Integer id, String bairro, String complemento, String rua, int numero, int cidade_id) {
+		super();
+		this.id = id;
+		this.bairro = bairro;
+		this.complemento = complemento;
+		this.rua = rua;
+		this.numero = numero;
+		this.cidade_id = cidade_id;
+		
+	}
 	public Integer getId() {
 		return id;
 	}

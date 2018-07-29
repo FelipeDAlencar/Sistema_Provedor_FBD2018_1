@@ -7,6 +7,7 @@ import java.util.List;
 
 import br.com.sistema_provedor_fbd_2018_1.entidade.Caixa;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Concentrador;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
@@ -45,7 +46,7 @@ public class Controller implements ActionListener {
 	private ControllerCidade controllerCidade;
 	private ControllerConcentrador controllerConcentrador;
 	private ControllerCaixa controllerCaixa;
-	private ControllerVisualizar controllerVisualizar;
+	private ControllerLocalizarCliente controllerVisualizar;
 	private ControllerMovimentacao controllerMovimentacao;
 	private ControllerCadastroSwitch controllerCadastroSwitch;
 	private InternalCadastroSwitch internalCadastroSwitch;
@@ -100,18 +101,14 @@ public class Controller implements ActionListener {
 
 			if (e.getSource() == telaPrincipal.getBtnVerCliente()
 					|| e.getSource() == telaPrincipal.getMenu().getVerCliente()) {
-				controllerVisualizar = new ControllerVisualizar();
+				controllerVisualizar = new ControllerLocalizarCliente(telaPrincipal);
 				internalLocalizarCliente = new InternalLocalizarCliente(telaPrincipal, controllerVisualizar);
 				telaPrincipal.getDesktopPane().add(internalLocalizarCliente);
 				internalLocalizarCliente.setVisible(true);
 				controllerVisualizar.setInternalLocalizarCliente(internalLocalizarCliente);
 				controllerVisualizar.addListeners();
 			}
-			
-			
-		
-			
-			
+						
 			if (e.getSource() == telaPrincipal.getBtnAtendimentos()
 					|| e.getSource() == telaPrincipal.getMenu().getAtendimentosCliente()) {
 				controllerAtendimentos = new ControllerAtendimentos();

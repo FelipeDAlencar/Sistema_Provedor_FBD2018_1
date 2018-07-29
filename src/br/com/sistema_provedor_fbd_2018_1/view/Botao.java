@@ -22,5 +22,7 @@ public class Botao extends JButton{
 		add(icone);
 		add(tituloBotao);
 	}
+	
+	
 
 }

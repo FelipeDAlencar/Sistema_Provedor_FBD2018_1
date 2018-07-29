@@ -1,132 +1,133 @@
 package br.com.sistema_provedor_fbd_2018_1.view;
 
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 
 @SuppressWarnings("serial")
-public class InternalLocalizarCliente extends TelaInternal{
-	private JLabel nomeLabel, cpfLabel, rgLabel;
-	private JLabel bairroLabel, ruaLabel;
-	private JLabel cidadeLabel;
-	private JLabel loginLabel, macLabel, codigoLabel;
-	private JTextField nomeField, cpfField, rgField;
-	private JTextField bairroField, ruaField;
-	private JTextField loginField, macField, codigoField;
-	private JComboBox<String> cidadesComboBox;
-	private Botao bntFiltrar;
-	
-
+public class InternalLocalizarCliente  extends TelaInternal{
+	private Botao btnNovo, btnEditar;
+	private DefaultTableModel modelTable;
+	private JScrollPane barraRolagem;
+	private JTable tabela;
+	private JTextField buscarField;
+	private Botao btnBuscar;
+	private JLabel notf;
+	private Fachada fachada;
 	public InternalLocalizarCliente(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
-		super("LocalizarCliente", telaPrincipal, actionListener);
-		setBounds(150, 50, 1050, 500);
+		super("Clientes", telaPrincipal, actionListener);
+		setBounds(150, 20, 1050, 610);
 		getContentPane().setLayout(null);
-		setVisible(false);	
+		fachada = new  Fachada();
 	}
 
 	@Override
-	public void inicializar() throws BusinessException {
+	public void inicializar(){	
 		
-		//Informacoes Cliente
-		codigoLabel = new JLabel("Código:");
-		codigoLabel.setBounds(85,30,100,50);
-		getContentPane().add(codigoLabel);
+		notf = new JLabel("Realize uma busca para filtrar os clientes");
+		notf.setBounds(435, 306, 400, 49);
+		getContentPane().add(notf);
 		
-		codigoField = new JTextField();
-		codigoField.setBounds(85,80,130,30);
-		getContentPane().add(codigoField);
-		
-		nomeLabel = new JLabel("Nome Completo:");
-		nomeLabel.setBounds(294,30,100,50);
-		getContentPane().add(nomeLabel);
-		
-		nomeField = new JTextField();
-		nomeField.setBounds(294,81,400,30);
-		getContentPane().add(nomeField);
-		
-		cpfLabel = new JLabel("CPF:");
-		cpfLabel.setBounds(764, 31, 100, 50);
-		getContentPane().add(cpfLabel);
-		
-		cpfField = new JTextField();
-		cpfField.setBounds(764,81,200,30);
-		getContentPane().add(cpfField);
-		
-		rgLabel = new JLabel("RG:");
-		rgLabel.setBounds(85,144,100,50);
-		getContentPane().add(rgLabel);
-		
-		rgField = new JTextField();
-		rgField.setBounds(85,194,200,30);
-		getContentPane().add(rgField);
-		
-		//Informacoes Usuario
-		loginLabel = new JLabel("Login:");
-		loginLabel.setBounds(360,144,100,50);
-		getContentPane().add(loginLabel);
-		
-		loginField = new JTextField();
-		loginField.setBounds(360,194,300,30);
-		getContentPane().add(loginField);
-		
-		macLabel = new JLabel("MAC:");
-		macLabel.setBounds(734, 144, 100, 50);
-		getContentPane().add(macLabel);
-		
-		macField = new JTextField();
-		macField.setBounds(734,194,230,30);
-		getContentPane().add(macField);
-		
-		//informacoes Cidade
-		
-		ruaLabel = new JLabel("Endere\u00E7o:");
-		ruaLabel.setBounds(85, 260, 100, 50);
-		getContentPane().add(ruaLabel);
-		
-		ruaField = new JTextField();
-		ruaField.setBounds(85,310,320,30);
-		getContentPane().add(ruaField);
-		
-		bairroLabel = new JLabel("Bairro:");
-		bairroLabel.setBounds(490, 260, 100, 50);
-		getContentPane().add(bairroLabel);
-		
-		bairroField = new JTextField();
-		bairroField.setBounds(490, 310, 230, 30);
-		getContentPane().add(bairroField);
-		
-		cidadeLabel = new JLabel("Cidade:");
-		cidadeLabel.setBounds(783, 260, 100, 50);
-		getContentPane().add(cidadeLabel);
-		
-		carregarCidades();
-		cidadesComboBox.setBounds(783, 310, 181, 30);
-		getContentPane().add(cidadesComboBox);
-		
-		bntFiltrar = new Botao("resource/imagens/botoes/filtro.png", "Filtrar");
-		bntFiltrar.setBounds(864, 384, 100, 40);
-		getContentPane().add(bntFiltrar);
-		
-	}
-	
+		btnEditar = new Botao("resource/imagens/botoes/editar-servico.png","Selecionar");
+		btnEditar.setBounds(50, 20, 146, 40);
+		getContentPane().add(btnEditar);
 
-	@SuppressWarnings("unused")
-	private void carregarCidades() throws BusinessException{
-		List<Cidade> cidadesList = new ArrayList<>();
-		cidadesComboBox = new JComboBox<>();
-		Fachada fachada = new Fachada();
-		cidadesList=fachada.listarTodosCidades();
-		for (Cidade cidade : cidadesList) {
-			cidadesComboBox.addItem(cidade.getNome());
+		btnNovo = new Botao("resource/imagens/botoes/adicionar-servico.png","Novo Cliente");
+		btnNovo.setBounds(222, 20, 160, 40);
+		getContentPane().add(btnNovo);
+
+		modelTable = new DefaultTableModel();
+		modelTable.addColumn("Código");
+		modelTable.addColumn("Nome");
+		modelTable.addColumn("Cidade");
+
+
+		tabela = new JTable(modelTable);
+		tabela.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(100);
+		tabela.getTableHeader().getColumnModel().getColumn(0).setMinWidth(100);
+		tabela.setBounds(0,0,600,400);
+
+		barraRolagem = new JScrollPane(tabela);
+		barraRolagem.setBounds(50,126,928,417);
+		
+		
+
+		getContentPane().add(barraRolagem);
+
+		buscarField = new JTextField();
+		buscarField.setBounds(50, 75, 808, 40);
+		getContentPane().add(buscarField);
+		buscarField.setColumns(10);
+
+		btnBuscar = new Botao("", "Buscar");
+		btnBuscar.setBounds(871, 75, 107, 40);
+		getContentPane().add(btnBuscar);
+	}
+
+	public void carregarClientes(List<Cliente> clientes) {
+		notf.setText("Nunhum cliente encontrado");
+		notf.setVisible(true);
+		System.out.println(clientes.size());
+		if (clientes.size()!=0)
+			notf.setVisible(false);
+		try {
+			modelTable.setNumRows(0);
+			for (Cliente cliente : clientes) {
+				Endereco endereco = fachada.buscarEnderecoPorId(cliente.getEndereco_id());
+				System.out.println(endereco.getCidade_id());
+				Cidade cidade = fachada.buscarCidadePorId(endereco.getCidade_id());
+				String[] linha = {cliente.getId().toString(), cliente.getNome(),cidade.getNome()};
+				modelTable.addRow(linha);
+			}
+		} catch (BusinessException e) {
+			e.printStackTrace();
 		}
 	}
+
+	public Botao getBtnNovo() {
+		return btnNovo;
+	}
+
+	public Botao getBtnEditar() {
+		return btnEditar;
+	}
+
+
+	public DefaultTableModel getModelTable() {
+		return modelTable;
+	}
+
+	public JScrollPane getBarraRolagem() {
+		return barraRolagem;
+	}
+
+	public JTable getTabela() {
+		return tabela;
+	}
+
+	public JTextField getBuscarField() {
+		return buscarField;
+	}
+
+	public Botao getBtnBuscar() {
+		return btnBuscar;
+	}
+
+
+
+
+
+
+
 }

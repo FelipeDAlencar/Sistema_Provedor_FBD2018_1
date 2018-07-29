@@ -15,9 +15,9 @@ public interface IDaoCliente {
 
 	public Cliente buscarPorId(int id)throws DaoException;
 
-	public Cliente buscarPorCpf(String cpf);
+	public Cliente buscarPorCpf(String cpf) throws DaoException;
 
-	public List<Cliente> buscarPorBusca(String busca);
+	public List<Cliente> buscarPorBusca(String busca) throws DaoException;
 	
 	
 
