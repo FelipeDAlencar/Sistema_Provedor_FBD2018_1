@@ -38,10 +38,12 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Contrato;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Funcionario;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Movimentacao;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Parcela;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Porta;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Switch;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 
 public class Fachada implements IFachada {
 	private static Fachada fachada;
@@ -398,6 +400,26 @@ public class Fachada implements IFachada {
 		return  businessMovimentacao.buscarPorBusca(busca);
 	}
 
+	@Override
+	public void salvarOuEditar(Parcela parcela) throws BusinessException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Parcela buscarPorId(int id) throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Parcela> buscarPorBusca(String busca) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
+	//Parcela
+		
 
 }

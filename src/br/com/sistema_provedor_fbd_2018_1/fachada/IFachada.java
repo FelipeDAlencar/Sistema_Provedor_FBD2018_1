@@ -12,10 +12,12 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Contrato;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Funcionario;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Movimentacao;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Parcela;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Porta;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Switch;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 
 public interface IFachada {
 
@@ -138,4 +140,14 @@ public interface IFachada {
 	public Movimentacao buscarPorIdMovimentacao(int id) throws BusinessException;
 
 	public ArrayList<Movimentacao> buscarPorBuscaMovimentacao(String busca) throws BusinessException;
+	
+	
+	//PARCELA
+	public void salvarOuEditar(Parcela parcela)throws BusinessException;
+
+	public Parcela buscarPorId(int id)throws BusinessException;
+
+	
+	public ArrayList<Parcela> buscarPorBusca(String busca);
+
 }
