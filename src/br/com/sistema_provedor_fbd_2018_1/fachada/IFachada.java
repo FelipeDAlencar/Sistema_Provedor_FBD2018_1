@@ -148,7 +148,7 @@ public interface IFachada {
 
 	public Parcela buscarPorId(int id)throws BusinessException;
 
-	
+	public ArrayList<Parcela> listarTodos() throws BusinessException;
 	public ArrayList<Parcela> buscarPorBusca(String busca);
 
 }

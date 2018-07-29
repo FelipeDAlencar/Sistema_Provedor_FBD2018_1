@@ -45,6 +45,7 @@ public class InternalCadastroCliente extends TelaInternal {
 	private JSeparator separator_2;
 	private JLabel lblContato_1;
 	private JTextField emailField;
+	private ContratoPanel contratoPanel;
 
 	public InternalCadastroCliente(TelaPrincipal telaPrincipal, ActionListener actionListener)
 			throws BusinessException {
@@ -63,6 +64,11 @@ public class InternalCadastroCliente extends TelaInternal {
 
 		panelCliente = new JPanel();
 		panelCliente.setLayout(null);
+		
+		contratoPanel = new ContratoPanel();
+		contratoPanel.getBarraRolagem().setBounds(50, 60, 940, 269);
+		
+		
 
 		bntSalvar = new Botao("resource/imagens/botoes/bnt-salvar.png", "Salvar");
 		bntSalvar.setBounds(900, 379, 100, 40);
@@ -145,6 +151,7 @@ public class InternalCadastroCliente extends TelaInternal {
 
 		tabbedPane.add("Novo Cliente", panelCliente);
 		tabbedPane.add("Contatos", panelContatos);
+		tabbedPane.addTab("Contrato", contratoPanel);
 				
 		getContentPane().add(tabbedPane);
 		getContentPane().add(bntSalvar);

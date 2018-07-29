@@ -13,6 +13,7 @@ import br.com.sistema_provedor_fbd_2018_1.business.BusinessContrato;
 import br.com.sistema_provedor_fbd_2018_1.business.BusinessEndereco;
 import br.com.sistema_provedor_fbd_2018_1.business.BusinessFuncionario;
 import br.com.sistema_provedor_fbd_2018_1.business.BusinessMovimentacao;
+import br.com.sistema_provedor_fbd_2018_1.business.BusinessParcela;
 import br.com.sistema_provedor_fbd_2018_1.business.BusinessPorta;
 import br.com.sistema_provedor_fbd_2018_1.business.BusinessServico;
 import br.com.sistema_provedor_fbd_2018_1.business.BusinessSwitch;
@@ -26,6 +27,7 @@ import br.com.sistema_provedor_fbd_2018_1.business.IBusinessContrato;
 import br.com.sistema_provedor_fbd_2018_1.business.IBusinessEndereco;
 import br.com.sistema_provedor_fbd_2018_1.business.IBusinessFuncionario;
 import br.com.sistema_provedor_fbd_2018_1.business.IBusinessMovimentacao;
+import br.com.sistema_provedor_fbd_2018_1.business.IBusinessParcela;
 import br.com.sistema_provedor_fbd_2018_1.business.IBusinessPorta;
 import br.com.sistema_provedor_fbd_2018_1.business.IBusinessServico;
 import br.com.sistema_provedor_fbd_2018_1.business.IBusinessSwitch;
@@ -62,6 +64,7 @@ public class Fachada implements IFachada {
 	private IBusinessSwitch businessSwitch;
 	private IBusinessCaixa businessCaixa;
 	private IBusinessMovimentacao businessMovimentacao;
+	private IBusinessParcela businessParcela;
 
 	public Fachada() {
 		businessCliente = new BusinessCliente();
@@ -77,6 +80,7 @@ public class Fachada implements IFachada {
 		businessPorta = new BusinessPorta();
 		businessServico = new BusinessServico();
 		businessSwitch = new BusinessSwitch();
+		businessParcela = new BusinessParcela();
 	}
 
 	public static Fachada getInstance() {
@@ -407,20 +411,24 @@ public class Fachada implements IFachada {
 
 	@Override
 	public void salvarOuEditar(Parcela parcela) throws BusinessException {
-		// TODO Auto-generated method stub
+		businessParcela.salvarOuEditar(parcela);
 		
 	}
 
 	@Override
 	public Parcela buscarPorId(int id) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		return businessParcela.buscarPorId(id);
 	}
 
 	@Override
 	public ArrayList<Parcela> buscarPorBusca(String busca) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public ArrayList<Parcela> listarTodos() throws BusinessException {
+		return businessParcela.listarTodos();
 	}
 
 	

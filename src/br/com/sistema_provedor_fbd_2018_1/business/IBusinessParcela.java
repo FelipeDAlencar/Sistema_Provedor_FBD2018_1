@@ -13,6 +13,7 @@ public interface IBusinessParcela {
 
 	public Parcela buscarPorId(int id)throws BusinessException;
 
+	public ArrayList<Parcela> listarTodos() throws BusinessException;
 	
 	public ArrayList<Parcela> buscarPorBusca(String busca);
 
