@@ -24,9 +24,10 @@ public class Cliente {
 		this.rg = rg;
 		this.data_nascimento = data_nascimento;
 	}
-	public Cliente(Integer id, String nome) {
+	public Cliente(Integer id, String nome, Integer endereco_id) {
 		this.nome = nome;
 		this.id = id;
+		this.endereco_id = endereco_id;
 		
 	}
 	public Cliente() {

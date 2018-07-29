@@ -80,7 +80,7 @@ public class DaoEndereco implements IDaoEndereco {
 
 			if (resultSet.next()) {
 				endereco = new Endereco(resultSet.getInt(1), resultSet.getString(4), resultSet.getString(5),
-						resultSet.getString(3), resultSet.getInt(2));
+						resultSet.getString(3), resultSet.getInt(2), resultSet.getInt("cidade_id"));
 			}else {
 				throw new DaoException("ENDERECO NÃO CADASTRADO");
 			}

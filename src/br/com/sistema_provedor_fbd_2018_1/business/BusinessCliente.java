@@ -1,12 +1,12 @@
 package br.com.sistema_provedor_fbd_2018_1.business;
 
-import java.util.ArrayList;
-
+import java.util.List;
 import br.com.sistema_provedor_fbd_2018_1.dao.DaoCliente;
 import br.com.sistema_provedor_fbd_2018_1.dao.IDaoCliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.exception.ValidacaoException;
 
 public class BusinessCliente implements IBusinessCliente {
@@ -35,9 +35,8 @@ public class BusinessCliente implements IBusinessCliente {
 	}
 
 	@Override
-	public Cliente buscarPorId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Cliente buscarPorId(int id) throws DaoException {
+		return dao.buscarPorId(id);
 	}
 
 	@Override
@@ -47,9 +46,14 @@ public class BusinessCliente implements IBusinessCliente {
 	}
 
 	@Override
-	public ArrayList<Cliente> buscarPorBusca(String busca) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Cliente> buscarPorBusca(String busca) throws BusinessException {
+		try {
+			return dao.buscarPorBusca(busca);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO AO BUSCAR CLIENTE");
+			
+		}
 	}
 
 	private void validar(Cliente cliente) throws ValidacaoException {

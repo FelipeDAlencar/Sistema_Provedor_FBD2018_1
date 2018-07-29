@@ -49,45 +49,47 @@ public class InternalCadastroCliente extends TelaInternal {
 	public InternalCadastroCliente(TelaPrincipal telaPrincipal, ActionListener actionListener)
 			throws BusinessException {
 		super("Adicionar Cliente", telaPrincipal, actionListener);
+		setBounds(150, 50, 1050, 510);
 		getContentPane().setLayout(null);
 	}
 
 	@Override
 	public void inicializar() throws BusinessException {
 		tabbedPane = new JTabbedPane();
-		tabbedPane.setBounds(0, 0, TelaInternal.LARGURA - 100, TelaInternal.ALTURA - 350);
+		tabbedPane.setBounds(0, 0, TelaInternal.LARGURA - 100, TelaInternal.ALTURA - 400);
 
 		panelContatos = new PanelContato();
+		panelContatos.getBarraRolagem().setBounds(50, 60, 940, 269);
 
 		panelCliente = new JPanel();
 		panelCliente.setLayout(null);
 
 		bntSalvar = new Botao("resource/imagens/botoes/bnt-salvar.png", "Salvar");
-		bntSalvar.setBounds(1090, 429, 100, 40);
+		bntSalvar.setBounds(900, 379, 100, 40);
 
 		// Informacoes Cliente
 		nomeLabel = new JLabel("Nome Completo:");
 		nomeLabel.setBounds(47, 29, 100, 50);
 		panelCliente.add(nomeLabel);
 
-		nomeField = new JtextFieldGenerico("ABCDEFGHIJLMNOPQRSTUVXZWYÇXabcdefghijlmnopqrstuvxyzç´^");
+		nomeField = new JtextFieldGenerico("ABCDEFGHIJLMNOPQRSTUVXZWYÇXabcdefghijlmnopqrstuvxyzç´^ ");
 		nomeField.setBounds(47, 76, 450, 30);
 		panelCliente.add(nomeField);
 
 		cpfLabel = new JLabel("CPF:");
-		cpfLabel.setBounds(567, 29, 100, 50);
+		cpfLabel.setBounds(531, 29, 100, 50);
 		panelCliente.add(cpfLabel);
 
 		cpfField = new JFormattedTextField();
-		cpfField.setBounds(567, 76, 230, 30);
+		cpfField.setBounds(531, 76, 230, 30);
 		panelCliente.add(cpfField);
 
 		rgLabel = new JLabel("RG:");
-		rgLabel.setBounds(865, 29, 100, 50);
+		rgLabel.setBounds(797, 29, 100, 50);
 		panelCliente.add(rgLabel);
 
 		rgField = new JtextFieldGenerico("1234567890.");
-		rgField.setBounds(865, 76, 200, 30);
+		rgField.setBounds(797, 76, 200, 30);
 		panelCliente.add(rgField);
 
 		dataNascimentoLabel = new JLabel("Data de Nascimento:");
@@ -100,27 +102,27 @@ public class InternalCadastroCliente extends TelaInternal {
 
 		// Informacoes Endereco
 		ruaLabel = new JLabel("Endereço:");
-		ruaLabel.setBounds(277, 125, 100, 50);
+		ruaLabel.setBounds(238, 125, 100, 50);
 		panelCliente.add(ruaLabel);
 
 		ruaField = new JTextField();
-		ruaField.setBounds(277, 176, 420, 30);
+		ruaField.setBounds(238, 176, 420, 30);
 		panelCliente.add(ruaField);
 
 		numeroLabel = new JLabel("Número:");
-		numeroLabel.setBounds(749, 125, 100, 50);
+		numeroLabel.setBounds(696, 125, 100, 50);
 		panelCliente.add(numeroLabel);
 
 		numeroField = new JtextFieldGenerico("1234567890");
-		numeroField.setBounds(749, 176, 60, 30);
+		numeroField.setBounds(696, 176, 60, 30);
 		panelCliente.add(numeroField);
 
 		complementoLabel = new JLabel("Complemento:");
-		complementoLabel.setBounds(865, 125, 100, 50);
+		complementoLabel.setBounds(797, 125, 100, 50);
 		panelCliente.add(complementoLabel);
 
 		complementoField = new JTextField();
-		complementoField.setBounds(865, 176, 200, 30);
+		complementoField.setBounds(797, 176, 200, 30);
 		panelCliente.add(complementoField);
 
 		bairroLabel = new JLabel("Bairro:");
@@ -133,11 +135,11 @@ public class InternalCadastroCliente extends TelaInternal {
 
 		// Informaçoes de Cidade
 		cidadeLabel = new JLabel("Cidade:");
-		cidadeLabel.setBounds(277, 217, 100, 50);
+		cidadeLabel.setBounds(271, 217, 100, 50);
 		panelCliente.add(cidadeLabel);
 
 		carregarCidades();
-		cidadesComboBox.setBounds(277, 266, 200, 30);
+		cidadesComboBox.setBounds(271, 266, 200, 30);
 		panelCliente.add(cidadesComboBox);
 		
 

@@ -10,9 +10,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Atendimento;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
+import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Ultil;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLConnection;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLUtil;
@@ -125,7 +128,7 @@ public class DaoCliente implements IDaoCliente {
 			statement.setInt(1, id);
 
 			ResultSet resultSet = statement.executeQuery();
-			Cliente cliente = null;
+			Cliente cliente;
 			if (resultSet.next()) {
 				cliente = new Cliente(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
 						resultSet.getString(4), resultSet.getString(5));
@@ -147,9 +150,28 @@ public class DaoCliente implements IDaoCliente {
 	}
 
 	@Override
-	public List<Cliente> buscarPorBusca(String busca) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Cliente> buscarPorBusca(String busca) throws DaoException {
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Cliente.SELECT_PORBUSCA);
+			statement.setString(1, '%' + busca + '%');
+
+			ResultSet resultSet = statement.executeQuery();
+			ArrayList<Cliente> clientes = new ArrayList<>();
+			Cliente cliente;
+
+			while (resultSet.next()) {
+				cliente = new Cliente(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getInt("endereco_id"));
+				clientes.add(cliente);
+			}
+			return clientes;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO BUSCAR CLIENTES");
+		}
+
+
 	}
 
 }

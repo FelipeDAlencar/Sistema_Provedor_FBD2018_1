@@ -21,6 +21,7 @@ public class SQLUtil {
 		
 		public static final String UPDATE = "update cliente set nome = ?, cpf = ?, rg = ?, data_nascimento = ? endereco = id ? where id = ? ";
 		
+		public static String SELECT_PORBUSCA = "select * from cliente where nome ilike ?";
 
 	}
 

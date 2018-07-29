@@ -1,6 +1,7 @@
 package br.com.sistema_provedor_fbd_2018_1.fachada;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.com.sistema_provedor_fbd_2018_1.entidade.Atendimento;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Caixa;
@@ -26,7 +27,7 @@ public interface IFachada {
 
 	public Cliente buscarClientePorCpf(String cpf);
 
-	public ArrayList<Cliente> buscarClientePorBusca(String busca);
+	public List<Cliente> buscarClientePorBusca(String busca) throws BusinessException;
 
 	// Endereco
 	public void salvarOuEditarEndereco(Endereco endereco) throws BusinessException;
