@@ -37,7 +37,7 @@ public class ControllerLocalizarCliente implements Listeners {
 				int id = Integer.parseInt(internalLocalizarCliente.getTabela().getValueAt(row, 0).toString());
 				Cliente cliente = fachada.buscarClientePorId(id);
 
-				controllerVerCliente = new ControllerVerCliente(cliente);
+				controllerVerCliente = new ControllerVerCliente(telaPrincipal, cliente);
 				internalVerCliente = new InternalVerCliente(telaPrincipal, controllerVerCliente);
 				telaPrincipal.getDesktopPane().add(internalVerCliente);
 				internalVerCliente.setVisible(true);

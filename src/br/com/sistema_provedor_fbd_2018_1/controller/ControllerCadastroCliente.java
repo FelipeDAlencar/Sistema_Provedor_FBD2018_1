@@ -3,6 +3,7 @@ package br.com.sistema_provedor_fbd_2018_1.controller;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Contato;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
@@ -13,6 +14,8 @@ import br.com.sistema_provedor_fbd_2018_1.view.InternalAdicionarServico;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroContato;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarContato;
+import br.com.sistema_provedor_fbd_2018_1.view.InternalLocalizarCliente;
+import br.com.sistema_provedor_fbd_2018_1.view.InternalVerCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 import br.com.sistema_provedor_fbd_2018_1.view.TelaPrincipal;
 
@@ -23,9 +26,10 @@ public class ControllerCadastroCliente implements Listeners {
 	private ControllerEditarContato controllerEditarContato;
 	private InternalCadastroContato internalCadastroContato;
 	private InternalEditarContato internalEditarContato;
-	private InternalAdicionarServico internalAdicionarServico;
-	private ControllerAdicionarServico controllerAdicionarServico;
 	private TelaPrincipal telaPrincipal;
+	private Cliente cliente;
+	private ControllerVerCliente controllerVerCliente;
+	private InternalVerCliente internalVerCliente;
 
 	public ControllerCadastroCliente(TelaPrincipal telaPrincipal) {
 		fachada = new Fachada();
@@ -45,7 +49,7 @@ public class ControllerCadastroCliente implements Listeners {
 
 
 				if (controllerCadastroContato.getContatos().isEmpty() == false) {
-					br.com.sistema_provedor_fbd_2018_1.entidade.Cliente cliente = new br.com.sistema_provedor_fbd_2018_1.entidade.Cliente(
+					cliente = new Cliente(
 							internalCliente.getNomeField().getText(), internalCliente.getCpfField().getText(),
 							internalCliente.getRgField().getText(), internalCliente.getDataNascimentoField().getText());
 
@@ -69,18 +73,15 @@ public class ControllerCadastroCliente implements Listeners {
 						fachada.salvarOuEditarContato(contato, cliente.getCpf());
 					}
 
-					internalCliente.getNomeField().setText("");
-					internalCliente.getRgField().setText("");
-					internalCliente.getDataNascimentoField().setText("");
-					internalCliente.getComplementoField().setText("");
-					internalCliente.getBairroField().setText("");
-					internalCliente.getRuaField().setText("");
-					internalCliente.getNumeroField().setText("");
+
 
 					if (controllerCadastroContato != null) {
 						controllerCadastroContato.setContatos(new ArrayList<>());
 					}
 					Menssagens.menssagem("Cliente Adicionado com sucesso.", 1);
+
+					VerCliente();
+
 				} else {
 					throw new BusinessException("CLIENTE TEM QUE TER AO MENOS UM CONTATO CADASTRADO.");
 				}
@@ -117,16 +118,7 @@ public class ControllerCadastroCliente implements Listeners {
 
 			}
 
-			if(e.getSource() == internalCliente.getPanelServico().getBntAdicionar()) {
-				controllerAdicionarServico = new ControllerAdicionarServico();
-				internalAdicionarServico = new InternalAdicionarServico(telaPrincipal, controllerCadastroContato);
-				telaPrincipal.getDesktopPane().add(internalAdicionarServico);
-				internalAdicionarServico.setVisible(true);
-				controllerAdicionarServico.setInternalAdicionarServico(internalAdicionarServico);
-				controllerAdicionarServico.addListeners();
-			}
-			
-			
+
 		} catch (BusinessException e1) {
 			e1.printStackTrace();
 		}
@@ -138,7 +130,6 @@ public class ControllerCadastroCliente implements Listeners {
 		internalCliente.getBtnSalvar().addActionListener(this);
 		internalCliente.getPanelContatos().getBntAdicionar().addActionListener(this);
 		internalCliente.getPanelContatos().getBntEditar().addActionListener(this);
-		internalCliente.getPanelServico().getBntAdicionar().addActionListener(this);
 
 	}
 
@@ -148,6 +139,22 @@ public class ControllerCadastroCliente implements Listeners {
 
 	public void setAdicionarCliente(InternalCadastroCliente adicionarCliente) {
 		this.internalCliente = adicionarCliente;
+	}
+
+	private void VerCliente() {
+		try {
+			internalCliente.dispose();
+			controllerVerCliente = new ControllerVerCliente(telaPrincipal, cliente);
+			internalVerCliente = new InternalVerCliente(telaPrincipal, controllerVerCliente);
+			telaPrincipal.getDesktopPane().add(internalVerCliente);
+			internalVerCliente.setVisible(true);
+			controllerVerCliente.setInternalVerCliente(internalVerCliente);
+			controllerVerCliente.addListeners();
+			controllerVerCliente.carregarDados();
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 

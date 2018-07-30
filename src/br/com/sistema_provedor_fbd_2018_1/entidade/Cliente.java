@@ -16,13 +16,14 @@ public class Cliente {
 		this.rg = rg;
 		this.data_nascimento = data_nascimento;
 	}
-	public Cliente(Integer id, String nome, String cpf, String rg, String data_nascimento) {
+	public Cliente(Integer id, String nome, String cpf, String rg, String data_nascimento, Integer endereco_id) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.rg = rg;
 		this.data_nascimento = data_nascimento;
+		this.endereco_id = endereco_id;
 	}
 	public Cliente(Integer id, String nome, Integer endereco_id) {
 		this.nome = nome;

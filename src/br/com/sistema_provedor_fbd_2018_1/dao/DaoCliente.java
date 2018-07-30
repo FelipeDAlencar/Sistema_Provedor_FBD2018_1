@@ -131,7 +131,7 @@ public class DaoCliente implements IDaoCliente {
 			Cliente cliente;
 			if (resultSet.next()) {
 				cliente = new Cliente(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
-						resultSet.getString(4), resultSet.getString(5));
+						resultSet.getString(4), resultSet.getString(5), resultSet.getInt("endereco_id"));
 			} else {
 				throw new DaoException("CLIENTE NÃO CADASTRADO");
 			}

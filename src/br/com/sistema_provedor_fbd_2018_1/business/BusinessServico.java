@@ -71,4 +71,15 @@ public class BusinessServico implements IBusinessServico{
 		}
 	}
 
+
+	@Override
+	public Servico buscarPorNome(String nome) throws BusinessException {
+		try {
+			return dao.buscarPorNome(nome);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO NO BUS");
+		}
+	}
+
 }

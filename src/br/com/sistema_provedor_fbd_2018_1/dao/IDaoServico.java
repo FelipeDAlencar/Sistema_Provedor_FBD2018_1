@@ -19,4 +19,6 @@ public interface IDaoServico {
 	
 	public ArrayList<Servico> buscarPorBusca(String busca) throws DaoException;
 
+	public Servico buscarPorNome(String nome) throws DaoException;
+
 }

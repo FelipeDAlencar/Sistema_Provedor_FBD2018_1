@@ -326,6 +326,11 @@ public class Fachada implements IFachada {
 
 	// SERVICO
 	@Override
+	public Servico buscarServicoNome(String nome) throws BusinessException {
+		return businessServico.buscarPorNome(nome);
+	}
+	
+	@Override
 	public void salvarOuEditarServico(Servico servico) throws BusinessException {
 		businessServico.salvarOuEditar(servico);
 
@@ -442,6 +447,12 @@ public class Fachada implements IFachada {
 	public ArrayList<Parcela> listarTodos() throws BusinessException {
 		return businessParcela.listarTodos();
 	}
+
+	public Porta buscarPortaPorSwitchNumero(Integer switch_id, int numero) throws BusinessException {
+		return businessPorta.buscarPorSwitchNome(switch_id, numero);
+	}
+
+	
 
 
 

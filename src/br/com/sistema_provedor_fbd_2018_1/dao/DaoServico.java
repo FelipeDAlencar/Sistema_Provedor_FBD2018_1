@@ -139,4 +139,25 @@ public class DaoServico implements IDaoServico {
 
 	}
 
+	@Override
+	public Servico buscarPorNome(String nome) throws DaoException {
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Servico.SELECT_NOME);
+			
+			statement.setString(1, nome);
+			
+			ResultSet resultSet = statement.executeQuery();
+			resultSet.next();
+			
+			Servico servico = new Servico(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getInt("download")
+					, resultSet.getInt("upload"));
+			
+			return servico;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO BUSCAR SERVICO");
+		}
+	}
+
 }

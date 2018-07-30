@@ -16,6 +16,8 @@ public interface IBusinessPorta {
 	public ArrayList<Porta> buscarPorBusca(String busca) throws BusinessException;
 	
 	public ArrayList<Porta> buscarPorSwitch(int switch_id) throws BusinessException;
+
+	public Porta buscarPorSwitchNome(Integer switch_id, int numero) throws BusinessException;;
 	
 
 }

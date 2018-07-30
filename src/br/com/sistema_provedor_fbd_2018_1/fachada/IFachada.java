@@ -155,4 +155,8 @@ public interface IFachada {
 	public ArrayList<Parcela> listarTodos() throws BusinessException;
 	public ArrayList<Parcela> buscarPorBusca(String busca);
 
+	Servico buscarServicoNome(String nome) throws BusinessException;
+
+	Porta buscarPortaPorSwitchNumero(Integer switch_id, int numero) throws BusinessException;
+
 }

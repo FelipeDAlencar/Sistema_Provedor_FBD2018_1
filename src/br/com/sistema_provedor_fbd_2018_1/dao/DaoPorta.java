@@ -94,4 +94,29 @@ public class DaoPorta implements IDaoPorta {
 		return null;
 	}
 
+	@Override
+	public Porta buscarPorSwitchNome(Integer switch_id, int numero) throws DaoException {
+		try {
+
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Switch.SELECT_SWITCH_NOME);
+			statement.setInt(1, switch_id);
+			statement.setInt(2, numero);
+			
+
+			ResultSet resultSet = statement.executeQuery();
+			resultSet.next();
+
+			Porta porta = new Porta(resultSet.getInt("id"), resultSet.getInt("switch_id"), resultSet.getInt("numero"));
+
+			conexao.close();
+			return porta;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO BUSCAR PORTA - CONTACTE A EQUIPE RESPONSÁVEL - DAO");
+
+		}
+	}
+
 }

@@ -4,14 +4,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
-
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Porta;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
@@ -19,8 +16,11 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Switch;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 
+@SuppressWarnings("serial")
 public class InternalAdicionarServico extends TelaInternal  {
-	Fachada fachada;
+	private Fachada fachada;
+	private JLabel enderecoCheckLabel;
+	private JCheckBox enderecoCheckBox;
 	//Edereço
 	private JLabel bairroLabel, complementoLabel, ruaLabel, numeroLabel;
 	private JLabel cidadeLabel;
@@ -36,18 +36,25 @@ public class InternalAdicionarServico extends TelaInternal  {
 	//switch
 	private JComboBox<String> switchComboBox;
 	private JComboBox<String> portaComboBox;
+	
+	private Botao btnSalvar;
 
 
 	public InternalAdicionarServico(TelaPrincipal telaPrincipal, ActionListener actionListener)
 			throws BusinessException {
 		super("Novo Serviço", telaPrincipal, actionListener);
-		setBounds(400, 100, 630, 450);
+		setBounds(400, 80, 630, 450);
 		getContentPane().setLayout(null);
 		fachada = new Fachada();
 	}
 
 	@Override
 	public void inicializar() throws BusinessException {
+		enderecoCheckBox = new JCheckBox("Usar Endereço do Cliente");
+		enderecoCheckBox.setBounds(26,7,174,30);
+		getContentPane().add(enderecoCheckBox);
+		
+		
 		ruaLabel = new JLabel("Endereço:");
 		ruaLabel.setBounds(26, 30, 100, 50);
 		getContentPane().add(ruaLabel);
@@ -134,6 +141,10 @@ public class InternalAdicionarServico extends TelaInternal  {
 		senhaField = new JPasswordField();
 		senhaField.setBounds(424, 300, 174, 29);
 		getContentPane().add(senhaField);
+		
+		btnSalvar = new Botao("resource/imagens/botoes/bnt-salvar.png", "Salvar");
+		btnSalvar.setBounds(498,356,100,40);
+		getContentPane().add(btnSalvar);
 
 		
 	}
@@ -170,10 +181,86 @@ public class InternalAdicionarServico extends TelaInternal  {
 		List<Porta> portasList = new ArrayList<>();
 		Switch sw = fachada.buscarSwitchPorNome(switchComboBox.getSelectedItem().toString());
 		portaComboBox = new JComboBox<>();
-		portasList = fachada.buscarPortaPorSwitch(1);
+		portasList = fachada.buscarPortaPorSwitch(sw.getId());
 		for (Porta porta : portasList) {
 			portaComboBox.addItem(String.valueOf(porta.getNumero()));
 		}
+	}
+
+	public Fachada getFachada() {
+		return fachada;
+	}
+
+	public JLabel getEnderecoCheckLabel() {
+		return enderecoCheckLabel;
+	}
+
+	public JCheckBox getEnderecoCheckBox() {
+		return enderecoCheckBox;
+	}
+
+	public JLabel getBairroLabel() {
+		return bairroLabel;
+	}
+
+	public JLabel getComplementoLabel() {
+		return complementoLabel;
+	}
+
+	public JLabel getRuaLabel() {
+		return ruaLabel;
+	}
+
+	public JLabel getNumeroLabel() {
+		return numeroLabel;
+	}
+
+	public JLabel getCidadeLabel() {
+		return cidadeLabel;
+	}
+
+	public JTextField getBairroField() {
+		return bairroField;
+	}
+
+	public JTextField getComplementoField() {
+		return complementoField;
+	}
+
+	public JTextField getRuaField() {
+		return ruaField;
+	}
+
+	public JtextFieldGenerico getNumeroField() {
+		return numeroField;
+	}
+
+	public JComboBox<String> getCidadesComboBox() {
+		return cidadesComboBox;
+	}
+
+	public JComboBox<String> getServicosComboBox() {
+		return servicosComboBox;
+	}
+
+	public JTextField getLoginField() {
+		return LoginField;
+	}
+
+	public JPasswordField getSenhaField() {
+		return senhaField;
+	}
+
+	public JComboBox<String> getSwitchComboBox() {
+		return switchComboBox;
+	}
+
+	public JComboBox<String> getPortaComboBox() {
+		return portaComboBox;
+	}
+
+	public Botao getBtnSalvar() {
+		return btnSalvar;
 	}
 	
 

@@ -86,6 +86,8 @@ public class SQLUtil {
 		public static String UPDATE = "update servico set nome = ?, download = ?, upload = ? where id = ?";
 		
 		public static String SELECT_PORBUSCA = "select * from servico where nome ilike ?";
+		
+		public static String SELECT_NOME = "select * from servico where nome = ?";
 	}
 
 	public static class Contato {
@@ -134,6 +136,7 @@ public class SQLUtil {
 	}
 
 	public static class Switch {
+		public static final String SELECT_SWITCH_NOME = "select * from switch where switch_id = ?  and numero = ?";
 		public static String INSERT_ALL = "insert into switch (nome, numero_de_portas, ip, login, senha, caixa_id, concentrador_id) "
 				+ "values (?,?,?,?,?,?,?); ";
 		public static String SELECT_NOME = "select * from switch where nome = ?";

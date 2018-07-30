@@ -67,4 +67,14 @@ public class BusinessPorta implements IBusinessPorta {
 		}
 	}
 
+	@Override
+	public Porta buscarPorSwitchNome(Integer switch_id, int numero) throws BusinessException {
+		try {
+			return dao.buscarPorSwitchNome(switch_id, numero);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO AO BUSCAR PORTAS CONTATE A EQUIPE RESPONSAVEL - BUS");
+		}
+	}
+
 }
