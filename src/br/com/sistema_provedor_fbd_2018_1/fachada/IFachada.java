@@ -16,6 +16,7 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Movimentacao;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Parcela;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Porta;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
+import br.com.sistema_provedor_fbd_2018_1.entidade.ServicoCliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Switch;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
@@ -153,10 +154,19 @@ public interface IFachada {
 	public Parcela buscarPorId(int id)throws BusinessException;
 
 	public ArrayList<Parcela> listarTodos() throws BusinessException;
-	public ArrayList<Parcela> buscarPorBusca(String busca);
+	public ArrayList<Parcela> buscarParcelaPorBusca(String busca);
 
 	Servico buscarServicoNome(String nome) throws BusinessException;
 
 	Porta buscarPortaPorSwitchNumero(Integer switch_id, int numero) throws BusinessException;
+	
+	
+	//SERVICO CLIENTE
+	public void salvarOuEditarServicoCliente(ServicoCliente servicoCliente) throws BusinessException;
+	public ArrayList<ServicoCliente> listarTodosServicosCliente()throws BusinessException;
+
+	public ServicoCliente buscarServicosClientesPorId(int id) throws BusinessException;
+
+	//public ArrayList<ServicoCliente> buscarPorBusca(String busca)throws BusinessException;
 
 }

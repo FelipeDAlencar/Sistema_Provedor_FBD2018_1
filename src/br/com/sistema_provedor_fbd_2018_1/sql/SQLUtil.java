@@ -136,7 +136,8 @@ public class SQLUtil {
 	}
 
 	public static class Switch {
-		public static final String SELECT_SWITCH_NOME = "select * from switch where switch_id = ?  and numero = ?";
+	
+		
 		public static String INSERT_ALL = "insert into switch (nome, numero_de_portas, ip, login, senha, caixa_id, concentrador_id) "
 				+ "values (?,?,?,?,?,?,?); ";
 		public static String SELECT_NOME = "select * from switch where nome = ?";
@@ -153,6 +154,8 @@ public class SQLUtil {
 	}
 
 	public static class Porta {
+		public static final String SELECT_SWITCH_NOME = "select * from porta where switch_id = ?  and numero = ?";
+		
 		public static String INSERT_ALL = "insert into porta (numero, switch_id) " + "values (?,?); ";
 
 		public static String SELECT_NUMERO = "select * from porta where numero = ?";
@@ -192,6 +195,21 @@ public class SQLUtil {
 		public static String UPDATE = "update parcela set valor = ?, data_vencimento = ?, status = ? where id = ?";
 		
 		public static String SELECT_ID = "select * from parcela where id = ?";
+	}
+	
+	public static class ServicoCliente{
+		
+		public static String INSERT_ALL = "insert into ServicoCliente(servico_id, switch_id, porta_id, endereco_id) "
+				+ "values (?,?,?,?)";
+		public static String SELECT_ALL = "select * from ServicoCliente";
+		
+		public static String SELECT_ID = "select * from ServicoCliente where id = ?";
+		
+		
+		
+		
+		
+		
 	}
 	
 }

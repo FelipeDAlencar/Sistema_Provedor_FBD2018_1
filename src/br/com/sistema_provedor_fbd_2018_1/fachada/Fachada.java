@@ -16,6 +16,7 @@ import br.com.sistema_provedor_fbd_2018_1.business.BusinessMovimentacao;
 import br.com.sistema_provedor_fbd_2018_1.business.BusinessParcela;
 import br.com.sistema_provedor_fbd_2018_1.business.BusinessPorta;
 import br.com.sistema_provedor_fbd_2018_1.business.BusinessServico;
+import br.com.sistema_provedor_fbd_2018_1.business.BusinessServicoCliente;
 import br.com.sistema_provedor_fbd_2018_1.business.BusinessSwitch;
 import br.com.sistema_provedor_fbd_2018_1.business.IBusinessAtendimento;
 import br.com.sistema_provedor_fbd_2018_1.business.IBusinessCaixa;
@@ -30,6 +31,7 @@ import br.com.sistema_provedor_fbd_2018_1.business.IBusinessMovimentacao;
 import br.com.sistema_provedor_fbd_2018_1.business.IBusinessParcela;
 import br.com.sistema_provedor_fbd_2018_1.business.IBusinessPorta;
 import br.com.sistema_provedor_fbd_2018_1.business.IBusinessServico;
+import br.com.sistema_provedor_fbd_2018_1.business.IBusinessServicoCliente;
 import br.com.sistema_provedor_fbd_2018_1.business.IBusinessSwitch;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Atendimento;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Caixa;
@@ -44,6 +46,7 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Movimentacao;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Parcela;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Porta;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
+import br.com.sistema_provedor_fbd_2018_1.entidade.ServicoCliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Switch;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
@@ -65,7 +68,7 @@ public class Fachada implements IFachada {
 	private IBusinessCaixa businessCaixa;
 	private IBusinessMovimentacao businessMovimentacao;
 	private IBusinessParcela businessParcela;
-
+	private IBusinessServicoCliente businessServicoCliente;
 	public Fachada() {
 		businessCliente = new BusinessCliente();
 		businessEndereco = new BusinessEndereco();
@@ -81,6 +84,7 @@ public class Fachada implements IFachada {
 		businessServico = new BusinessServico();
 		businessSwitch = new BusinessSwitch();
 		businessParcela = new BusinessParcela();
+		businessServicoCliente = new BusinessServicoCliente();
 	}
 
 	public static Fachada getInstance() {
@@ -426,6 +430,8 @@ public class Fachada implements IFachada {
 		return  businessMovimentacao.buscarPorBusca(busca);
 	}
 
+	
+	// PARCELA
 	@Override
 	public void salvarOuEditar(Parcela parcela) throws BusinessException {
 		businessParcela.salvarOuEditar(parcela);
@@ -438,7 +444,7 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public ArrayList<Parcela> buscarPorBusca(String busca) {
+	public ArrayList<Parcela> buscarParcelaPorBusca(String busca) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -451,13 +457,21 @@ public class Fachada implements IFachada {
 	public Porta buscarPortaPorSwitchNumero(Integer switch_id, int numero) throws BusinessException {
 		return businessPorta.buscarPorSwitchNome(switch_id, numero);
 	}
-
-	
-
-
-
-	
-	//Parcela
+	//Servicos Cliente
+	public void salvarOuEditarServicoCliente(ServicoCliente servicoCliente) throws BusinessException {
+		businessServicoCliente.salvarOuEditar(servicoCliente);
 		
+	}
+	@Override
+	public ArrayList<ServicoCliente> listarTodosServicosCliente() throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	@Override
+	public ServicoCliente buscarServicosClientesPorId(int id) throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

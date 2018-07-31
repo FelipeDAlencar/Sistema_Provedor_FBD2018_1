@@ -4,7 +4,9 @@ import java.awt.event.ActionEvent;
 
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalAdicionarServico;
@@ -38,6 +40,7 @@ public class ControllerVerCliente implements Listeners {
 				internalAdicionarServico.setVisible(true);
 				controllerAdicionarServico.setInternalAdicionarServico(internalAdicionarServico);
 				controllerAdicionarServico.addListeners();
+				
 			}
 
 		} catch (BusinessException e1) {
@@ -48,7 +51,35 @@ public class ControllerVerCliente implements Listeners {
 	}
 
 	public void carregarDados() {
-		internalVerCliente.getNomeField().setText(cliente.getNome());
+	
+			try {
+				Endereco endereco =  fachada.buscarEnderecoPorId(cliente.getEndereco_id());
+				internalVerCliente.getNomeField().setText(cliente.getNome());
+				internalVerCliente.getCpfField().setText(cliente.getCpf());
+				internalVerCliente.getRgField().setText(cliente.getRg());
+				internalVerCliente.getDataNascimentoField().setText(cliente.getData_nascimento());
+				
+				
+				internalVerCliente.getBairroField().setText(endereco.getBairro());
+				internalVerCliente.getComplementoField().setText(endereco.getComplemento());
+				internalVerCliente.getBairroLabel().setText(endereco.getBairro());
+				internalVerCliente.getRuaField().setText(endereco.getRua());
+				internalVerCliente.getNumeroField().setText(String.valueOf(endereco.getNumero()));
+				
+				
+				
+				Cidade cidade = fachada.buscarCidadePorId(endereco.getCidade_id());
+				
+				internalVerCliente.getCidadesComboBox().setSelectedItem(cidade.getNome() + " - " + cidade.getEstado());
+				
+				
+			} catch (BusinessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		
+		
 	}
 
 	@Override

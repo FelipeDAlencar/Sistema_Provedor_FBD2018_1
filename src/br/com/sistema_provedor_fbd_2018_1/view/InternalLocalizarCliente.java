@@ -78,14 +78,12 @@ public class InternalLocalizarCliente  extends TelaInternal{
 	public void carregarClientes(List<Cliente> clientes) {
 		notf.setText("Nunhum cliente encontrado");
 		notf.setVisible(true);
-		System.out.println(clientes.size());
 		if (clientes.size()!=0)
 			notf.setVisible(false);
 		try {
 			modelTable.setNumRows(0);
 			for (Cliente cliente : clientes) {
 				Endereco endereco = fachada.buscarEnderecoPorId(cliente.getEndereco_id());
-				System.out.println(endereco.getCidade_id());
 				Cidade cidade = fachada.buscarCidadePorId(endereco.getCidade_id());
 				String[] linha = {cliente.getId().toString(), cliente.getNome(),cidade.getNome()};
 				modelTable.addRow(linha);

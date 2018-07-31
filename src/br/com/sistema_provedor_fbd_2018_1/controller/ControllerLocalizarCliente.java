@@ -10,6 +10,7 @@ import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarCidade;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalLocalizarCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalVerCliente;
+import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 import br.com.sistema_provedor_fbd_2018_1.view.TelaPrincipal;
 
 public class ControllerLocalizarCliente implements Listeners {
@@ -32,11 +33,10 @@ public class ControllerLocalizarCliente implements Listeners {
 				internalLocalizarCliente.carregarClientes(fachada.buscarClientePorBusca(busca));
 			}
 			if (e.getSource() == internalLocalizarCliente.getBtnEditar()) {
-
+				
 				int row = internalLocalizarCliente.getTabela().getSelectedRow();
 				int id = Integer.parseInt(internalLocalizarCliente.getTabela().getValueAt(row, 0).toString());
 				Cliente cliente = fachada.buscarClientePorId(id);
-
 				controllerVerCliente = new ControllerVerCliente(telaPrincipal, cliente);
 				internalVerCliente = new InternalVerCliente(telaPrincipal, controllerVerCliente);
 				telaPrincipal.getDesktopPane().add(internalVerCliente);
@@ -48,6 +48,9 @@ public class ControllerLocalizarCliente implements Listeners {
 			}
 		} catch (BusinessException e1) {
 			e1.printStackTrace();
+		}catch (IndexOutOfBoundsException e2) {
+			e2.printStackTrace();
+			Menssagens.menssagem("SELECIONE O CLIENTE NA TABELA." , 0);
 		}
 
 	}

@@ -5,6 +5,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 import javax.swing.JPanel;
 
@@ -23,6 +24,7 @@ import br.com.sistema_provedor_fbd_2018_1.model.Ultil;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalAdicionarServico;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalVerCliente;
+import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 
 public class ControllerAdicionarServico implements Listeners, ItemListener {
 	private Cliente cliente;
@@ -32,7 +34,7 @@ public class ControllerAdicionarServico implements Listeners, ItemListener {
 	private Fachada fachada;
 
 	public ControllerAdicionarServico(InternalVerCliente internalVerCliente, Cliente cliente) {
-		servicos= new ArrayList<>();
+		servicos = new ArrayList<>();
 		fachada = new Fachada();
 		this.cliente = cliente;
 		this.internalVerCliente = internalVerCliente;
@@ -41,33 +43,42 @@ public class ControllerAdicionarServico implements Listeners, ItemListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {
-			if(e.getSource() == internalAdicionarServico.getEnderecoCheckBox()) {
+			if (e.getSource() == internalAdicionarServico.getEnderecoCheckBox()) {
 				AutoPreencher();
 			}
 			if (e.getSource() == internalAdicionarServico.getBtnSalvar()) {
 				int endereco_id;
-				if(internalAdicionarServico.getEnderecoCheckBox().isSelected()) {
+				if (internalAdicionarServico.getEnderecoCheckBox().isSelected()) {
 					endereco_id = cliente.getEndereco_id();
-				}else {
+				} else {
 					Endereco endereco = new Endereco(internalAdicionarServico.getBairroField().getText(),
-							internalAdicionarServico.getComplementoField().getText(), internalAdicionarServico.getRuaField().getText(),
+							internalAdicionarServico.getComplementoField().getText(),
+							internalAdicionarServico.getRuaField().getText(),
 							Integer.parseInt(internalAdicionarServico.getNumeroField().getText()));
 
-
-					String cidadeString = (String)internalAdicionarServico.getCidadesComboBox().getSelectedItem();
+					String cidadeString = (String) internalAdicionarServico.getCidadesComboBox().getSelectedItem();
 
 					String nomeCidade = Ultil.separarString(cidadeString.trim(), 0);
 					String estado = Ultil.separarString(cidadeString.trim(), 1);
-					Cidade  cidade = fachada.buscarPorNomeEstado(nomeCidade, estado);
-					
-					endereco_id=0;
+					Cidade cidade = fachada.buscarPorNomeEstado(nomeCidade, estado);
+
+					endereco_id = 0;
 
 				}
-				
-				Servico servico = fachada.buscarServicoNome(internalAdicionarServico.getServicosComboBox().toString());
-				Switch sw = fachada.buscarSwitchPorNome(internalAdicionarServico.getServicosComboBox().toString());
-				Porta porta = fachada.buscarPortaPorSwitchNumero(sw.getId(), Integer.parseInt(internalAdicionarServico.getPortaComboBox().toString()));
-				ServicoCliente servicoCliente = new ServicoCliente(servico.getId(), sw.getId(), porta.getId(), endereco_id);
+
+				Servico servico = fachada.buscarServicoNome(
+						String.valueOf(internalAdicionarServico.getServicosComboBox().getSelectedItem()));
+				Switch sw = fachada.buscarSwitchPorNome(
+						String.valueOf(internalAdicionarServico.getSwitchComboBox().getSelectedItem()));
+				Porta porta = fachada.buscarPortaPorSwitchNumero(sw.getId(), Integer
+						.parseInt(String.valueOf(internalAdicionarServico.getPortaComboBox().getSelectedItem())));
+
+				ServicoCliente servicoCliente = new ServicoCliente(servico.getId(), sw.getId(), porta.getId(),
+						endereco_id);
+
+				fachada.salvarOuEditarServicoCliente(servicoCliente);
+				Menssagens.menssagem("Serviço Inserido com sucesso.", 1);
+
 			}
 		} catch (BusinessException e1) {
 			e1.printStackTrace();
@@ -85,8 +96,9 @@ public class ControllerAdicionarServico implements Listeners, ItemListener {
 			internalAdicionarServico.getRuaField().setText(internalVerCliente.getRuaField().getText());
 			internalAdicionarServico.getComplementoField().setText(internalVerCliente.getComplementoField().getText());
 			internalAdicionarServico.getNumeroField().setText(internalVerCliente.getNumeroField().getText());
-			internalAdicionarServico.getCidadesComboBox().setSelectedIndex(internalVerCliente.getCidadesComboBox().getSelectedIndex());
-		}else {
+			internalAdicionarServico.getCidadesComboBox()
+					.setSelectedIndex(internalVerCliente.getCidadesComboBox().getSelectedIndex());
+		} else {
 			internalAdicionarServico.getBairroField().setText("");
 			internalAdicionarServico.getRuaField().setText("");
 			internalAdicionarServico.getComplementoField().setText("");

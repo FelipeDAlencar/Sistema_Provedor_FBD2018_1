@@ -37,7 +37,7 @@ public class DaoCliente implements IDaoCliente {
 			resultSet1.next();
 			int cidade_id = resultSet1.getInt(1);
 
-			System.out.println("ID CIDADE:" + cidade_id);
+			
 
 			// ENDERECO
 			statement = conexao.prepareStatement(SQLUtil.Endereco.INSERT_ALL);
@@ -130,8 +130,7 @@ public class DaoCliente implements IDaoCliente {
 			ResultSet resultSet = statement.executeQuery();
 			Cliente cliente;
 			if (resultSet.next()) {
-				cliente = new Cliente(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
-						resultSet.getString(4), resultSet.getString(5), resultSet.getInt("endereco_id"));
+				cliente = new Cliente(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("cpf"), resultSet.getString("rg"),Ultil.converterDataParaString(resultSet.getDate("data_nascimento")), resultSet.getInt("endereco_id"));
 			} else {
 				throw new DaoException("CLIENTE NÃO CADASTRADO");
 			}

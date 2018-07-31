@@ -64,11 +64,12 @@ public class DaoPorta implements IDaoPorta {
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Porta.SELECT_SWITCH);
 			statement.setInt(1, switch_id);
-			
+
 			ResultSet resultSet = statement.executeQuery();
-			
+
 			while (resultSet.next()) {
-				Porta porta = new Porta(resultSet.getInt("id"), resultSet.getInt("numero"), resultSet.getInt("switch_id"));
+				Porta porta = new Porta(resultSet.getInt("id"), resultSet.getInt("numero"),
+						resultSet.getInt("switch_id"));
 				portas.add(porta);
 			}
 
@@ -79,8 +80,6 @@ public class DaoPorta implements IDaoPorta {
 			throw new DaoException("ERRO AAO BUSCAR PORTAS - DAO");
 		}
 	}
-
-
 
 	@Override
 	public ArrayList<Porta> listarTodos() throws DaoException {
@@ -99,16 +98,17 @@ public class DaoPorta implements IDaoPorta {
 		try {
 
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
-			statement = conexao.prepareStatement(SQLUtil.Switch.SELECT_SWITCH_NOME);
+			statement = conexao.prepareStatement(SQLUtil.Porta.SELECT_SWITCH_NOME);
 			statement.setInt(1, switch_id);
 			statement.setInt(2, numero);
-			
 
 			ResultSet resultSet = statement.executeQuery();
-			resultSet.next();
-
-			Porta porta = new Porta(resultSet.getInt("id"), resultSet.getInt("switch_id"), resultSet.getInt("numero"));
-
+			Porta porta = null;
+			if (resultSet.next()) {
+				
+				porta = new Porta(resultSet.getInt("id"), resultSet.getInt("switch_id"),
+						resultSet.getInt("numero"));
+			}
 			conexao.close();
 			return porta;
 

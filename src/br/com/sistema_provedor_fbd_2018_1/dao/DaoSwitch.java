@@ -200,6 +200,7 @@ public class DaoSwitch implements IDaoSwitch {
 			
 			statement.setString(1, nome);
 			
+			
 			ResultSet resultSet = statement.executeQuery();
 			Switch switch1;
 			if (resultSet.next()) {

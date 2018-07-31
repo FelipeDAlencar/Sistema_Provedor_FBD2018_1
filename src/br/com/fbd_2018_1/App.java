@@ -29,13 +29,18 @@ public class App {
 			UIManager.setLookAndFeel(tema_padrao);
 		} catch (Exception e) {
 		}
-
+		
+		
+		
+		Fachada fachada = new Fachada();
+			
+		
 		TelaPrincipal telaPrincipal = new TelaPrincipal();
 		
 	
 		Controller controller = new Controller(telaPrincipal);
 
-		Fachada fachada = new Fachada();
+		
 		
 		
 		
