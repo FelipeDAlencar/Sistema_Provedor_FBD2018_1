@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 
 import br.com.sistema_provedor_fbd_2018_1.entidade.Contrato;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Parcela;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 
 public interface IBusinessContrato {
 
-	public void salvarOuEditar(Contrato contrato,String cpfCliente, int numeroPorta) throws BusinessException;
+	public void salvarOuEditar(Contrato contrato,Parcela parcela) throws BusinessException;
 
 	public ArrayList<Contrato> listarTodos() throws BusinessException;
 

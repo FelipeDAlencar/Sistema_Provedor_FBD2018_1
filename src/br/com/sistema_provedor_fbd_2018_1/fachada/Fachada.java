@@ -274,8 +274,8 @@ public class Fachada implements IFachada {
 
 	// CONTRATO
 	@Override
-	public void salvarOuEditarContrato(Contrato contrato, String cpfCliente, int numeroPorta) throws BusinessException {
-		businessContrato.salvarOuEditar(contrato, cpfCliente, numeroPorta);
+	public void salvarOuEditarContrato(Contrato contrato,Parcela parcela) throws BusinessException {
+		businessContrato.salvarOuEditar(contrato, parcela);
 
 	}
 

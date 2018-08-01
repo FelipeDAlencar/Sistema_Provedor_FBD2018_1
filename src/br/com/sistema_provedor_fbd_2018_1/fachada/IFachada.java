@@ -99,7 +99,7 @@ public interface IFachada {
 	public ArrayList<Contato> buscarContatoPorBusca(String busca);
 
 	// Contrato
-	public void salvarOuEditarContrato(Contrato contrato, String cpfCliente, int numeroPorta) throws BusinessException;
+	public void salvarOuEditarContrato(Contrato contrato,Parcela parcela) throws BusinessException;
 
 	public ArrayList<Contrato> listarTodosContrato() throws BusinessException;
 

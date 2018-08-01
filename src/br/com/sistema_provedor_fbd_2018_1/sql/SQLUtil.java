@@ -164,8 +164,8 @@ public class SQLUtil {
 	}
 
 	public static class Contrato {
-		public static String INSERT_ALL = "insert into contrato (valor_instalacao, valor_mensal, login, senha, numero_parcelas, cliente_id, porta_id) "
-				+ "values (?,?,?,?,?,?,?); ";
+		public static String INSERT_ALL = "insert into contrato (valor_instalacao, valor_mensal, login, senha, numero_parcelas, cliente_id) "
+				+ "values (?,?,?,?,?,?); ";
 		public static String SELECT_MAXID = "select MAX(ID) from  contrato  ";
 	}
 	

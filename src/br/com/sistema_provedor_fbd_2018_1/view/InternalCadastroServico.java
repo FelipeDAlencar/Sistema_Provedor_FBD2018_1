@@ -36,7 +36,7 @@ public class InternalCadastroServico extends TelaInternal {
 		lblDownload.setBounds(50, 124, 66, 14);
 		getContentPane().add(lblDownload);
 
-		downloadField = new JtextFieldGenerico("''1234567890");
+		downloadField = new JtextFieldGenerico("1234567890,");
 		downloadField.setText("");
 		downloadField.setBounds(50, 149, 122, 31);
 		getContentPane().add(downloadField);

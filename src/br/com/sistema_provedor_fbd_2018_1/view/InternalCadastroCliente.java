@@ -59,7 +59,7 @@ public class InternalCadastroCliente extends TelaInternal {
 		tabbedPane.setBounds(0, 0, TelaInternal.LARGURA - 100, TelaInternal.ALTURA - 400);
 
 		panelContatos = new PanelContato();
-		panelContatos.getBarraRolagem().setBounds(50, 60, 940, 269);
+		//panelContatos.getBarraRolagem().setBounds(50, 60, 940, 269);
 
 		panelCliente = new JPanel();
 		panelCliente.setLayout(null);		

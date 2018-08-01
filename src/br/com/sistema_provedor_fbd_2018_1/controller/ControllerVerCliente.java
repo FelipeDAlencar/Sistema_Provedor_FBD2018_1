@@ -1,6 +1,7 @@
 package br.com.sistema_provedor_fbd_2018_1.controller;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
@@ -10,6 +11,7 @@ import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalAdicionarServico;
+import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroContrato;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarCidade;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalVerCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
@@ -20,6 +22,8 @@ public class ControllerVerCliente implements Listeners {
 	private TelaPrincipal telaPrincipal;
 	private ControllerAdicionarServico controllerAdicionarServico;
 	private InternalAdicionarServico internalAdicionarServico;
+	private InternalCadastroContrato internalCadastroContrato;
+	private ControllerCadastroContrato controllerCadastroContrato;
 	private Fachada fachada;
 	private Cliente cliente;
 
@@ -41,6 +45,14 @@ public class ControllerVerCliente implements Listeners {
 				controllerAdicionarServico.setInternalAdicionarServico(internalAdicionarServico);
 				controllerAdicionarServico.addListeners();
 				
+			}
+			if(e.getSource() == internalVerCliente.getFinanceiro().getBtnNovoContrato()) {
+				controllerCadastroContrato	= new ControllerCadastroContrato(cliente);
+				internalCadastroContrato = new InternalCadastroContrato(telaPrincipal, controllerCadastroContrato);
+				telaPrincipal.getDesktopPane().add(internalCadastroContrato);
+				internalCadastroContrato.setVisible(true);
+				controllerCadastroContrato.setInternal(internalCadastroContrato);
+				controllerCadastroContrato.addListeners();
 			}
 
 		} catch (BusinessException e1) {
@@ -74,7 +86,7 @@ public class ControllerVerCliente implements Listeners {
 				
 				
 			} catch (BusinessException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 		
@@ -84,7 +96,8 @@ public class ControllerVerCliente implements Listeners {
 
 	@Override
 	public void addListeners() {
-		internalVerCliente.getPanelServico().getBntAdicionar().addActionListener(this);;
+		internalVerCliente.getPanelServico().getBntAdicionar().addActionListener(this);
+		internalVerCliente.getFinanceiro().getBtnNovoContrato().addActionListener(this);
 	}
 
 	public InternalVerCliente getInternalVerCliente() {

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import br.com.sistema_provedor_fbd_2018_1.dao.DaoContrato;
 import br.com.sistema_provedor_fbd_2018_1.dao.IDaoContrato;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Contrato;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Parcela;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 
 public class BusinessContrato implements IBusinessContrato {
@@ -16,11 +18,11 @@ public class BusinessContrato implements IBusinessContrato {
 	}
 
 	@Override
-	public void salvarOuEditar(Contrato contrato, String cpfCliente, int numeroPorta) throws BusinessException {
+	public void salvarOuEditar(Contrato contrato, Parcela parcela) throws BusinessException {
 		try {
 			validacao();
 			if (contrato.getId() == null) {
-				dao.salvar(contrato, cpfCliente, numeroPorta);
+				dao.salvar(contrato, parcela);
 			} else {
 				dao.editar(contrato);
 			}

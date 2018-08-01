@@ -43,7 +43,7 @@ public class PanelContato extends JPanel{
 		tabela.setBounds(0,0,1200,400);
 		
 		barraRolagem = new JScrollPane(tabela);
-		barraRolagem.setBounds(50,60,1200,400);
+		barraRolagem.setBounds(50,60,815,259);
 		
 		add(barraRolagem);
 		
