@@ -9,6 +9,7 @@ import java.util.List;
 
 import br.com.sistema_provedor_fbd_2018_1.entidade.Atendimento;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
+import br.com.sistema_provedor_fbd_2018_1.model.Ultil;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLConnection;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLUtil;
 
@@ -34,7 +35,9 @@ public class DaoAtendimento implements IDaoAtendimento {
 
 			statement.setString(1, atendimento.getMotivo());
 			statement.setString(2, atendimento.getProtocolo());
-			statement.setInt(3, cliente_id);
+			statement.setDate(3, Ultil.converterParaData(atendimento.getData_atendimento()));
+			statement.setInt(4, cliente_id);
+			
 
 			statement.execute();
 			conexao.close();
@@ -61,8 +64,27 @@ public class DaoAtendimento implements IDaoAtendimento {
 
 	@Override
 	public ArrayList<Atendimento> listarTodos() throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			conexao =  SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Atendimento.SELECT_ALL);
+			
+			ResultSet resultSet = statement.executeQuery();
+			ArrayList<Atendimento> atendimentos = new ArrayList<>();
+			Atendimento atendimento;
+			
+			while(resultSet.next()) {
+				atendimento =  new Atendimento(resultSet.getInt("id"), resultSet.getInt("cliente_id"), resultSet.getString("motivo"), resultSet.getString("motivo"), Ultil.converterDataParaString(resultSet.getDate("data_atendimento")));
+				atendimentos.add(atendimento);
+				
+			}
+			
+			return atendimentos;
+			
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO BUSCAR ATENDIMENTOS");
+		}
 	}
 
 	@Override

@@ -80,6 +80,8 @@ public class Controller implements ActionListener {
 		//ITENS FINANCEITO
 		telaPrincipal.getMenu().getMovimentacoesFinanceiro().addActionListener(this);
 		
+		telaPrincipal.getBtnMovimentacoes().addActionListener(this);
+		
 	}
 
 	@Override
@@ -109,12 +111,13 @@ public class Controller implements ActionListener {
 						
 			if (e.getSource() == telaPrincipal.getBtnAtendimentos()
 					|| e.getSource() == telaPrincipal.getMenu().getAtendimentosCliente()) {
-				controllerAtendimentos = new ControllerAtendimentos();
+				controllerAtendimentos = new ControllerAtendimentos(telaPrincipal);
 				internalAtendimentos = new InternalAtendimentos(telaPrincipal, controllerAtendimentos);
 				telaPrincipal.getDesktopPane().add(internalAtendimentos);
 				internalAtendimentos.setVisible(true);
 				controllerAtendimentos.setInternalAtendimentos(internalAtendimentos);
 				controllerAtendimentos.addListeners();
+				internalAtendimentos.carregarAtendimentos(fachada.listarTodosAtendimento());
 			}
 
 			if (e.getSource() == telaPrincipal.getMenu().getSwitchNetwork()) {
@@ -200,7 +203,7 @@ public class Controller implements ActionListener {
 				controllerCaixa.addListeners();
 			}
 			
-			if(e.getSource() == telaPrincipal.getMenu().getMovimentacoesFinanceiro()) {
+			if(e.getSource() == telaPrincipal.getMenu().getMovimentacoesFinanceiro() || e.getSource() == telaPrincipal.getBtnMovimentacoes()) {
 				controllerMovimentacao = new ControllerMovimentacao(telaPrincipal);
 				internalMovimentacao = new InternalMovimentacao(telaPrincipal, controllerMovimentacao);
 				telaPrincipal.getDesktopPane().add(internalMovimentacao);

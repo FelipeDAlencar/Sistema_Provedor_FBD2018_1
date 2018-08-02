@@ -94,30 +94,7 @@ public class DaoCliente implements IDaoCliente {
 
 	}
 
-	public ArrayList<Atendimento> listarTodos() throws DaoException {
-
-		try {
-			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
-			statement = conexao.prepareStatement(SQLUtil.Cidade.SELECT_ALL);
-			ArrayList<Atendimento> atendimetos = new ArrayList<>();
-
-			ResultSet resultSet = statement.executeQuery();
-
-			while (resultSet.next()) {
-				Atendimento atendimento = new Atendimento(resultSet.getInt(1), resultSet.getInt(2),
-						resultSet.getString(3), resultSet.getString(4));
-				atendimetos.add(atendimento);
-
-			}
-
-			conexao.close();
-			return atendimetos;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new DaoException("ERRO AO CONSULTAR O BANCO DE DADOS.");
-
-		}
-	}
+	
 
 	@Override
 	public Cliente buscarPorId(int id) throws DaoException {

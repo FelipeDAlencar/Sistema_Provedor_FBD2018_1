@@ -126,8 +126,8 @@ public class DaoMovimentacao implements IDaoMovimentacao {
 			statement.setString(2, '%' + busca + '%');
 			statement.setString(3, '%' + busca + '%');
 			statement.setString(4, '%' + busca + '%');
-			statement.setString(5, '%' + situacao + '%');
-			
+			statement.setString(5, situacao);
+
 			System.out.println(situacao);
 			System.out.println();
 

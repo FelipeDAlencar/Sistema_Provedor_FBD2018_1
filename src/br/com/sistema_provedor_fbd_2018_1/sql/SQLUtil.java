@@ -99,9 +99,11 @@ public class SQLUtil {
 	}
 
 	public static class Atendimento {
-		public static String INSERT_ALL = "insert into atendimento (motivo, protocolo, cliente_id) "
-				+ "values (?,?,?); ";
-	}
+		public static String INSERT_ALL = "insert into atendimento (motivo, protocolo, data_atendimento, cliente_id) "
+		+ "values (?,?,?,?); ";
+		
+		public static String SELECT_ALL = "select * from atendimento"; 
+	}	
 
 	public static class Caixa {
 		public static String INSERT_ALL = "insert into caixa (nome, latitude, longitude, cidade_id ) "

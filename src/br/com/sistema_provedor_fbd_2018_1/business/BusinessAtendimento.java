@@ -6,6 +6,7 @@ import br.com.sistema_provedor_fbd_2018_1.dao.DaoAtendimento;
 import br.com.sistema_provedor_fbd_2018_1.dao.IDaoAtendimento;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Atendimento;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.exception.ValidacaoException;
 
 public class BusinessAtendimento implements IBusinessAtendimento {
@@ -34,8 +35,12 @@ public class BusinessAtendimento implements IBusinessAtendimento {
 
 	@Override
 	public ArrayList<Atendimento> listarTodos() throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return dao.listarTodos();
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("");
+		}
 	}
 
 	@Override

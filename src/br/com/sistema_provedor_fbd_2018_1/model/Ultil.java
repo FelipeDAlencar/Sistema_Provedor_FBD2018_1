@@ -31,6 +31,7 @@ public class Ultil {
 	}
 
 	public static String converterDataParaString(Date date) {
+
 		return new SimpleDateFormat("dd/MM/yyyy").format(date);
 	}
 
@@ -47,14 +48,15 @@ public class Ultil {
 		return null;
 
 	}
+
 	public static String datasParcelas(String dataString) {
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		java.util.Date data = converterStringEmJavaDate(dataString);
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(data);
-		calendar.add(Calendar.MONTH, 1);        
-		String dataFormatada = String.valueOf(format.format(calendar.getTime()));    
-		return  dataFormatada;
-		
+		calendar.add(Calendar.MONTH, 1);
+		String dataFormatada = String.valueOf(format.format(calendar.getTime()));
+		return dataFormatada;
+
 	}
 }

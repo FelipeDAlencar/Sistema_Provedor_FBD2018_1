@@ -25,7 +25,7 @@ public class InternalAtendimentos extends TelaInternal{
 
 	@Override
 	public void inicializar() throws BusinessException {
-		btnAbrir = new Botao("resource/imagens/botoes/abrir-atendimento.png","Abrir Atendimento");
+		btnAbrir = new Botao("resource/imagens/botoes/abrir-atendimento.png","Novo Atendimento");
 		btnAbrir.setBounds(50, 20, 200, 40);
 		getContentPane().add(btnAbrir);
 		
@@ -33,6 +33,7 @@ public class InternalAtendimentos extends TelaInternal{
 		modelTable.addColumn("Protocolo");
 		modelTable.addColumn("Cliente");
 		modelTable.addColumn("Motivo");
+		modelTable.addColumn("Data de atendimento");
 		modelTable.addColumn("Status");
 		
 		tabela = new JTable(modelTable);
@@ -49,7 +50,7 @@ public class InternalAtendimentos extends TelaInternal{
 	public void carregarAtendimentos(List<Atendimento> atendimentos) {
 		for (Atendimento atendimento : atendimentos) {
 			
-			String[] linha = {atendimento.getProtocolo(),"cliente", atendimento.getMotivo(), atendimento.getStatus()};
+			String[] linha = {atendimento.getProtocolo(),"cliente", atendimento.getMotivo(),atendimento.getData_atendimento(), atendimento.getStatus()};
 			modelTable.addRow(linha);
 		}
 	}
