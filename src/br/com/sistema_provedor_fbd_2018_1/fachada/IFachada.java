@@ -70,6 +70,7 @@ public interface IFachada {
 	public Atendimento buscarAtendimentoPorId(int id) throws BusinessException;
 
 	public ArrayList<Atendimento> buscarAtendimentoPorBusca(String busca) throws BusinessException;
+	public ArrayList<Atendimento> buscarAtendimentosAtrasados(String data) throws BusinessException;
 
 	// Caixa
 	public void salvarOuEditarCaixa(Caixa caixa, String cep) throws BusinessException;

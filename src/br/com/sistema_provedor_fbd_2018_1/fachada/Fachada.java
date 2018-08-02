@@ -211,6 +211,11 @@ public class Fachada implements IFachada {
 	public ArrayList<Atendimento> listarTodosAtendimento() throws BusinessException {
 		return businessAtendimento.listarTodos();
 	}
+	
+	@Override
+	public ArrayList<Atendimento> buscarAtendimentosAtrasados(String data) throws BusinessException {
+		return businessAtendimento.buscarAtendimentosAtrasados(data);
+	}
 
 	@Override
 	public Atendimento buscarAtendimentoPorId(int id) throws BusinessException {
@@ -493,6 +498,8 @@ public class Fachada implements IFachada {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 	
 

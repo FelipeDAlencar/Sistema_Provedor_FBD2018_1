@@ -5,7 +5,7 @@ public class SQLUtil {
 	public static String URL_POSTGRES = "jdbc:postgresql://localhost:5432/postgres";
 	public static String USUARIO_POSTGRES = "postgres";
 	public static String SENHA_POSTGRES = "81540106";
-
+	
 	public static class Cliente {
 		// Editar
 		public static String INSERT_ALL = "insert into cliente (nome, cpf, rg, data_nascimento, endereco_id) "
@@ -41,24 +41,24 @@ public class SQLUtil {
 	}
 
 	public static class Cidade {
-		public static String INSERT_ALL = "insert into cidade (nome, estado, cep) " + "values (?,?,?); ";
+		public static String INSERT_ALL = "insert into cidade (nome, estado, status, cep) " + "values (?,?,?,?); ";
 
-		public static final String SELECT_ID = "select * from cidade where id = ?";
+		public static final String SELECT_ID = "select * from cidade where id = ? and status = true";
 
-		public static final String SELECT_NOME = "select * from cidade where nome = ?";
+		public static final String SELECT_NOME = "select * from cidade where nome = ?and status = true";
 
-		public static final String SELECT_CEP = "select * from cidade where cep = ?";
+		public static final String SELECT_CEP = "select * from cidade where cep = ? and status = true";
 
-		public static final String MAXID = "select MAX(id) from cidade";
+		public static final String MAXID = "select MAX(id) from cidade and status = true";
 
 		public static final String SELECT_ALL = "select * from cidade";
 
 		public static final String UPDATE = "update cidade set  nome = ?, estado = ?, cep = ? where id = ?";
 		
-		public static final String SELECT_NOMEESTADO = "select * from cidade where nome = ? and estado = ?";
+		public static final String SELECT_NOMEESTADO = "select * from cidade where nome = ? and estado = ? and status = true ";
 		
 		public static final String SELECT_PORBUSCA = "select * from cidade where nome  ilike ? or estado ilike ? or "
-				+ "cep ilike ?";
+				+ "cep ilike ? and status = true";
 
 	}
 
@@ -103,6 +103,11 @@ public class SQLUtil {
 		+ "values (?,?,?,?); ";
 		
 		public static String SELECT_ALL = "select * from atendimento"; 
+		
+		public static String SELECT_ATRASADOS ="select * from atendimento where data_atendimento  <  ?";
+		
+		public static String UPDATE = "update atendimento set motivo = ?, protocolo = ?, data_atendimento = ?, cliente_id = ?"
+				+ "where id = ?";
 	}	
 
 	public static class Caixa {

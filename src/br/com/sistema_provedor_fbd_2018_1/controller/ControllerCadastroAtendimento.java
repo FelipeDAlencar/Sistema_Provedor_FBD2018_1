@@ -8,6 +8,7 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Atendimento;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
+import br.com.sistema_provedor_fbd_2018_1.model.Ultil;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalAtendimentos;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroAtendimentos;
 import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;

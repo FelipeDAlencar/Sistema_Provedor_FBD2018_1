@@ -37,7 +37,6 @@ public class DaoAtendimento implements IDaoAtendimento {
 			statement.setString(2, atendimento.getProtocolo());
 			statement.setDate(3, Ultil.converterParaData(atendimento.getData_atendimento()));
 			statement.setInt(4, cliente_id);
-			
 
 			statement.execute();
 			conexao.close();
@@ -51,8 +50,25 @@ public class DaoAtendimento implements IDaoAtendimento {
 	}
 
 	@Override
-	public void editar(Atendimento atendimento, String cpfCliente) throws DaoException {
-		// TODO Auto-generated method stub
+	public void editar(Atendimento atendimento) throws DaoException {
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+
+			statement = conexao.prepareStatement(SQLUtil.Atendimento.UPDATE);
+			statement.setString(1, atendimento.getMotivo());
+			statement.setString(2, atendimento.getProtocolo());
+			statement.setDate(3, Ultil.converterParaData(atendimento.getData_atendimento()));
+			statement.setInt(4, atendimento.getCliente_id());
+			statement.setInt(5, atendimento.getId());
+
+			statement.execute();
+			conexao.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO INSERIR ATENDIMENTO - CONTACTE A EQUIPE RESPONSÁVEL - DAO");
+
+		}
 
 	}
 
@@ -65,23 +81,24 @@ public class DaoAtendimento implements IDaoAtendimento {
 	@Override
 	public ArrayList<Atendimento> listarTodos() throws DaoException {
 		try {
-			conexao =  SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Atendimento.SELECT_ALL);
-			
+
 			ResultSet resultSet = statement.executeQuery();
 			ArrayList<Atendimento> atendimentos = new ArrayList<>();
 			Atendimento atendimento;
-			
-			while(resultSet.next()) {
-				atendimento =  new Atendimento(resultSet.getInt("id"), resultSet.getInt("cliente_id"), resultSet.getString("motivo"), resultSet.getString("motivo"), Ultil.converterDataParaString(resultSet.getDate("data_atendimento")));
+
+			while (resultSet.next()) {
+				atendimento = new Atendimento(resultSet.getInt("id"), resultSet.getInt("cliente_id"),
+						resultSet.getString("motivo"), resultSet.getString("motivo"),
+						Ultil.converterDataParaString(resultSet.getDate("data_atendimento")));
 				atendimentos.add(atendimento);
-				
+
 			}
-			
+
 			return atendimentos;
-			
-			
-		}catch (SQLException e) {
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DaoException("ERRO AO BUSCAR ATENDIMENTOS");
 		}
@@ -91,6 +108,34 @@ public class DaoAtendimento implements IDaoAtendimento {
 	public ArrayList<Atendimento> buscarPorBusca(String busca) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public ArrayList<Atendimento> buscarAtrasados(String data) throws DaoException {
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Atendimento.SELECT_ATRASADOS);
+			statement.setDate(1, Ultil.converterParaData(data));
+
+			ResultSet resultSet = statement.executeQuery();
+			ArrayList<Atendimento> atendimentos = new ArrayList<>();
+			Atendimento atendimento;
+
+			while (resultSet.next()) {
+				atendimento = new Atendimento(resultSet.getInt("id"), resultSet.getInt("cliente_id"),
+						resultSet.getString("motivo"), resultSet.getString("motivo"),
+						Ultil.converterDataParaString(resultSet.getDate("data_atendimento")));
+
+				atendimentos.add(atendimento);
+			}
+
+			return atendimentos;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO BUSCAR ATENDIMENTOS EM ATRASO");
+		}
+
 	}
 
 }

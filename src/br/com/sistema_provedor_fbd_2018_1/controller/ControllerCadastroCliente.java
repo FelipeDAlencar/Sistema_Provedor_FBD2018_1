@@ -60,13 +60,13 @@ public class ControllerCadastroCliente implements Listeners {
 
 					String cidadeString = (String)internalCliente.getCidadesComboBox().getSelectedItem();
 
+					
 					String nomeCidade = Ultil.separarString(cidadeString.trim(), 0);
 					String estado = Ultil.separarString(cidadeString.trim(), 1);
-
-
-
 					Cidade  cidade = fachada.buscarPorNomeEstado(nomeCidade, estado);
-
+	
+								
+					
 					fachada.salvarOuEditarCliente(cliente, endereco, cidade.getCep());
 
 					for (Contato contato : controllerCadastroContato.getContatos()) {

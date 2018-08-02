@@ -10,12 +10,14 @@ public interface IDaoAtendimento {
 	
 	public void salvar(Atendimento atendimento, String cpfCliente)throws DaoException;
 
-	public void editar(Atendimento atendimento, String cpfCliente)throws DaoException;
+	public void editar(Atendimento atendimento)throws DaoException;
 
 	public Atendimento buscarPorId(int id)throws DaoException;
 	
 	public ArrayList<Atendimento> listarTodos()throws DaoException;
 	
 	public ArrayList<Atendimento> buscarPorBusca(String busca);
+	
+	public ArrayList<Atendimento> buscarAtrasados(String data) throws DaoException;
 
 }

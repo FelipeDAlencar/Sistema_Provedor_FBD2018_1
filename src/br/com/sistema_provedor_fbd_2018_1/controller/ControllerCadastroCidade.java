@@ -26,19 +26,19 @@ public class ControllerCadastroCidade implements Listeners {
 			try {
 				Cidade cidade = new Cidade(internalCadastroCidade.getNomeField().getText(),
 						internalCadastroCidade.getEstadoField().getText().toUpperCase(),
-						internalCadastroCidade.getCepField().getText());
-				Menssagens.menssagem("Cidade salva com sucesso!", 1);
+						internalCadastroCidade.getCepField().getText(), true);
 
 				fachada.salvarOuEditarCidade(cidade);
 				internalCidade.carregarCidades(fachada.listarTodosCidades());
+				Menssagens.menssagem("Cidade salva com sucesso!", 1);
+				internalCadastroCidade.getNomeField().setText("");
+				internalCadastroCidade.getEstadoField().setText("");
+				internalCadastroCidade.getCepField().setText("");
 			} catch (BusinessException e1) {
 				// TODO Auto-generated catch block
 				e1.getMessage();
 			}
 
-			internalCadastroCidade.getNomeField().setText("");
-			internalCadastroCidade.getEstadoField().setText("");
-			internalCadastroCidade.getCepField().setText("");
 		}
 	}
 

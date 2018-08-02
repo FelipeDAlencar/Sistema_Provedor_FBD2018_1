@@ -26,8 +26,10 @@ public class DaoCidade implements IDaoCidade {
 
 			statement.setString(1, cidade.getNome());
 			statement.setString(2, cidade.getEstado());
-			statement.setString(3, cidade.getCep());
-
+			statement.setBoolean(3, cidade.isStatus());
+			statement.setString(4, cidade.getCep());
+			
+			
 			statement.execute();
 			conexao.close();
 
@@ -45,17 +47,16 @@ public class DaoCidade implements IDaoCidade {
 		try {
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Cidade.UPDATE);
-			
+
 			statement.setString(1, cidade.getNome());
 			statement.setString(2, cidade.getEstado());
 			statement.setString(3, cidade.getCep());
-			statement.setInt(4, cidade.getId());
-			
+			statement.setBoolean(4, cidade.isStatus());
+			statement.setInt(5, cidade.getId());
+
 			statement.execute();
 			conexao.close();
-			
-			
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DaoException("ERRO AO EDITAR CIDADE - DAO");
@@ -73,8 +74,8 @@ public class DaoCidade implements IDaoCidade {
 			ResultSet resultSet = statement.executeQuery();
 			Cidade cidade;
 			while (resultSet.next()) {
-				cidade = new Cidade(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
-						resultSet.getString(4));
+				cidade = new Cidade(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("estado"),
+						resultSet.getString("cep"), resultSet.getBoolean("status"));
 				cidades.add(cidade);
 
 			}
@@ -98,8 +99,9 @@ public class DaoCidade implements IDaoCidade {
 			Cidade cidade;
 
 			if (resultSet.next()) {
-				cidade = new Cidade(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
-						resultSet.getString(4));
+				cidade = new Cidade(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("estado"),
+						resultSet.getString("cep"), resultSet.getBoolean("status"));
+
 			} else {
 				throw new DaoException("CIDADE NÃO CADASTRADO");
 			}
@@ -114,26 +116,27 @@ public class DaoCidade implements IDaoCidade {
 
 	}
 
-
 	@Override
-	public ArrayList<Cidade> buscarPorBusca(String busca)throws DaoException {
-		
+	public ArrayList<Cidade> buscarPorBusca(String busca) throws DaoException {
+
 		try {
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Cidade.SELECT_PORBUSCA);
-			
+
 			statement.setString(1, '%' + busca + '%');
 			statement.setString(2, '%' + busca + '%');
 			statement.setString(3, '%' + busca + '%');
-			
-			ResultSet resultSet =  statement.executeQuery();
+
+			ResultSet resultSet = statement.executeQuery();
 			ArrayList<Cidade> cidades = new ArrayList<>();
 			Cidade cidade;
-			while(resultSet.next()) {
-				cidade = new Cidade(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("estado"), resultSet.getString("cep"));
+			while (resultSet.next()) {
+				cidade = new Cidade(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("estado"),
+						resultSet.getString("cep"), resultSet.getBoolean("status"));
+
 				cidades.add(cidade);
 			}
-			
+
 			return cidades;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -142,33 +145,31 @@ public class DaoCidade implements IDaoCidade {
 	}
 
 	@Override
-	public Cidade buscarPorNomeEstado(String nome, String estado)throws DaoException {
-		
+	public Cidade buscarPorNomeEstado(String nome, String estado) throws DaoException {
+
 		try {
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Cidade.SELECT_NOMEESTADO);
 			statement.setString(1, nome);
 			statement.setString(2, estado);
-			
-			
+
 			ResultSet resultSet = statement.executeQuery();
 			Cidade cidade = null;
-			if(resultSet.next()) {
-				cidade = new Cidade(resultSet.getString(2), resultSet.getString(3), resultSet.getString(4));
-				
-			}else {
+			if (resultSet.next()) {
+				cidade = new Cidade(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("estado"),
+						resultSet.getString("cep"), resultSet.getBoolean("status"));
+
+
+			} else {
 				System.out.println("Entrou else");
 			}
 			return cidade;
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DaoException("Erro ao buscar cidade.");
 		}
-		
-		
-		
-		
+
 	}
 
 }

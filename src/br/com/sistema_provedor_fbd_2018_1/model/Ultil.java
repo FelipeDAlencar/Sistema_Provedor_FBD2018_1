@@ -59,4 +59,11 @@ public class Ultil {
 		return dataFormatada;
 
 	}
+
+	public static String dataAtualEmString() {
+		Calendar c = Calendar.getInstance();
+		java.util.Date data = c.getTime();
+		DateFormat f = DateFormat.getDateInstance();
+		return f.format(data);
+	}
 }

@@ -1,9 +1,11 @@
 package br.com.sistema_provedor_fbd_2018_1.view;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -25,6 +27,7 @@ public class InternalMovimentacao  extends TelaInternal{
 	private Botao btnBuscar;
 	private JRadioButton radioPagos,radioNaoPagos;
 	private ButtonGroup grupoBtn;
+	private ArrayList<JCheckBox> checkBoxs;
 	public InternalMovimentacao(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
 		super("Movimentações", telaPrincipal, actionListener);
 		setBounds(150, 20, 1050, 610);

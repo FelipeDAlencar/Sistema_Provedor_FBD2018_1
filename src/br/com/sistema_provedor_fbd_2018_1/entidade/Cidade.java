@@ -3,24 +3,27 @@ package br.com.sistema_provedor_fbd_2018_1.entidade;
 public class Cidade {
 	private Integer id;
 	private String nome, estado, cep;
+	private boolean status;
 
 	public Cidade() {
 
 	}
 
-	public Cidade(Integer id, String nome, String estado, String cep) {
+	public Cidade(Integer id, String nome, String estado, String cep, boolean  status ) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.estado = estado;
 		this.cep = cep;
+		this.status = status;
 	}
 
-	public Cidade(String nome, String estado, String cep) {
+	public Cidade(String nome, String estado, String cep, boolean status) {
 		super();
 		this.nome = nome;
 		this.estado = estado;
 		this.cep = cep;
+		this.status = status;
 	}
 
 	public String getNome() {
@@ -54,5 +57,14 @@ public class Cidade {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+	
 
 }

@@ -11,6 +11,7 @@ import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalAdicionarServico;
+import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroContrato;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarCidade;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalVerCliente;
@@ -26,7 +27,7 @@ public class ControllerVerCliente implements Listeners {
 	private ControllerCadastroContrato controllerCadastroContrato;
 	private Fachada fachada;
 	private Cliente cliente;
-
+	
 	public ControllerVerCliente( TelaPrincipal telaPrincipal, Cliente cliente) {
 		fachada = new Fachada();
 		this.cliente = cliente;
@@ -98,6 +99,7 @@ public class ControllerVerCliente implements Listeners {
 	public void addListeners() {
 		internalVerCliente.getPanelServico().getBntAdicionar().addActionListener(this);
 		internalVerCliente.getFinanceiroPanel().getBtnNovoContrato().addActionListener(this);
+		
 	}
 
 	public InternalVerCliente getInternalVerCliente() {

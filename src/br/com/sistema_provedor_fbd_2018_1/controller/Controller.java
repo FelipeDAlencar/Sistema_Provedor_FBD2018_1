@@ -10,6 +10,7 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Concentrador;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
+import br.com.sistema_provedor_fbd_2018_1.model.Ultil;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalAtendimentos;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroSwitch;
@@ -51,7 +52,6 @@ public class Controller implements ActionListener {
 	private InternalMovimentacao internalMovimentacao;
 
 	public Controller(TelaPrincipal telaPrincipal) {
-	
 
 		fachada = new Fachada();
 		this.telaPrincipal = telaPrincipal;
@@ -71,17 +71,17 @@ public class Controller implements ActionListener {
 		telaPrincipal.getMenu().getAdicionarCliente().addActionListener(this);
 		telaPrincipal.getMenu().getVerCliente().addActionListener(this);
 		telaPrincipal.getMenu().getAtendimentosCliente().addActionListener(this);
-		
+
 		// itens Menu Network
 		telaPrincipal.getMenu().getConcentradorNetwork().addActionListener(this);
 		telaPrincipal.getMenu().getSwitchNetwork().addActionListener(this);
 		telaPrincipal.getMenu().getCaixaNetwork().addActionListener(this);
-		
-		//ITENS FINANCEITO
+
+		// ITENS FINANCEITO
 		telaPrincipal.getMenu().getMovimentacoesFinanceiro().addActionListener(this);
-		
+
 		telaPrincipal.getBtnMovimentacoes().addActionListener(this);
-		
+
 	}
 
 	@Override
@@ -108,7 +108,7 @@ public class Controller implements ActionListener {
 				controllerVisualizar.setInternalLocalizarCliente(internalLocalizarCliente);
 				controllerVisualizar.addListeners();
 			}
-						
+
 			if (e.getSource() == telaPrincipal.getBtnAtendimentos()
 					|| e.getSource() == telaPrincipal.getMenu().getAtendimentosCliente()) {
 				controllerAtendimentos = new ControllerAtendimentos(telaPrincipal);
@@ -118,6 +118,9 @@ public class Controller implements ActionListener {
 				controllerAtendimentos.setInternalAtendimentos(internalAtendimentos);
 				controllerAtendimentos.addListeners();
 				internalAtendimentos.carregarAtendimentos(fachada.listarTodosAtendimento());
+				String data_atual = Ultil.dataAtualEmString();
+
+				internalAtendimentos.carregarAtendimentosAtrasados(fachada.buscarAtendimentosAtrasados(data_atual));
 			}
 
 			if (e.getSource() == telaPrincipal.getMenu().getSwitchNetwork()) {
@@ -202,8 +205,9 @@ public class Controller implements ActionListener {
 				controllerCaixa.setInternalCaixa(internalCaixa);
 				controllerCaixa.addListeners();
 			}
-			
-			if(e.getSource() == telaPrincipal.getMenu().getMovimentacoesFinanceiro() || e.getSource() == telaPrincipal.getBtnMovimentacoes()) {
+
+			if (e.getSource() == telaPrincipal.getMenu().getMovimentacoesFinanceiro()
+					|| e.getSource() == telaPrincipal.getBtnMovimentacoes()) {
 				controllerMovimentacao = new ControllerMovimentacao(telaPrincipal);
 				internalMovimentacao = new InternalMovimentacao(telaPrincipal, controllerMovimentacao);
 				telaPrincipal.getDesktopPane().add(internalMovimentacao);

@@ -2,12 +2,14 @@ package br.com.sistema_provedor_fbd_2018_1.controller;
 
 import java.awt.event.ActionEvent;
 
-import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
+import javax.swing.JOptionPane;
+
+
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
-import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarCidade;
+import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalLocalizarCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalVerCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
@@ -19,6 +21,8 @@ public class ControllerLocalizarCliente implements Listeners {
 	private InternalVerCliente internalVerCliente;
 	private TelaPrincipal telaPrincipal;
 	private Fachada fachada;
+	private InternalCadastroCliente internalCadastroCliente;
+	private ControllerCadastroCliente controllerCadastroCliente;
 
 	public ControllerLocalizarCliente(TelaPrincipal telaPrincipal) {
 		this.telaPrincipal = telaPrincipal;
@@ -48,6 +52,14 @@ public class ControllerLocalizarCliente implements Listeners {
 			
 
 			}
+			if(e.getSource() == internalLocalizarCliente.getBtnNovo()) {
+				controllerCadastroCliente = new ControllerCadastroCliente();
+				internalCadastroCliente = new InternalCadastroCliente(telaPrincipal, controllerCadastroCliente);
+				telaPrincipal.getDesktopPane().add(internalCadastroCliente);
+				internalCadastroCliente.setVisible(true);
+				controllerCadastroCliente.setAdicionarCliente(internalCadastroCliente);
+				controllerCadastroCliente.addListeners();
+			}
 		} catch (BusinessException e1) {
 			e1.printStackTrace();
 		}catch (IndexOutOfBoundsException e2) {
@@ -61,7 +73,7 @@ public class ControllerLocalizarCliente implements Listeners {
 	public void addListeners() {
 		internalLocalizarCliente.getBtnBuscar().addActionListener(this);
 		internalLocalizarCliente.getBtnEditar().addActionListener(this);
-
+		internalLocalizarCliente.getBtnNovo().addActionListener(this);
 	}
 
 	public InternalLocalizarCliente getInternalLocalizarCliente() {
