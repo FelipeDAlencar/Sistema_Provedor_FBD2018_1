@@ -7,6 +7,7 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Contrato;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Parcela;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 
 public interface IBusinessContrato {
 
@@ -17,5 +18,7 @@ public interface IBusinessContrato {
 	public Contrato buscarPorId(int id) throws BusinessException;
 
 	public ArrayList<Contrato> buscarPorBusca(String busca);
+	
+	public ArrayList<Contrato> buscarPorClienteID(int cliente_id) throws BusinessException;
 
 }

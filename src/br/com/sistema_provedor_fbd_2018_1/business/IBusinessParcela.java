@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import br.com.sistema_provedor_fbd_2018_1.entidade.Parcela;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 
 
 public interface IBusinessParcela {
@@ -16,6 +17,7 @@ public interface IBusinessParcela {
 	public ArrayList<Parcela> listarTodos() throws BusinessException;
 	
 	public ArrayList<Parcela> buscarPorBusca(String busca);
+	public ArrayList<Parcela> buscaPorContratoID(int contrato_id)throws BusinessException;
 
 	
 	

@@ -166,7 +166,9 @@ public class SQLUtil {
 	public static class Contrato {
 		public static String INSERT_ALL = "insert into contrato (valor_instalacao, valor_mensal, login, senha, numero_parcelas, cliente_id) "
 				+ "values (?,?,?,?,?,?); ";
-		public static String SELECT_MAXID = "select MAX(ID) from  contrato  ";
+		public static String SELECT_MAXID = "select MAX(ID) from  contrato ";
+		
+		public static String SELECT_PORCLIENTE_ID = "select * from contrato where cliente_id = ?";
 	}
 	
 	
@@ -195,6 +197,8 @@ public class SQLUtil {
 		public static String UPDATE = "update parcela set valor = ?, data_vencimento = ?, status = ? where id = ?";
 		
 		public static String SELECT_ID = "select * from parcela where id = ?";
+		
+		public static String SELECT_PORCOTRATOID = "select * from parcela where contrato_id = ?"; 
 	}
 	
 	public static class ServicoCliente{

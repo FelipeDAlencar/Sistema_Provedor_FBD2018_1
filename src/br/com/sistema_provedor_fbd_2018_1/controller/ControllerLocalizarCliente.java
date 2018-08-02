@@ -44,6 +44,8 @@ public class ControllerLocalizarCliente implements Listeners {
 				controllerVerCliente.setInternalVerCliente(internalVerCliente);
 				controllerVerCliente.addListeners();
 				controllerVerCliente.carregarDados();
+				internalVerCliente.getFinanceiroPanel().carregarTabelas(fachada.buscarContratoPorClienteID(cliente.getId()));
+			
 
 			}
 		} catch (BusinessException e1) {

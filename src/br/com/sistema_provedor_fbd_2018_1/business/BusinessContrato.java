@@ -8,6 +8,7 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Contrato;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Parcela;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 
 public class BusinessContrato implements IBusinessContrato {
 
@@ -54,6 +55,16 @@ public class BusinessContrato implements IBusinessContrato {
 	public ArrayList<Contrato> buscarPorBusca(String busca) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public ArrayList<Contrato> buscarPorClienteID(int cliente_id) throws BusinessException {
+		try {
+			return dao.buscarPorClienteID(cliente_id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO NO BUS");
+		}
 	}
 
 }

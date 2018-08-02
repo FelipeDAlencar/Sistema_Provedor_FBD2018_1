@@ -20,37 +20,32 @@ public class InternalVerCliente extends InternalCadastroCliente {
 
 	public InternalVerCliente(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
 		super(telaPrincipal, actionListener);
-		
+
 		setResizable(true);
-		getTabbedPane().setSize(1000,350);
+		getTabbedPane().setSize(1000, 350);
 		financeiro = new PanelFinanceiro();
-		financeiro.setPreferredSize(new Dimension(800, 600));
+		financeiro.setPreferredSize(new Dimension(2000, 2000));
 		financeiro.setLayout(null);
-		
+
 		scrollFinanceiro = new JScrollPane(financeiro);
-		
-		scrollFinanceiro.setPreferredSize(new Dimension(300, 300));  
-        scrollFinanceiro.setVerticalScrollBarPolicy(scrollFinanceiro.VERTICAL_SCROLLBAR_ALWAYS);  
-        scrollFinanceiro.setHorizontalScrollBarPolicy(scrollFinanceiro.HORIZONTAL_SCROLLBAR_ALWAYS);  
-  	
+
+		scrollFinanceiro.setPreferredSize(new Dimension(2000, 2000));
 		atendimentos = new JPanel();
 
 		panelServico = new PanelServico();
-		//panelServico.getBarraRolagem().setBounds(50, 60, 940, 269);
-		
-		
+		// panelServico.getBarraRolagem().setBounds(50, 60, 940, 269);
 
 		getTabbedPane().add("Serviço", panelServico);
 		getTabbedPane().add("Financeiro", scrollFinanceiro);
 		getTabbedPane().add("Atendimentos", atendimentos);
-		
+
 	}
 
-	public PanelFinanceiro getFinanceiro() {
+	public PanelFinanceiro getFinanceiroPanel() {
 		return financeiro;
 	}
 
-	public JPanel getAtendimentos() {
+	public JPanel getAtendimentosPanel() {
 		return atendimentos;
 	}
 

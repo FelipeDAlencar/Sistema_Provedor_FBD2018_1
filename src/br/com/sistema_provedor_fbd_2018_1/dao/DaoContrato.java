@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import br.com.sistema_provedor_fbd_2018_1.entidade.Contrato;
@@ -23,32 +25,39 @@ public class DaoContrato implements IDaoContrato {
 		try {
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Contrato.INSERT_ALL);
-			
+
 			statement.setDouble(1, contrato.getValor_instalacao());
 			statement.setDouble(2, contrato.getValor_mensal());
 			statement.setString(3, contrato.getLogin());
 			statement.setString(4, contrato.getSenha());
 			statement.setInt(5, contrato.getNumero_parcelas());
 			statement.setInt(6, contrato.getCliente_id());
-			
+
 			statement.execute();
-			
+
 			statement = conexao.prepareStatement(SQLUtil.Contrato.SELECT_MAXID);
 			ResultSet resultSet = statement.executeQuery();
 			resultSet.next();
 			int contrato_id = resultSet.getInt(1);
-
+			
+			
 			statement = conexao.prepareStatement(SQLUtil.Parcela.INSERT_ALL);
-			for(int i = 0; i < contrato.getNumero_parcelas(); i++) {
+			
+			
+		
+			String dataAtual = Ultil.datasParcelas(parcela.getData_vencimento());
+			
+			
+			for (int i = 0; i < contrato.getNumero_parcelas(); i++) {
 				statement.setDouble(1, parcela.getValor());
-				statement.setDate(2, Ultil.converterParaData(parcela.getData_vencimento()));
+				statement.setDate(2, Ultil.converterParaData(dataAtual));
 				statement.setBoolean(3, parcela.isStatus());
 				statement.setInt(4, contrato_id);
 				statement.execute();
-				
+				dataAtual =  Ultil.datasParcelas(dataAtual);
+
 			}
-			
-			
+
 			statement.close();
 
 		} catch (SQLException e) {
@@ -81,6 +90,32 @@ public class DaoContrato implements IDaoContrato {
 	public List<Contrato> buscarPorBusca(String busca) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public ArrayList<Contrato> buscarPorClienteID(int cliente_id) throws DaoException {
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Contrato.SELECT_PORCLIENTE_ID);
+			statement.setInt(1, cliente_id);
+
+			ResultSet resultSet = statement.executeQuery();
+			ArrayList<Contrato> contratos = new ArrayList<>();
+			Contrato contrato;
+
+			while (resultSet.next()) {
+				contrato = new Contrato(resultSet.getInt("id"), cliente_id, resultSet.getDouble("valor_instalacao"),
+						resultSet.getDouble("valor_mensal"), resultSet.getString("login"), resultSet.getString("senha"),
+						resultSet.getInt("numero_parcelas"));
+				contratos.add(contrato);
+			}
+			return contratos;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO CONSULTAR CONTRATOS");
+		}
+
 	}
 
 }

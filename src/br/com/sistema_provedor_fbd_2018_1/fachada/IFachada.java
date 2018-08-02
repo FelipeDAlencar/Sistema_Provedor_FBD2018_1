@@ -107,6 +107,7 @@ public interface IFachada {
 
 	public ArrayList<Contrato> buscarContratoPorBusca(String busca);
 
+	public ArrayList<Contrato> buscarContratoPorClienteID(int cliente_id) throws BusinessException;
 	// Porta
 	public void salvarOuEditarPorta(Porta porta, String nomeSwitch) throws BusinessException;
 
@@ -155,7 +156,9 @@ public interface IFachada {
 
 	public ArrayList<Parcela> listarTodos() throws BusinessException;
 	public ArrayList<Parcela> buscarParcelaPorBusca(String busca);
-
+	public ArrayList<Parcela> buscarParcelaPorContratoID(int contrato_id)throws BusinessException;
+	
+	
 	Servico buscarServicoNome(String nome) throws BusinessException;
 
 	Porta buscarPortaPorSwitchNumero(Integer switch_id, int numero) throws BusinessException;

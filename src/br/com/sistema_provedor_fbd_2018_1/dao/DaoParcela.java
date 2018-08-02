@@ -122,4 +122,29 @@ public class DaoParcela implements IDaoParcela {
 		return null;
 	}
 
+	@Override
+	public ArrayList<Parcela> buscaPorContratoID(int contrato_id) throws DaoException {
+		try{
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Parcela.SELECT_PORCOTRATOID);
+			statement.setInt(1, contrato_id);
+			
+			ResultSet resultSet = statement.executeQuery();
+			ArrayList<Parcela> parcelas = new ArrayList<>();
+			Parcela parcela;
+			
+			while(resultSet.next()) {
+				parcela = new Parcela(resultSet.getInt("id"), contrato_id, resultSet.getDouble("valor"),Ultil.converterDataParaString(resultSet.getDate("data_vencimento")), resultSet.getBoolean("status"));
+				parcelas.add(parcela);
+			
+			}
+			return parcelas;
+			   
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO BUSCAR PARCELAS");
+		}
+	}
+
 }

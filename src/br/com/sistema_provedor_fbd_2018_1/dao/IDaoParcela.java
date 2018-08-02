@@ -15,6 +15,8 @@ public interface IDaoParcela{
 	public ArrayList<Parcela> listarTodos()throws DaoException;
 	
 	public ArrayList<Parcela> buscarPorBusca(String busca) throws DaoException;
+	
+	public ArrayList<Parcela> buscaPorContratoID(int contrato_id)throws DaoException;
 
 
 }

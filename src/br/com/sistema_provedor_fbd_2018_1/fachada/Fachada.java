@@ -69,6 +69,7 @@ public class Fachada implements IFachada {
 	private IBusinessMovimentacao businessMovimentacao;
 	private IBusinessParcela businessParcela;
 	private IBusinessServicoCliente businessServicoCliente;
+
 	public Fachada() {
 		businessCliente = new BusinessCliente();
 		businessEndereco = new BusinessEndereco();
@@ -97,11 +98,10 @@ public class Fachada implements IFachada {
 	// CLIENTE
 	@Override
 	public void salvarOuEditarCliente(Cliente cliente, Endereco endereco, String cep) throws BusinessException {
-		this.businessCliente.salvarOuEditarCliente(cliente, endereco,cep);
+		this.businessCliente.salvarOuEditarCliente(cliente, endereco, cep);
 
 	}
 
-	
 	@Override
 	public Cliente buscarClientePorId(int id) throws BusinessException {
 		try {
@@ -145,13 +145,14 @@ public class Fachada implements IFachada {
 	// FUNCIONARIO
 
 	@Override
-	public void salvarOuEditarFuncionario(Funcionario funcionario,Endereco endereco, String cep) throws BusinessException {
+	public void salvarOuEditarFuncionario(Funcionario funcionario, Endereco endereco, String cep)
+			throws BusinessException {
 		businessFuncionario.salvarOuEditarFuncionario(funcionario, endereco, cep);
 
 	}
 
 	@Override
-	public Funcionario buscarFuncionarioPorId(int id)throws BusinessException {
+	public Funcionario buscarFuncionarioPorId(int id) throws BusinessException {
 		return businessFuncionario.buscarPorId(id);
 	}
 
@@ -165,12 +166,11 @@ public class Fachada implements IFachada {
 	public ArrayList<Funcionario> buscarFuncionarioPorBusca(String busca) throws BusinessException {
 		return businessFuncionario.buscarPorBusca(busca);
 	}
+
 	@Override
 	public ArrayList<Funcionario> listarTodosFuncionarios() throws BusinessException {
 		return businessFuncionario.listarTodos();
 	}
-
-
 
 	// CIDADE
 
@@ -186,7 +186,7 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public ArrayList<Cidade> buscarCidadePorBusca(String busca)throws BusinessException {
+	public ArrayList<Cidade> buscarCidadePorBusca(String busca) throws BusinessException {
 		return businessCidade.buscarPorBusca(busca);
 	}
 
@@ -194,11 +194,12 @@ public class Fachada implements IFachada {
 	public ArrayList<Cidade> listarTodosCidades() throws BusinessException {
 		return businessCidade.listarTodos();
 	}
-	
+
 	@Override
 	public Cidade buscarPorNomeEstado(String nome, String estado) throws BusinessException {
 		return businessCidade.buscarPorNomeEstado(nome, estado);
 	}
+
 	// ATENDIMENTO
 	@Override
 	public void salvarOuEditarAtendimento(Atendimento atendimento, String cpfCliente) throws BusinessException {
@@ -232,7 +233,7 @@ public class Fachada implements IFachada {
 
 	@Override
 	public ArrayList<Caixa> listarTodosCaixa() throws BusinessException {
-		
+
 		return businessCaixa.listarTodos();
 	}
 
@@ -274,7 +275,7 @@ public class Fachada implements IFachada {
 
 	// CONTRATO
 	@Override
-	public void salvarOuEditarContrato(Contrato contrato,Parcela parcela) throws BusinessException {
+	public void salvarOuEditarContrato(Contrato contrato, Parcela parcela) throws BusinessException {
 		businessContrato.salvarOuEditar(contrato, parcela);
 
 	}
@@ -297,13 +298,19 @@ public class Fachada implements IFachada {
 		return null;
 	}
 
+	@Override
+	public ArrayList<Contrato> buscarContratoPorClienteID(int cliente_id) throws BusinessException {
+
+		return businessContrato.buscarPorClienteID(cliente_id);
+	}
+
 	// PORTA
 	@Override
 	public void salvarOuEditarPorta(Porta porta, String nomeSwitch) throws BusinessException {
 		businessPorta.salvarOuEditar(porta, nomeSwitch);
 
 	}
-	
+
 	@Override
 	public ArrayList<Porta> buscarPortaPorSwitch(int switch_id) throws BusinessException {
 		return businessPorta.buscarPorSwitch(switch_id);
@@ -319,21 +326,24 @@ public class Fachada implements IFachada {
 	public Porta buscarPortaPorId(int id) throws BusinessException {
 		// TODO Auto-generated method stub
 		return null;
-	} 
-	
+	}
 
 	@Override
 	public ArrayList<Porta> buscarPortaPorBusca(String busca) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public Porta buscarPortaPorSwitchNumero(Integer switch_id, int numero) throws BusinessException {
+		return businessPorta.buscarPorSwitchNome(switch_id, numero);
+	}
+
 
 	// SERVICO
 	@Override
 	public Servico buscarServicoNome(String nome) throws BusinessException {
 		return businessServico.buscarPorNome(nome);
 	}
-	
+
 	@Override
 	public void salvarOuEditarServico(Servico servico) throws BusinessException {
 		businessServico.salvarOuEditar(servico);
@@ -342,8 +352,8 @@ public class Fachada implements IFachada {
 
 	@Override
 	public ArrayList<Servico> listarTodosServico() throws BusinessException {
-		return 	businessServico.listarTodos();
-		
+		return businessServico.listarTodos();
+
 	}
 
 	@Override
@@ -352,22 +362,22 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public ArrayList<Servico> buscarServicoPorBusca(String busca)throws BusinessException {
+	public ArrayList<Servico> buscarServicoPorBusca(String busca) throws BusinessException {
 		return businessServico.buscarPorBusca(busca);
 	}
 
 	// SWITCH
 	@Override
-	public void salvarOuEditarSwitch(Switch switch1, String nomeCaixa, String nomeConcentrador) throws BusinessException {
+	public void salvarOuEditarSwitch(Switch switch1, String nomeCaixa, String nomeConcentrador)
+			throws BusinessException {
 		businessSwitch.salvarOuEditar(switch1, nomeCaixa, nomeConcentrador);
 
 	}
-	
+
 	@Override
 	public Switch buscarSwitchPorNome(String nome) throws BusinessException {
 		return businessSwitch.buscarPorNome(nome);
 	}
-
 
 	@Override
 	public ArrayList<Switch> listarTodosSwitch() throws BusinessException {
@@ -407,12 +417,11 @@ public class Fachada implements IFachada {
 		return businessConcentrador.buscarPorBusca(busca);
 	}
 
-	
-	//	MOVIMENTACAO
+	// MOVIMENTACAO
 	@Override
 	public void salvarOuEditarMovimentacao(Movimentacao movimentacao) throws BusinessException {
 		businessMovimentacao.salvarOuEditar(movimentacao);
-		
+
 	}
 
 	@Override
@@ -427,15 +436,14 @@ public class Fachada implements IFachada {
 
 	@Override
 	public ArrayList<Movimentacao> buscarPorBuscaMovimentacao(String busca) throws BusinessException {
-		return  businessMovimentacao.buscarPorBusca(busca);
+		return businessMovimentacao.buscarPorBusca(busca);
 	}
 
-	
 	// PARCELA
 	@Override
 	public void salvarOuEditar(Parcela parcela) throws BusinessException {
 		businessParcela.salvarOuEditar(parcela);
-		
+
 	}
 
 	@Override
@@ -453,15 +461,17 @@ public class Fachada implements IFachada {
 	public ArrayList<Parcela> listarTodos() throws BusinessException {
 		return businessParcela.listarTodos();
 	}
-
-	public Porta buscarPortaPorSwitchNumero(Integer switch_id, int numero) throws BusinessException {
-		return businessPorta.buscarPorSwitchNome(switch_id, numero);
+	@Override
+	public ArrayList<Parcela> buscarParcelaPorContratoID(int contrato_id) throws BusinessException {
+		return businessParcela.buscaPorContratoID(contrato_id);
 	}
-	//Servicos Cliente
+	
+		// Servicos Cliente
 	public void salvarOuEditarServicoCliente(ServicoCliente servicoCliente) throws BusinessException {
 		businessServicoCliente.salvarOuEditar(servicoCliente);
-		
+
 	}
+
 	@Override
 	public ArrayList<ServicoCliente> listarTodosServicosCliente() throws BusinessException {
 		// TODO Auto-generated method stub
@@ -473,5 +483,7 @@ public class Fachada implements IFachada {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
+
+
 }

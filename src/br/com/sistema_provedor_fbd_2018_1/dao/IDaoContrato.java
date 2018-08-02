@@ -18,5 +18,7 @@ public interface IDaoContrato {
 	public ArrayList<Contrato> listarTodos()throws DaoException;
 	
 	public List<Contrato> buscarPorBusca(String busca);
+	
+	public ArrayList<Contrato> buscarPorClienteID(int cliente_id) throws DaoException;
 
 }

@@ -46,8 +46,8 @@ public class ControllerVerCliente implements Listeners {
 				controllerAdicionarServico.addListeners();
 				
 			}
-			if(e.getSource() == internalVerCliente.getFinanceiro().getBtnNovoContrato()) {
-				controllerCadastroContrato	= new ControllerCadastroContrato(cliente);
+			if(e.getSource() == internalVerCliente.getFinanceiroPanel().getBtnNovoContrato()) {
+				controllerCadastroContrato	= new ControllerCadastroContrato(internalVerCliente, cliente);
 				internalCadastroContrato = new InternalCadastroContrato(telaPrincipal, controllerCadastroContrato);
 				telaPrincipal.getDesktopPane().add(internalCadastroContrato);
 				internalCadastroContrato.setVisible(true);
@@ -97,7 +97,7 @@ public class ControllerVerCliente implements Listeners {
 	@Override
 	public void addListeners() {
 		internalVerCliente.getPanelServico().getBntAdicionar().addActionListener(this);
-		internalVerCliente.getFinanceiro().getBtnNovoContrato().addActionListener(this);
+		internalVerCliente.getFinanceiroPanel().getBtnNovoContrato().addActionListener(this);
 	}
 
 	public InternalVerCliente getInternalVerCliente() {

@@ -67,4 +67,14 @@ public class BusinessParcela implements IBusinessParcela {
 		}
 	}
 
+	@Override
+	public ArrayList<Parcela> buscaPorContratoID(int contrato_id)throws BusinessException {
+		try {
+			return dao.buscaPorContratoID(contrato_id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO NO BUS");
+		}
+	}
+
 }
