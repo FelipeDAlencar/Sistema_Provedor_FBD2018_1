@@ -186,9 +186,7 @@ public class SQLUtil {
 		
 		public static final String SELECT_ID = "select * from movimentacao where id = ? and status = true";
 		
-		public static final String SELECT_PORBUSCA = "select * from movimentacao where descricao ilike ?"
-				+ "or to_char(valor, '999D99S') like ? or to_char(data_movimentacao, 'yyyy/MM/dd hh:mm:ss') ilike ?"
-				+ "or tipo ilike ? and situacao = ?";
+		public static final String SELECT_PORBUSCA = "select * from movimentacao where situacao = ? and descricao ilike ?  ";
 		
 		public static  final String SELECT_PAGO = "select * from movimentacao where situacao = 'Pago'";
 		

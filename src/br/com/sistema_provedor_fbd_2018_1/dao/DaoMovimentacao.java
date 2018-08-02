@@ -122,11 +122,8 @@ public class DaoMovimentacao implements IDaoMovimentacao {
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Movimentacao.SELECT_PORBUSCA);
 
-			statement.setString(1, '%' + busca + '%');
 			statement.setString(2, '%' + busca + '%');
-			statement.setString(3, '%' + busca + '%');
-			statement.setString(4, '%' + busca + '%');
-			statement.setString(5, situacao);
+			statement.setString(1, situacao);
 
 			System.out.println(situacao);
 			System.out.println();
