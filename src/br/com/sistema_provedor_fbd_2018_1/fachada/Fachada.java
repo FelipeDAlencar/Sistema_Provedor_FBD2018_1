@@ -435,8 +435,19 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public ArrayList<Movimentacao> buscarPorBuscaMovimentacao(String busca) throws BusinessException {
-		return businessMovimentacao.buscarPorBusca(busca);
+	public ArrayList<Movimentacao> buscarPorBuscaMovimentacao(String busca, String situacao) throws BusinessException {
+		return businessMovimentacao.buscarPorBusca(busca,situacao);
+	}
+	@Override
+	public ArrayList<Movimentacao> buscarPorBusca(String busca) throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Movimentacao> buscarPagoOuNao(String busca) throws BusinessException {
+		// TODO Auto-generated method stub
+		return businessMovimentacao.buscarPagoOuNao(busca);
 	}
 
 	// PARCELA
@@ -483,6 +494,8 @@ public class Fachada implements IFachada {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 
 

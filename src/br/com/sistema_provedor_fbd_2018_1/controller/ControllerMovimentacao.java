@@ -43,34 +43,41 @@ public class ControllerMovimentacao implements Listeners {
 			}
 
 			if (e.getSource() == internalMovimentacao.getBtnEditar()) {
-					int linha = internalMovimentacao.getTabela().getSelectedRow();
-					int id = Integer.parseInt(internalMovimentacao.getModelTable().getValueAt(linha, 0).toString());
+				int linha = internalMovimentacao.getTabela().getSelectedRow();
+				int id = Integer.parseInt(internalMovimentacao.getModelTable().getValueAt(linha, 0).toString());
 
-					Movimentacao movimentacao = fachada.buscarPorIdMovimentacao(id);
-					controllerEditarMovimentacao = new ControllerEditarMovimentacao(internalMovimentacao, movimentacao);
-					internalEditarMovimentacao = new InternalEditarMovimentacao(telaPrincipal,
-							controllerEditarMovimentacao);
-					telaPrincipal.getDesktopPane().add(internalEditarMovimentacao);
-					internalEditarMovimentacao.setVisible(true);
-					controllerEditarMovimentacao.setInternal(internalEditarMovimentacao);
-					controllerEditarMovimentacao.preencherCampos();
-					controllerEditarMovimentacao.addListeners();
-				 
+				Movimentacao movimentacao = fachada.buscarPorIdMovimentacao(id);
+				controllerEditarMovimentacao = new ControllerEditarMovimentacao(internalMovimentacao, movimentacao);
+				internalEditarMovimentacao = new InternalEditarMovimentacao(telaPrincipal,
+						controllerEditarMovimentacao);
+				telaPrincipal.getDesktopPane().add(internalEditarMovimentacao);
+				internalEditarMovimentacao.setVisible(true);
+				controllerEditarMovimentacao.setInternal(internalEditarMovimentacao);
+				controllerEditarMovimentacao.preencherCampos();
+				controllerEditarMovimentacao.addListeners();
 
 			}
 			if (e.getSource() == internalMovimentacao.getBtnBuscar()) {
 				String busca = internalMovimentacao.getBuscarField().getText();
+				if (internalMovimentacao.getRadioPagos().isSelected() && busca.equals("")) {
+					internalMovimentacao.carregarMovimentacoes(fachada.buscarPagoOuNao("pago"));
 
-				if (busca.equals("")) {
-					internalMovimentacao.carregarMovimentacoes(fachada.listarTodosMovimentacao());
-				} else {
-					internalMovimentacao.carregarMovimentacoes(fachada.buscarPorBuscaMovimentacao(busca));
+				} else if (internalMovimentacao.getRadioNaoPagos().isSelected() && busca.equals("")) {
+					internalMovimentacao.carregarMovimentacoes(fachada.buscarPagoOuNao("Aguardando pagamento"));
+
+				} else if (internalMovimentacao.getRadioPagos().isSelected()) {
+					internalMovimentacao.carregarMovimentacoes(fachada.buscarPorBuscaMovimentacao(busca, "Pago"));
+					
+				} else if(internalMovimentacao.getRadioNaoPagos().isSelected()) {
+					internalMovimentacao
+							.carregarMovimentacoes(fachada.buscarPorBuscaMovimentacao(busca, "Aguardando pagamento"));
+					
 				}
-
 			}
+
 		} catch (BusinessException e1) {
 			e1.printStackTrace();
-		}catch (IndexOutOfBoundsException e2) {
+		} catch (IndexOutOfBoundsException e2) {
 			Menssagens.menssagem("SELECIONE UM CAMPO DA TABELA PARA EDITAR.", 0);
 		}
 
@@ -82,6 +89,8 @@ public class ControllerMovimentacao implements Listeners {
 		internalMovimentacao.getBtnNovo().addActionListener(this);
 		internalMovimentacao.getBtnRemover().addActionListener(this);
 		internalMovimentacao.getBtnEditar().addActionListener(this);
+		internalMovimentacao.getRadioNaoPagos().addActionListener(this);
+		internalMovimentacao.getRadioPagos().addActionListener(this);
 
 	}
 

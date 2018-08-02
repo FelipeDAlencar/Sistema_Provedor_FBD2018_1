@@ -3,6 +3,7 @@ package br.com.sistema_provedor_fbd_2018_1.view;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -12,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Movimentacao;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import javax.swing.JRadioButton;
 
 public class InternalMovimentacao  extends TelaInternal{
 	private Botao btnNovo, btnEditar, btnRemover;
@@ -21,6 +23,8 @@ public class InternalMovimentacao  extends TelaInternal{
 	private JLabel lblBuscar;
 	private JTextField buscarField;
 	private Botao btnBuscar;
+	private JRadioButton radioPagos,radioNaoPagos;
+	private ButtonGroup grupoBtn;
 	public InternalMovimentacao(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
 		super("Movimentações", telaPrincipal, actionListener);
 		setBounds(150, 20, 1050, 610);
@@ -71,6 +75,19 @@ public class InternalMovimentacao  extends TelaInternal{
 		btnBuscar = new Botao("", "Buscar");
 		btnBuscar.setBounds(50, 140, 107, 40);
 		getContentPane().add(btnBuscar);
+		
+		radioPagos = new JRadioButton("Pagos");
+		radioPagos.setBounds(291, 105, 109, 23);
+		getContentPane().add(radioPagos);
+		
+		radioNaoPagos = new JRadioButton("N\u00E3o Pagos");
+		radioNaoPagos.setBounds(384, 105, 109, 23);
+		getContentPane().add(radioNaoPagos);
+		
+		
+		grupoBtn = new ButtonGroup();
+		grupoBtn.add(radioNaoPagos);
+		grupoBtn.add(radioPagos);;
 	}
 
 	public void carregarMovimentacoes(List<Movimentacao> movimentacaos) {
@@ -113,11 +130,13 @@ public class InternalMovimentacao  extends TelaInternal{
 	public Botao getBtnBuscar() {
 		return btnBuscar;
 	}
-	
 
+	public JRadioButton getRadioPagos() {
+		return radioPagos;
+	}
 
-
-	
-	
+	public JRadioButton getRadioNaoPagos() {
+		return radioNaoPagos;
+	}
 	
 }

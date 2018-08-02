@@ -146,7 +146,12 @@ public interface IFachada {
 
 	public Movimentacao buscarPorIdMovimentacao(int id) throws BusinessException;
 
-	public ArrayList<Movimentacao> buscarPorBuscaMovimentacao(String busca) throws BusinessException;
+	public ArrayList<Movimentacao> buscarPorBuscaMovimentacao(String busca, String situacao) throws BusinessException;
+	
+	public ArrayList<Movimentacao> buscarPorBusca(String busca) throws BusinessException;
+
+	public ArrayList<Movimentacao> buscarPagoOuNao(String busca) throws BusinessException;
+
 	
 	
 	//PARCELA

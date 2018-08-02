@@ -8,35 +8,30 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Movimentacao;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 
-public class BusinessMovimentacao implements IBusinessMovimentacao{
-	
+public class BusinessMovimentacao implements IBusinessMovimentacao {
+
 	private IDaoMovimentacao dao;
-	
+
 	public BusinessMovimentacao() {
 		dao = new DaoMovimentacao();
 	}
-	
-	
-	
 
 	@Override
 	public void salvarOuEditar(Movimentacao movimentacao) throws BusinessException {
 		try {
 			validar(movimentacao);
-			
-			if(movimentacao.getId() == null) {
+
+			if (movimentacao.getId() == null) {
 				dao.salvar(movimentacao);
-			}else {
+			} else {
 				dao.editar(movimentacao);
 			}
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new BusinessException("Erro no BUS");
 		}
-		
-		
-		
+
 	}
 
 	@Override
@@ -60,20 +55,38 @@ public class BusinessMovimentacao implements IBusinessMovimentacao{
 	}
 
 	@Override
-	public ArrayList<Movimentacao> buscarPorBusca(String busca) throws BusinessException {
-	
+	public ArrayList<Movimentacao> buscarPorBusca(String busca, String situacao) throws BusinessException {
+
 		try {
-			return dao.buscarPorBusca(busca);
+			return dao.buscarPorBusca(busca, situacao);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new BusinessException("ERRO NO BUS");
 		}
 	}
-	
-	public void validar(Movimentacao movimentacao) throws BusinessException{
-		if(movimentacao.getDescricao().equals("") || movimentacao.getValor() == 0 || movimentacao.getData_movimentacao().equals("//")) {
+
+	public void validar(Movimentacao movimentacao) throws BusinessException {
+		if (movimentacao.getDescricao().equals("") || movimentacao.getValor() == 0
+				|| movimentacao.getData_movimentacao().equals("//")) {
 			throw new BusinessException("PREENCHA OS CAMPOS DE DESCRIÇÃo, DATA E VALOR.");
 		}
+	}
+
+	@Override
+	public ArrayList<Movimentacao> buscarPagoOuNao(String busca) throws BusinessException {
+		try {
+			if (busca.equals("pago")) {
+
+				return dao.buscarPago();
+
+			} else if (busca.equals("Aguardando pagamento")) {
+				return dao.buscarNaoPago();
+			}
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("");
+		}
+		return null;
 	}
 
 }

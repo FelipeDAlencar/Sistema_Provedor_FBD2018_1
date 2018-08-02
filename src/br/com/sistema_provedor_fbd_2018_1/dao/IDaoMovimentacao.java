@@ -16,6 +16,10 @@ public interface IDaoMovimentacao {
 	
 	public ArrayList<Movimentacao> listarTodos()throws DaoException;
 	
-	public ArrayList<Movimentacao> buscarPorBusca(String busca) throws DaoException;
+	public ArrayList<Movimentacao> buscarPorBusca(String busca, String situacao) throws DaoException;
+
+	public ArrayList<Movimentacao> buscarPago() throws DaoException;
+	
+	public ArrayList<Movimentacao> buscarNaoPago() throws DaoException;
 
 }
