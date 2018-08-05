@@ -22,7 +22,12 @@ public class Botao extends JButton{
 		add(icone);
 		add(tituloBotao);
 	}
-	
+	public JLabel getIcone() {
+		return icone;
+	}
+	public JLabel getTituloBotao() {
+		return tituloBotao;
+	}
 	
 
 }

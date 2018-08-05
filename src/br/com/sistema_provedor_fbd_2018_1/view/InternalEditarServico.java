@@ -9,7 +9,6 @@ public class InternalEditarServico extends InternalCadastroServico {
 	public InternalEditarServico(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
 		super(telaPrincipal, actionListener);
 		setTitle("Editar Serviço");
-		getBtnInserirServio().setText("Editar Serviço");
 
 	}	
 }

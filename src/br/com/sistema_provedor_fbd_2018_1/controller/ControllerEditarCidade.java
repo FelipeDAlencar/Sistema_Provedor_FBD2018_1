@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
+import br.com.sistema_provedor_fbd_2018_1.view.InternalCidade;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarCidade;
 import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 
@@ -12,10 +13,12 @@ public class ControllerEditarCidade implements Listeners {
 	private InternalEditarCidade internalEditarCidade;
 	private Fachada fachada;
 	private Cidade cidade;
+	private InternalCidade internalCidade;
 
-	public ControllerEditarCidade(Cidade cidade) {
+	public ControllerEditarCidade(InternalCidade internalCidade, Cidade cidade) {
 		fachada = new Fachada();
 		this.cidade = cidade;
+		this.internalCidade = internalCidade;
 		
 	}
 
@@ -29,9 +32,7 @@ public class ControllerEditarCidade implements Listeners {
 				fachada.salvarOuEditarCidade(cidade);
 				Menssagens.menssagem("Edição realizada com sucesso.", 1);
 
-				internalEditarCidade.getNomeField().setText("");
-				internalEditarCidade.getEstadoField().setText("");
-				internalEditarCidade.getCepField().setText("");
+				internalCidade.carregarCidades(fachada.listarTodosCidades());
 			} catch (Exception e1) {
 				e1.getMessage();
 			}

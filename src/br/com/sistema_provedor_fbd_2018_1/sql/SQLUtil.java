@@ -63,8 +63,8 @@ public class SQLUtil {
 	}
 
 	public static class Endereco {
-		public static String INSERT_ALL = "insert into endereco (numero, rua, bairro, cidade_id) "
-				+ "values (?,?,?,?)";
+		public static String INSERT_ALL = "insert into endereco (numero, rua, bairro, cidade_id, complemento) "
+				+ "values (?,?,?,?, ?)";
 
 		public static String MAXID = "select MAX(id) from endereco";
 
@@ -72,7 +72,7 @@ public class SQLUtil {
 
 		public static final String SELECT_ALL = "select * from endereco";
 
-		public static final String UPDATE = "update endereco set  nome = ?, numero = ?, rua = ?, bairro = ?, cidade_id = ? where id = ?";
+		public static final String UPDATE = "update endereco set numero = ?, rua = ?, bairro = ?, cidade_id = ?, complemento = ? where id = ?";
 
 	}
 

@@ -1,14 +1,14 @@
 package br.com.sistema_provedor_fbd_2018_1.controller;
 
 import java.awt.event.ActionEvent;
-import java.text.ParseException;
 
-import br.com.sistema_provedor_fbd_2018_1.business.BusinessFuncionario;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Funcionario;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
+import br.com.sistema_provedor_fbd_2018_1.model.Ultil;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarFuncionario;
 import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 
@@ -34,24 +34,28 @@ public class ControllerEditarFuncionario implements Listeners {
 						InternalEditarFuncionario.getCargoField().getText(), InternalEditarFuncionario.getData_contratoFild().getText(), InternalEditarFuncionario.getLoginFild().getText(), 
 						new String(InternalEditarFuncionario.getSenhaField().getPassword()), this.endereco.getId());
 
-				Endereco endereco = new Endereco(InternalEditarFuncionario.getBairroFild().getText(),
+				String NomeEstado = (String)InternalEditarFuncionario.getCidadesCombo().getSelectedItem();
+				
+				String nomeCidade = Ultil.separarString(NomeEstado, 0);
+				String estado = Ultil.separarString(NomeEstado, 1);
+				
+				Cidade cidade = fachada.buscarPorNomeEstado(nomeCidade, estado);
+				
+				
+				
+				Endereco endereco = new Endereco(
+						this.funcionario.getEndereco_id(),
+						InternalEditarFuncionario.getBairroFild().getText(),
 						InternalEditarFuncionario.getComplementoFild().getText(),
 						InternalEditarFuncionario.getRuaFild().getText(),
-						Integer.parseInt(InternalEditarFuncionario.getNumeroFild().getText()));
+						Integer.parseInt(InternalEditarFuncionario.getNumeroFild().getText()),
+						cidade.getId());
 
 				fachada.salvarOuEditarEndereco(endereco);
-				fachada.salvarOuEditarFuncionario(funcionario, endereco, null);
+				fachada.salvarOuEditarFuncionario(funcionario, endereco);
 
 				Menssagens.menssagem("Funcionário Editado com sucesso!", 1);
 
-				InternalEditarFuncionario.getNomeFild().setText("");
-				InternalEditarFuncionario.getCargoField().setText("");
-				InternalEditarFuncionario.getData_contratoFild().setText("");
-				InternalEditarFuncionario.getLoginFild().setText("");
-				InternalEditarFuncionario.getSenhaField().setText("");
-				InternalEditarFuncionario.getBairroFild().setText("");
-				InternalEditarFuncionario.getRuaFild().setText("");
-				InternalEditarFuncionario.getNumeroFild().setText("");
 
 			} catch (BusinessException e1) {
 				e1.getMessage();

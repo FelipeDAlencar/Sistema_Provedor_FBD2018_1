@@ -10,34 +10,29 @@ import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.exception.ValidacaoException;
 
 public class BusinessEndereco implements IBusinessEndereco {
-	
+
 	IDaoEndereco dao;
-	
+
 	public BusinessEndereco() {
 		dao = new DaoEndereco();
 	}
-	
-	
+
+
 	@Override
 	public void salvarOuEditarEndereco(Endereco endereco)throws BusinessException {
 		try {
 			verificar(endereco);
-			
-			if(endereco.getId() == null) {
-				
+			if (endereco.getId() == null) {
 				dao.salvar(endereco);
-			}else {
+				System.out.println(endereco.getId());
+			} else {
 				dao.editar(endereco);
 			}
-			
-		} catch (Exception e) {
-			throw new BusinessException(e.getMessage());
-		}
-		
-		
-		
-	}
 
+		} catch (Exception e) {
+			throw new BusinessException("ERRO AO ADICIONAR ENDEREÇO - BUS");
+		}
+	}
 	@Override
 	public Endereco buscarPorId(int id)throws BusinessException {
 		try {
@@ -51,12 +46,12 @@ public class BusinessEndereco implements IBusinessEndereco {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	public void verificar(Endereco endereco) throws ValidacaoException{
 		if(endereco.getRua().equals("") || endereco.getNumero() == 0) {
 			throw new ValidacaoException("Erro de validação. Rua e numero devem ser preenchidos.");
 		}
-		
+
 	}
 
 }

@@ -45,7 +45,7 @@ public class ControllerCidade implements Listeners {
 				int id = Integer.parseInt(internalCidade.getTabela().getValueAt(row, 0).toString());
 				Cidade cidade = fachada.buscarCidadePorId(id);
 
-				controllerEditarCidade = new ControllerEditarCidade(cidade);
+				controllerEditarCidade = new ControllerEditarCidade(internalCidade, cidade);
 				internalEditarCidade = new InternalEditarCidade(telaPrincipal, controllerEditarCidade);
 				telaPrincipal.getDesktopPane().add(internalEditarCidade);
 				internalEditarCidade.setVisible(true);

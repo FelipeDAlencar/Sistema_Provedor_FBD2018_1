@@ -9,7 +9,7 @@ import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 
 public interface IDaoFuncionario {
 
-	public void salvar(Funcionario funcionario, Endereco endereco, String cep)throws DaoException;
+	public void salvar(Funcionario funcionario, Endereco endereco)throws DaoException;
 
 	public void editar(Funcionario funcionario)throws DaoException;
 

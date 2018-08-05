@@ -11,13 +11,13 @@ import javax.swing.JTextField;
 
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 
+@SuppressWarnings("serial")
 public class InternalCadastroContato extends TelaInternal  {
 	private JComboBox<String> comboContato;
-	private Botao bntSalvar;
 	private JFormattedTextField cpfField, dataNascimentoField;
 	private JLabel lblTipo;
 	private JtextFieldGenerico contatoField;
-	private JButton btnNovoContato;
+	private Botao btnNovoContato;
 	private JLabel lblResponsvel;
 	private JTextField responsavelField;
 	private JSeparator separator_1;
@@ -56,8 +56,8 @@ public class InternalCadastroContato extends TelaInternal  {
 		contatoField.setColumns(10);
 		
 				
-		btnNovoContato = new JButton("Salvar");
-		btnNovoContato.setBounds(64, 311, 109, 39);
+		btnNovoContato = new Botao("resource/imagens/botoes/bnt-salvar.png", "Salvar");
+		btnNovoContato.setBounds(64, 311, 109, 40);
 		getContentPane().add(btnNovoContato);
 		
 		
@@ -83,9 +83,6 @@ public class InternalCadastroContato extends TelaInternal  {
 		return comboContato;
 	}
 
-	public Botao getBntSalvar() {
-		return bntSalvar;
-	}
 
 	public JFormattedTextField getCpfField() {
 		return cpfField;

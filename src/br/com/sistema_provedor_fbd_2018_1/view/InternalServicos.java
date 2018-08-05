@@ -16,7 +16,6 @@ public class InternalServicos extends TelaInternal{
 	private DefaultTableModel modelTable;
 	private JScrollPane barraRolagem;
 	private JTable tabela;
-	private JLabel lblBuscar;
 	private JTextField buscarField;
 	private Botao btnBuscar;
 	public InternalServicos(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
@@ -51,21 +50,17 @@ public class InternalServicos extends TelaInternal{
 		tabela.setBounds(0,0,600,400);
 
 		barraRolagem = new JScrollPane(tabela);
-		barraRolagem.setBounds(50,191,928,320);
+		barraRolagem.setBounds(50,122,928,389);
 
 		getContentPane().add(barraRolagem);
 		
-		lblBuscar = new JLabel("Buscar:");
-		lblBuscar.setBounds(50, 71, 46, 14);
-		getContentPane().add(lblBuscar);
-		
 		buscarField = new JTextField();
-		buscarField.setBounds(50, 102, 200, 28);
+		buscarField.setBounds(50, 71, 811, 40);
 		getContentPane().add(buscarField);
 		buscarField.setColumns(10);
 		
-		btnBuscar = new Botao("", "Buscar");
-		btnBuscar.setBounds(50, 140, 107, 40);
+		btnBuscar = new Botao("resource/imagens/botoes/btn-buscar.png","Buscar");
+		btnBuscar.setBounds(871, 71, 107, 40);
 		getContentPane().add(btnBuscar);
 	}
 

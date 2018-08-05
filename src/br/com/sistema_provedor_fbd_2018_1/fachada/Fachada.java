@@ -145,9 +145,9 @@ public class Fachada implements IFachada {
 	// FUNCIONARIO
 
 	@Override
-	public void salvarOuEditarFuncionario(Funcionario funcionario, Endereco endereco, String cep)
+	public void salvarOuEditarFuncionario(Funcionario funcionario, Endereco endereco)
 			throws BusinessException {
-		businessFuncionario.salvarOuEditarFuncionario(funcionario, endereco, cep);
+		businessFuncionario.salvarOuEditarFuncionario(funcionario, endereco);
 
 	}
 

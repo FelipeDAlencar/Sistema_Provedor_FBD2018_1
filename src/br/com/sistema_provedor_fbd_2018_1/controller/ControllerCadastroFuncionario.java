@@ -34,10 +34,6 @@ public class ControllerCadastroFuncionario implements Listeners {
 						internalCadastroFuncionario.getLoginFild().getText(),
 						new String(internalCadastroFuncionario.getSenhaField().getPassword()));
 
-				Endereco endereco = new Endereco(internalCadastroFuncionario.getBairroFild().getText(),
-						internalCadastroFuncionario.getComplementoFild().getText(),
-						internalCadastroFuncionario.getRuaFild().getText(),
-						Integer.parseInt(internalCadastroFuncionario.getNumeroFild().getText()));
 				
 				String NomeEstado = (String)internalCadastroFuncionario.getCidadesCombo().getSelectedItem();
 				
@@ -46,8 +42,14 @@ public class ControllerCadastroFuncionario implements Listeners {
 				
 				Cidade cidade = fachada.buscarPorNomeEstado(nomeCidade, estado);
 				
-				fachada.salvarOuEditarEndereco(endereco);
-				fachada.salvarOuEditarFuncionario(funcionario, endereco,cidade.getCep());
+				Endereco endereco = new Endereco(
+						internalCadastroFuncionario.getBairroFild().getText(),
+						internalCadastroFuncionario.getComplementoFild().getText(),
+						internalCadastroFuncionario.getRuaFild().getText(),
+						Integer.parseInt(internalCadastroFuncionario.getNumeroFild().getText()),
+						cidade.getId());
+				
+				fachada.salvarOuEditarFuncionario(funcionario, endereco);
 			
 				internalFuncionario.carregarFuncionarios(fachada.listarTodosFuncionarios());
 				
@@ -61,6 +63,7 @@ public class ControllerCadastroFuncionario implements Listeners {
 				internalCadastroFuncionario.getBairroFild().setText("");
 				internalCadastroFuncionario.getRuaFild().setText("");
 				internalCadastroFuncionario.getNumeroFild().setText("");
+				internalCadastroFuncionario.getComplementoFild().setText("");
 
 			} catch (BusinessException e1) {
 				e1.printStackTrace();

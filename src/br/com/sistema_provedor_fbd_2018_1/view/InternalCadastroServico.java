@@ -11,7 +11,7 @@ import javax.swing.JFormattedTextField;
 public class InternalCadastroServico extends TelaInternal {
 	private JtextFieldGenerico downloadField, uploadField;
 	private JTextField servicoField;
-	private JButton btnInserirServio;
+	private Botao btnInserirServio;
 
 	public InternalCadastroServico(TelaPrincipal telaPrincipal, ActionListener actionListener)
 			throws BusinessException {
@@ -51,8 +51,8 @@ public class InternalCadastroServico extends TelaInternal {
 		getContentPane().add(uploadField);
 		uploadField.setColumns(10);
 
-		btnInserirServio = new JButton("Salvar");
-		btnInserirServio.setBounds(217, 211, 114, 31);
+		btnInserirServio = new Botao("resource/imagens/botoes/bnt-salvar.png", "Salvar");
+		btnInserirServio.setBounds(217, 211, 114, 40);
 		getContentPane().add(btnInserirServio);
 
 	}

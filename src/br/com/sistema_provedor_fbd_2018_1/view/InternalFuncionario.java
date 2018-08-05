@@ -2,19 +2,15 @@ package br.com.sistema_provedor_fbd_2018_1.view;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
-import br.com.sistema_provedor_fbd_2018_1.entidade.Atendimento;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Funcionario;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import javax.swing.JTextField;
-import javax.swing.JButton;
 
+@SuppressWarnings("serial")
 public class InternalFuncionario extends TelaInternal{
 	private Botao bntNovo, bntEditar,btnBuscar;
 	private DefaultTableModel modelTable;
@@ -52,21 +48,17 @@ public class InternalFuncionario extends TelaInternal{
 		tabela.setBounds(0,0,600,100);
 		
 		barraRolagem = new JScrollPane(tabela);
-		barraRolagem.setBounds(51,192,930,367);
+		barraRolagem.setBounds(51,127,930,402);
 		
 		getContentPane().add(barraRolagem);
 		
-		JLabel lblBusca = new JLabel("Busca:");
-		lblBusca.setBounds(50, 82, 46, 14);
-		getContentPane().add(lblBusca);
-		
 		buscaField = new JTextField();
-		buscaField.setBounds(50, 102, 200, 28);
+		buscaField.setBounds(51, 71, 820, 40);
 		getContentPane().add(buscaField);
 		buscaField.setColumns(10);
 		
-		btnBuscar = new Botao("resource/imagens/botoes/busca.jpg", "Buscar");
-		btnBuscar.setBounds(51, 141, 100, 40);
+		btnBuscar = new Botao("resource/imagens/botoes/btn-buscar.png","Buscar");
+		btnBuscar.setBounds(882, 71, 99, 40);
 		getContentPane().add(btnBuscar);
 	}
 	

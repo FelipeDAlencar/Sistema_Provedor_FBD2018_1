@@ -22,13 +22,13 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 	}
 
 	@Override
-	public void salvarOuEditarFuncionario(Funcionario funcionario, Endereco endereco, String cep) throws BusinessException {
+	public void salvarOuEditarFuncionario(Funcionario funcionario, Endereco endereco) throws BusinessException {
 		
 		try {
 			Validar(funcionario);
 			if (funcionario.getId() == null) {
 				
-				dao.salvar(funcionario, endereco, cep);
+				dao.salvar(funcionario, endereco);
 				
 			} else {
 				dao.editar(funcionario);
@@ -76,8 +76,7 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 	}
 
 	private void Validar(Funcionario funcionario) throws ValidacaoException {
-		if (funcionario.getData_contrato().equals("") || funcionario.getLogin().equals("")
-				|| funcionario.getSenha().equals("") || funcionario.getNome().equals("")
+		if (funcionario.getData_contrato().equals("") || funcionario.getNome().equals("")
 				|| funcionario.getCargo().equals("")) {
 			throw new ValidacaoException("ERRO DE VALIDAÇÃO - PREENCHA OS CAMPOS NESCESSÁRIOS");
 

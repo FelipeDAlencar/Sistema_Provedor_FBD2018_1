@@ -4,11 +4,9 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultFormatterFactory;
@@ -16,13 +14,9 @@ import javax.swing.text.MaskFormatter;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JPasswordField;
-import javax.swing.JButton;
 
+@SuppressWarnings("serial")
 public class InternalCadastroFuncionario extends TelaInternal {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private JTextField nomeFild;
 	private JTextField LoginFild;
 	private JPasswordField senhaField;
@@ -32,7 +26,7 @@ public class InternalCadastroFuncionario extends TelaInternal {
 	private JTextField complementoFild;
 	private JComboBox<String> cidadesCombo;
 	private JFormattedTextField data_contratoFild;
-	private JButton btnAdicionar;
+	private Botao btnAdicionar;
 
 	public InternalCadastroFuncionario(TelaPrincipal telaPrincipal, ActionListener actionListener)
 			throws BusinessException {
@@ -127,18 +121,16 @@ public class InternalCadastroFuncionario extends TelaInternal {
 		complementoFild.setColumns(10);
 
 		carregarCidades();
-		cidadesCombo.setBounds(532, 276, 126, 29);
+		cidadesCombo.setBounds(532, 276, 197, 29);
 		getContentPane().add(cidadesCombo);
 
 		JLabel lblNewLabel_2 = new JLabel("Cidade:");
 		lblNewLabel_2.setBounds(532, 251, 46, 14);
 		getContentPane().add(lblNewLabel_2);
 
-		
-		
 
-		btnAdicionar = new JButton("Adicionar");
-		btnAdicionar.setBounds(913, 368, 89, 29);
+		btnAdicionar = new Botao("resource/imagens/botoes/bnt-salvar.png", "Salvar");
+		btnAdicionar.setBounds(913, 368, 100, 40);
 		getContentPane().add(btnAdicionar);
 
 		try {
@@ -162,9 +154,6 @@ public class InternalCadastroFuncionario extends TelaInternal {
 		}
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 
 	public JTextField getNomeFild() {
 		return nomeFild;
@@ -204,7 +193,7 @@ public class InternalCadastroFuncionario extends TelaInternal {
 	}
 
 
-	public JButton getBtnAdicionar() {
+	public Botao getBtnAdicionar() {
 		return btnAdicionar;
 	}
 

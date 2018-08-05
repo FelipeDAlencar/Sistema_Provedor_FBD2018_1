@@ -15,9 +15,8 @@ public class InternalCadastroCidade extends TelaInternal {
 	
 	private static final long serialVersionUID = 1L;
 	private JTextField nomeField;
-	private JFormattedTextField estadoField;
-	private JTextField cepField;
-	private JButton btnAdd;
+	private JFormattedTextField estadoField, cepField;
+	private Botao btnAdd;
 
 	public InternalCadastroCidade(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
 		super("Cadastro de Cidades", telaPrincipal, actionListener);
@@ -50,13 +49,20 @@ public class InternalCadastroCidade extends TelaInternal {
 		lblCep.setBounds(149, 117, 46, 14);
 		getContentPane().add(lblCep);
 
-		cepField = new JTextField();
+		cepField = new JFormattedTextField("00000-000");
 		cepField.setBounds(149, 143, 181, 28);
 		getContentPane().add(cepField);
 		cepField.setColumns(10);
+		try {
+			cepField.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("#####-###")));
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
-		btnAdd = new JButton("Adicionar Cidade");
-		btnAdd.setBounds(200, 203, 130, 40);
+		
+		btnAdd = new Botao("resource/imagens/botoes/bnt-salvar.png", "Salvar");
+		btnAdd.setBounds(218, 202, 112, 40);
 		getContentPane().add(btnAdd);
 		
 		try {

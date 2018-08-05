@@ -16,31 +16,24 @@ public class DaoEndereco implements IDaoEndereco {
 
 	@Override
 	public void salvar(Endereco endereco) throws DaoException {
-
 		try {
 			connection = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
-			statement = connection.prepareStatement(SQLUtil.Cidade.MAXID);
-
-			ResultSet resultSet = statement.executeQuery();
-			resultSet.next();
-			int cidade_id = resultSet.getInt(1);
-
 			statement = connection.prepareStatement(SQLUtil.Endereco.INSERT_ALL);
-
+			
+			
 			statement.setInt(1, endereco.getNumero());
 			statement.setString(2, endereco.getRua());
 			statement.setString(3, endereco.getBairro());
-			statement.setInt(4, cidade_id);
-
+			statement.setInt(4, endereco.getCidade_id());
+			
 			statement.execute();
-
 			connection.close();
-
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DaoException("ERRO AO TENTAR INSERIR ENDERECO NO BANCO DE DADOS");
+			throw new DaoException("ERRO AO TENTAR INSERIR ENDERECO NO BANCO DE DADOS - CONTATE A EQUIPE RESPOSÁVEL - DAO");
 		}
-
 	}
 
 	@Override
@@ -50,13 +43,15 @@ public class DaoEndereco implements IDaoEndereco {
 			connection = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = connection.prepareStatement(SQLUtil.Endereco.UPDATE);
 			
-			statement.setInt(1, endereco.getId());
-			statement.setInt(2, endereco.getNumero());
-			statement.setString(3, endereco.getRua());
-			statement.setString(4, endereco.getBairro());
+			statement.setInt(1, endereco.getNumero());
+			statement.setString(2, endereco.getRua());
+			statement.setString(3, endereco.getBairro());
+			statement.setInt(4, endereco.getCidade_id());
+			statement.setString(5, endereco.getComplemento());
+			statement.setInt(6, endereco.getId());
 
 			statement.execute();
-			
+			connection.close();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -79,8 +74,8 @@ public class DaoEndereco implements IDaoEndereco {
 			Endereco endereco;
 
 			if (resultSet.next()) {
-				endereco = new Endereco(resultSet.getInt(1), resultSet.getString(4), resultSet.getString(5),
-						resultSet.getString(3), resultSet.getInt(2), resultSet.getInt("cidade_id"));
+				endereco = new Endereco(resultSet.getInt("id"), resultSet.getString("bairro"), resultSet.getString("complemento"),
+						resultSet.getString("rua"), resultSet.getInt("numero"), resultSet.getInt("cidade_id"));
 			}else {
 				throw new DaoException("ENDERECO NÃO CADASTRADO");
 			}

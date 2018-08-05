@@ -53,21 +53,17 @@ public class InternalCidade extends TelaInternal{
 		tabela.setBounds(0,0,600,400);
 		
 		barraRolagem = new JScrollPane(tabela);
-		barraRolagem.setBounds(50,191,907,289);
+		barraRolagem.setBounds(50,122,907,358);
 		
 		getContentPane().add(barraRolagem);
 		
-		JLabel lblBusca = new JLabel("Busca:");
-		lblBusca.setBounds(50, 71, 46, 14);
-		getContentPane().add(lblBusca);
-		
 		buscaField = new JTextField();
-		buscaField.setBounds(50, 102, 200, 28);
+		buscaField.setBounds(50, 71, 790, 40);
 		getContentPane().add(buscaField);
 		buscaField.setColumns(10);
 		
-		btnBuscar = new Botao("", "Buscar");
-		btnBuscar.setBounds(49, 140, 107, 40);
+		btnBuscar = new Botao("resource/imagens/botoes/btn-bucar.png", "Buscar");
+		btnBuscar.setBounds(850, 71, 107, 40);
 		getContentPane().add(btnBuscar);
 	}
 	
