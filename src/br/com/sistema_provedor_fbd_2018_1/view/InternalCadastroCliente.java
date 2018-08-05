@@ -56,17 +56,13 @@ public class InternalCadastroCliente extends TelaInternal {
 	@Override
 	public void inicializar() throws BusinessException {
 		tabbedPane = new JTabbedPane();
-		tabbedPane.setBounds(0, 0, TelaInternal.LARGURA - 100, TelaInternal.ALTURA - 400);
+		tabbedPane.setBounds(0, 0, 1024, 376);
 
 		panelContatos = new PanelContato();
 		//panelContatos.getBarraRolagem().setBounds(50, 60, 940, 269);
 
 		panelCliente = new JPanel();
 		panelCliente.setLayout(null);		
-		
-
-		bntSalvar = new Botao("resource/imagens/botoes/bnt-salvar.png", "Salvar");
-		bntSalvar.setBounds(900, 379, 100, 40);
 
 		// Informacoes Cliente
 		nomeLabel = new JLabel("Nome Completo:");
@@ -148,13 +144,17 @@ public class InternalCadastroCliente extends TelaInternal {
 		tabbedPane.add("Contatos", panelContatos);
 				
 		getContentPane().add(tabbedPane);
-		getContentPane().add(bntSalvar);
 		
 
 		
 		try {
 			dataNascimentoField.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
 			cpfField.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("###.###.###-##")));
+			
+
+			bntSalvar = new Botao("resource/imagens/botoes/bnt-salvar.png", "Salvar");
+			bntSalvar.setBounds(924, 403, 100, 40);
+			getContentPane().add(bntSalvar);
 	
 				
 		} catch (ParseException e) {

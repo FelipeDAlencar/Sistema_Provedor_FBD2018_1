@@ -19,6 +19,7 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.ServicoCliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Switch;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
+import br.com.sistema_provedor_fbd_2018_1.fachada.IFachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.model.Ultil;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalAdicionarServico;
@@ -31,7 +32,7 @@ public class ControllerAdicionarServico implements Listeners, ItemListener {
 	private InternalAdicionarServico internalAdicionarServico;
 	private InternalVerCliente internalVerCliente;
 	private List<ServicoCliente> servicos;
-	private Fachada fachada;
+	private IFachada fachada;
 
 	public ControllerAdicionarServico(InternalVerCliente internalVerCliente, Cliente cliente) {
 		servicos = new ArrayList<>();
@@ -72,11 +73,12 @@ public class ControllerAdicionarServico implements Listeners, ItemListener {
 						String.valueOf(internalAdicionarServico.getSwitchComboBox().getSelectedItem()));
 				Porta porta = fachada.buscarPortaPorSwitchNumero(sw.getId(), Integer
 						.parseInt(String.valueOf(internalAdicionarServico.getPortaComboBox().getSelectedItem())));
-
-				ServicoCliente servicoCliente = new ServicoCliente(servico.getId(), sw.getId(), porta.getId(),
-						endereco_id);
+				
+				ServicoCliente servicoCliente = new ServicoCliente(servico.getId(), sw.getId(), porta.getId(), endereco_id,cliente.getId());
 
 				fachada.salvarOuEditarServicoCliente(servicoCliente);
+				servicos = fachada.buscarServicosPorCliente(cliente.getId());
+				internalVerCliente.getPanelServico().carregarServicos(servicos);
 				Menssagens.menssagem("Serviço Inserido com sucesso.", 1);
 
 			}

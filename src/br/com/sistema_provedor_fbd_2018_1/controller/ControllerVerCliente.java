@@ -2,13 +2,18 @@ package br.com.sistema_provedor_fbd_2018_1.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Contato;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
+import br.com.sistema_provedor_fbd_2018_1.entidade.ServicoCliente;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
+import br.com.sistema_provedor_fbd_2018_1.fachada.IFachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalAdicionarServico;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroCliente;
@@ -25,7 +30,7 @@ public class ControllerVerCliente implements Listeners {
 	private InternalAdicionarServico internalAdicionarServico;
 	private InternalCadastroContrato internalCadastroContrato;
 	private ControllerCadastroContrato controllerCadastroContrato;
-	private Fachada fachada;
+	private IFachada fachada;
 	private Cliente cliente;
 	
 	public ControllerVerCliente( TelaPrincipal telaPrincipal, Cliente cliente) {
@@ -85,6 +90,11 @@ public class ControllerVerCliente implements Listeners {
 				
 				internalVerCliente.getCidadesComboBox().setSelectedItem(cidade.getNome() + " - " + cidade.getEstado());
 				
+				List<Contato> contatos = fachada.buscarContatoPorCliente(cliente.getId());
+				internalVerCliente.getPanelContatos().carregarContatos(contatos);
+				
+				List<ServicoCliente> servicos = fachada.buscarServicosPorCliente(cliente.getId());
+				internalVerCliente.getPanelServico().carregarServicos(servicos);
 				
 			} catch (BusinessException e) {
 				

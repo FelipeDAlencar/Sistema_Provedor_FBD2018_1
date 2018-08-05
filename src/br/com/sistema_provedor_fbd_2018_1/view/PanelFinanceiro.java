@@ -5,37 +5,41 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import br.com.sistema_provedor_fbd_2018_1.controller.ControllerAtendimentos;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Contrato;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Parcela;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-
+@SuppressWarnings("serial")
 public class PanelFinanceiro extends JPanel {
-	private Botao btnNovoContrato;
 	private DefaultTableModel modelTable;
-	// private JScrollPane barraRolagem, barra2, barraGeral;
-	// private JTable tabela, tabela2;
+	private Botao btnNovoContrato;
+	private JPanel panelTabelas;
+	private JScrollPane scrollFinanceiro;
 
 	public PanelFinanceiro() {
 		setLayout(null);
-		btnNovoContrato = new Botao("", "Novo Contrato");
-		btnNovoContrato.setBounds(50, 10, 159, 40);
+		btnNovoContrato = new Botao("","Novo Contrato");
+		btnNovoContrato.setBounds(50,20,176,40);
 		add(btnNovoContrato);
+		
+		panelTabelas = new JPanel();
+		panelTabelas.setLayout(null);
+		
 
 	}
-
+	
 	public void carregarTabelas(ArrayList<Contrato> contratos) {
+		
 		try {
-			int largura = 773;
-			int altura = 180;
-			int x = 50, y = 80;
+			int largura = 975;
+			int altura = 230;
+			int x = 10, y = 10;
 
 			JTable tabela = new JTable(modelTable);
 			ArrayList<JScrollPane> scrollPanes = new ArrayList<>();
@@ -51,9 +55,7 @@ public class PanelFinanceiro extends JPanel {
 				modelTable.addColumn("Data de Vencimento");
 
 				tabela = new JTable(modelTable);
-				tabela.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(250);
-				tabela.getTableHeader().getColumnModel().getColumn(0).setMinWidth(250);
-				tabela.setBounds(0, 0, 1200, 400);
+				tabela.setSize(1200,300);
 
 				parcelas = fachada.buscarParcelaPorContratoID(contratos.get(i).getId());
 				modelTable.setNumRows(0);
@@ -62,15 +64,21 @@ public class PanelFinanceiro extends JPanel {
 							parcela.getData_vencimento() };
 					modelTable.addRow(linha);
 				}
+				
 				scrollPane = new JScrollPane(tabela);
 				scrollPanes.add(scrollPane);
 			}
 
 			for (JScrollPane jScrollPaneAtual : scrollPanes) {
 				jScrollPaneAtual.setBounds(x, y, largura, altura);
-				add(jScrollPaneAtual);
-				y += 200;
+				panelTabelas.add(jScrollPaneAtual);
+				y += altura;
 			}
+			panelTabelas.setPreferredSize(new Dimension(935, y+10 ));
+			scrollFinanceiro = new JScrollPane(panelTabelas);
+			scrollFinanceiro.setBounds(50,65,950,300);
+			add(scrollFinanceiro);
+			
 		} catch (BusinessException e) {
 			e.printStackTrace();
 		}
@@ -80,6 +88,12 @@ public class PanelFinanceiro extends JPanel {
 	public Botao getBtnNovoContrato() {
 		return btnNovoContrato;
 	}
+
+	public void setBtnNovoContrato(Botao btnNovoContrato) {
+		this.btnNovoContrato = btnNovoContrato;
+	}
+
+	
 	// public JScrollPane getBarraRolagem() {
 	// return barraRolagem;
 	// }

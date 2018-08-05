@@ -2,23 +2,28 @@ package br.com.sistema_provedor_fbd_2018_1.entidade;
 
 public class ServicoCliente {
 	private Integer id, servico_id, switch_id, porta_id, endereco_id;
+	private Integer cliente_id;
 
-	public ServicoCliente(Integer id, Integer servico_id, Integer switch_id, Integer porta_id, Integer endereco_id) {
+	
+	public ServicoCliente(Integer id, Integer servico_id, Integer switch_id, Integer porta_id, Integer endereco_id, Integer cliente_id) {
 		super();
 		this.id = id;
 		this.servico_id = servico_id;
 		this.switch_id = switch_id;
 		this.porta_id = porta_id;
 		this.endereco_id = endereco_id;
+		this.cliente_id = cliente_id;
 	}
 	
-	public ServicoCliente( Integer servico_id, Integer switch_id, Integer porta_id, Integer endereco_id) {
+	public ServicoCliente(Integer servico_id, Integer switch_id, Integer porta_id, Integer endereco_id, Integer cliente_id) {
 		super();
 		this.servico_id = servico_id;
 		this.switch_id = switch_id;
 		this.porta_id = porta_id;
 		this.endereco_id = endereco_id;
+		this.cliente_id = cliente_id;
 	}
+
 	
 	public ServicoCliente() {
 		// TODO Auto-generated constructor stub
@@ -62,6 +67,10 @@ public class ServicoCliente {
 
 	public void setEndereco_id(Integer endereco_id) {
 		this.endereco_id = endereco_id;
+	}
+
+	public int getCliente_id() {
+		return cliente_id;
 	}
 	
 	

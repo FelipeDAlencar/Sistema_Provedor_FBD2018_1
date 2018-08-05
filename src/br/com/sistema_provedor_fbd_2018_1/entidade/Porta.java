@@ -19,9 +19,13 @@ public class Porta {
 
 	public Porta(int numero) {
 		super();
-		this.switch_id = switch_id;
 		this.numero = numero;
 	}
+
+	public Porta(int numero, Integer switch_id) {
+		super();
+		this.switch_id = switch_id;
+		this.numero = numero;	}
 
 	public Integer getId() {
 		return id;

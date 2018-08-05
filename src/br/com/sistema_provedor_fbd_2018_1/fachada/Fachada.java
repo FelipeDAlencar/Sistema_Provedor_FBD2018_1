@@ -252,6 +252,12 @@ public class Fachada implements IFachada {
 	}
 
 	// CONTATO
+	
+	@Override
+	public List<Contato> buscarContatoPorCliente(Integer cliente_id) throws BusinessException {
+		return businessContato.buscarPorCliente(cliente_id);
+	}
+
 
 	@Override
 	public void salvarOuEditarContato(Contato contato, String cpfCliente) throws BusinessException {
@@ -484,7 +490,6 @@ public class Fachada implements IFachada {
 		// Servicos Cliente
 	public void salvarOuEditarServicoCliente(ServicoCliente servicoCliente) throws BusinessException {
 		businessServicoCliente.salvarOuEditar(servicoCliente);
-
 	}
 
 	@Override
@@ -498,6 +503,12 @@ public class Fachada implements IFachada {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<ServicoCliente> buscarServicosPorCliente(Integer cliente_id) throws BusinessException {
+		return businessServicoCliente.bucarPorCliente(cliente_id);
+	}
+
 
 	
 

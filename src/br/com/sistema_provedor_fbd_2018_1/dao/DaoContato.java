@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.rmi.CORBA.Util;
+
 import br.com.sistema_provedor_fbd_2018_1.entidade.Contato;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLConnection;
@@ -82,6 +84,31 @@ public class DaoContato implements IDaoContato {
 	public List<Contato> buscarPorBusca(String busca) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Contato> buscarPorCliente(Integer cliente_id) throws DaoException {
+		try {
+		conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+		statement = conexao.prepareStatement(SQLUtil.Contato.SELECT_CLIENTE);
+		List<Contato> contatos= new ArrayList<>();
+		statement.setInt(1, cliente_id);
+		ResultSet resultSet = statement.executeQuery();
+		while (resultSet.next()) {
+			Contato contato = new Contato(resultSet.getInt("id"),
+					resultSet.getInt("cliente_id"),
+					resultSet.getString("responsavel"),
+					resultSet.getString("tipo"),
+					resultSet.getString("contato"));
+			contatos.add(contato);
+		}
+		conexao.close();
+		return contatos;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO CARREGAR CONTATOS");
+			
+		}
 	}
 
 }

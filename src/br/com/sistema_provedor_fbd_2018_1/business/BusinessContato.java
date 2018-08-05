@@ -1,6 +1,7 @@
 package br.com.sistema_provedor_fbd_2018_1.business;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -72,6 +73,16 @@ public class BusinessContato implements IBusinessContato {
 	public ArrayList<Contato> buscarPorBusca(String busca) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Contato> buscarPorCliente(Integer cliente_id) throws BusinessException {
+		try {
+			return dao.buscarPorCliente(cliente_id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO AO BUSCAR CONTATO - BUS");
+		}
 	}
 
 }

@@ -68,8 +68,8 @@ public class DaoPorta implements IDaoPorta {
 			ResultSet resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {
-				Porta porta = new Porta(resultSet.getInt("id"), resultSet.getInt("numero"),
-						resultSet.getInt("switch_id"));
+				Porta porta = new Porta(resultSet.getInt("id"), resultSet.getInt("switch_id"),
+						resultSet.getInt("numero"));
 				portas.add(porta);
 			}
 

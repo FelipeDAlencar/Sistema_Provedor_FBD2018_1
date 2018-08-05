@@ -98,6 +98,8 @@ public interface IFachada {
 	public Contato buscarContatoPorId(int id) throws BusinessException;
 
 	public ArrayList<Contato> buscarContatoPorBusca(String busca);
+	
+	public List<Contato> buscarContatoPorCliente(Integer id) throws BusinessException;
 
 	// Contrato
 	public void salvarOuEditarContrato(Contrato contrato,Parcela parcela) throws BusinessException;
@@ -172,9 +174,14 @@ public interface IFachada {
 	
 	//SERVICO CLIENTE
 	public void salvarOuEditarServicoCliente(ServicoCliente servicoCliente) throws BusinessException;
+	
 	public ArrayList<ServicoCliente> listarTodosServicosCliente()throws BusinessException;
 
 	public ServicoCliente buscarServicosClientesPorId(int id) throws BusinessException;
+
+	public List<ServicoCliente> buscarServicosPorCliente(Integer id) throws BusinessException;
+
+	
 
 	//public ArrayList<ServicoCliente> buscarPorBusca(String busca)throws BusinessException;
 

@@ -1,6 +1,7 @@
 package br.com.sistema_provedor_fbd_2018_1.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.com.sistema_provedor_fbd_2018_1.entidade.ServicoCliente;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
@@ -15,6 +16,8 @@ public interface IDaoServicoCliente {
 	public ArrayList<ServicoCliente> listarTodos()throws DaoException;
 	
 	public ArrayList<ServicoCliente> buscarPorBusca(String busca) throws DaoException;
+
+	public List<ServicoCliente> buscarPorCliente(Integer cliente_id) throws DaoException;
 	
 
 

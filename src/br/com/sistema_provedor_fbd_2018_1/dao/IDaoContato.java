@@ -15,6 +15,8 @@ public interface IDaoContato {
 	
 	public ArrayList<Contato> listarTodos()throws DaoException;
 	
-	public List<Contato> buscarPorBusca(String busca);
+	public List<Contato> buscarPorBusca(String busca)throws DaoException;;
+
+	public List<Contato> buscarPorCliente(Integer cliente_id)throws DaoException;;
 
 }

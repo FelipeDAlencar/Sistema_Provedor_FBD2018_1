@@ -1,6 +1,7 @@
 package br.com.sistema_provedor_fbd_2018_1.business;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.com.sistema_provedor_fbd_2018_1.dao.DaoServicoCliente;
 import br.com.sistema_provedor_fbd_2018_1.dao.IDaoServicoCliente;
@@ -47,6 +48,16 @@ public class BusinessServicoCliente implements IBusinessServicoCliente {
 	public ArrayList<ServicoCliente> buscarPorBusca(String busca) throws BusinessException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<ServicoCliente> bucarPorCliente(Integer cliente_id) throws BusinessException {
+		try {
+			return dao.buscarPorCliente(cliente_id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO AO BUSCAR SERVICO - BUS");
+		}
 	}
 
 }

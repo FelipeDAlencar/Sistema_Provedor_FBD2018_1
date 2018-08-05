@@ -16,7 +16,7 @@ public class InternalVerCliente extends InternalCadastroCliente {
 	private JPanel atendimentos;
 	private PanelFinanceiro financeiro;
 	private PanelServico panelServico;
-	private JScrollPane scrollFinanceiro;
+
 
 	public InternalVerCliente(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
 		super(telaPrincipal, actionListener);
@@ -27,16 +27,14 @@ public class InternalVerCliente extends InternalCadastroCliente {
 		financeiro.setPreferredSize(new Dimension(2000, 2000));
 		financeiro.setLayout(null);
 
-		scrollFinanceiro = new JScrollPane(financeiro);
-
-		scrollFinanceiro.setPreferredSize(new Dimension(2000, 2000));
+		
 		atendimentos = new JPanel();
 
 		panelServico = new PanelServico();
 		// panelServico.getBarraRolagem().setBounds(50, 60, 940, 269);
 
 		getTabbedPane().add("Serviço", panelServico);
-		getTabbedPane().add("Financeiro", scrollFinanceiro);
+		getTabbedPane().add("Financeiro", financeiro);
 		getTabbedPane().add("Atendimentos", atendimentos);
 
 	}

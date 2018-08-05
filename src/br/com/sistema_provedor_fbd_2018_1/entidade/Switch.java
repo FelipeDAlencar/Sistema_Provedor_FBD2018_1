@@ -20,6 +20,11 @@ public class Switch {
 		this.numero_de_portas = numero_de_portas;
 	}
 	
+	public Switch(int id) {
+		super();
+		this.id=id;
+	}	
+	
 	public Switch(Integer id, Integer caixa_id, Integer concentrador_id, String nome, String ip, String login,
 			String senha, int numero_de_portas) {
 		super();

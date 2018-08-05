@@ -31,7 +31,7 @@ public class ControllerCadastroSwitch implements Listeners {
 
 				fachada.salvarOuEditarSwitch(switch1, nomeCaixa, nomeConcentrador);
 				internalSwitch.carregarSwitchs(fachada.listarTodosSwitch());
-				Menssagens.menssagem("Concentrador inserido com sucesso.", 1);
+				Menssagens.menssagem("Switch inserido com sucesso.", 1);
 
 				internalCadastroSwitch.getNomeFild().setText("");
 				internalCadastroSwitch.getIpFild().setText("");

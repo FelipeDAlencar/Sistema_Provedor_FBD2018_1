@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.sistema_provedor_fbd_2018_1.entidade.Porta;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Switch;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLConnection;
@@ -46,6 +48,18 @@ public class DaoSwitch implements IDaoSwitch {
 			statement.setInt(7, con_id);
 
 			statement.execute();
+			
+			statement=conexao.prepareStatement(SQLUtil.Switch.SELECT_MAXID);
+			resultSet = statement.executeQuery();
+			resultSet.next();
+			Switch sw = new Switch(resultSet.getInt(1));
+			
+			statement = conexao.prepareStatement(SQLUtil.Porta.INSERT_ALL);
+			for(int i=0; i< switch1.getNumero_de_portas();i++) {
+				statement.setInt(2, sw.getId());
+				statement.setInt(1, i+1);
+				statement.execute();
+			}
 			conexao.close();
 
 		} catch (SQLException e) {

@@ -77,6 +77,8 @@ public class SQLUtil {
 	}
 
 	public static class Servico {
+		
+
 		public static String SELECT_ALL = "select * from servico";
 		
 		public static String INSERT_ALL = "insert into servico (nome, download, upload) values (?,?,?); ";
@@ -91,6 +93,8 @@ public class SQLUtil {
 	}
 
 	public static class Contato {
+		public static String SELECT_CLIENTE = "SELECT * FROM CONTATO WHERE cliente_id = ?" ;
+		
 		public static String INSERT_ALL = "insert into contato (responsavel,tipo,contato, cliente_id) "
 				+ "values (?,?,?,?); ";
 		public static String SELECT_ID = "select * from contato where id = ?";
@@ -157,6 +161,8 @@ public class SQLUtil {
 	
 		public static String SELECT_PORBUSCA = "select * from switch where nome ilike ? or "
 				+ "ip ilike ? or login ilike ?";
+		
+		public static String SELECT_MAXID = "select MAX(ID) from  switch ";
 	
 	}
 
@@ -212,11 +218,13 @@ public class SQLUtil {
 	
 	public static class ServicoCliente{
 		
-		public static String INSERT_ALL = "insert into ServicoCliente(servico_id, switch_id, porta_id, endereco_id) "
-				+ "values (?,?,?,?)";
+		public static String INSERT_ALL = "insert into ServicoCliente(servico_id, switch_id, porta_id, endereco_id, cliente_id) "
+				+ "values (?,?,?,?,?)";
 		public static String SELECT_ALL = "select * from ServicoCliente";
 		
 		public static String SELECT_ID = "select * from ServicoCliente where id = ?";
+		
+		public static String SELECT_CLIENTE = "select * from ServicoCliente where cliente_id = ?";
 		
 		
 		
