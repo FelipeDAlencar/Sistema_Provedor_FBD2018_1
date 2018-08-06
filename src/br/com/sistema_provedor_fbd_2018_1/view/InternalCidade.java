@@ -22,7 +22,7 @@ public class InternalCidade extends TelaInternal{
 	private JTextField buscaField;
 	public InternalCidade(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
 		super("Cidades", telaPrincipal, actionListener);
-		setBounds(150, 20, 1050, 610);
+		setBounds(150, 50, 1050, 510);
 		getContentPane().setLayout(null);
 		setVisible(false);
 	}
@@ -53,7 +53,7 @@ public class InternalCidade extends TelaInternal{
 		tabela.setBounds(0,0,600,400);
 		
 		barraRolagem = new JScrollPane(tabela);
-		barraRolagem.setBounds(50,122,907,358);
+		barraRolagem.setBounds(50,122,907,300);
 		
 		getContentPane().add(barraRolagem);
 		

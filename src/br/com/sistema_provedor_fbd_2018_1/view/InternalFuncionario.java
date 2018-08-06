@@ -21,7 +21,7 @@ public class InternalFuncionario extends TelaInternal{
 	
 	public InternalFuncionario(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
 		super("Funcionarios", telaPrincipal, actionListener);
-		setBounds(150, 20, 1050, 610);
+		setBounds(150, 50, 1050, 510);
 		getContentPane().setLayout(null);
 		setVisible(false);	
 	}
@@ -48,7 +48,7 @@ public class InternalFuncionario extends TelaInternal{
 		tabela.setBounds(0,0,600,100);
 		
 		barraRolagem = new JScrollPane(tabela);
-		barraRolagem.setBounds(51,127,930,402);
+		barraRolagem.setBounds(51,127,930,300);
 		
 		getContentPane().add(barraRolagem);
 		

@@ -20,7 +20,7 @@ public class InternalServicos extends TelaInternal{
 	private Botao btnBuscar;
 	public InternalServicos(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
 		super("Serviços", telaPrincipal, actionListener);
-		setBounds(150, 20, 1050, 610);
+		setBounds(150, 50, 1050, 510);
 		getContentPane().setLayout(null);
 	}
 
@@ -50,7 +50,7 @@ public class InternalServicos extends TelaInternal{
 		tabela.setBounds(0,0,600,400);
 
 		barraRolagem = new JScrollPane(tabela);
-		barraRolagem.setBounds(50,122,928,389);
+		barraRolagem.setBounds(50,122,928,300);
 
 		getContentPane().add(barraRolagem);
 		

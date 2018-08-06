@@ -51,7 +51,25 @@ public class DaoContato implements IDaoContato {
 
 	@Override
 	public void editar(Contato contato) throws DaoException {
-		// TODO Auto-generated method stub
+		try {
+
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Contato.UPDATE);
+
+			statement.setString(1, contato.getResponsavel());
+			statement.setString(2, contato.getTipo());
+			statement.setString(3, contato.getContato());
+			statement.setInt(4, contato.getId());
+
+			statement.execute();
+			conexao.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO EDITAR CONTATO - CONTACTE A EQUIPE RESPONSÁVEL - DAO");
+
+		}
+
 
 	}
 
@@ -89,25 +107,51 @@ public class DaoContato implements IDaoContato {
 	@Override
 	public List<Contato> buscarPorCliente(Integer cliente_id) throws DaoException {
 		try {
-		conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
-		statement = conexao.prepareStatement(SQLUtil.Contato.SELECT_CLIENTE);
-		List<Contato> contatos= new ArrayList<>();
-		statement.setInt(1, cliente_id);
-		ResultSet resultSet = statement.executeQuery();
-		while (resultSet.next()) {
-			Contato contato = new Contato(resultSet.getInt("id"),
-					resultSet.getInt("cliente_id"),
-					resultSet.getString("responsavel"),
-					resultSet.getString("tipo"),
-					resultSet.getString("contato"));
-			contatos.add(contato);
-		}
-		conexao.close();
-		return contatos;
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Contato.SELECT_CLIENTE);
+			List<Contato> contatos= new ArrayList<>();
+			statement.setInt(1, cliente_id);
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				Contato contato = new Contato(resultSet.getInt("id"),
+						resultSet.getInt("cliente_id"),
+						resultSet.getString("responsavel"),
+						resultSet.getString("tipo"),
+						resultSet.getString("contato"));
+				contatos.add(contato);
+			}
+			conexao.close();
+			return contatos;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DaoException("ERRO AO CARREGAR CONTATOS");
-			
+
+		}
+	}
+
+	@Override
+	public Contato buscarPorContato(String contato) throws DaoException {
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Contato.SELECT_CONTATO);
+			statement.setString(1, contato);
+			ResultSet resultSet = statement.executeQuery();
+			Contato cont = null;
+			if (resultSet.next()) {
+				cont = new Contato(resultSet.getInt("id"),
+						resultSet.getInt("cliente_id"),
+						resultSet.getString("responsavel"),
+						resultSet.getString("tipo"),
+						resultSet.getString("contato"));
+
+			}
+			System.out.println(cont.getContato());
+			conexao.close();
+			return cont;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO CARREGAR CONTATOS");
+
 		}
 	}
 

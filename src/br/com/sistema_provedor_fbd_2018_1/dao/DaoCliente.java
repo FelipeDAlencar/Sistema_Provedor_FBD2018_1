@@ -45,6 +45,7 @@ public class DaoCliente implements IDaoCliente {
 			statement.setString(2, endereco.getRua());
 			statement.setString(3, endereco.getBairro());
 			statement.setInt(4, cidade_id);
+			statement.setString(5, endereco.getComplemento());
 			statement.execute();
 
 			this.statement = conexao.prepareStatement(SQLUtil.Endereco.MAXID);

@@ -8,6 +8,14 @@ public class Contato {
 	public Contato() {
 	}
 
+	public Contato(int id, String responsavel, String tipo, String contato) {
+		super();
+		this.id = id;
+		this.responsavel = responsavel;
+		this.tipo = tipo;
+		this.contato = contato;
+	}
+	
 	public Contato(String responsavel, String tipo, String contato) {
 		super();
 		this.responsavel = responsavel;

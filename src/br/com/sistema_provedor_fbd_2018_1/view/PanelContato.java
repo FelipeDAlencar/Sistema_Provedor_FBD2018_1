@@ -1,5 +1,6 @@
 package br.com.sistema_provedor_fbd_2018_1.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -15,38 +16,41 @@ public class PanelContato extends JPanel{
 	private DefaultTableModel modelTable;
 	private JScrollPane barraRolagem;
 	private JTable tabela;
-	
+	private ArrayList<Contato> contatos;
 	public PanelContato() {
 		setLayout(null);
+
+		contatos= new ArrayList<>();
+
 		bntAdicionar = new Botao("resource/imagens/botoes/adicionar-contato.png","Adicionar");
 		bntAdicionar.setLocation(50, 10);
 		bntAdicionar.setSize(135, 40);
 		add(bntAdicionar);
-		
+
 		bntEditar = new Botao("resource/imagens/botoes/editar-contato.png", "Editar");
 		bntEditar.setLocation(195, 10);
 		bntEditar.setSize(110, 40);
 		add(bntEditar);
-		
+
 		bntExcluir = new Botao("resource/imagens/botoes/excluir-contato.png", "Excluir");
 		bntExcluir.setLocation(315, 10);
 		bntExcluir.setSize(115, 40);
 		add(bntExcluir);
-		
+
 		modelTable = new DefaultTableModel();
 		modelTable.addColumn("Responsável");
 		modelTable.addColumn("Contato");
-		
+
 		tabela = new JTable(modelTable);
 		tabela.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(250);
 		tabela.getTableHeader().getColumnModel().getColumn(0).setMinWidth(250);
 		tabela.setBounds(0,0,1200,400);
-		
+
 		barraRolagem = new JScrollPane(tabela);
-		barraRolagem.setBounds(50,61,650,229);
-		
+		barraRolagem.setBounds(50,61,930,250);
+
 		add(barraRolagem);
-		
+
 	}
 	public void carregarContatos(List<Contato> contatos) {
 		modelTable.setNumRows(0);
@@ -91,9 +95,13 @@ public class PanelContato extends JPanel{
 	public void setTabela(JTable tabela) {
 		this.tabela = tabela;
 	}
+
+	public ArrayList<Contato> getContatos(){
+		return contatos;
+	}
 	
-	
-	
-	
+
+
+
 
 }

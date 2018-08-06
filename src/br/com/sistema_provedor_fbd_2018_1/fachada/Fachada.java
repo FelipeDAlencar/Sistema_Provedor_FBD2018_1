@@ -509,6 +509,11 @@ public class Fachada implements IFachada {
 		return businessServicoCliente.bucarPorCliente(cliente_id);
 	}
 
+	@Override
+	public Contato buscarContatoPorContato(String contato) throws BusinessException {
+		return businessContato.buscarPorContato(contato);
+	}
+
 
 	
 

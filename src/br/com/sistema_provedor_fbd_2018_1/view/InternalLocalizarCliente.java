@@ -17,7 +17,7 @@ import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 
 @SuppressWarnings("serial")
 public class InternalLocalizarCliente  extends TelaInternal{
-	private Botao btnNovo, btnEditar;
+	private Botao btnEditar;
 	private DefaultTableModel modelTable;
 	private JScrollPane barraRolagem;
 	private JTable tabela;
@@ -27,7 +27,7 @@ public class InternalLocalizarCliente  extends TelaInternal{
 	private Fachada fachada;
 	public InternalLocalizarCliente(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
 		super("Clientes", telaPrincipal, actionListener);
-		setBounds(150, 20, 1050, 610);
+		setBounds(150, 50, 1050, 510);
 		getContentPane().setLayout(null);
 		fachada = new  Fachada();
 	}
@@ -36,16 +36,12 @@ public class InternalLocalizarCliente  extends TelaInternal{
 	public void inicializar(){	
 		
 		notf = new JLabel("Realize uma busca para filtrar os clientes");
-		notf.setBounds(435, 306, 400, 49);
+		notf.setBounds(435, 247, 400, 54);
 		getContentPane().add(notf);
 		
-		btnEditar = new Botao("resource/imagens/botoes/editar-servico.png","Selecionar");
+		btnEditar = new Botao("resource/imagens/botoes/btn-selecionar.png","Selecionar");
 		btnEditar.setBounds(50, 20, 146, 40);
 		getContentPane().add(btnEditar);
-
-		btnNovo = new Botao("resource/imagens/botoes/adicionar-servico.png","Novo Cliente");
-		btnNovo.setBounds(222, 20, 160, 40);
-		getContentPane().add(btnNovo);
 
 		modelTable = new DefaultTableModel();
 		modelTable.addColumn("Código");
@@ -59,7 +55,7 @@ public class InternalLocalizarCliente  extends TelaInternal{
 		tabela.setBounds(0,0,600,400);
 
 		barraRolagem = new JScrollPane(tabela);
-		barraRolagem.setBounds(50,126,928,417);
+		barraRolagem.setBounds(50,126,928,300);
 		
 		
 
@@ -70,7 +66,7 @@ public class InternalLocalizarCliente  extends TelaInternal{
 		getContentPane().add(buscarField);
 		buscarField.setColumns(10);
 
-		btnBuscar = new Botao("", "Buscar");
+		btnBuscar = new Botao("resource/imagens/botoes/btn-buscar.png", "Buscar");
 		btnBuscar.setBounds(871, 75, 107, 40);
 		getContentPane().add(btnBuscar);
 	}
@@ -93,9 +89,6 @@ public class InternalLocalizarCliente  extends TelaInternal{
 		}
 	}
 
-	public Botao getBtnNovo() {
-		return btnNovo;
-	}
 
 	public Botao getBtnEditar() {
 		return btnEditar;

@@ -26,14 +26,14 @@ public class InternalCadastroContato extends TelaInternal  {
 	public InternalCadastroContato(TelaPrincipal telaPrincipal, ActionListener actionListener)
 			throws BusinessException {
 		super("Cadastro Contato", telaPrincipal, actionListener);
-		setBounds(400, 100, 534, 390);
+		setBounds(530, 160, 300, 260);
 		getContentPane().setLayout(null);
 	}
 
 	@Override
 	public void inicializar() throws BusinessException {
 		comboContato = new JComboBox<String>();
-		comboContato.setBounds(64, 94, 200, 30);
+		comboContato.setBounds(39, 48, 100, 30);
 		getContentPane().add(comboContato);
 		
 		comboContato.addItem("");
@@ -42,22 +42,22 @@ public class InternalCadastroContato extends TelaInternal  {
 		comboContato.addItem("Celular");
 		
 		JLabel lblContato = new JLabel("Contato:");
-		lblContato.setBounds(64, 158, 46, 14);
+		lblContato.setBounds(39, 89, 46, 14);
 		getContentPane().add(lblContato);
 		
 		lblTipo = new JLabel("Tipo:");
-		lblTipo.setBounds(64, 69, 100, 14);
+		lblTipo.setBounds(39, 23, 100, 14);
 		getContentPane().add(lblTipo);
 		
 		
 		contatoField = new JtextFieldGenerico("ABCDEFGHIJLMNOPQRSTUVXZWKYabcdefghijlmnopqrstuvxzwky1234567890.@");
-		contatoField.setBounds(64, 181, 200, 30);
+		contatoField.setBounds(39, 114, 218, 30);
 		getContentPane().add(contatoField);
 		contatoField.setColumns(10);
 		
 				
 		btnNovoContato = new Botao("resource/imagens/botoes/bnt-salvar.png", "Salvar");
-		btnNovoContato.setBounds(64, 311, 109, 40);
+		btnNovoContato.setBounds(148, 155, 109, 40);
 		getContentPane().add(btnNovoContato);
 		
 		
@@ -67,12 +67,12 @@ public class InternalCadastroContato extends TelaInternal  {
 		getContentPane().add(separator);
 		
 		lblResponsvel = new JLabel("Respons\u00E1vel:");
-		lblResponsvel.setBounds(64, 239, 92, 14);
+		lblResponsvel.setBounds(157, 23, 92, 14);
 		getContentPane().add(lblResponsvel);
 		
 		
 		responsavelField = new JTextField();
-		responsavelField.setBounds(64, 264, 200, 30);
+		responsavelField.setBounds(157, 48, 100, 30);
 		getContentPane().add(responsavelField);
 		responsavelField.setColumns(10);
 		

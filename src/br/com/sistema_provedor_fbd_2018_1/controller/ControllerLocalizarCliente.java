@@ -52,14 +52,7 @@ public class ControllerLocalizarCliente implements Listeners {
 			
 
 			}
-			if(e.getSource() == internalLocalizarCliente.getBtnNovo()) {
-				controllerCadastroCliente = new ControllerCadastroCliente();
-				internalCadastroCliente = new InternalCadastroCliente(telaPrincipal, controllerCadastroCliente);
-				telaPrincipal.getDesktopPane().add(internalCadastroCliente);
-				internalCadastroCliente.setVisible(true);
-				controllerCadastroCliente.setAdicionarCliente(internalCadastroCliente);
-				controllerCadastroCliente.addListeners();
-			}
+			
 		} catch (BusinessException e1) {
 			e1.printStackTrace();
 		}catch (IndexOutOfBoundsException e2) {
@@ -73,7 +66,6 @@ public class ControllerLocalizarCliente implements Listeners {
 	public void addListeners() {
 		internalLocalizarCliente.getBtnBuscar().addActionListener(this);
 		internalLocalizarCliente.getBtnEditar().addActionListener(this);
-		internalLocalizarCliente.getBtnNovo().addActionListener(this);
 	}
 
 	public InternalLocalizarCliente getInternalLocalizarCliente() {

@@ -77,7 +77,7 @@ public class InternalCadastroCliente extends TelaInternal {
 		cpfLabel.setBounds(531, 29, 100, 50);
 		panelCliente.add(cpfLabel);
 
-		cpfField = new JFormattedTextField();
+		cpfField = new JFormattedTextField("000.000.000-00");
 		cpfField.setBounds(531, 76, 230, 30);
 		panelCliente.add(cpfField);
 

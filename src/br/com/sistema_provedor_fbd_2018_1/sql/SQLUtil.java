@@ -95,8 +95,13 @@ public class SQLUtil {
 	public static class Contato {
 		public static String SELECT_CLIENTE = "SELECT * FROM CONTATO WHERE cliente_id = ?" ;
 		
+		public static String SELECT_CONTATO = "select * from contato where contato = ?";
+		
 		public static String INSERT_ALL = "insert into contato (responsavel,tipo,contato, cliente_id) "
 				+ "values (?,?,?,?); ";
+		
+		public static String UPDATE ="update contato set responsavel = ?,tipo = ?,contato = ? where id = ?";
+		
 		public static String SELECT_ID = "select * from contato where id = ?";
 		
 		public static String SELECT_ALL = "select * from contato";

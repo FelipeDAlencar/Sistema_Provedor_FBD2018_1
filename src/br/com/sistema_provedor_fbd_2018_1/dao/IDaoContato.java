@@ -17,6 +17,8 @@ public interface IDaoContato {
 	
 	public List<Contato> buscarPorBusca(String busca)throws DaoException;;
 
-	public List<Contato> buscarPorCliente(Integer cliente_id)throws DaoException;;
+	public List<Contato> buscarPorCliente(Integer cliente_id)throws DaoException;
+
+	public Contato buscarPorContato(String contato) throws DaoException;
 
 }

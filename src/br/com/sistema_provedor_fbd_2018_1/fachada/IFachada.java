@@ -181,6 +181,8 @@ public interface IFachada {
 
 	public List<ServicoCliente> buscarServicosPorCliente(Integer id) throws BusinessException;
 
+	public Contato buscarContatoPorContato(String contato) throws BusinessException;
+
 	
 
 	//public ArrayList<ServicoCliente> buscarPorBusca(String busca)throws BusinessException;

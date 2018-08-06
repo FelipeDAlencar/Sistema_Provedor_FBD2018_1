@@ -85,4 +85,14 @@ public class BusinessContato implements IBusinessContato {
 		}
 	}
 
+	@Override
+	public Contato buscarPorContato(String contato) throws BusinessException {
+		try {
+			return dao.buscarPorContato(contato);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO AO BUSCAR CONTATOS - BUS");
+		}
+	}
+
 }

@@ -5,24 +5,33 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
+import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Contato;
+import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
+import br.com.sistema_provedor_fbd_2018_1.fachada.IFachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroContato;
-import br.com.sistema_provedor_fbd_2018_1.view.PanelContato;
 
 public class ControllerCadastroContato implements Listeners, ItemListener {
 	private InternalCadastroContato internalCadastroContato;
 	private InternalCadastroCliente internalCadastroCliente;
-	private static ArrayList<Contato> contatos = new ArrayList<>();
+	private static List<Contato> contatos = new ArrayList<>();
+	private Cliente cliente;
+	private IFachada fachada;
 
 	public ControllerCadastroContato(InternalCadastroCliente internalCadastroCliente) {
 		this.internalCadastroCliente = internalCadastroCliente;
-		
+			}
+	public ControllerCadastroContato(InternalCadastroCliente internalCadastroCliente, Cliente cliente) {
+		this.internalCadastroCliente = internalCadastroCliente;
+		this.cliente = cliente;
 	}
 
 	@Override
@@ -31,12 +40,21 @@ public class ControllerCadastroContato implements Listeners, ItemListener {
 			Contato contato = new Contato(internalCadastroContato.getResponsavelField().getText(),
 					(String) internalCadastroContato.getComboContato().getSelectedItem(),
 					internalCadastroContato.getContatoField().getText());
-			contatos.add(contato);
+			
 			internalCadastroContato.getResponsavelField().setText("");
 			internalCadastroContato.getContatoField().setText("");
+			if(cliente==null) {
+				contatos.add(contato);
+			}else {
+				try {
+					fachada = new Fachada();
+					fachada.salvarOuEditarContato(contato, cliente.getCpf());
+					contatos = fachada.buscarContatoPorCliente(cliente.getId());
+				} catch (BusinessException e1) {
+					e1.printStackTrace();
+				}			
+			}
 			internalCadastroCliente.getPanelContatos().carregarContatos(contatos);
-			
-
 		}
 	}
 
@@ -85,11 +103,11 @@ public class ControllerCadastroContato implements Listeners, ItemListener {
 		this.internalCadastroContato = internalCadastroContato;
 	}
 
-	public ArrayList<Contato> getContatos() {
+	public List<Contato> getContatos() {
 		return contatos;
 	}
 
-	public void setContatos(ArrayList<Contato> contatos) {
+	public void setContatos(List<Contato> contatos) {
 		this.contatos = contatos;
 	}
 	

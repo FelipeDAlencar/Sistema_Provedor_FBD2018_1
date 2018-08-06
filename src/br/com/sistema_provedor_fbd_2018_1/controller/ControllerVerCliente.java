@@ -1,26 +1,21 @@
 package br.com.sistema_provedor_fbd_2018_1.controller;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
-
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Contato;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
-import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.entidade.ServicoCliente;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
-import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.fachada.IFachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalAdicionarServico;
-import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroCliente;
+import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroContato;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroContrato;
-import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarCidade;
+import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarContato;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalVerCliente;
-import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 import br.com.sistema_provedor_fbd_2018_1.view.TelaPrincipal;
 
 public class ControllerVerCliente implements Listeners {
@@ -32,6 +27,10 @@ public class ControllerVerCliente implements Listeners {
 	private ControllerCadastroContrato controllerCadastroContrato;
 	private IFachada fachada;
 	private Cliente cliente;
+	private ControllerCadastroContato controllerCadastroContato;
+	private InternalCadastroContato internalCadastroContato;
+	private ControllerEditarContato controllerEditarContato;
+	private InternalEditarContato internalEditarContato;
 	
 	public ControllerVerCliente( TelaPrincipal telaPrincipal, Cliente cliente) {
 		fachada = new Fachada();
@@ -52,6 +51,33 @@ public class ControllerVerCliente implements Listeners {
 				controllerAdicionarServico.addListeners();
 				
 			}
+			
+			if (e.getSource() == internalVerCliente.getPanelContatos().getBntAdicionar()) {
+				controllerCadastroContato = new ControllerCadastroContato(internalVerCliente, cliente);
+				internalCadastroContato = new InternalCadastroContato(telaPrincipal, controllerCadastroContato);
+				telaPrincipal.getDesktopPane().add(internalCadastroContato);
+				internalCadastroContato.setVisible(true);
+				controllerCadastroContato.setInternalCadastroContato(internalCadastroContato);
+				controllerCadastroContato.addListeners();
+			}
+			
+			if (e.getSource() == internalVerCliente.getPanelContatos().getBntEditar()) {
+				int linha = internalVerCliente.getPanelContatos().getTabela().getSelectedRow();
+				String col =  internalVerCliente.getPanelContatos().getModelTable().getValueAt(linha, 1).toString();
+				
+				Contato contato = fachada.buscarContatoPorContato(col);
+				
+				controllerEditarContato = new ControllerEditarContato(internalVerCliente,contato, cliente);
+				internalEditarContato = new InternalEditarContato(telaPrincipal, controllerEditarContato);
+				telaPrincipal.getDesktopPane().add(internalEditarContato);
+				controllerEditarContato.setInternalEditarContato(internalEditarContato);
+				controllerEditarContato.PreencerCampos();
+				internalEditarContato.setVisible(true);
+				controllerEditarContato.addListeners();
+				
+				
+			}
+			
 			if(e.getSource() == internalVerCliente.getFinanceiroPanel().getBtnNovoContrato()) {
 				controllerCadastroContrato	= new ControllerCadastroContrato(internalVerCliente, cliente);
 				internalCadastroContrato = new InternalCadastroContrato(telaPrincipal, controllerCadastroContrato);
@@ -60,6 +86,7 @@ public class ControllerVerCliente implements Listeners {
 				controllerCadastroContrato.setInternal(internalCadastroContrato);
 				controllerCadastroContrato.addListeners();
 			}
+			
 
 		} catch (BusinessException e1) {
 			e1.printStackTrace();
@@ -109,6 +136,8 @@ public class ControllerVerCliente implements Listeners {
 	public void addListeners() {
 		internalVerCliente.getPanelServico().getBntAdicionar().addActionListener(this);
 		internalVerCliente.getFinanceiroPanel().getBtnNovoContrato().addActionListener(this);
+		internalVerCliente.getPanelContatos().getBntAdicionar().addActionListener(this);
+		internalVerCliente.getPanelContatos().getBntEditar().addActionListener(this);
 		
 	}
 

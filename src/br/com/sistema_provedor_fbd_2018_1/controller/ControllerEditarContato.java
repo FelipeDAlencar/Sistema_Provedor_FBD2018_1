@@ -5,10 +5,12 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
+import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Contato;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
@@ -21,10 +23,11 @@ public class ControllerEditarContato implements Listeners,ItemListener {
 	private InternalEditarContato internalEditarContato;
 	private InternalCadastroCliente internalCadastroCliente;
 	private Contato contato;
-	private ArrayList<Contato> contatos;
+	private List<Contato> contatos;
+	private Cliente cliente;
 	private int linha;
 
-	public ControllerEditarContato(ArrayList<Contato> contatos, int linha, InternalCadastroCliente internalCadastroCliente) {
+	public ControllerEditarContato(List<Contato> contatos, int linha, InternalCadastroCliente internalCadastroCliente) {
 		this.contatos = contatos;
 		this.linha = linha;
 		contato = contatos.get(linha);
@@ -32,30 +35,45 @@ public class ControllerEditarContato implements Listeners,ItemListener {
 
 	}
 
+	public ControllerEditarContato(InternalCadastroCliente internalCadastroCliente, Contato contato, Cliente cliente) {
+		this.internalCadastroCliente = internalCadastroCliente;
+		this.contato = contato;
+		this.cliente= cliente;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-	
+
+
 		if(e.getSource() == internalEditarContato.getBtnSalvar()) {
 			String tipo = (String)internalEditarContato.getComboContato().getSelectedItem();
 			Contato contato = new Contato(internalEditarContato.getResponsavelField().getText(), tipo, internalEditarContato.getContatoField().getText());
-			contatos.remove(linha);
-			contatos.add(linha, contato);
+			
+			if (contatos==null) {
+				Fachada fachada = new Fachada();
+				try {
+					contato.setId(this.contato.getId());
+					fachada.salvarOuEditarContato(contato, cliente.getCpf());
+					contatos = fachada.buscarContatoPorCliente(cliente.getId());
+				} catch (BusinessException e1) {
+					e1.printStackTrace();
+				}
+			}else {
+				contatos.remove(linha);
+				contatos.add(linha, contato);
+			}
 			internalCadastroCliente.getPanelContatos().carregarContatos(contatos);
 			Menssagens.menssagem("Contato editado com sucesso.", 1);
-		
 		}
-		
-		
-		
 	}
+	
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		if (internalEditarContato.getComboContato().getSelectedIndex() == 2
 				|| internalEditarContato.getComboContato().getSelectedIndex() == 3) {
 			try {
 				internalEditarContato.getContatoField()
-						.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("(###)#####-####")));
+				.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("(###)#####-####")));
 			} catch (ParseException e1) {
 				e1.printStackTrace();
 			}
@@ -87,6 +105,7 @@ public class ControllerEditarContato implements Listeners,ItemListener {
 	}
 
 	public void PreencerCampos() {
+		internalEditarContato.getComboContato().setSelectedItem(contato.getTipo());
 		internalEditarContato.getContatoField().setText(contato.getContato());
 		internalEditarContato.getResponsavelField().setText(contato.getResponsavel());
 

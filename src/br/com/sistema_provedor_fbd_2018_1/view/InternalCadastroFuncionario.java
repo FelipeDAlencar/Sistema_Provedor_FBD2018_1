@@ -31,7 +31,7 @@ public class InternalCadastroFuncionario extends TelaInternal {
 	public InternalCadastroFuncionario(TelaPrincipal telaPrincipal, ActionListener actionListener)
 			throws BusinessException {
 		super("Cadastro de Funcionários", telaPrincipal, actionListener);
-		setBounds(150, 50, 1050, 500);
+		setBounds(150, 50, 1050, 510);
 		getContentPane().setLayout(null);
 
 		
