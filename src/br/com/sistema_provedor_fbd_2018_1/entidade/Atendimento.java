@@ -1,32 +1,32 @@
 package br.com.sistema_provedor_fbd_2018_1.entidade;
 
+import br.com.sistema_provedor_fbd_2018_1.enuns.enumAtendimento;
+
 public class Atendimento {
 	
 	private Integer id, cliente_id;
-	private String motivo, protocolo, data_atendimento, status;
-	
-	
-	public Atendimento() {
-		// TODO Auto-generated constructor stub
-	}
+	private String descricao;
+	private String motivo, data_atendimento;
+	private enumAtendimento status;
 
 
-	public Atendimento( String motivo, String protocolo, String data_atendimento) {
+
+	public Atendimento( String motivo, String data_atendimento,
+			String descricao) {
 		super();
 		this.motivo = motivo;
-		this.protocolo = protocolo;
 		this.data_atendimento = data_atendimento;
 	}
 
 
-	public Atendimento(Integer id, Integer cliente_id, String motivo, String protocolo, String data_atendimento) {
+	public Atendimento(Integer id, Integer cliente_id, String motivo,
+			String data_atendimento, enumAtendimento status, String descricao) {
 		super();
 		this.id = id;
 		this.cliente_id = cliente_id;
 		this.motivo = motivo;
-		this.protocolo = protocolo;
 		this.data_atendimento = data_atendimento;
-		this.status = "Fechado";
+		this.status = status;
 	}
 
 
@@ -54,31 +54,21 @@ public class Atendimento {
 		return motivo;
 	}
 
-
+	public String getDescricao() {
+		return descricao;
+	}
 	public void setMotivo(String motivo) {
 		this.motivo = motivo;
 	}
 
 
-	public String getProtocolo() {
-		return protocolo;
-	}
-
-
-	public void setProtocolo(String protocolo) {
-		this.protocolo = protocolo;
-	}
-
-
-	public String getStatus() {
+	public enumAtendimento getStatus() {
 		return status;
 	}
-
-
-	public void setStatus(String status) {
+	
+	public void setStatus(enumAtendimento status) {
 		this.status = status;
 	}
-
 
 	public String getData_atendimento() {
 		return data_atendimento;

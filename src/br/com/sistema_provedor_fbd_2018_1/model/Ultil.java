@@ -6,8 +6,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
-
 public class Ultil {
 	private static Calendar calendar;
 	public static String separarString(String txt, int parte) {

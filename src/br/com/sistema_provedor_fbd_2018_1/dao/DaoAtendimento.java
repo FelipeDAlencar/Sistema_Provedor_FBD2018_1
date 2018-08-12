@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Atendimento;
+import br.com.sistema_provedor_fbd_2018_1.enuns.enumAtendimento;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.model.Ultil;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLConnection;
@@ -32,7 +33,6 @@ public class DaoAtendimento implements IDaoAtendimento {
 			statement = conexao.prepareStatement(SQLUtil.Atendimento.INSERT_ALL);
 
 			statement.setString(1, atendimento.getMotivo());
-			statement.setString(2, atendimento.getProtocolo());
 			statement.setDate(3, Ultil.converterStringParaDataSQL(atendimento.getData_atendimento()));
 			statement.setInt(4, cliente_id);
 
@@ -54,7 +54,6 @@ public class DaoAtendimento implements IDaoAtendimento {
 
 			statement = conexao.prepareStatement(SQLUtil.Atendimento.UPDATE);
 			statement.setString(1, atendimento.getMotivo());
-			statement.setString(2, atendimento.getProtocolo());
 			statement.setDate(3, Ultil.converterStringParaDataSQL(atendimento.getData_atendimento()));
 			statement.setInt(4, atendimento.getCliente_id());
 			statement.setInt(5, atendimento.getId());
@@ -87,10 +86,15 @@ public class DaoAtendimento implements IDaoAtendimento {
 			Atendimento atendimento;
 
 			while (resultSet.next()) {
-				atendimento = new Atendimento(resultSet.getInt("id"), resultSet.getInt("cliente_id"),
-						resultSet.getString("motivo"), resultSet.getString("motivo"),
-						Ultil.converterDataSQLParaString(resultSet.getDate("data_atendimento")));
-				atendimentos.add(atendimento);
+				atendimento = new Atendimento(
+						resultSet.getInt("id"),
+						resultSet.getInt("cliente_id"),
+						resultSet.getString("motivo"),
+						resultSet.getString("data_atendimento"),
+						enumAtendimento.getEnum(resultSet.getString("status")),
+						resultSet.getString("descricao"));
+						
+						atendimentos.add(atendimento);
 
 			}
 
@@ -120,10 +124,13 @@ public class DaoAtendimento implements IDaoAtendimento {
 			Atendimento atendimento;
 
 			while (resultSet.next()) {
-				atendimento = new Atendimento(resultSet.getInt("id"), resultSet.getInt("cliente_id"),
-						resultSet.getString("motivo"), resultSet.getString("motivo"),
-						Ultil.converterDataSQLParaString(resultSet.getDate("data_atendimento")));
-
+				atendimento = new Atendimento(
+						resultSet.getInt("id"),
+						resultSet.getInt("cliente_id"),
+						resultSet.getString("motivo"),
+						resultSet.getString("data_atendimento"),
+						enumAtendimento.getEnum(resultSet.getString("status")),
+						resultSet.getString("descricao"));
 				atendimentos.add(atendimento);
 			}
 

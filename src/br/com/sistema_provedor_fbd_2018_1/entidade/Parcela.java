@@ -1,13 +1,15 @@
 package br.com.sistema_provedor_fbd_2018_1.entidade;
 
+import br.com.sistema_provedor_fbd_2018_1.enuns.enumParcela;
+
 public class Parcela {
 
 	private Integer id, contrato_id;
 	private Double valor;
 	private String data_vencimento;
-	private boolean status;
+	private enumParcela status;
 
-	public Parcela(Integer id, Integer contrato_id, Double valor, String data_vencimento, boolean status) {
+	public Parcela(Integer id, Integer contrato_id, Double valor, String data_vencimento, enumParcela status) {
 		super();
 		this.id = id;
 		this.contrato_id = contrato_id;
@@ -16,7 +18,7 @@ public class Parcela {
 		this.status = status;
 	}
 
-	public Parcela(Integer id, Double valor, String data_vencimento, boolean status) {
+	public Parcela(Integer id, Double valor, String data_vencimento, enumParcela status) {
 		super();
 		this.id = id;
 		this.valor = valor;
@@ -24,7 +26,7 @@ public class Parcela {
 		this.status = status;
 	}
 
-	public Parcela(Double valor, String data_vencimento, boolean status) {
+	public Parcela(Double valor, String data_vencimento, enumParcela status) {
 		super();
 		this.valor = valor;
 		this.data_vencimento = data_vencimento;
@@ -63,11 +65,11 @@ public class Parcela {
 		this.data_vencimento = data_vencimento;
 	}
 
-	public boolean isStatus() {
+	public enumParcela getStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(enumParcela status) {
 		this.status = status;
 	}
 	

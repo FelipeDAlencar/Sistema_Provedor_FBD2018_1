@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Porta;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
-import br.com.sistema_provedor_fbd_2018_1.model.Enum.enumPortas;
+import br.com.sistema_provedor_fbd_2018_1.enuns.enumPorta;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLConnection;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLUtil;
 
@@ -79,7 +79,7 @@ public class DaoPorta implements IDaoPorta {
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Porta.SELECT_SWITCH_STATUS);
 			statement.setInt(1, switch_id);
-			statement.setString(2, enumPortas.LIVRE.getStatus());
+			statement.setString(2, enumPorta.LIVRE.getStatus());
 
 			ResultSet resultSet = statement.executeQuery();
 

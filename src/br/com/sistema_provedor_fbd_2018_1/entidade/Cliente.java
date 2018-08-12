@@ -1,12 +1,10 @@
 package br.com.sistema_provedor_fbd_2018_1.entidade;
 
-import java.util.ArrayList;
 
 public class Cliente {
 
 	private Integer id;
 	private String nome, cpf, rg, data_nascimento;
-	//Ver Endereco depois.
 	private Integer endereco_id;
 
 	public Cliente(String nome, String cpf, String rg, String data_nascimento) {

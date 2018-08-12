@@ -2,8 +2,11 @@ package br.com.sistema_provedor_fbd_2018_1.view;
 
 import java.awt.event.ActionListener;
 import java.text.ParseException;
-
+import java.util.ArrayList;
+import java.util.List;
+import br.com.sistema_provedor_fbd_2018_1.entidade.ServicoCliente;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultFormatterFactory;
@@ -73,24 +76,38 @@ public class InternalCadastroContrato extends TelaInternal {
 		getContentPane().add(dataVecimentoField);
 		dataVecimentoField.setColumns(10);
 		setVisible(false);
-		
+
 		try {
 			dataVecimentoField.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
-			
+
 			JLabel lblServio = new JLabel("Servi\u00E7o:");
 			lblServio.setBounds(41, 11, 98, 14);
 			getContentPane().add(lblServio);
-			
+
 			servicoCombo = new JComboBox<>();
 			servicoCombo.setBounds(41, 36, 451, 30);
 			getContentPane().add(servicoCombo);
 		} catch (ParseException e) {
-			
+
 			e.printStackTrace();
 		}
-		
-	
 
+
+
+	}
+
+	public void carregarServicos(int id) {
+		try {
+			List<ServicoCliente> servicosList = new ArrayList<>();
+			Fachada fachada = new Fachada();
+			servicosList = fachada.buscarServicosPorCliente(id);
+			for (ServicoCliente servicoCliente : servicosList) {
+				servicoCombo.addItem(servicoCliente.getDescricao());
+			}
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public JtextFieldGenerico getDataVecimentoField() {
 		return dataVecimentoField;
@@ -124,6 +141,6 @@ public class InternalCadastroContrato extends TelaInternal {
 	public JComboBox<String> getServicoCombo() {
 		return servicoCombo;
 	}
-	
-	
+
+
 }

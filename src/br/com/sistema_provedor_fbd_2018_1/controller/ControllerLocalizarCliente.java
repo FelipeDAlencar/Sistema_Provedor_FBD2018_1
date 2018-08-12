@@ -37,12 +37,11 @@ public class ControllerLocalizarCliente implements Listeners {
 				controllerVerCliente = new ControllerVerCliente(telaPrincipal, cliente);
 				internalVerCliente = new InternalVerCliente(telaPrincipal, controllerVerCliente);
 				telaPrincipal.getDesktopPane().add(internalVerCliente);
-				internalVerCliente.setVisible(true);
 				controllerVerCliente.setInternalVerCliente(internalVerCliente);
-				controllerVerCliente.addListeners();
 				controllerVerCliente.carregarDados();
 				internalVerCliente.getFinanceiroPanel().carregarTabelas(fachada.buscarContratoPorClienteID(cliente.getId()));
-			
+				controllerVerCliente.addListeners();
+				internalVerCliente.setVisible(true);
 
 			}
 			

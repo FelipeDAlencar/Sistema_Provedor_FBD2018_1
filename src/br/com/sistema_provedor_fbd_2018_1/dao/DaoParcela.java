@@ -5,10 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import javax.print.attribute.ResolutionSyntax;
-
 import br.com.sistema_provedor_fbd_2018_1.entidade.Parcela;
+import br.com.sistema_provedor_fbd_2018_1.enuns.enumParcela;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.model.Ultil;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLConnection;
@@ -33,7 +31,7 @@ public class DaoParcela implements IDaoParcela {
 
 			statement.setDouble(1, parcela.getValor());
 			statement.setDate(2, Ultil.converterStringParaDataSQL(parcela.getData_vencimento()));
-			statement.setBoolean(3, parcela.isStatus());
+			statement.setString(3, parcela.getStatus().getStatus());
 			statement.setInt(4, contrato_id);
 
 			statement.execute();
@@ -53,10 +51,8 @@ public class DaoParcela implements IDaoParcela {
 
 			statement = conexao.prepareStatement(SQLUtil.Parcela.UPDATE);
 
-			statement.setDouble(1, parcela.getValor());
-			statement.setDate(2, Ultil.converterStringParaDataSQL(parcela.getData_vencimento()));
-			statement.setBoolean(3, parcela.isStatus());
-			statement.setInt(4, parcela.getId());
+			statement.setString(1, parcela.getStatus().getStatus());
+			statement.setInt(2, parcela.getId());
 
 			statement.execute();
 			conexao.close();
@@ -72,20 +68,26 @@ public class DaoParcela implements IDaoParcela {
 		try {
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Parcela.SELECT_ID);
+			statement.setInt(1, id);
 
 			ResultSet resultSet = statement.executeQuery();
-			Parcela parcela = null;
+			Parcela parcela;
 
 			if (resultSet.next()) {
 				parcela = new Parcela(resultSet.getInt("id"), resultSet.getInt("contrato_id"),
 						resultSet.getDouble("valor"),
 						Ultil.converterDataSQLParaString(resultSet.getDate("data_vencimento")),
-						resultSet.getBoolean("status"));
+						enumParcela.getEnum(resultSet.getString("status")));
+			} else {
+				throw new DaoException("PARCELA NÃO CADASTRADO");
 			}
+
+			conexao.close();
 			return parcela;
 
 		} catch (SQLException e) {
-			throw new DaoException("ERRO AO BUSCAR PARCELA");
+			e.printStackTrace();
+			throw new DaoException("ERRO AO TENTAR CONSULTAR O BANCO DE DADOS");
 		}
 
 	}
@@ -104,7 +106,7 @@ public class DaoParcela implements IDaoParcela {
 				parcela = new Parcela(resultSet.getInt("id"), resultSet.getInt("contrato_id"),
 						resultSet.getDouble("valor"),
 						Ultil.converterDataSQLParaString(resultSet.getDate("data_vencimento")),
-						resultSet.getBoolean("status"));
+						enumParcela.getEnum(resultSet.getString("status")));
 				parcelas.add(parcela);
 			}
 			return parcelas;
@@ -134,7 +136,12 @@ public class DaoParcela implements IDaoParcela {
 			Parcela parcela;
 			
 			while(resultSet.next()) {
-				parcela = new Parcela(resultSet.getInt("id"), contrato_id, resultSet.getDouble("valor"),Ultil.converterDataSQLParaString(resultSet.getDate("data_vencimento")), resultSet.getBoolean("status"));
+				parcela = new Parcela(
+						resultSet.getInt("id"),
+						contrato_id,
+						resultSet.getDouble("valor"),
+						Ultil.converterDataSQLParaString(resultSet.getDate("data_vencimento")),
+						enumParcela.getEnum(resultSet.getString("status")));
 				parcelas.add(parcela);
 			
 			}

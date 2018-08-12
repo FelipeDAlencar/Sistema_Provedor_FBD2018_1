@@ -69,8 +69,12 @@ public class InternalAtendimentos extends TelaInternal {
 		modelTable.setNumRows(0);
 		for (Atendimento atendimento : atendimentos) {
 
-			String[] linha = { atendimento.getProtocolo(), "cliente", atendimento.getMotivo(),
-					atendimento.getData_atendimento(), atendimento.getStatus() };
+			String[] linha = {
+					atendimento.getId().toString(),
+					"cliente", 
+					atendimento.getMotivo(),
+					atendimento.getData_atendimento(), 
+					atendimento.getStatus().getStatus() };
 			modelTable.addRow(linha);
 		}
 	}
@@ -78,8 +82,12 @@ public class InternalAtendimentos extends TelaInternal {
 	public void carregarAtendimentosAtrasados(List<Atendimento> atendimentos) {
 		modelTableAtrasados.setNumRows(0);
 		for (Atendimento atendimento : atendimentos) {
-			String[] linha = { atendimento.getProtocolo(), "cliente", atendimento.getMotivo(),
-					atendimento.getData_atendimento(), atendimento.getStatus() };
+			String[] linha = {
+					atendimento.getId().toString(),
+					"cliente",
+					atendimento.getMotivo(),
+					atendimento.getData_atendimento(),
+					atendimento.getStatus().getStatus() };
 			modelTableAtrasados.addRow(linha);
 		}
 	}

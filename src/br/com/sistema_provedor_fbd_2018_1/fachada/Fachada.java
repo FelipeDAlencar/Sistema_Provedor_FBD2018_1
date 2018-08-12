@@ -521,6 +521,12 @@ public class Fachada implements IFachada {
 		return businessServicoCliente.buscarPorDescricao(descricao);
 	}
 
+	@Override
+	public Parcela buscarParcelaId(int id) throws BusinessException {
+		// TODO Auto-generated method stub
+		return businessParcela.buscarPorId(id);
+	}
+
 
 	
 

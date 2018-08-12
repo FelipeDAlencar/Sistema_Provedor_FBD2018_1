@@ -22,11 +22,12 @@ public class DaoContrato implements IDaoContrato {
 		try {
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Contrato.INSERT_ALL);
-
+			
 			statement.setDouble(1, contrato.getValor_instalacao());
 			statement.setDouble(2, contrato.getValor_mensal());
-			statement.setInt(5, contrato.getNumero_parcelas());
-			statement.setInt(6, contrato.getCliente_id());
+			statement.setInt(3, contrato.getServico_id());
+			statement.setInt(4, contrato.getNumero_parcelas());
+			statement.setInt(5, contrato.getCliente_id());
 
 			statement.execute();
 
@@ -46,7 +47,7 @@ public class DaoContrato implements IDaoContrato {
 			for (int i = 0; i < contrato.getNumero_parcelas(); i++) {
 				statement.setDouble(1, parcela.getValor());
 				statement.setDate(2, Ultil.converterStringParaDataSQL(dataAtual));
-				statement.setBoolean(3, parcela.isStatus());
+				statement.setString(3, parcela.getStatus().getStatus());
 				statement.setInt(4, contrato_id);
 				statement.execute();
 				dataAtual =  Ultil.datasParcelas(dataAtual);

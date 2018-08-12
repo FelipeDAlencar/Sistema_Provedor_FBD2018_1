@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Contrato;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Parcela;
+import br.com.sistema_provedor_fbd_2018_1.enuns.enumParcela;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.fachada.IFachada;
@@ -39,7 +40,7 @@ public class ControllerCadastroContrato implements Listeners {
 						Integer.parseInt(internal.getNumeroParcelasField().getText()));
 
 				Parcela parcela = new Parcela(contrato.getValor_mensal(), internal.getDataVencimentoField().getText(),
-						true);
+						enumParcela.ABERTO);
 
 				fachada.salvarOuEditarContrato(contrato, parcela);
 				

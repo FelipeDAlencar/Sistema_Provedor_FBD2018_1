@@ -1,8 +1,6 @@
 package br.com.sistema_provedor_fbd_2018_1.dao;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import br.com.sistema_provedor_fbd_2018_1.entidade.Caixa;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 

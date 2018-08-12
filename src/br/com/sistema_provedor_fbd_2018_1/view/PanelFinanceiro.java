@@ -6,6 +6,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Contrato;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Parcela;
+import br.com.sistema_provedor_fbd_2018_1.enuns.enumParcela;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import java.awt.Dimension;
@@ -17,6 +18,12 @@ public class PanelFinanceiro extends JPanel {
 	private Botao btnNovoContrato;
 	private JPanel panelTabelas;
 	private JScrollPane scrollFinanceiro;
+	private JTable tabela;
+	private ArrayList<JScrollPane> scrollPanes = new ArrayList<>();
+	private JScrollPane scrollPane = null;
+	private Fachada fachada = new Fachada();
+	private ArrayList<Parcela> parcelas;
+	private ArrayList<JTable> tabelas= new ArrayList<>();
 
 	public PanelFinanceiro() {
 		setLayout(null);
@@ -33,35 +40,33 @@ public class PanelFinanceiro extends JPanel {
 	public void carregarTabelas(ArrayList<Contrato> contratos) {
 		
 		try {
-			int largura = 975;
+			int largura = 925;
 			int altura = 230;
 			int x = 10, y = 10;
 
-			JTable tabela = new JTable(modelTable);
-			ArrayList<JScrollPane> scrollPanes = new ArrayList<>();
-			JScrollPane scrollPane = null;
-			Fachada fachada = new Fachada();
-			ArrayList<Parcela> parcelas;
-			DefaultTableModel modelTable;
+			
 			for (int i = 0; i < contratos.size(); i++) {
 				
 				modelTable = new DefaultTableModel();
-				modelTable.addColumn("ID contrato");
+				modelTable.addColumn("Código");
 				modelTable.addColumn("Valor Mensal");
 				modelTable.addColumn("Data de Vencimento");
 
 				tabela = new JTable(modelTable);
 				tabela.setSize(1200,300);
-
+				
 				parcelas = fachada.buscarParcelaPorContratoID(contratos.get(i).getId());
 				modelTable.setNumRows(0);
 				for (Parcela parcela : parcelas) {
-					String[] linha = { String.valueOf(contratos.get(i).getId()), String.valueOf(parcela.getValor()),
-							parcela.getData_vencimento() };
-					modelTable.addRow(linha);
+					if (parcela.getStatus()==enumParcela.ABERTO) {
+						String[] linha = { String.valueOf(parcela.getId()), String.valueOf(parcela.getValor()),
+								parcela.getData_vencimento() };
+						modelTable.addRow(linha);
+					}
 				}
 				
 				scrollPane = new JScrollPane(tabela);
+				tabelas.add(tabela);
 				scrollPanes.add(scrollPane);
 			}
 
@@ -70,7 +75,7 @@ public class PanelFinanceiro extends JPanel {
 				panelTabelas.add(jScrollPaneAtual);
 				y += altura;
 			}
-			panelTabelas.setPreferredSize(new Dimension(935, y+10 ));
+			panelTabelas.setPreferredSize(new Dimension(935, y+50 ));
 			scrollFinanceiro = new JScrollPane(panelTabelas);
 			scrollFinanceiro.setBounds(50,65,950,300);
 			add(scrollFinanceiro);
@@ -89,18 +94,40 @@ public class PanelFinanceiro extends JPanel {
 		this.btnNovoContrato = btnNovoContrato;
 	}
 
-	
-	// public JScrollPane getBarraRolagem() {
-	// return barraRolagem;
-	// }
-	// public void setBarraRolagem(JScrollPane barraRolagem) {
-	// this.barraRolagem = barraRolagem;
-	// }
-	// public JScrollPane getBarra2() {
-	// return barra2;
-	// }
-	// public void setBarra2(JScrollPane barra2) {
-	// this.barra2 = barra2;
-	// }
+	public DefaultTableModel getModelTable() {
+		return modelTable;
+	}
+
+	public JPanel getPanelTabelas() {
+		return panelTabelas;
+	}
+
+	public JScrollPane getScrollFinanceiro() {
+		return scrollFinanceiro;
+	}
+
+	public JTable getTabela() {
+		return tabela;
+	}
+
+	public ArrayList<JScrollPane> getScrollPanes() {
+		return scrollPanes;
+	}
+
+	public JScrollPane getScrollPane() {
+		return scrollPane;
+	}
+
+	public Fachada getFachada() {
+		return fachada;
+	}
+
+	public ArrayList<Parcela> getParcelas() {
+		return parcelas;
+	}
+
+	public ArrayList<JTable> getTabelas() {
+		return tabelas;
+	}
 
 }

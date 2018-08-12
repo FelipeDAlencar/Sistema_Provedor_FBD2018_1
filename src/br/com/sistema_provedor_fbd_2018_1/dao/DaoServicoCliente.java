@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import br.com.sistema_provedor_fbd_2018_1.entidade.ServicoCliente;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
-import br.com.sistema_provedor_fbd_2018_1.model.Enum.enumPortas;
+import br.com.sistema_provedor_fbd_2018_1.enuns.enumPorta;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLConnection;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLUtil;
 
@@ -26,7 +26,7 @@ public class DaoServicoCliente implements IDaoServicoCliente {
 
 			ResultSet resultSet = statement.executeQuery();
 			resultSet.next();
-			String descricao = resultSet.getString(1)+": "+servicoCliente.getLogin();
+			String descricao = servicoCliente.getCliente_id()+" "+resultSet.getString(1)+" Login: "+servicoCliente.getLogin();
 
 			if(servicoCliente.getEndereco()!=null) {
 				statement = conexao.prepareStatement(SQLUtil.Endereco.INSERT_ALL);
@@ -58,7 +58,7 @@ public class DaoServicoCliente implements IDaoServicoCliente {
 			statement.execute();
 
 			statement = conexao.prepareStatement(SQLUtil.Porta.UPDATE);
-			statement.setString(1, enumPortas.OCUPADA.getStatus());
+			statement.setString(1, enumPorta.OCUPADA.getStatus());
 			statement.setInt(2, servicoCliente.getPorta_id());
 
 			statement.execute();
@@ -187,7 +187,7 @@ public class DaoServicoCliente implements IDaoServicoCliente {
 			
 			statement.setString(1,descricao);
 			ResultSet resultSet = statement.executeQuery();
-			
+			resultSet.next();
 			conexao.close();
 			
 			return resultSet.getInt(1);
