@@ -70,6 +70,13 @@ public class BusinessCidade implements IBusinessCidade {
 			throw new BusinessException("ERRO NO BUS");
 		}
 	}
+	public void excluir(int id, boolean status)throws BusinessException {
+		try {
+			dao.excluir(id, status);
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void validarCidade(Cidade cidade) throws ValidacaoException {
 		if (cidade.getCep() == null || cidade.getCep().equals("")) {

@@ -7,7 +7,6 @@ import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Porta;
@@ -15,10 +14,11 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Switch;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
+import br.com.sistema_provedor_fbd_2018_1.fachada.IFachada;
 
 @SuppressWarnings("serial")
 public class InternalAdicionarServico extends TelaInternal  {
-	private Fachada fachada;
+	private IFachada fachada;
 	private JLabel enderecoCheckLabel;
 	private JCheckBox enderecoCheckBox;
 	//Edereço
@@ -31,7 +31,7 @@ public class InternalAdicionarServico extends TelaInternal  {
 	//Servico
 	private JComboBox<String> servicosComboBox;
 	private JTextField LoginField;
-	private JPasswordField senhaField;
+	private JTextField senhaField;
 	
 	//switch
 	private JComboBox<String> switchComboBox;
@@ -138,7 +138,7 @@ public class InternalAdicionarServico extends TelaInternal  {
 		lblSenha.setBounds(414, 274, 46, 14);
 		getContentPane().add(lblSenha);
 
-		senhaField = new JPasswordField();
+		senhaField = new JTextField();
 		senhaField.setBounds(424, 300, 174, 29);
 		getContentPane().add(senhaField);
 		
@@ -181,14 +181,10 @@ public class InternalAdicionarServico extends TelaInternal  {
 		List<Porta> portasList = new ArrayList<>();
 		Switch sw = fachada.buscarSwitchPorNome(switchComboBox.getSelectedItem().toString());
 		portaComboBox = new JComboBox<>();
-		portasList = fachada.buscarPortaPorSwitch(sw.getId());
+		portasList = fachada.buscarPortaPorSwitchEStatus(sw.getId());
 		for (Porta porta : portasList) {
 			portaComboBox.addItem(String.valueOf(porta.getNumero()));
 		}
-	}
-
-	public Fachada getFachada() {
-		return fachada;
 	}
 
 	public JLabel getEnderecoCheckLabel() {
@@ -247,7 +243,7 @@ public class InternalAdicionarServico extends TelaInternal  {
 		return LoginField;
 	}
 
-	public JPasswordField getSenhaField() {
+	public JTextField getSenhaField() {
 		return senhaField;
 	}
 

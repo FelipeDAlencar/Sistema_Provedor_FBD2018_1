@@ -1,22 +1,18 @@
 package br.com.sistema_provedor_fbd_2018_1.view;
 
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.ButtonGroup;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-
 import br.com.sistema_provedor_fbd_2018_1.entidade.Movimentacao;
-import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import javax.swing.JRadioButton;
 
+@SuppressWarnings("serial")
 public class InternalMovimentacao  extends TelaInternal{
 	private Botao btnNovo, btnEditar, btnRemover;
 	private DefaultTableModel modelTable;
@@ -27,7 +23,6 @@ public class InternalMovimentacao  extends TelaInternal{
 	private Botao btnBuscar;
 	private JRadioButton radioPagos,radioNaoPagos;
 	private ButtonGroup grupoBtn;
-	private ArrayList<JCheckBox> checkBoxs;
 	public InternalMovimentacao(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
 		super("Movimentações", telaPrincipal, actionListener);
 		setBounds(150, 20, 1050, 610);

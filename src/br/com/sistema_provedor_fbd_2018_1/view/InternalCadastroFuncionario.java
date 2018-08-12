@@ -1,7 +1,6 @@
 package br.com.sistema_provedor_fbd_2018_1.view;
 
 import java.awt.event.ActionListener;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
@@ -9,8 +8,7 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.MaskFormatter;
+import com.toedter.calendar.JDateChooser;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JPasswordField;
@@ -25,7 +23,7 @@ public class InternalCadastroFuncionario extends TelaInternal {
 	private JtextFieldGenerico numeroFild;
 	private JTextField complementoFild;
 	private JComboBox<String> cidadesCombo;
-	private JFormattedTextField data_contratoFild;
+	private JDateChooser data_contratoFild;
 	private Botao btnAdicionar;
 
 	public InternalCadastroFuncionario(TelaPrincipal telaPrincipal, ActionListener actionListener)
@@ -57,10 +55,10 @@ public class InternalCadastroFuncionario extends TelaInternal {
 		lblNewLabel.setBounds(814, 64, 94, 14);
 		getContentPane().add(lblNewLabel);
 
-		data_contratoFild = new JFormattedTextField();
+		data_contratoFild = new JDateChooser();
 		data_contratoFild.setBounds(814, 89, 188, 29);
 		getContentPane().add(data_contratoFild);
-		data_contratoFild.setColumns(10);
+
 
 		JLabel lblLogin = new JLabel("Login:");
 		lblLogin.setBounds(55, 155, 46, 14);
@@ -133,15 +131,7 @@ public class InternalCadastroFuncionario extends TelaInternal {
 		btnAdicionar.setBounds(913, 368, 100, 40);
 		getContentPane().add(btnAdicionar);
 
-		try {
-			
-			data_contratoFild.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
-
-		} catch (ParseException e) {
-
-			e.printStackTrace();
-		}
-
+		
 	}
 
 	private void carregarCidades() throws BusinessException {
@@ -188,7 +178,7 @@ public class InternalCadastroFuncionario extends TelaInternal {
 	}
 
 	
-	public JFormattedTextField getData_contratoFild() {
+	public JDateChooser getData_contratoFild() {
 		return data_contratoFild;
 	}
 

@@ -48,14 +48,13 @@ public class ControllerFuncionario implements Listeners {
 
 				Funcionario funcionario = fachada.buscarFuncionarioPorId(id);
 				Endereco endereco = fachada.buscarEnderecoPorId(funcionario.getEndereco_id());
-
 				controllerEditarFuncionario = new ControllerEditarFuncionario(funcionario, endereco);
 				internalEditarFuncionario = new InternalEditarFuncionario(telaPrincipal, controllerEditarFuncionario);
 				telaPrincipal.getDesktopPane().add(internalEditarFuncionario);
-				internalEditarFuncionario.setVisible(true);
 				controllerEditarFuncionario.setInternalEditarFuncionario(internalEditarFuncionario);
-				controllerEditarFuncionario.addListeners();
 				controllerEditarFuncionario.preencherCampos();
+				controllerEditarFuncionario.addListeners();
+				internalEditarFuncionario.setVisible(true);
 
 			}
 

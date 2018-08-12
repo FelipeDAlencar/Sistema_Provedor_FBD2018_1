@@ -40,8 +40,12 @@ public class BusinessServicoCliente implements IBusinessServicoCliente {
 
 	@Override
 	public ServicoCliente buscarPorId(int id) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return dao.buscarPorId(id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO AO CONSULTAR SERVICO CLIENTE- BUS");
+		}
 	}
 
 	@Override
@@ -54,6 +58,16 @@ public class BusinessServicoCliente implements IBusinessServicoCliente {
 	public List<ServicoCliente> bucarPorCliente(Integer cliente_id) throws BusinessException {
 		try {
 			return dao.buscarPorCliente(cliente_id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("ERRO AO BUSCAR SERVICO - BUS");
+		}
+	}
+
+	@Override
+	public int buscarPorDescricao(String descricao) throws BusinessException {
+		try {
+			return dao.buscarPorDescricao(descricao);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new BusinessException("ERRO AO BUSCAR SERVICO - BUS");

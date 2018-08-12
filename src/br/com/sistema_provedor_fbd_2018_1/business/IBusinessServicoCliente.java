@@ -19,5 +19,7 @@ public interface IBusinessServicoCliente {
 	public ArrayList<ServicoCliente> buscarPorBusca(String busca)throws BusinessException;
 	
 	public List<ServicoCliente> bucarPorCliente(Integer cliente_id) throws BusinessException;
+	
+	public int buscarPorDescricao(String descricao) throws BusinessException;
 
 }

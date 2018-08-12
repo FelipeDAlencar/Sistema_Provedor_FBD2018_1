@@ -10,11 +10,9 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.model.Ultil;
-import br.com.sistema_provedor_fbd_2018_1.view.InternalAdicionarServico;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroContato;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarContato;
-import br.com.sistema_provedor_fbd_2018_1.view.InternalLocalizarCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalVerCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 import br.com.sistema_provedor_fbd_2018_1.view.TelaPrincipal;
@@ -51,7 +49,7 @@ public class ControllerCadastroCliente implements Listeners {
 				if (controllerCadastroContato.getContatos().isEmpty() == false) {
 					cliente = new Cliente(
 							internalCliente.getNomeField().getText(), internalCliente.getCpfField().getText(),
-							internalCliente.getRgField().getText(), internalCliente.getDataNascimentoField().getText());
+							internalCliente.getRgField().getText(), Ultil.converterJavaDateEmString((internalCliente.getDataNascimentoField().getDate())));
 
 					Endereco endereco = new Endereco(internalCliente.getBairroField().getText(),
 							internalCliente.getComplementoField().getText(), internalCliente.getRuaField().getText(),

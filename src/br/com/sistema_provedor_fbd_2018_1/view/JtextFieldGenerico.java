@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JFormattedTextField;
 
+@SuppressWarnings("serial")
 public final class JtextFieldGenerico extends JFormattedTextField {
 	private int maximoCaracteres = -1;// definição de -1
 	private String caracteres;

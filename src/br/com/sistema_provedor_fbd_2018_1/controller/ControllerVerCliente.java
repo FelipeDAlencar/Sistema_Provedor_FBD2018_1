@@ -1,6 +1,7 @@
 package br.com.sistema_provedor_fbd_2018_1.controller;
 
 import java.awt.event.ActionEvent;
+import java.util.Calendar;
 import java.util.List;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
@@ -11,10 +12,12 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.fachada.IFachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
+import br.com.sistema_provedor_fbd_2018_1.model.Ultil;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalAdicionarServico;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroContato;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroContrato;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarContato;
+import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarServicoCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalVerCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.TelaPrincipal;
 
@@ -31,6 +34,8 @@ public class ControllerVerCliente implements Listeners {
 	private InternalCadastroContato internalCadastroContato;
 	private ControllerEditarContato controllerEditarContato;
 	private InternalEditarContato internalEditarContato;
+	private ControllerEditarServicoCliente controllerEditarServicoCliente;
+	private InternalEditarServicoCliente internalEditarServicoCliente;
 	
 	public ControllerVerCliente( TelaPrincipal telaPrincipal, Cliente cliente) {
 		fachada = new Fachada();
@@ -52,13 +57,28 @@ public class ControllerVerCliente implements Listeners {
 				
 			}
 			
+			if (e.getSource() == internalVerCliente.getPanelServico().getBntEditar()) {
+				int linha = internalVerCliente.getPanelServico().getTabela().getSelectedRow();
+				int id = Integer.parseInt(internalVerCliente.getPanelServico().getModelTable().getValueAt(linha, 0).toString());
+				
+				ServicoCliente servico = fachada.buscarServicosClientesPorId(id);
+			
+				controllerEditarServicoCliente= new ControllerEditarServicoCliente(servico);
+				internalEditarServicoCliente = new InternalEditarServicoCliente(telaPrincipal, controllerEditarServicoCliente);
+				telaPrincipal.getDesktopPane().add(internalEditarServicoCliente);
+				controllerEditarServicoCliente.setInternalEditarServicoCliente(internalEditarServicoCliente);
+				controllerEditarServicoCliente.preencherCampos();
+				controllerEditarServicoCliente.addListeners();
+				internalEditarServicoCliente.setVisible(true);
+			}
+			
 			if (e.getSource() == internalVerCliente.getPanelContatos().getBntAdicionar()) {
 				controllerCadastroContato = new ControllerCadastroContato(internalVerCliente, cliente);
 				internalCadastroContato = new InternalCadastroContato(telaPrincipal, controllerCadastroContato);
 				telaPrincipal.getDesktopPane().add(internalCadastroContato);
-				internalCadastroContato.setVisible(true);
 				controllerCadastroContato.setInternalCadastroContato(internalCadastroContato);
 				controllerCadastroContato.addListeners();
+				internalCadastroContato.setVisible(true);
 			}
 			
 			if (e.getSource() == internalVerCliente.getPanelContatos().getBntEditar()) {
@@ -98,11 +118,12 @@ public class ControllerVerCliente implements Listeners {
 	public void carregarDados() {
 	
 			try {
+				Calendar calendar = Ultil.pegarDataParaEdicao(cliente.getData_nascimento());
 				Endereco endereco =  fachada.buscarEnderecoPorId(cliente.getEndereco_id());
 				internalVerCliente.getNomeField().setText(cliente.getNome());
 				internalVerCliente.getCpfField().setText(cliente.getCpf());
 				internalVerCliente.getRgField().setText(cliente.getRg());
-				internalVerCliente.getDataNascimentoField().setText(cliente.getData_nascimento());
+				internalVerCliente.getDataNascimentoField().setCalendar(calendar);
 				
 				
 				internalVerCliente.getBairroField().setText(endereco.getBairro());
@@ -135,6 +156,7 @@ public class ControllerVerCliente implements Listeners {
 	@Override
 	public void addListeners() {
 		internalVerCliente.getPanelServico().getBntAdicionar().addActionListener(this);
+		internalVerCliente.getPanelServico().getBntEditar().addActionListener(this);
 		internalVerCliente.getFinanceiroPanel().getBtnNovoContrato().addActionListener(this);
 		internalVerCliente.getPanelContatos().getBntAdicionar().addActionListener(this);
 		internalVerCliente.getPanelContatos().getBntEditar().addActionListener(this);

@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLConnection;
@@ -169,6 +167,22 @@ public class DaoCidade implements IDaoCidade {
 			throw new DaoException("Erro ao buscar cidade.");
 		}
 
+	}
+	public void excluir(int id, boolean status)throws DaoException {
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Cidade.UPDATE_STATUS); 
+			statement.setBoolean(1, status);
+			statement.setInt(2, id);
+			
+			
+			statement.execute();
+			conexao.close();
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AO EXCLUIR CIDADE");
+		}
 	}
 
 }

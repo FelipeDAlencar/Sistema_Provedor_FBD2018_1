@@ -1,20 +1,16 @@
 package br.com.sistema_provedor_fbd_2018_1.view;
 
 import java.awt.event.ActionListener;
-import java.text.ParseException;
-
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import javax.swing.JLabel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.MaskFormatter;
-import javax.swing.JButton;
-import java.awt.event.ActionEvent;
+import com.toedter.calendar.JDateChooser;
 import javax.swing.JComboBox;
 
+@SuppressWarnings("serial")
 public class InternalCadastroMovimentacao extends TelaInternal {
-	private JtextFieldGenerico valorField, dataMovimentacaoField;
+	private JtextFieldGenerico valorField;
+	private JDateChooser dataMovimentacaoField;
 	private Botao btnSalvar;
 	private JTextField descricaoField;
 	private JComboBox<String> tipocomboBox;
@@ -46,16 +42,11 @@ public class InternalCadastroMovimentacao extends TelaInternal {
 		lblDataDeMovimentao.setBounds(46, 139, 114, 14);
 		getContentPane().add(lblDataDeMovimentao);
 		
-		dataMovimentacaoField = new JtextFieldGenerico("1234567890");
+		dataMovimentacaoField = new JDateChooser();
 		dataMovimentacaoField.setBounds(46, 164, 232, 30);
 		getContentPane().add(dataMovimentacaoField);
-		dataMovimentacaoField.setColumns(10);
 		
-		try {
-			dataMovimentacaoField.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		
 		
 		btnSalvar = new Botao("","Salvar");
 		btnSalvar.setBounds(46, 418, 107, 40);
@@ -70,10 +61,6 @@ public class InternalCadastroMovimentacao extends TelaInternal {
 		lblTipo.setBounds(46, 281, 46, 14);
 		getContentPane().add(lblTipo);
 		
-		tipocomboBox = new JComboBox();
-		tipocomboBox.setBounds(46, 311, 232, 30);
-		getContentPane().add(tipocomboBox);
-		
 		tipocomboBox.addItem("Entrada");
 		tipocomboBox.addItem("Saída");
 		
@@ -85,7 +72,7 @@ public class InternalCadastroMovimentacao extends TelaInternal {
 		return valorField;
 	}
 
-	public JTextField getDataMovimentacaoField() {
+	public JDateChooser getDataMovimentacaoField() {
 		return dataMovimentacaoField;
 	}
 

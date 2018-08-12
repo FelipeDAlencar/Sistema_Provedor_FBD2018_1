@@ -4,47 +4,30 @@ public class Contrato {
 
 	private Integer id, cliente_id;
 	private double valor_instalacao, valor_mensal;
-	private String login, senha;
 	private int numero_parcelas;
+	private int servico_id;
 
-	public Contrato() {
-		// TODO Auto-generated constructor stub
-	}
 
-	public Contrato(Integer id, Integer cliente_id, double valo_instalacao, double valor_mensal,
-			String login, String senha, int numero_parcelas) {
+	public Contrato(Integer id, Integer cliente_id, double valo_instalacao,
+			double valor_mensal, int servico_id, int numero_parcelas) {
 		super();
 		this.id = id;
 		this.cliente_id = cliente_id;
-		
 		this.valor_instalacao = valo_instalacao;
 		this.valor_mensal = valor_mensal;
-		this.login = login;
-		this.senha = senha;
 		this.numero_parcelas = numero_parcelas;
+		this.servico_id = servico_id;
 	}
-
-	public Contrato(double valo_instalacao, double valor_mensal, String login, String senha, int numero_parcelas) {
-		super();
-		this.valor_instalacao = valo_instalacao;
-		this.valor_mensal = valor_mensal;
-		this.login = login;
-		this.senha = senha;
-		this.numero_parcelas = numero_parcelas;
-	}
-
 	
 	
-	public Contrato(Integer cliente_id, double valor_instalacao, double valor_mensal, String login,
-			String senha, int numero_parcelas) {
+	public Contrato(Integer cliente_id, double valor_instalacao, 
+		double valor_mensal, int servico_id, int numero_parcelas) {
 		super();
 		this.cliente_id = cliente_id;
-		
 		this.valor_instalacao = valor_instalacao;
 		this.valor_mensal = valor_mensal;
-		this.login = login;
-		this.senha = senha;
 		this.numero_parcelas = numero_parcelas;
+		this.servico_id = servico_id;
 	}
 
 	public double getValor_instalacao() {
@@ -80,22 +63,6 @@ public class Contrato {
 		this.valor_mensal = valor_mensal;
 	}
 
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
 	public int getNumero_parcelas() {
 		return numero_parcelas;
 	}
@@ -104,4 +71,9 @@ public class Contrato {
 		this.numero_parcelas = numero_parcelas;
 	}
 
+	public int getServico_id() {
+		return servico_id;
+	}
+
+	
 }

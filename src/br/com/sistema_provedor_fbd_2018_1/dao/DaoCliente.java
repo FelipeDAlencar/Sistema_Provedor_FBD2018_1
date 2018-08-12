@@ -1,21 +1,14 @@
 package br.com.sistema_provedor_fbd_2018_1.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import br.com.sistema_provedor_fbd_2018_1.entidade.Atendimento;
-import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
-import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
-import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Ultil;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLConnection;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLUtil;
@@ -59,7 +52,7 @@ public class DaoCliente implements IDaoCliente {
 			statement.setString(1, cliente.getNome());
 			statement.setString(2, cliente.getCpf());
 			statement.setString(3, cliente.getRg());
-			statement.setDate(4, Ultil.converterParaData(cliente.getData_nascimento()));
+			statement.setDate(4, Ultil.converterStringParaDataSQL(cliente.getData_nascimento()));
 			statement.setInt(5, endereco_id);
 
 			statement.execute();
@@ -82,7 +75,7 @@ public class DaoCliente implements IDaoCliente {
 			statement.setString(1, cliente.getNome());
 			statement.setString(2, cliente.getCpf());
 			statement.setString(3, cliente.getRg());
-			statement.setDate(4, Ultil.converterParaData(cliente.getData_nascimento()));
+			statement.setDate(4, Ultil.converterStringParaDataSQL(cliente.getData_nascimento()));
 			statement.setInt(5, cliente.getEndereco_id());
 			statement.setInt(6, cliente.getId());
 
@@ -108,7 +101,7 @@ public class DaoCliente implements IDaoCliente {
 			ResultSet resultSet = statement.executeQuery();
 			Cliente cliente;
 			if (resultSet.next()) {
-				cliente = new Cliente(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("cpf"), resultSet.getString("rg"),Ultil.converterDataParaString(resultSet.getDate("data_nascimento")), resultSet.getInt("endereco_id"));
+				cliente = new Cliente(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("cpf"), resultSet.getString("rg"),Ultil.converterDataSQLParaString(resultSet.getDate("data_nascimento")), resultSet.getInt("endereco_id"));
 			} else {
 				throw new DaoException("CLIENTE NÃO CADASTRADO");
 			}

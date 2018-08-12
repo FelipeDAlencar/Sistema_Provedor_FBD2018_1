@@ -5,10 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
 import br.com.sistema_provedor_fbd_2018_1.entidade.Porta;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
+import br.com.sistema_provedor_fbd_2018_1.model.Enum.enumPortas;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLConnection;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLUtil;
 
@@ -53,17 +52,34 @@ public class DaoPorta implements IDaoPorta {
 
 	@Override
 	public Porta buscarPorId(int id) throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
+			statement = conexao.prepareStatement(SQLUtil.Porta.SELECT_ID);
+			statement.setInt(1, id);
+
+			ResultSet resultSet = statement.executeQuery();
+
+			resultSet.next();
+				Porta porta = new Porta(resultSet.getInt("id"), resultSet.getInt("switch_id"),
+						resultSet.getInt("numero"));
+				
+
+			return porta;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("ERRO AAO BUSCAR PORTAS - DAO");
+		}
 	}
 
 	@Override
-	public ArrayList<Porta> buscarPorSwitch(int switch_id) throws DaoException {
+	public ArrayList<Porta> buscarPorSwitchEStatus(int switch_id) throws DaoException {
 		try {
 			ArrayList<Porta> portas = new ArrayList<>();
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
-			statement = conexao.prepareStatement(SQLUtil.Porta.SELECT_SWITCH);
+			statement = conexao.prepareStatement(SQLUtil.Porta.SELECT_SWITCH_STATUS);
 			statement.setInt(1, switch_id);
+			statement.setString(2, enumPortas.LIVRE.getStatus());
 
 			ResultSet resultSet = statement.executeQuery();
 

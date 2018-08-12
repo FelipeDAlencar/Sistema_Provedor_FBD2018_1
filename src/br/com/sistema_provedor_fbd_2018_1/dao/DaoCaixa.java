@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
 import br.com.sistema_provedor_fbd_2018_1.entidade.Caixa;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.sql.SQLConnection;
@@ -114,8 +112,8 @@ public class DaoCaixa implements IDaoCaixa {
 			ResultSet resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {
-				caixa = new Caixa(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
-						resultSet.getString(4), resultSet.getInt(5));
+				caixa = new Caixa(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("latitude"),
+						resultSet.getString("longitude"), resultSet.getInt("cidade_id"));
 				caixas.add(caixa);
 
 			}

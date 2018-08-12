@@ -19,7 +19,6 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.entidade.ServicoCliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Switch;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
-import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 
 public interface IFachada {
 
@@ -44,10 +43,10 @@ public interface IFachada {
 
 	public Funcionario buscarFuncionarioPorId(int id) throws BusinessException;
 
-	public Funcionario buscarPorCpf(String cpf)throws BusinessException;
+	public Funcionario buscarPorCpf(String cpf) throws BusinessException;
 
-	public ArrayList<Funcionario> buscarFuncionarioPorBusca(String busca)throws BusinessException;
-	
+	public ArrayList<Funcionario> buscarFuncionarioPorBusca(String busca) throws BusinessException;
+
 	public ArrayList<Funcionario> listarTodosFuncionarios() throws BusinessException;
 
 	// Cidade
@@ -59,8 +58,10 @@ public interface IFachada {
 	public ArrayList<Cidade> buscarCidadePorBusca(String busca) throws BusinessException;
 
 	public ArrayList<Cidade> listarTodosCidades() throws BusinessException;
-	public Cidade buscarPorNomeEstado(String nome, String estado)throws BusinessException;
-	
+
+	public Cidade buscarPorNomeEstado(String nome, String estado) throws BusinessException;
+
+	public void excluirCidade(int id, boolean status) throws BusinessException;
 
 	// Atendimento
 	public void salvarOuEditarAtendimento(Atendimento atendimento, String cpfCliente) throws BusinessException;
@@ -70,6 +71,7 @@ public interface IFachada {
 	public Atendimento buscarAtendimentoPorId(int id) throws BusinessException;
 
 	public ArrayList<Atendimento> buscarAtendimentoPorBusca(String busca) throws BusinessException;
+
 	public ArrayList<Atendimento> buscarAtendimentosAtrasados(String data) throws BusinessException;
 
 	// Caixa
@@ -98,11 +100,11 @@ public interface IFachada {
 	public Contato buscarContatoPorId(int id) throws BusinessException;
 
 	public ArrayList<Contato> buscarContatoPorBusca(String busca);
-	
+
 	public List<Contato> buscarContatoPorCliente(Integer id) throws BusinessException;
 
 	// Contrato
-	public void salvarOuEditarContrato(Contrato contrato,Parcela parcela) throws BusinessException;
+	public void salvarOuEditarContrato(Contrato contrato, Parcela parcela) throws BusinessException;
 
 	public ArrayList<Contrato> listarTodosContrato() throws BusinessException;
 
@@ -111,15 +113,16 @@ public interface IFachada {
 	public ArrayList<Contrato> buscarContratoPorBusca(String busca);
 
 	public ArrayList<Contrato> buscarContratoPorClienteID(int cliente_id) throws BusinessException;
+
 	// Porta
 	public void salvarOuEditarPorta(Porta porta, String nomeSwitch) throws BusinessException;
 
 	public ArrayList<Porta> listarTodosPorta() throws BusinessException;
 
 	public Porta buscarPortaPorId(int id) throws BusinessException;
-	
-	public ArrayList<Porta> buscarPortaPorSwitch(int switch_id) throws BusinessException;
-	
+
+	public ArrayList<Porta> buscarPortaPorSwitchEStatus(int switch_id) throws BusinessException;
+
 	public ArrayList<Porta> buscarPortaPorBusca(String busca);
 
 	// Servico
@@ -132,17 +135,18 @@ public interface IFachada {
 	public ArrayList<Servico> buscarServicoPorBusca(String busca) throws BusinessException;
 
 	// Switch
-	public void salvarOuEditarSwitch(Switch switch1, String nomeCaixa, String nomeConcentrador) throws BusinessException;
+	public void salvarOuEditarSwitch(Switch switch1, String nomeCaixa, String nomeConcentrador)
+			throws BusinessException;
 
 	public ArrayList<Switch> listarTodosSwitch() throws BusinessException;
 
 	public Switch buscarSwitchPorId(int id) throws BusinessException;
 
 	public ArrayList<Switch> buscarSwitchPorBusca(String busca) throws BusinessException;
-	
+
 	public Switch buscarSwitchPorNome(String nome) throws BusinessException;
-	
-	//MOVIMENTACAO
+
+	// MOVIMENTACAO
 	public void salvarOuEditarMovimentacao(Movimentacao movimentacao) throws BusinessException;
 
 	public ArrayList<Movimentacao> listarTodosMovimentacao() throws BusinessException;
@@ -150,32 +154,30 @@ public interface IFachada {
 	public Movimentacao buscarPorIdMovimentacao(int id) throws BusinessException;
 
 	public ArrayList<Movimentacao> buscarPorBuscaMovimentacao(String busca, String situacao) throws BusinessException;
-	
+
 	public ArrayList<Movimentacao> buscarPorBusca(String busca) throws BusinessException;
 
 	public ArrayList<Movimentacao> buscarPagoOuNao(String busca) throws BusinessException;
 
-	
-	
-	//PARCELA
-	public void salvarOuEditar(Parcela parcela)throws BusinessException;
+	// PARCELA
+	public void salvarOuEditar(Parcela parcela) throws BusinessException;
 
-	public Parcela buscarPorId(int id)throws BusinessException;
+	public Parcela buscarPorId(int id) throws BusinessException;
 
 	public ArrayList<Parcela> listarTodos() throws BusinessException;
+
 	public ArrayList<Parcela> buscarParcelaPorBusca(String busca);
-	public ArrayList<Parcela> buscarParcelaPorContratoID(int contrato_id)throws BusinessException;
-	
-	
+
+	public ArrayList<Parcela> buscarParcelaPorContratoID(int contrato_id) throws BusinessException;
+
 	Servico buscarServicoNome(String nome) throws BusinessException;
 
 	Porta buscarPortaPorSwitchNumero(Integer switch_id, int numero) throws BusinessException;
-	
-	
-	//SERVICO CLIENTE
+
+	// SERVICO CLIENTE
 	public void salvarOuEditarServicoCliente(ServicoCliente servicoCliente) throws BusinessException;
-	
-	public ArrayList<ServicoCliente> listarTodosServicosCliente()throws BusinessException;
+
+	public ArrayList<ServicoCliente> listarTodosServicosCliente() throws BusinessException;
 
 	public ServicoCliente buscarServicosClientesPorId(int id) throws BusinessException;
 
@@ -183,8 +185,9 @@ public interface IFachada {
 
 	public Contato buscarContatoPorContato(String contato) throws BusinessException;
 
-	
+	public int buscarservicoclientesPorDescricao(String descricao) throws BusinessException;
 
-	//public ArrayList<ServicoCliente> buscarPorBusca(String busca)throws BusinessException;
+	// public ArrayList<ServicoCliente> buscarPorBusca(String busca)throws
+	// BusinessException;
 
 }

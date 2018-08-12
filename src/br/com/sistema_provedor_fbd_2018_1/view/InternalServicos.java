@@ -6,9 +6,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Servico;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
-import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 public class InternalServicos extends TelaInternal{

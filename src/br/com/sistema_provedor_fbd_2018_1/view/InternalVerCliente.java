@@ -1,15 +1,9 @@
 package br.com.sistema_provedor_fbd_2018_1.view;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
-
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 
 @SuppressWarnings("serial")
 public class InternalVerCliente extends InternalCadastroCliente {

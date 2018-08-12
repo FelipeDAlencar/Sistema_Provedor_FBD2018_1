@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
 import br.com.sistema_provedor_fbd_2018_1.entidade.Atendimento;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.model.Ultil;
@@ -35,7 +33,7 @@ public class DaoAtendimento implements IDaoAtendimento {
 
 			statement.setString(1, atendimento.getMotivo());
 			statement.setString(2, atendimento.getProtocolo());
-			statement.setDate(3, Ultil.converterParaData(atendimento.getData_atendimento()));
+			statement.setDate(3, Ultil.converterStringParaDataSQL(atendimento.getData_atendimento()));
 			statement.setInt(4, cliente_id);
 
 			statement.execute();
@@ -57,7 +55,7 @@ public class DaoAtendimento implements IDaoAtendimento {
 			statement = conexao.prepareStatement(SQLUtil.Atendimento.UPDATE);
 			statement.setString(1, atendimento.getMotivo());
 			statement.setString(2, atendimento.getProtocolo());
-			statement.setDate(3, Ultil.converterParaData(atendimento.getData_atendimento()));
+			statement.setDate(3, Ultil.converterStringParaDataSQL(atendimento.getData_atendimento()));
 			statement.setInt(4, atendimento.getCliente_id());
 			statement.setInt(5, atendimento.getId());
 
@@ -91,7 +89,7 @@ public class DaoAtendimento implements IDaoAtendimento {
 			while (resultSet.next()) {
 				atendimento = new Atendimento(resultSet.getInt("id"), resultSet.getInt("cliente_id"),
 						resultSet.getString("motivo"), resultSet.getString("motivo"),
-						Ultil.converterDataParaString(resultSet.getDate("data_atendimento")));
+						Ultil.converterDataSQLParaString(resultSet.getDate("data_atendimento")));
 				atendimentos.add(atendimento);
 
 			}
@@ -115,7 +113,7 @@ public class DaoAtendimento implements IDaoAtendimento {
 		try {
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 			statement = conexao.prepareStatement(SQLUtil.Atendimento.SELECT_ATRASADOS);
-			statement.setDate(1, Ultil.converterParaData(data));
+			statement.setDate(1, Ultil.converterStringParaDataSQL(data));
 
 			ResultSet resultSet = statement.executeQuery();
 			ArrayList<Atendimento> atendimentos = new ArrayList<>();
@@ -124,7 +122,7 @@ public class DaoAtendimento implements IDaoAtendimento {
 			while (resultSet.next()) {
 				atendimento = new Atendimento(resultSet.getInt("id"), resultSet.getInt("cliente_id"),
 						resultSet.getString("motivo"), resultSet.getString("motivo"),
-						Ultil.converterDataParaString(resultSet.getDate("data_atendimento")));
+						Ultil.converterDataSQLParaString(resultSet.getDate("data_atendimento")));
 
 				atendimentos.add(atendimento);
 			}

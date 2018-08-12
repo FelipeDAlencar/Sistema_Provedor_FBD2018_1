@@ -48,7 +48,7 @@ public class DaoServico implements IDaoServico {
 			statement.setInt(3, servico.getUpload());
 			statement.setInt(4, servico.getId());
 
-			statement.executeQuery();
+			statement.execute();
 			conexao.close();
 
 		} catch (SQLException e) {

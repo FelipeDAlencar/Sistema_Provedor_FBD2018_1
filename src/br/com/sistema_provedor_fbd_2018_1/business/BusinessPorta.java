@@ -48,7 +48,13 @@ public class BusinessPorta implements IBusinessPorta {
 	@Override
 	public Porta buscarPorId(int id) throws BusinessException {
 		// TODO Auto-generated method stub
-		return null;
+		try {
+			return dao.buscarPorId(id);
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new BusinessException("ERRO AO BUSCAR PORTA POR ID - DAO");
+		}
 	}
 
 	@Override
@@ -60,7 +66,7 @@ public class BusinessPorta implements IBusinessPorta {
 	@Override
 	public ArrayList<Porta> buscarPorSwitch(int switch_id) throws BusinessException {
 		try {
-			return dao.buscarPorSwitch(switch_id);
+			return dao.buscarPorSwitchEStatus(switch_id);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new BusinessException("ERRO AO BUSCAR PORTAS CONTATE A EQUIPE RESPONSAVEL - BUS");

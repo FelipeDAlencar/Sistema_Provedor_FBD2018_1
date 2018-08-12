@@ -199,6 +199,9 @@ public class Fachada implements IFachada {
 	public Cidade buscarPorNomeEstado(String nome, String estado) throws BusinessException {
 		return businessCidade.buscarPorNomeEstado(nome, estado);
 	}
+	public void excluirCidade(int id, boolean status)throws BusinessException {
+		businessCidade.excluir(id, status);
+	}
 
 	// ATENDIMENTO
 	@Override
@@ -322,7 +325,7 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public ArrayList<Porta> buscarPortaPorSwitch(int switch_id) throws BusinessException {
+	public ArrayList<Porta> buscarPortaPorSwitchEStatus(int switch_id) throws BusinessException {
 		return businessPorta.buscarPorSwitch(switch_id);
 	}
 
@@ -335,7 +338,7 @@ public class Fachada implements IFachada {
 	@Override
 	public Porta buscarPortaPorId(int id) throws BusinessException {
 		// TODO Auto-generated method stub
-		return null;
+		return businessPorta.buscarPorId(id);
 	}
 
 	@Override
@@ -500,8 +503,7 @@ public class Fachada implements IFachada {
 
 	@Override
 	public ServicoCliente buscarServicosClientesPorId(int id) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		return businessServicoCliente.buscarPorId(id);
 	}
 
 	@Override
@@ -512,6 +514,11 @@ public class Fachada implements IFachada {
 	@Override
 	public Contato buscarContatoPorContato(String contato) throws BusinessException {
 		return businessContato.buscarPorContato(contato);
+	}
+
+	@Override
+	public int buscarservicoclientesPorDescricao(String descricao) throws BusinessException {
+		return businessServicoCliente.buscarPorDescricao(descricao);
 	}
 
 

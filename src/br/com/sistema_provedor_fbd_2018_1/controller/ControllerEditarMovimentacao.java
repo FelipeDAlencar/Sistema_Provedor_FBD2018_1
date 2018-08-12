@@ -1,10 +1,12 @@
 package br.com.sistema_provedor_fbd_2018_1.controller;
 
 import java.awt.event.ActionEvent;
+import java.util.Calendar;
 
 import br.com.sistema_provedor_fbd_2018_1.entidade.Movimentacao;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
+import br.com.sistema_provedor_fbd_2018_1.model.Ultil;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarMovimentacao;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalMovimentacao;
 import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
@@ -28,7 +30,7 @@ public class ControllerEditarMovimentacao implements Listeners {
 			if(e.getSource() == internal.getBtnSalvar()) {
 				
 				Movimentacao movimentacao = new Movimentacao( this.movimentacao.getId(), internal.getDescricaoField().getText(), String.valueOf(internal.getSituacaoComboBox().getSelectedItem()), 
-						String.valueOf(internal.getTipocomboBox().getSelectedItem()), internal.getDataMovimentacaoField().getText(), Double.parseDouble(internal.getValorField().getText()),true);
+						String.valueOf(internal.getTipocomboBox().getSelectedItem()), Ultil.converterJavaDateEmString(internal.getDataMovimentacaoField().getDate()), Double.parseDouble(internal.getValorField().getText()),true);
 			
 				
 				fachada.salvarOuEditarMovimentacao(movimentacao);
@@ -39,7 +41,7 @@ public class ControllerEditarMovimentacao implements Listeners {
 				Menssagens.menssagem("Movimentação inserida com sucesso.", 1);
 				
 				internal.getDescricaoField().setText("");
-				internal.getDataMovimentacaoField().setText("");
+				
 				internal.getValorField().setText("");
 			
 				
@@ -59,9 +61,10 @@ public class ControllerEditarMovimentacao implements Listeners {
 		
 	}
 	public void preencherCampos() {
+		Calendar calendar = Ultil.pegarDataParaEdicao(movimentacao.getData_movimentacao());
 		internal.getDescricaoField().setText(movimentacao.getDescricao());
 		internal.getValorField().setText(String.valueOf(movimentacao.getValor()));
-		internal.getDataMovimentacaoField().setText(movimentacao.getData_movimentacao());
+		internal.getDataMovimentacaoField().setCalendar(calendar);;
 	}
 
 	public InternalEditarMovimentacao getInternal() {

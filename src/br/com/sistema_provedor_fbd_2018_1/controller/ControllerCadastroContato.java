@@ -6,10 +6,8 @@ import java.awt.event.ItemListener;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
-
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Contato;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
@@ -108,7 +106,7 @@ public class ControllerCadastroContato implements Listeners, ItemListener {
 	}
 
 	public void setContatos(List<Contato> contatos) {
-		this.contatos = contatos;
+		ControllerCadastroContato.contatos = contatos;
 	}
 	
 

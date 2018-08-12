@@ -1,15 +1,10 @@
 package br.com.sistema_provedor_fbd_2018_1.controller;
 
 import java.awt.event.ActionEvent;
-
-import javax.swing.JOptionPane;
-
-
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
-import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalLocalizarCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalVerCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
@@ -21,8 +16,6 @@ public class ControllerLocalizarCliente implements Listeners {
 	private InternalVerCliente internalVerCliente;
 	private TelaPrincipal telaPrincipal;
 	private Fachada fachada;
-	private InternalCadastroCliente internalCadastroCliente;
-	private ControllerCadastroCliente controllerCadastroCliente;
 
 	public ControllerLocalizarCliente(TelaPrincipal telaPrincipal) {
 		this.telaPrincipal = telaPrincipal;

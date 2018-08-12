@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
+import com.toedter.calendar.JDateChooser;
+
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
@@ -35,7 +37,8 @@ public class InternalCadastroCliente extends TelaInternal {
 	private JComboBox<String> cidadesComboBox;
 	private JComboBox<String> comboContato;
 	private Botao bntSalvar;
-	private JFormattedTextField cpfField, dataNascimentoField;
+	private JFormattedTextField cpfField;
+	private JDateChooser dataNascimentoField;
 	private JLabel lblTipo;
 	private JtextFieldGenerico contatoField;
 	private JButton btnNovoContato;
@@ -93,9 +96,12 @@ public class InternalCadastroCliente extends TelaInternal {
 		dataNascimentoLabel.setBounds(47, 125, 200, 50);
 		panelCliente.add(dataNascimentoLabel);
 
-		dataNascimentoField = new JFormattedTextField();
+		dataNascimentoField = new JDateChooser();
 		dataNascimentoField.setBounds(47, 176, 150, 30);
 		panelCliente.add(dataNascimentoField);
+		
+
+		
 
 		// Informacoes Endereco
 		ruaLabel = new JLabel("Endereço:");
@@ -148,7 +154,7 @@ public class InternalCadastroCliente extends TelaInternal {
 
 		
 		try {
-			dataNascimentoField.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
+		//	dataNascimentoField.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
 			cpfField.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("###.###.###-##")));
 			
 
@@ -297,13 +303,10 @@ public class InternalCadastroCliente extends TelaInternal {
 		this.rgField = rgField;
 	}
 
-	public JTextField getDataNascimentoField() {
+	public JDateChooser getDataNascimentoField() {
 		return dataNascimentoField;
 	}
 
-	public void setDataNascimentoField(JFormattedTextField dataNascimentoField) {
-		this.dataNascimentoField = dataNascimentoField;
-	}
 
 	public JTextField getBairroField() {
 		return bairroField;

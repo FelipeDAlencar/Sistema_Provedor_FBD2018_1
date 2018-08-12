@@ -27,7 +27,7 @@ public class DaoMovimentacao implements IDaoMovimentacao {
 			statement.setString(1, movimentacao.getDescricao());
 			statement.setString(2, movimentacao.getSituacao());
 			statement.setDouble(3, movimentacao.getValor());
-			statement.setDate(4, Ultil.converterParaData(movimentacao.getData_movimentacao()));
+			statement.setDate(4, Ultil.converterStringParaDataSQL(movimentacao.getData_movimentacao()));
 			statement.setBoolean(5, movimentacao.isStatus());
 			statement.setString(6, movimentacao.getTipo());
 
@@ -50,7 +50,7 @@ public class DaoMovimentacao implements IDaoMovimentacao {
 			statement.setString(1, movimentacao.getDescricao());
 			statement.setString(2, movimentacao.getSituacao());
 			statement.setDouble(3, movimentacao.getValor());
-			statement.setDate(4, Ultil.converterParaData(movimentacao.getData_movimentacao()));
+			statement.setDate(4, Ultil.converterStringParaDataSQL(movimentacao.getData_movimentacao()));
 			statement.setString(5, movimentacao.getTipo());
 			statement.setInt(6, movimentacao.getId());
 
@@ -78,7 +78,7 @@ public class DaoMovimentacao implements IDaoMovimentacao {
 			if (resultSet.next()) {
 				movimentacao = new Movimentacao(resultSet.getInt("id"), resultSet.getString("descricao"),
 						resultSet.getString("situacao"), resultSet.getString("tipo"),
-						Ultil.converterDataParaString(resultSet.getDate("data_movimentacao")),
+						Ultil.converterDataSQLParaString(resultSet.getDate("data_movimentacao")),
 						resultSet.getDouble("valor"), resultSet.getBoolean("status"));
 
 			}
@@ -104,7 +104,7 @@ public class DaoMovimentacao implements IDaoMovimentacao {
 			while (resultSet.next()) {
 				movimentacao = new Movimentacao(resultSet.getInt("id"), resultSet.getString("descricao"),
 						resultSet.getString("situacao"), resultSet.getString("tipo"),
-						Ultil.converterDataParaString(resultSet.getDate("data_movimentacao")),
+						Ultil.converterDataSQLParaString(resultSet.getDate("data_movimentacao")),
 						resultSet.getDouble("valor"), resultSet.getBoolean("status"));
 				movimentacaos.add(movimentacao);
 			}
@@ -136,7 +136,7 @@ public class DaoMovimentacao implements IDaoMovimentacao {
 			while (resultSet.next()) {
 				movimentacao = new Movimentacao(resultSet.getInt("id"), resultSet.getString("descricao"),
 						resultSet.getString("situacao"), resultSet.getString("tipo"),
-						Ultil.converterDataParaString(resultSet.getDate("data_movimentacao")),
+						Ultil.converterDataSQLParaString(resultSet.getDate("data_movimentacao")),
 						resultSet.getDouble("valor"), resultSet.getBoolean("status"));
 
 				System.out.println(movimentacao.getSituacao());
@@ -164,7 +164,7 @@ public class DaoMovimentacao implements IDaoMovimentacao {
 			while (resultSet.next()) {
 				movimentacao = new Movimentacao(resultSet.getInt("id"), resultSet.getString("descricao"),
 						resultSet.getString("situacao"), resultSet.getString("tipo"),
-						Ultil.converterDataParaString(resultSet.getDate("data_movimentacao")),
+						Ultil.converterDataSQLParaString(resultSet.getDate("data_movimentacao")),
 						resultSet.getDouble("valor"), resultSet.getBoolean("status"));
 				movimentacaos.add(movimentacao);
 			}
@@ -189,7 +189,7 @@ public class DaoMovimentacao implements IDaoMovimentacao {
 			while (resultSet.next()) {
 				movimentacao = new Movimentacao(resultSet.getInt("id"), resultSet.getString("descricao"),
 						resultSet.getString("situacao"), resultSet.getString("tipo"),
-						Ultil.converterDataParaString(resultSet.getDate("data_movimentacao")),
+						Ultil.converterDataSQLParaString(resultSet.getDate("data_movimentacao")),
 						resultSet.getDouble("valor"), resultSet.getBoolean("status"));
 				movimentacaos.add(movimentacao);
 			}

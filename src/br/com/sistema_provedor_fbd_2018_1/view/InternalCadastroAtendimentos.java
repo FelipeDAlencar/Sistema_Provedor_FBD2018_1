@@ -2,16 +2,13 @@ package br.com.sistema_provedor_fbd_2018_1.view;
 
 import java.awt.event.ActionListener;
 import java.text.ParseException;
-
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
-import javax.swing.JButton;
-import javax.swing.JSpinner;
-import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class InternalCadastroAtendimentos extends TelaInternal {
 	private JtextFieldGenerico cpfCliente;
 	private JTextField motivoField;

@@ -1,3 +1,4 @@
+
 package br.com.sistema_provedor_fbd_2018_1.controller;
 
 import java.awt.event.ActionEvent;
@@ -56,13 +57,19 @@ public class ControllerCidade implements Listeners {
 			}
 			if (e.getSource() == internalCidade.getBtnBuscar()) {
 				String busca = internalCidade.getBuscaField().getText();
-				System.out.println("Entrou");
 
 				if (busca.equals("")) {
 					internalCidade.carregarCidades(fachada.listarTodosCidades());
 				} else {
 					internalCidade.carregarCidades(fachada.buscarCidadePorBusca(busca));
 				}
+			}
+			if(e.getSource() == internalCidade.getBntRemover()) {
+				int row = internalCidade.getTabela().getSelectedRow();
+				int id = Integer.parseInt(internalCidade.getTabela().getValueAt(row, 0).toString());
+				fachada.excluirCidade(id, false);
+				internalCidade.carregarCidades(fachada.listarTodosCidades());
+				
 			}
 		} catch (BusinessException e1) {
 			// TODO Auto-generated catch block
@@ -78,6 +85,7 @@ public class ControllerCidade implements Listeners {
 		internalCidade.getBntNovo().addActionListener(this);
 		internalCidade.getBntEditar().addActionListener(this);
 		internalCidade.getBtnBuscar().addActionListener(this);
+		internalCidade.getBntRemover().addActionListener(this);
 	}
 
 	public InternalCidade getInternalCidade() {

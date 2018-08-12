@@ -6,15 +6,18 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarServico;
+import br.com.sistema_provedor_fbd_2018_1.view.InternalServicos;
 import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 
 public class ControllerEditarServico implements Listeners {
 	private InternalEditarServico internalEditarServico;
+	private InternalServicos internalServicos;
 	private Fachada fachada;
 	private Servico servico;
 
-	public ControllerEditarServico(Servico servico) {
+	public ControllerEditarServico(Servico servico, InternalServicos internalServicos) {
 		this.servico=servico;
+		this.internalServicos = internalServicos;
 		fachada = new Fachada();
 
 	}
@@ -30,6 +33,8 @@ public class ControllerEditarServico implements Listeners {
 						Integer.parseInt(internalEditarServico.getUploadField().getText().trim()));
 				fachada.salvarOuEditarServico(servico);
 				Menssagens.menssagem("SERVIÇO EDITADO COM SUCESSO",1);
+				internalServicos.carregarServicos(fachada.listarTodosServico());
+				
 			}
 		} catch (BusinessException e1) {
 			// TODO Auto-generated catch block

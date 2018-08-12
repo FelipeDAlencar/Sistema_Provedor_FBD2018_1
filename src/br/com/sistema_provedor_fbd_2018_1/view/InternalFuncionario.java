@@ -2,7 +2,6 @@ package br.com.sistema_provedor_fbd_2018_1.view;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;

@@ -4,15 +4,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
-import br.com.sistema_provedor_fbd_2018_1.controller.ControllerAtendimentos;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Contrato;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Parcela;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
-
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.util.ArrayList;
 
 @SuppressWarnings("serial")
@@ -30,7 +26,7 @@ public class PanelFinanceiro extends JPanel {
 		
 		panelTabelas = new JPanel();
 		panelTabelas.setLayout(null);
-		
+			
 
 	}
 	

@@ -5,10 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-
 import br.com.sistema_provedor_fbd_2018_1.entidade.Contrato;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Parcela;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
@@ -28,8 +25,6 @@ public class DaoContrato implements IDaoContrato {
 
 			statement.setDouble(1, contrato.getValor_instalacao());
 			statement.setDouble(2, contrato.getValor_mensal());
-			statement.setString(3, contrato.getLogin());
-			statement.setString(4, contrato.getSenha());
 			statement.setInt(5, contrato.getNumero_parcelas());
 			statement.setInt(6, contrato.getCliente_id());
 
@@ -50,7 +45,7 @@ public class DaoContrato implements IDaoContrato {
 			
 			for (int i = 0; i < contrato.getNumero_parcelas(); i++) {
 				statement.setDouble(1, parcela.getValor());
-				statement.setDate(2, Ultil.converterParaData(dataAtual));
+				statement.setDate(2, Ultil.converterStringParaDataSQL(dataAtual));
 				statement.setBoolean(3, parcela.isStatus());
 				statement.setInt(4, contrato_id);
 				statement.execute();
@@ -104,8 +99,12 @@ public class DaoContrato implements IDaoContrato {
 			Contrato contrato;
 
 			while (resultSet.next()) {
-				contrato = new Contrato(resultSet.getInt("id"), cliente_id, resultSet.getDouble("valor_instalacao"),
-						resultSet.getDouble("valor_mensal"), resultSet.getString("login"), resultSet.getString("senha"),
+				contrato = new Contrato(
+						resultSet.getInt("id"),
+						cliente_id,
+						resultSet.getDouble("valor_instalacao"),
+						resultSet.getDouble("valor_mensal"),
+						resultSet.getInt("servico_id"),
 						resultSet.getInt("numero_parcelas"));
 				contratos.add(contrato);
 			}

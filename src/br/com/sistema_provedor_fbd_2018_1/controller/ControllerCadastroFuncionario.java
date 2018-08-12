@@ -1,7 +1,6 @@
 package br.com.sistema_provedor_fbd_2018_1.controller;
 
 import java.awt.event.ActionEvent;
-
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Funcionario;
@@ -30,7 +29,7 @@ public class ControllerCadastroFuncionario implements Listeners {
 			try {
 				Funcionario funcionario = new Funcionario(internalCadastroFuncionario.getNomeFild().getText(),
 						internalCadastroFuncionario.getCargoField().getText(),
-						internalCadastroFuncionario.getData_contratoFild().getText(),
+						Ultil.converterJavaDateEmString(internalCadastroFuncionario.getData_contratoFild().getDate()),
 						internalCadastroFuncionario.getLoginFild().getText(),
 						new String(internalCadastroFuncionario.getSenhaField().getPassword()));
 
@@ -57,7 +56,6 @@ public class ControllerCadastroFuncionario implements Listeners {
 				
 				internalCadastroFuncionario.getNomeFild().setText("");
 				internalCadastroFuncionario.getCargoField().setText("");
-				internalCadastroFuncionario.getData_contratoFild().setText("");
 				internalCadastroFuncionario.getLoginFild().setText("");
 				internalCadastroFuncionario.getSenhaField().setText("");
 				internalCadastroFuncionario.getBairroFild().setText("");

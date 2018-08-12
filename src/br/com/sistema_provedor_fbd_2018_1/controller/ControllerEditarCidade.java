@@ -28,7 +28,7 @@ public class ControllerEditarCidade implements Listeners {
 			
 			try {
 				Cidade cidade = new Cidade(this.cidade.getId(), internalEditarCidade.getNomeField().getText(),
-						internalEditarCidade.getEstadoField().getText(), internalEditarCidade.getCepField().getText(), true);
+						internalEditarCidade.getEstadoField().getText().toUpperCase(), internalEditarCidade.getCepField().getText(), true);
 				fachada.salvarOuEditarCidade(cidade);
 				Menssagens.menssagem("Edição realizada com sucesso.", 1);
 

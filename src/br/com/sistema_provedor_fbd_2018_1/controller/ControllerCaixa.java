@@ -35,10 +35,9 @@ public class ControllerCaixa implements Listeners {
 				controllerCadastroCaixa = new ControllerCadastroCaixa(internalCaixa);
 				internalCadastroCaixa = new InternalCadastroCaixa(telaPrincipal, controllerCadastroCaixa);
 				telaPrincipal.getDesktopPane().add(internalCadastroCaixa);
-				internalCadastroCaixa.setVisible(true);
 				controllerCadastroCaixa.setInternalCadastroCaixa(internalCadastroCaixa);
-				System.out.println(internalCadastroCaixa);
 				controllerCadastroCaixa.addListeners();
+				internalCadastroCaixa.setVisible(true);
 
 			}
 
@@ -50,10 +49,10 @@ public class ControllerCaixa implements Listeners {
 				controllerEditarCaixa = new ControllerEditarCaixa(caixa);
 				internalEditarCaixa = new InternalEditarCaixa(telaPrincipal, controllerEditarCaixa);
 				telaPrincipal.getDesktopPane().add(internalEditarCaixa);
-				internalEditarCaixa.setVisible(true);
 				controllerEditarCaixa.setInternalEditarCaixa(internalEditarCaixa);
 				controllerEditarCaixa.addListeners();
 				controllerEditarCaixa.preencherCampos();
+				internalEditarCaixa.setVisible(true);
 			}
 			
 			if(e.getSource() == internalCaixa.getBtnBuscar()) {

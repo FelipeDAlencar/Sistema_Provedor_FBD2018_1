@@ -1,6 +1,7 @@
 package br.com.sistema_provedor_fbd_2018_1.controller;
 
 import java.awt.event.ActionEvent;
+import java.util.Calendar;
 
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
@@ -13,7 +14,7 @@ import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarFuncionario;
 import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 
 public class ControllerEditarFuncionario implements Listeners {
-	private InternalEditarFuncionario InternalEditarFuncionario;
+	private InternalEditarFuncionario internalEditarFuncionario;
 	private Fachada fachada;
 	private Funcionario funcionario;
 	private Endereco endereco;
@@ -27,14 +28,14 @@ public class ControllerEditarFuncionario implements Listeners {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == InternalEditarFuncionario.getBtnAdicionar()) {
+		if (e.getSource() == internalEditarFuncionario.getBtnAdicionar()) {
 
 			try {
-				Funcionario funcionario = new Funcionario(this.funcionario.getId(), InternalEditarFuncionario.getNomeFild().getText(), 
-						InternalEditarFuncionario.getCargoField().getText(), InternalEditarFuncionario.getData_contratoFild().getText(), InternalEditarFuncionario.getLoginFild().getText(), 
-						new String(InternalEditarFuncionario.getSenhaField().getPassword()), this.endereco.getId());
+				Funcionario funcionario = new Funcionario(this.funcionario.getId(), internalEditarFuncionario.getNomeFild().getText(), 
+						internalEditarFuncionario.getCargoField().getText(), Ultil.converterJavaDateEmString(internalEditarFuncionario.getData_contratoFild().getDate()), internalEditarFuncionario.getLoginFild().getText(), 
+						new String(internalEditarFuncionario.getSenhaField().getPassword()), this.endereco.getId());
 
-				String NomeEstado = (String)InternalEditarFuncionario.getCidadesCombo().getSelectedItem();
+				String NomeEstado = (String)internalEditarFuncionario.getCidadesCombo().getSelectedItem();
 				
 				String nomeCidade = Ultil.separarString(NomeEstado, 0);
 				String estado = Ultil.separarString(NomeEstado, 1);
@@ -45,10 +46,10 @@ public class ControllerEditarFuncionario implements Listeners {
 				
 				Endereco endereco = new Endereco(
 						this.funcionario.getEndereco_id(),
-						InternalEditarFuncionario.getBairroFild().getText(),
-						InternalEditarFuncionario.getComplementoFild().getText(),
-						InternalEditarFuncionario.getRuaFild().getText(),
-						Integer.parseInt(InternalEditarFuncionario.getNumeroFild().getText()),
+						internalEditarFuncionario.getBairroFild().getText(),
+						internalEditarFuncionario.getComplementoFild().getText(),
+						internalEditarFuncionario.getRuaFild().getText(),
+						Integer.parseInt(internalEditarFuncionario.getNumeroFild().getText()),
 						cidade.getId());
 
 				fachada.salvarOuEditarEndereco(endereco);
@@ -65,30 +66,32 @@ public class ControllerEditarFuncionario implements Listeners {
 	}
 
 	public void preencherCampos() {
-		InternalEditarFuncionario.getBairroFild().setText(endereco.getBairro());
-		InternalEditarFuncionario.getNumeroFild().setText(String.valueOf(endereco.getNumero()));
-		InternalEditarFuncionario.getRuaFild().setText(endereco.getRua());
-		InternalEditarFuncionario.getComplementoFild().setText(endereco.getComplemento());
-		InternalEditarFuncionario.getCargoField().setText(funcionario.getCargo());
-		InternalEditarFuncionario.getLoginFild().setText(funcionario.getLogin());
-		InternalEditarFuncionario.getSenhaField().setText(funcionario.getSenha());
-		InternalEditarFuncionario.getNomeFild().setText(funcionario.getNome());
-		InternalEditarFuncionario.getData_contratoFild().setText(funcionario.getData_contrato());
+		Calendar calendar = Ultil.pegarDataParaEdicao(funcionario.getData_contrato());
+		System.out.println(internalEditarFuncionario);
+		internalEditarFuncionario.getBairroFild().setText(endereco.getBairro());
+		internalEditarFuncionario.getNumeroFild().setText(String.valueOf(endereco.getNumero()));
+		internalEditarFuncionario.getRuaFild().setText(endereco.getRua());
+		internalEditarFuncionario.getComplementoFild().setText(endereco.getComplemento());
+		internalEditarFuncionario.getCargoField().setText(funcionario.getCargo());
+		internalEditarFuncionario.getLoginFild().setText(funcionario.getLogin());
+		internalEditarFuncionario.getSenhaField().setText(funcionario.getSenha());
+		internalEditarFuncionario.getNomeFild().setText(funcionario.getNome());
+		internalEditarFuncionario.getData_contratoFild().setCalendar(calendar);
 
 	}
 
 	@Override
 	public void addListeners() {
-		InternalEditarFuncionario.getBtnAdicionar().addActionListener(this);
+		internalEditarFuncionario.getBtnAdicionar().addActionListener(this);
 
 	}
 
 	public InternalEditarFuncionario getInternalEditarFuncionario() {
-		return InternalEditarFuncionario;
+		return internalEditarFuncionario;
 	}
 
 	public void setInternalEditarFuncionario(InternalEditarFuncionario internalEditarFuncionario) {
-		InternalEditarFuncionario = internalEditarFuncionario;
+		this.internalEditarFuncionario = internalEditarFuncionario;
 	}
 
 	public Funcionario getFuncionario() {

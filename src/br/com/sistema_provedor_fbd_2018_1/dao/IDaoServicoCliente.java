@@ -18,6 +18,9 @@ public interface IDaoServicoCliente {
 	public ArrayList<ServicoCliente> buscarPorBusca(String busca) throws DaoException;
 
 	public List<ServicoCliente> buscarPorCliente(Integer cliente_id) throws DaoException;
+
+	int buscarPorDescricao(String descricao) throws DaoException;
+
 	
 
 

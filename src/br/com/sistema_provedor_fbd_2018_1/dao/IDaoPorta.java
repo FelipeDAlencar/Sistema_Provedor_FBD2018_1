@@ -18,7 +18,7 @@ public interface IDaoPorta {
 
 	public ArrayList<Porta> buscarPorBusca(String busca)throws DaoException;
 
-	public ArrayList<Porta> buscarPorSwitch(int switch_id)throws DaoException;
+	public ArrayList<Porta> buscarPorSwitchEStatus(int switch_id)throws DaoException;
 
 	public Porta buscarPorSwitchNome(Integer switch_id, int numero) throws DaoException;
 

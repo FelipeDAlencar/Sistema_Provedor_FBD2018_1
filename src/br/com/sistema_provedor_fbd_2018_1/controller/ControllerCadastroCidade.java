@@ -33,7 +33,7 @@ public class ControllerCadastroCidade implements Listeners {
 				Menssagens.menssagem("Cidade salva com sucesso!", 1);
 				internalCadastroCidade.getNomeField().setText("");
 				internalCadastroCidade.getEstadoField().setText("");
-				internalCadastroCidade.getCepField().setText("");
+				internalCadastroCidade.getCepField().setText("00000-000");
 			} catch (BusinessException e1) {
 				// TODO Auto-generated catch block
 				e1.getMessage();

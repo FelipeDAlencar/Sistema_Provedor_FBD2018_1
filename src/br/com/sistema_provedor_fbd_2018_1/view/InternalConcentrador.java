@@ -1,15 +1,12 @@
 package br.com.sistema_provedor_fbd_2018_1.view;
 
-import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.util.List;
-
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Concentrador;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;

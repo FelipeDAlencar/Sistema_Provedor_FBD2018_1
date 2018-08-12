@@ -1,16 +1,9 @@
 package br.com.sistema_provedor_fbd_2018_1.view;
 
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
-import java.awt.event.ContainerEvent;
-import java.awt.event.ContainerListener;
-import java.beans.PropertyVetoException;
-
 import javax.swing.JInternalFrame;
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.CloseAction;
-
 import br.com.sistema_provedor_fbd_2018_1.controller.Controller;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 

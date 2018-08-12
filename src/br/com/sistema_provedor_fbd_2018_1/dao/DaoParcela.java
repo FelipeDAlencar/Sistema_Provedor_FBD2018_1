@@ -32,7 +32,7 @@ public class DaoParcela implements IDaoParcela {
 			statement = conexao.prepareStatement(SQLUtil.Parcela.INSERT_ALL);
 
 			statement.setDouble(1, parcela.getValor());
-			statement.setDate(2, Ultil.converterParaData(parcela.getData_vencimento()));
+			statement.setDate(2, Ultil.converterStringParaDataSQL(parcela.getData_vencimento()));
 			statement.setBoolean(3, parcela.isStatus());
 			statement.setInt(4, contrato_id);
 
@@ -54,7 +54,7 @@ public class DaoParcela implements IDaoParcela {
 			statement = conexao.prepareStatement(SQLUtil.Parcela.UPDATE);
 
 			statement.setDouble(1, parcela.getValor());
-			statement.setDate(2, Ultil.converterParaData(parcela.getData_vencimento()));
+			statement.setDate(2, Ultil.converterStringParaDataSQL(parcela.getData_vencimento()));
 			statement.setBoolean(3, parcela.isStatus());
 			statement.setInt(4, parcela.getId());
 
@@ -79,7 +79,7 @@ public class DaoParcela implements IDaoParcela {
 			if (resultSet.next()) {
 				parcela = new Parcela(resultSet.getInt("id"), resultSet.getInt("contrato_id"),
 						resultSet.getDouble("valor"),
-						Ultil.converterDataParaString(resultSet.getDate("data_vencimento")),
+						Ultil.converterDataSQLParaString(resultSet.getDate("data_vencimento")),
 						resultSet.getBoolean("status"));
 			}
 			return parcela;
@@ -103,7 +103,7 @@ public class DaoParcela implements IDaoParcela {
 			while (resultSet.next()) {
 				parcela = new Parcela(resultSet.getInt("id"), resultSet.getInt("contrato_id"),
 						resultSet.getDouble("valor"),
-						Ultil.converterDataParaString(resultSet.getDate("data_vencimento")),
+						Ultil.converterDataSQLParaString(resultSet.getDate("data_vencimento")),
 						resultSet.getBoolean("status"));
 				parcelas.add(parcela);
 			}
@@ -134,7 +134,7 @@ public class DaoParcela implements IDaoParcela {
 			Parcela parcela;
 			
 			while(resultSet.next()) {
-				parcela = new Parcela(resultSet.getInt("id"), contrato_id, resultSet.getDouble("valor"),Ultil.converterDataParaString(resultSet.getDate("data_vencimento")), resultSet.getBoolean("status"));
+				parcela = new Parcela(resultSet.getInt("id"), contrato_id, resultSet.getDouble("valor"),Ultil.converterDataSQLParaString(resultSet.getDate("data_vencimento")), resultSet.getBoolean("status"));
 				parcelas.add(parcela);
 			
 			}

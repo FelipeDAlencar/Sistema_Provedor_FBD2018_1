@@ -44,7 +44,7 @@ public class ControllerServico implements Listeners {
 				int id = Integer.parseInt(internalServicos.getModelTable().getValueAt(linha, 0).toString());
 				
 				servico = fachada.buscarServicoPorId(id);
-				controllerEditarServico = new ControllerEditarServico(servico);
+				controllerEditarServico = new ControllerEditarServico(servico, internalServicos);
 				internalEditarServico = new InternalEditarServico(telaPrincipal, controllerEditarServico);
 				telaPrincipal.getDesktopPane().add(internalEditarServico);
 				controllerEditarServico.setInternalEditarServico(internalEditarServico);

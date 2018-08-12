@@ -7,13 +7,14 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Contrato;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Parcela;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
+import br.com.sistema_provedor_fbd_2018_1.fachada.IFachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroContrato;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalVerCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 
 public class ControllerCadastroContrato implements Listeners {
-	private Fachada fachada;
+	private IFachada fachada;
 	private InternalCadastroContrato internal;
 	private InternalVerCliente internalVerCliente;
 	private Cliente cliente;
@@ -28,23 +29,24 @@ public class ControllerCadastroContrato implements Listeners {
 	public void actionPerformed(ActionEvent e) {
 		try {
 			if (e.getSource() == internal.getBtnSalvar()) {
-
-				Contrato contrato = new Contrato(cliente.getId(),
+				int servico_id = fachada.buscarservicoclientesPorDescricao(
+						internal.getServicoCombo().getSelectedItem().toString());
+				Contrato contrato = new Contrato(
+						cliente.getId(),
 						Double.parseDouble(internal.getValorInstalacaoField().getText()),
 						Double.parseDouble(internal.getValorMensalField().getText()),
-						internal.getLoginField().getText(), internal.getSenhaField().getText(),
+						servico_id,
 						Integer.parseInt(internal.getNumeroParcelasField().getText()));
 
 				Parcela parcela = new Parcela(contrato.getValor_mensal(), internal.getDataVencimentoField().getText(),
 						true);
 
 				fachada.salvarOuEditarContrato(contrato, parcela);
+				
 				internalVerCliente.getFinanceiroPanel()
 						.carregarTabelas(fachada.buscarContratoPorClienteID(cliente.getId()));
 				internal.getValorInstalacaoField().setText("");
 				internal.getValorMensalField().setText("");
-				internal.getLoginField().setText("");
-				internal.getSenhaField().setText("");
 				internal.getDataVencimentoField().setText("");
 				internal.getNumeroParcelasField().setText("");
 				internalVerCliente.getFinanceiroPanel()

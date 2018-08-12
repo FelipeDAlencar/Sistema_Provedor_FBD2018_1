@@ -19,5 +19,7 @@ public interface IDaoCidade {
 	public ArrayList<Cidade> buscarPorBusca(String busca) throws DaoException;
 	
 	public Cidade buscarPorNomeEstado(String nome, String cidade)throws DaoException;
+	
+	public void excluir(int id, boolean status)throws DaoException;
 
 }

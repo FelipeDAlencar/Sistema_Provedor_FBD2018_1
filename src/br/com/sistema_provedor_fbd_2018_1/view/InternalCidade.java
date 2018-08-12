@@ -2,16 +2,12 @@ package br.com.sistema_provedor_fbd_2018_1.view;
 
 import java.awt.event.ActionListener;
 import java.util.List;
-
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
-import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 public class InternalCidade extends TelaInternal{

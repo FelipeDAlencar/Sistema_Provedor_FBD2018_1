@@ -41,6 +41,7 @@ public class ControllerCadastroCaixa implements Listeners {
 			}
 			
 		} catch (BusinessException e1) {
+			e1.printStackTrace();
 			e1.getMessage();
 		}
 

@@ -9,13 +9,13 @@ import java.util.Calendar;
 import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 
 public class Ultil {
-
+	private static Calendar calendar;
 	public static String separarString(String txt, int parte) {
 		String[] split = txt.split("-");
 		return split[parte].trim();
 	}
 
-	public static Date converterParaData(String txt) {
+	public static Date converterStringParaDataSQL(String txt) {
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		java.sql.Date data = null;
 		try {
@@ -30,7 +30,7 @@ public class Ultil {
 
 	}
 
-	public static String converterDataParaString(Date date) {
+	public static String converterDataSQLParaString(Date date) {
 
 		return new SimpleDateFormat("dd/MM/yyyy").format(date);
 	}
@@ -65,5 +65,17 @@ public class Ultil {
 		java.util.Date data = c.getTime();
 		DateFormat f = DateFormat.getDateInstance();
 		return f.format(data);
+	}
+	public static String converterJavaDateEmString(java.util.Date data) {
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		return String.valueOf(format.format(data));
+	}
+	public static Calendar pegarDataParaEdicao(String data) {
+		if(calendar == null) {
+			calendar = Calendar.getInstance();
+		}
+		calendar.setTime(Ultil.converterStringEmJavaDate(data));
+		return calendar;
+		
 	}
 }

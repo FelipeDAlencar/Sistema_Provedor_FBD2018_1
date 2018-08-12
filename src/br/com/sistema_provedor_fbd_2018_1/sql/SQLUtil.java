@@ -45,13 +45,13 @@ public class SQLUtil {
 
 		public static final String SELECT_ID = "select * from cidade where id = ? and status = true";
 
-		public static final String SELECT_NOME = "select * from cidade where nome = ?and status = true";
+		public static final String SELECT_NOME = "select * from cidade where nome = ? and status = true";
 
 		public static final String SELECT_CEP = "select * from cidade where cep = ? and status = true";
 
-		public static final String MAXID = "select MAX(id) from cidade and status = true";
+		public static final String MAXID = "select MAX(id) from cidade where status = true";
 
-		public static final String SELECT_ALL = "select * from cidade";
+		public static final String SELECT_ALL = "select * from cidade where status = true";
 
 		public static final String UPDATE = "update cidade set  nome = ?, estado = ?, cep = ? where id = ?";
 		
@@ -59,12 +59,14 @@ public class SQLUtil {
 		
 		public static final String SELECT_PORBUSCA = "select * from cidade where nome  ilike ? or estado ilike ? or "
 				+ "cep ilike ? and status = true";
+		
+		public static final String UPDATE_STATUS = "Update cidade set status = ? where id = ?";
 
 	}
 
 	public static class Endereco {
 		public static String INSERT_ALL = "insert into endereco (numero, rua, bairro, cidade_id, complemento) "
-				+ "values (?,?,?,?, ?)";
+				+ "values (?,?,?,?,?)";
 
 		public static String MAXID = "select MAX(id) from endereco";
 
@@ -78,6 +80,8 @@ public class SQLUtil {
 
 	public static class Servico {
 		
+
+		public static final String SELECT_ID_GETNOME = "select nome from servico where id = ?";
 
 		public static String SELECT_ALL = "select * from servico";
 		
@@ -178,7 +182,11 @@ public class SQLUtil {
 
 		public static String SELECT_NUMERO = "select * from porta where numero = ?";
 		
-		public static String SELECT_SWITCH = "select * from porta where switch_id = ?";
+		public static String SELECT_SWITCH_STATUS = "select * from porta where switch_id = ? and status = ? order by numero";
+		
+		public static String SELECT_ID = "select * from porta where id = ?";
+		
+		public static String UPDATE = "update porta set status = ? where id = ?";
 	}
 
 	public static class Contrato {
@@ -223,8 +231,9 @@ public class SQLUtil {
 	
 	public static class ServicoCliente{
 		
-		public static String INSERT_ALL = "insert into ServicoCliente(servico_id, switch_id, porta_id, endereco_id, cliente_id) "
-				+ "values (?,?,?,?,?)";
+		public static final String SELECT_DESCRICAO = "select id from servicocliente where descricao = ?" ;
+		public static String INSERT_ALL = "insert into ServicoCliente(servico_id, switch_id, porta_id, endereco_id, cliente_id, login, senha, descricao) "
+				+ "values (?,?,?,?,?,?,?,?)";
 		public static String SELECT_ALL = "select * from ServicoCliente";
 		
 		public static String SELECT_ID = "select * from ServicoCliente where id = ?";
