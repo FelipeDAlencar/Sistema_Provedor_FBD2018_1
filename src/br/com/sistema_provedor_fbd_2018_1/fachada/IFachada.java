@@ -64,7 +64,7 @@ public interface IFachada {
 	public void excluirCidade(int id, boolean status) throws BusinessException;
 
 	// Atendimento
-	public void salvarOuEditarAtendimento(Atendimento atendimento, String cpfCliente) throws BusinessException;
+	public void salvarOuEditarAtendimento(Atendimento atendimento) throws BusinessException;
 
 	public ArrayList<Atendimento> listarTodosAtendimento() throws BusinessException;
 
@@ -188,6 +188,8 @@ public interface IFachada {
 	public int buscarservicoclientesPorDescricao(String descricao) throws BusinessException;
 
 	public Parcela buscarParcelaId(int id)throws BusinessException;
+
+	public List<Atendimento> buscarAtendimentoPorCliente(Integer id)throws BusinessException;
 
 
 	// public ArrayList<ServicoCliente> buscarPorBusca(String busca)throws

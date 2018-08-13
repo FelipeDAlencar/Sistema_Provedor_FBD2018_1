@@ -44,13 +44,13 @@ public class ControllerCadastroContrato implements Listeners {
 
 				fachada.salvarOuEditarContrato(contrato, parcela);
 				
-				internalVerCliente.getFinanceiroPanel()
+				internalVerCliente.getPanelFinanceiro()
 						.carregarTabelas(fachada.buscarContratoPorClienteID(cliente.getId()));
 				internal.getValorInstalacaoField().setText("");
 				internal.getValorMensalField().setText("");
 				internal.getDataVencimentoField().setText("");
 				internal.getNumeroParcelasField().setText("");
-				internalVerCliente.getFinanceiroPanel()
+				internalVerCliente.getPanelFinanceiro()
 						.carregarTabelas(fachada.buscarContratoPorClienteID(cliente.getId()));
 
 				Menssagens.menssagem("CONTRATO INSERIDO COM SUCESSO.", 1);

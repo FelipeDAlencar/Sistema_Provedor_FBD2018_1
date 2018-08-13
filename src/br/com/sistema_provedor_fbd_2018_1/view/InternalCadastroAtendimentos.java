@@ -2,20 +2,25 @@ package br.com.sistema_provedor_fbd_2018_1.view;
 
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.List;
+import br.com.sistema_provedor_fbd_2018_1.entidade.ServicoCliente;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
+import br.com.sistema_provedor_fbd_2018_1.fachada.IFachada;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
+import javax.swing.JComboBox;
 
 @SuppressWarnings("serial")
 public class InternalCadastroAtendimentos extends TelaInternal {
-	private JtextFieldGenerico cpfCliente;
 	private JTextField motivoField;
-	private JTextField protocoloField;
 	private Botao btnSalvar;
 	private JLabel lblDataDeAtendimento;
 	private JtextFieldGenerico dataField;
+	private JComboBox<String> servicosCombo;
 
 	public InternalCadastroAtendimentos(TelaPrincipal telaPrincipal, ActionListener actionListener)
 			throws BusinessException {
@@ -27,71 +32,62 @@ public class InternalCadastroAtendimentos extends TelaInternal {
 
 	@Override
 	public void inicializar() throws BusinessException {
-		JLabel lblCliente = new JLabel("Cliente:");
-		lblCliente.setBounds(10, 25, 46, 14);
-		getContentPane().add(lblCliente);
 
-		cpfCliente = new JtextFieldGenerico("1234567890");
-		cpfCliente.setBounds(10, 50, 183, 30);
-		getContentPane().add(cpfCliente);
-		cpfCliente.setColumns(10);
-		
-		try {
-			cpfCliente.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("###.###.###-##")));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		JLabel lblMotico = new JLabel("Motivo");
-		lblMotico.setBounds(10, 91, 46, 14);
-		getContentPane().add(lblMotico);
+		JLabel lblMotivo = new JLabel("Motivo:");
+		lblMotivo.setBounds(40, 91, 46, 14);
+		getContentPane().add(lblMotivo);
 
 		motivoField = new JTextField();
-		motivoField.setBounds(10, 121, 183, 30);
+		motivoField.setBounds(40, 121, 358, 30);
 		getContentPane().add(motivoField);
 		motivoField.setColumns(10);
 
-		JLabel lblProtocolo = new JLabel("Protocolo:");
-		lblProtocolo.setBounds(234, 25, 76, 14);
-		getContentPane().add(lblProtocolo);
-
-		protocoloField = new JTextField();
-		protocoloField.setBounds(234, 50, 183, 30);
-		getContentPane().add(protocoloField);
-		protocoloField.setColumns(10);
-
 		btnSalvar = new Botao("", "Salvar");
-		btnSalvar.setBounds(314, 201, 103, 40);
+		btnSalvar.setBounds(295, 187, 103, 40);
 		getContentPane().add(btnSalvar);
-		
+
 		lblDataDeAtendimento = new JLabel("Data de atendimento:");
-		lblDataDeAtendimento.setBounds(234, 91, 152, 14);
+		lblDataDeAtendimento.setBounds(272, 24, 146, 14);
 		getContentPane().add(lblDataDeAtendimento);
-		
+
 		dataField = new JtextFieldGenerico("1234567890");
-		dataField.setBounds(234, 121, 183, 30);
+		dataField.setBounds(272, 49, 126, 30);
 		getContentPane().add(dataField);
 		dataField.setColumns(10);
-		
+
 		try {
 			dataField.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
+
+			JLabel lblServico = new JLabel("Servico:");
+			lblServico.setBounds(40, 24, 46, 14);
+			getContentPane().add(lblServico);
+
+			servicosCombo = new JComboBox<>();
+			servicosCombo.setBounds(40, 49, 211, 31);
+			getContentPane().add(servicosCombo);
+
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 
 	}
 
-	public JTextField getCpfCliente() {
-		return cpfCliente;
+	public void carregarServico(int cliente_id) {
+		try {
+			IFachada fachada = new Fachada();
+			List<ServicoCliente> servicos;
+			servicos = fachada.buscarServicosPorCliente(cliente_id);
+			for (ServicoCliente servicoCliente : servicos) {
+				servicosCombo.addItem(servicoCliente.getDescricao());
+			}
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public JTextField getMotivoField() {
 		return motivoField;
-	}
-
-	public JTextField getProtocoloField() {
-		return protocoloField;
 	}
 
 	public Botao getBtnSalvar() {
@@ -105,7 +101,8 @@ public class InternalCadastroAtendimentos extends TelaInternal {
 	public JtextFieldGenerico getDataField() {
 		return dataField;
 	}
-	
-	
 
+	public JComboBox<String> getServicosCombo() {
+		return servicosCombo;
+	}
 }

@@ -9,12 +9,15 @@ import java.util.List;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JTable;
+
+import br.com.sistema_provedor_fbd_2018_1.entidade.Atendimento;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Contato;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Parcela;
 import br.com.sistema_provedor_fbd_2018_1.entidade.ServicoCliente;
+import br.com.sistema_provedor_fbd_2018_1.enuns.enumAtendimento;
 import br.com.sistema_provedor_fbd_2018_1.enuns.enumParcela;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
@@ -22,6 +25,7 @@ import br.com.sistema_provedor_fbd_2018_1.fachada.IFachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.model.Ultil;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalAdicionarServico;
+import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroAtendimentos;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroContato;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroContrato;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalEditarContato;
@@ -44,6 +48,8 @@ public class ControllerVerCliente implements Listeners{
 	private InternalEditarContato internalEditarContato;
 	private ControllerEditarServicoCliente controllerEditarServicoCliente;
 	private InternalEditarServicoCliente internalEditarServicoCliente;
+	private ControllerCadastroAtendimento controllerCadastroAtendimento;
+	private InternalCadastroAtendimentos internalAdicionarAtendimento;
 
 	public ControllerVerCliente( TelaPrincipal telaPrincipal, Cliente cliente) {
 		fachada = new Fachada();
@@ -106,7 +112,7 @@ public class ControllerVerCliente implements Listeners{
 
 			}
 
-			if(e.getSource() == internalVerCliente.getFinanceiroPanel().getBtnNovoContrato()) {
+			if(e.getSource() == internalVerCliente.getPanelFinanceiro().getBtnNovoContrato()) {
 				controllerCadastroContrato	= new ControllerCadastroContrato(internalVerCliente, cliente);
 				internalCadastroContrato = new InternalCadastroContrato(telaPrincipal, controllerCadastroContrato);
 				telaPrincipal.getDesktopPane().add(internalCadastroContrato);
@@ -115,8 +121,38 @@ public class ControllerVerCliente implements Listeners{
 				controllerCadastroContrato.addListeners();
 				internalCadastroContrato.setVisible(true);
 			}
-
-
+			
+			if(e.getSource() == internalVerCliente.getPanelAtendimento().getBntAdicionar()) {
+				controllerCadastroAtendimento = new ControllerCadastroAtendimento(cliente, internalVerCliente);
+				internalAdicionarAtendimento = new InternalCadastroAtendimentos(telaPrincipal, controllerCadastroAtendimento);
+				telaPrincipal.getDesktopPane().add(internalAdicionarAtendimento);
+				controllerCadastroAtendimento.setInternal(internalAdicionarAtendimento);
+				controllerCadastroAtendimento.addListeners();
+				internalAdicionarAtendimento.carregarServico(cliente.getId());
+				internalAdicionarAtendimento.setVisible(true);
+				
+			}
+			
+			if (e.getSource() == internalVerCliente.getPanelAtendimento().getBntConcluir()) {
+				int linha = internalVerCliente.getPanelAtendimento().getTabela().getSelectedRow();
+				int id = Integer.parseInt(internalVerCliente.getPanelAtendimento().getModelTable().getValueAt(linha,0).toString());
+				Atendimento atendimento = fachada.buscarAtendimentoPorId(id);
+				atendimento.setStatus(enumAtendimento.CONCLUIDO);
+				fachada.salvarOuEditarAtendimento(atendimento);
+				List<Atendimento> atendimentos = fachada.buscarAtendimentoPorCliente(cliente.getId());
+				internalVerCliente.getPanelAtendimento().carregarAtendimento(atendimentos);
+			}
+			
+			if (e.getSource() == internalVerCliente.getPanelAtendimento().getBntCancelar()) {
+				int linha = internalVerCliente.getPanelAtendimento().getTabela().getSelectedRow();
+				int id = Integer.parseInt(internalVerCliente.getPanelAtendimento().getModelTable().getValueAt(linha,0).toString());
+				Atendimento atendimento = fachada.buscarAtendimentoPorId(id);
+				atendimento.setStatus(enumAtendimento.CANCELADO);
+				fachada.salvarOuEditarAtendimento(atendimento);
+				List<Atendimento> atendimentos = fachada.buscarAtendimentoPorCliente(cliente.getId());
+				internalVerCliente.getPanelAtendimento().carregarAtendimento(atendimentos);
+			}
+	
 		} catch (BusinessException e1) {
 			e1.printStackTrace();
 		}
@@ -152,6 +188,9 @@ public class ControllerVerCliente implements Listeners{
 
 			List<ServicoCliente> servicos = fachada.buscarServicosPorCliente(cliente.getId());
 			internalVerCliente.getPanelServico().carregarServicos(servicos);
+			
+			List<Atendimento> atendimentos =fachada.buscarAtendimentoPorCliente(cliente.getId());
+			internalVerCliente.getPanelAtendimento().carregarAtendimento(atendimentos);
 
 		} catch (BusinessException e) {
 
@@ -166,13 +205,14 @@ public class ControllerVerCliente implements Listeners{
 	public void addListeners(){
 		internalVerCliente.getPanelServico().getBntAdicionar().addActionListener(this);
 		internalVerCliente.getPanelServico().getBntEditar().addActionListener(this);
-		internalVerCliente.getFinanceiroPanel().getBtnNovoContrato().addActionListener(this);
+		internalVerCliente.getPanelFinanceiro().getBtnNovoContrato().addActionListener(this);
 		internalVerCliente.getPanelContatos().getBntAdicionar().addActionListener(this);
 		internalVerCliente.getPanelContatos().getBntEditar().addActionListener(this);
+		internalVerCliente.getPanelAtendimento().getBntAdicionar().addActionListener(this);
+		internalVerCliente.getPanelAtendimento().getBntConcluir().addActionListener(this);
+		internalVerCliente.getPanelAtendimento().getBntCancelar().addActionListener(this);
 
-
-
-		for (JTable table : internalVerCliente.getFinanceiroPanel().getTabelas()) {
+		for (JTable table : internalVerCliente.getPanelFinanceiro().getTabelas()) {
 			System.out.println(table.getName());
 			table.addMouseListener(new MouseAdapter() {
 				@Override  

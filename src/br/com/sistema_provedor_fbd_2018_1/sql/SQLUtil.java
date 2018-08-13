@@ -112,14 +112,18 @@ public class SQLUtil {
 	}
 
 	public static class Atendimento {
-		public static String INSERT_ALL = "insert into atendimento (motivo, protocolo, data_atendimento, cliente_id) "
-		+ "values (?,?,?,?); ";
+		public static final String SELECT_CLIENTE = "select * from atendimento where cliente_id = ?";
+
+		public static final String SELECT_ID = "select * from atendimento where id = ?";
+
+		public static String INSERT_ALL = "insert into atendimento (cliente_id, motivo, data_atendimento, status, servico_id, descricao) "
+		+ "values (?,?,?,?,?,?); ";
 		
 		public static String SELECT_ALL = "select * from atendimento"; 
 		
 		public static String SELECT_ATRASADOS ="select * from atendimento where data_atendimento  <  ?";
 		
-		public static String UPDATE = "update atendimento set motivo = ?, protocolo = ?, data_atendimento = ?, cliente_id = ?"
+		public static String UPDATE = "update atendimento set status = ?, data_atendimento = ?"
 				+ "where id = ?";
 	}	
 

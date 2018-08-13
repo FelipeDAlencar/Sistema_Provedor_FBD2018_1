@@ -3,6 +3,7 @@ package br.com.sistema_provedor_fbd_2018_1.business;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import br.com.sistema_provedor_fbd_2018_1.dao.DaoAtendimento;
 import br.com.sistema_provedor_fbd_2018_1.dao.IDaoAtendimento;
@@ -11,6 +12,7 @@ import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.exception.DaoException;
 import br.com.sistema_provedor_fbd_2018_1.exception.ValidacaoException;
 import br.com.sistema_provedor_fbd_2018_1.model.Ultil;
+import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
 
 public class BusinessAtendimento implements IBusinessAtendimento {
 
@@ -21,11 +23,11 @@ public class BusinessAtendimento implements IBusinessAtendimento {
 	}
 
 	@Override
-	public void salvarOuEditar(Atendimento atendimento, String cpfCliente) throws BusinessException {
+	public void salvarOuEditar(Atendimento atendimento) throws BusinessException {
 		try {
 			validacao(atendimento);
 			if (atendimento.getId() == null) {
-				dao.salvar(atendimento, cpfCliente);
+				dao.salvar(atendimento);
 			} else {
 				dao.editar(atendimento);
 			}
@@ -49,7 +51,13 @@ public class BusinessAtendimento implements IBusinessAtendimento {
 	@Override
 	public Atendimento buscarPorId(int id) throws BusinessException {
 		// TODO Auto-generated method stub
-		return null;
+		try {
+			return dao.buscarPorId(id);
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new BusinessException("");
+		}
 	}
 
 	@Override
@@ -66,6 +74,7 @@ public class BusinessAtendimento implements IBusinessAtendimento {
 		calendar.add(Calendar.DAY_OF_MONTH, -1);
 		System.out.println(calendar.getTime());
 		if(dataInformada.before(calendar.getTime())) {
+			Menssagens.menssagem("Data informada é inferior a de hoje.", 2);
 			throw new ValidacaoException("Data informada é inferior a de hoje.");
 		}
 
@@ -76,6 +85,18 @@ public class BusinessAtendimento implements IBusinessAtendimento {
 		try {
 			return dao.buscarAtrasados(data);
 		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException("");
+		}
+	}
+
+	@Override
+	public List<Atendimento> buscarPorCliente(Integer cliente_id) throws BusinessException {
+		// TODO Auto-generated method stub
+		try {
+			return dao.buscarPorCliente(cliente_id);
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new BusinessException("");
 		}

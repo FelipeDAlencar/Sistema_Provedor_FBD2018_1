@@ -8,37 +8,21 @@ import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
 import br.com.sistema_provedor_fbd_2018_1.model.Ultil;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalAtendimentos;
-import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroAtendimentos;
 import br.com.sistema_provedor_fbd_2018_1.view.TelaPrincipal;
 
 public class ControllerAtendimentos implements Listeners {
 	private InternalAtendimentos internalAtendimentos;
-	private InternalCadastroAtendimentos internalCadastroAtendimentos;
-	private ControllerCadastroAtendimento controllerCadastroAtendimento;
-	private TelaPrincipal telaPrincipal;
+	private TelaPrincipal  telaPrincipal;
 	private Fachada fachada;
 
 	public ControllerAtendimentos(TelaPrincipal telaPrincipal) {
-		this.telaPrincipal = telaPrincipal;
+		this.setTelaPrincipal(telaPrincipal);
 		fachada = new Fachada();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {
-			if (e.getSource() == internalAtendimentos.getBtnAbrir()) {
-				controllerCadastroAtendimento = new ControllerCadastroAtendimento(internalAtendimentos);
-
-				internalCadastroAtendimentos = new InternalCadastroAtendimentos(telaPrincipal,
-						controllerCadastroAtendimento);
-				telaPrincipal.getDesktopPane().add(internalCadastroAtendimentos);
-				internalCadastroAtendimentos.setVisible(true);
-				controllerCadastroAtendimento.setInternal(internalCadastroAtendimentos);
-				controllerCadastroAtendimento.addListeners();
-				
-				
-
-			}
 			if(e.getSource() == internalAtendimentos.getBtnReagendarAtrasados()) {
 				String dataAtual = Ultil.dataAtualEmString();
 				
@@ -46,7 +30,7 @@ public class ControllerAtendimentos implements Listeners {
 				
 				for (Atendimento atendimento : atendimentos) {
 					atendimento.setData_atendimento(dataAtual);
-					fachada.salvarOuEditarAtendimento(atendimento, "");
+					fachada.salvarOuEditarAtendimento(atendimento);
 				}
 				
 				internalAtendimentos.carregarAtendimentos(fachada.listarTodosAtendimento());
@@ -61,7 +45,6 @@ public class ControllerAtendimentos implements Listeners {
 
 	@Override
 	public void addListeners() {
-		internalAtendimentos.getBtnAbrir().addActionListener(this);
 		internalAtendimentos.getBtnReagendarAtrasados().addActionListener(this);
 	}
 
@@ -71,6 +54,14 @@ public class ControllerAtendimentos implements Listeners {
 
 	public void setInternalAtendimentos(InternalAtendimentos internalAtendimentos) {
 		this.internalAtendimentos = internalAtendimentos;
+	}
+
+	public TelaPrincipal getTelaPrincipal() {
+		return telaPrincipal;
+	}
+
+	public void setTelaPrincipal(TelaPrincipal telaPrincipal) {
+		this.telaPrincipal = telaPrincipal;
 	}
 
 }

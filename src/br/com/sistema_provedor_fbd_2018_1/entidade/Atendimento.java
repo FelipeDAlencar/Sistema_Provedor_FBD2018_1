@@ -4,29 +4,32 @@ import br.com.sistema_provedor_fbd_2018_1.enuns.enumAtendimento;
 
 public class Atendimento {
 	
-	private Integer id, cliente_id;
+	private Integer id, cliente_id, servico_id;
 	private String descricao;
 	private String motivo, data_atendimento;
 	private enumAtendimento status;
 
-
-
-	public Atendimento( String motivo, String data_atendimento,
-			String descricao) {
-		super();
-		this.motivo = motivo;
-		this.data_atendimento = data_atendimento;
-	}
-
-
 	public Atendimento(Integer id, Integer cliente_id, String motivo,
-			String data_atendimento, enumAtendimento status, String descricao) {
+			String data_atendimento, enumAtendimento status,int servico_id, String descricao) {
 		super();
 		this.id = id;
 		this.cliente_id = cliente_id;
 		this.motivo = motivo;
 		this.data_atendimento = data_atendimento;
 		this.status = status;
+		this.servico_id = servico_id;
+		this.descricao = descricao;
+	}
+
+	public Atendimento(Integer cliente_id, String motivo,
+			String data_atendimento, enumAtendimento status, int servico_id, String descricao) {
+		super();
+		this.cliente_id = cliente_id;
+		this.motivo = motivo;
+		this.data_atendimento = data_atendimento;
+		this.status = status;
+		this.servico_id = servico_id;
+		this.descricao = descricao;
 	}
 
 
@@ -59,6 +62,10 @@ public class Atendimento {
 	}
 	public void setMotivo(String motivo) {
 		this.motivo = motivo;
+	}
+	
+	public Integer getServico_id() {
+		return servico_id;
 	}
 
 

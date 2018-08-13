@@ -6,14 +6,18 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Atendimento;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
+import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
+import br.com.sistema_provedor_fbd_2018_1.fachada.IFachada;
 
 @SuppressWarnings("serial")
 public class InternalAtendimentos extends TelaInternal {
-	private Botao btnAbrir,btnReagendarAtrasados;
+	private Botao btnReagendarAtrasados;
 	private DefaultTableModel modelTable, modelTableAtrasados;
 	private JScrollPane barraRolagem, scrollTabelaAtrasados;
 	private JTable tabela, tabelaAtrasados;
+	private IFachada fachada = new Fachada();
 
 	public InternalAtendimentos(TelaPrincipal telaPrincipal, ActionListener actionListener) throws BusinessException {
 		super("Meus Atendimentos", telaPrincipal, actionListener);
@@ -24,9 +28,6 @@ public class InternalAtendimentos extends TelaInternal {
 
 	@Override
 	public void inicializar() throws BusinessException {
-		btnAbrir = new Botao("resource/imagens/botoes/abrir-atendimento.png", "Novo Atendimento");
-		btnAbrir.setBounds(50, 20, 200, 40);
-		getContentPane().add(btnAbrir);
 
 		modelTable = new DefaultTableModel();
 		modelTable.addColumn("Protocolo");
@@ -59,7 +60,7 @@ public class InternalAtendimentos extends TelaInternal {
 		scrollTabelaAtrasados = new JScrollPane(tabelaAtrasados);
 		scrollTabelaAtrasados.setBounds(50, 362, 920, 171);
 		getContentPane().add(scrollTabelaAtrasados);
-		
+
 		btnReagendarAtrasados = new Botao("","Reagendar Atrasados");
 		btnReagendarAtrasados.setBounds(50, 316, 200, 40);
 		getContentPane().add(btnReagendarAtrasados);
@@ -67,33 +68,40 @@ public class InternalAtendimentos extends TelaInternal {
 
 	public void carregarAtendimentos(List<Atendimento> atendimentos) {
 		modelTable.setNumRows(0);
-		for (Atendimento atendimento : atendimentos) {
-
-			String[] linha = {
-					atendimento.getId().toString(),
-					"cliente", 
-					atendimento.getMotivo(),
-					atendimento.getData_atendimento(), 
-					atendimento.getStatus().getStatus() };
-			modelTable.addRow(linha);
+		try {
+			for (Atendimento atendimento : atendimentos) {
+				Cliente cliente  = fachada.buscarClientePorId(atendimento.getCliente_id());
+				String[] linha = {
+						atendimento.getId().toString(),
+						cliente.getNome(), 
+						atendimento.getMotivo(),
+						atendimento.getData_atendimento(), 
+						atendimento.getStatus().getStatus() };
+				modelTable.addRow(linha);
+			}
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
 	public void carregarAtendimentosAtrasados(List<Atendimento> atendimentos) {
 		modelTableAtrasados.setNumRows(0);
-		for (Atendimento atendimento : atendimentos) {
-			String[] linha = {
-					atendimento.getId().toString(),
-					"cliente",
-					atendimento.getMotivo(),
-					atendimento.getData_atendimento(),
-					atendimento.getStatus().getStatus() };
-			modelTableAtrasados.addRow(linha);
+		try {
+			for (Atendimento atendimento : atendimentos) {
+				Cliente cliente  = fachada.buscarClientePorId(atendimento.getCliente_id());
+				String[] linha = {
+						atendimento.getId().toString(),
+						cliente.getNome(),
+						atendimento.getMotivo(),
+						atendimento.getData_atendimento(),
+						atendimento.getStatus().getStatus() };
+				modelTableAtrasados.addRow(linha);
+			}
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-	}
-
-	public Botao getBtnAbrir() {
-		return btnAbrir;
 	}
 
 	public DefaultTableModel getModelTable() {
@@ -123,5 +131,5 @@ public class InternalAtendimentos extends TelaInternal {
 	public JTable getTabelaAtrasados() {
 		return tabelaAtrasados;
 	}
-	
+
 }
