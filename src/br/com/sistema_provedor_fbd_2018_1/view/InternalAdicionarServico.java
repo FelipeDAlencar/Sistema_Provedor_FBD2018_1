@@ -145,6 +145,9 @@ public class InternalAdicionarServico extends TelaInternal  {
 		btnSalvar = new Botao("resource/imagens/botoes/bnt-salvar.png","Salvar");
 		btnSalvar.setBounds(498,356,100,40);
 		getContentPane().add(btnSalvar);
+		
+		
+		carregarPortas();
 
 		
 	}

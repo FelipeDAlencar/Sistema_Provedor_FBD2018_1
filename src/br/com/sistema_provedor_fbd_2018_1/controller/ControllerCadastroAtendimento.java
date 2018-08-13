@@ -9,6 +9,7 @@ import br.com.sistema_provedor_fbd_2018_1.enuns.enumAtendimento;
 import br.com.sistema_provedor_fbd_2018_1.exception.BusinessException;
 import br.com.sistema_provedor_fbd_2018_1.fachada.Fachada;
 import br.com.sistema_provedor_fbd_2018_1.model.Listeners;
+import br.com.sistema_provedor_fbd_2018_1.model.Ultil;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalCadastroAtendimentos;
 import br.com.sistema_provedor_fbd_2018_1.view.InternalVerCliente;
 import br.com.sistema_provedor_fbd_2018_1.view.Menssagens;
@@ -36,12 +37,16 @@ public class ControllerCadastroAtendimento implements Listeners {
 				Atendimento atendimento = new Atendimento(
 						cliente.getId(),
 						internalCadastroAtendimentos.getMotivoField().getText().trim(),
-						internalCadastroAtendimentos.getDataField().getText().trim(),
+						Ultil.converterJavaDateEmString(internalCadastroAtendimentos.getDataField().getDate()).trim(),
 						enumAtendimento.getEnum("aberto"),
 						servico_id,
 						descricao);
+				
 				fachada.salvarOuEditarAtendimento(atendimento);
+				
 				List<Atendimento> atendimentos =fachada.buscarAtendimentoPorCliente(cliente.getId());
+				System.out.println("aQUI");
+				
 				internalVerCliente.getPanelAtendimento().carregarAtendimento(atendimentos);
 				Menssagens.menssagem("Atendimento cadastrado com sucesso!", 1);
 			}

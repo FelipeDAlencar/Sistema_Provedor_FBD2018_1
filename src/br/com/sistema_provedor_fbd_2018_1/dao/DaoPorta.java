@@ -32,6 +32,7 @@ public class DaoPorta implements IDaoPorta {
 
 			statement.setInt(1, porta.getNumero());
 			statement.setInt(2, sw_id);
+			statement.setString(3, enumPorta.LIVRE.getStatus());
 
 			statement.execute();
 			conexao.close();

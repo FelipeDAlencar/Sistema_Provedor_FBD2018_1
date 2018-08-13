@@ -182,7 +182,7 @@ public class SQLUtil {
 	public static class Porta {
 		public static final String SELECT_SWITCH_NOME = "select * from porta where switch_id = ?  and numero = ?";
 		
-		public static String INSERT_ALL = "insert into porta (numero, switch_id) " + "values (?,?); ";
+		public static String INSERT_ALL = "insert into porta (numero, switch_id, status) " + "values (?,?,?); ";
 
 		public static String SELECT_NUMERO = "select * from porta where numero = ?";
 		

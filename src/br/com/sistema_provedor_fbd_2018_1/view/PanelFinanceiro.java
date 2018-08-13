@@ -38,7 +38,6 @@ public class PanelFinanceiro extends JPanel {
 	}
 	
 	public void carregarTabelas(ArrayList<Contrato> contratos) {
-		
 		try {
 			int largura = 925;
 			int altura = 230;
@@ -75,9 +74,12 @@ public class PanelFinanceiro extends JPanel {
 				panelTabelas.add(jScrollPaneAtual);
 				y += altura;
 			}
+			
+			
+			
 			panelTabelas.setPreferredSize(new Dimension(935, y+50 ));
 			scrollFinanceiro = new JScrollPane(panelTabelas);
-			scrollFinanceiro.setBounds(50,65,950,300);
+			scrollFinanceiro.setBounds(50,65,950,200);
 			add(scrollFinanceiro);
 			
 		} catch (BusinessException e) {

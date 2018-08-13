@@ -11,12 +11,16 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
+
+import com.toedter.calendar.JDateChooser;
+
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 
 @SuppressWarnings("serial")
 public class InternalCadastroContrato extends TelaInternal {
-	private JtextFieldGenerico valorInstalacaoField, valorMensalField, NumeroParcelasField, dataVecimentoField;
+	private JtextFieldGenerico valorInstalacaoField, valorMensalField, NumeroParcelasField;
+	private JDateChooser dataVecimentoField;
 	private Botao btnSalvar;
 	private JLabel lblDataVencimento;
 	private JComboBox<String> servicoCombo;
@@ -71,14 +75,12 @@ public class InternalCadastroContrato extends TelaInternal {
 		lblDataVencimento.setBounds(289, 151, 112, 14);
 		getContentPane().add(lblDataVencimento);
 
-		dataVecimentoField = new JtextFieldGenerico("1234567890.");;
+		dataVecimentoField = new JDateChooser();;
 		dataVecimentoField.setBounds(289, 176, 203, 30);
 		getContentPane().add(dataVecimentoField);
-		dataVecimentoField.setColumns(10);
 		setVisible(false);
 
-		try {
-			dataVecimentoField.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
+		
 
 			JLabel lblServio = new JLabel("Servi\u00E7o:");
 			lblServio.setBounds(41, 11, 98, 14);
@@ -87,10 +89,7 @@ public class InternalCadastroContrato extends TelaInternal {
 			servicoCombo = new JComboBox<>();
 			servicoCombo.setBounds(41, 36, 451, 30);
 			getContentPane().add(servicoCombo);
-		} catch (ParseException e) {
-
-			e.printStackTrace();
-		}
+		
 
 
 
@@ -109,7 +108,7 @@ public class InternalCadastroContrato extends TelaInternal {
 			e.printStackTrace();
 		}
 	}
-	public JtextFieldGenerico getDataVecimentoField() {
+	public JDateChooser getDataVecimentoField() {
 		return dataVecimentoField;
 	}
 
@@ -123,11 +122,6 @@ public class InternalCadastroContrato extends TelaInternal {
 
 	public JTextField getValorMensalField() {
 		return valorMensalField;
-	}
-
-
-	public JTextField getDataVencimentoField() {
-		return dataVecimentoField;
 	}
 
 	public JTextField getNumeroParcelasField() {

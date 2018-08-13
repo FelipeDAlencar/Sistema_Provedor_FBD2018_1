@@ -51,6 +51,9 @@ public class DaoAtendimento implements IDaoAtendimento {
 			conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONEXAO_POSTGRES);
 
 			statement = conexao.prepareStatement(SQLUtil.Atendimento.UPDATE);
+			
+			
+			
 			statement.setString(1, atendimento.getStatus().getStatus());
 			statement.setDate(2, Ultil.converterStringParaDataSQL(atendimento.getData_atendimento()));
 			statement.setInt(3, atendimento.getId());
@@ -80,7 +83,7 @@ public class DaoAtendimento implements IDaoAtendimento {
 						resultSet.getInt("id"),
 						resultSet.getInt("cliente_id"),
 						resultSet.getString("motivo"),
-						resultSet.getString("data_atendimento"),
+						Ultil.converterDataSQLParaString(resultSet.getDate("data_atendimento")),
 						enumAtendimento.getEnum(resultSet.getString("status")),
 						resultSet.getInt("servico_id"),
 						resultSet.getString("descricao"));
@@ -108,7 +111,7 @@ public class DaoAtendimento implements IDaoAtendimento {
 						resultSet.getInt("id"),
 						resultSet.getInt("cliente_id"),
 						resultSet.getString("motivo"),
-						resultSet.getString("data_atendimento"),
+						Ultil.converterDataSQLParaString(resultSet.getDate("data_atendimento")),
 						enumAtendimento.getEnum(resultSet.getString("status")),
 						resultSet.getInt("servico_id"),
 						resultSet.getString("descricao"));
@@ -147,7 +150,7 @@ public class DaoAtendimento implements IDaoAtendimento {
 						resultSet.getInt("id"),
 						resultSet.getInt("cliente_id"),
 						resultSet.getString("motivo"),
-						resultSet.getString("data_atendimento"),
+						Ultil.converterDataSQLParaString(resultSet.getDate("data_atendimento")),
 						enumAtendimento.getEnum(resultSet.getString("status")),
 						resultSet.getInt("servico_id"),
 						resultSet.getString("descricao"));
@@ -178,7 +181,7 @@ public class DaoAtendimento implements IDaoAtendimento {
 						resultSet.getInt("id"),
 						resultSet.getInt("cliente_id"),
 						resultSet.getString("motivo"),
-						resultSet.getString("data_atendimento"),
+						Ultil.converterDataSQLParaString(resultSet.getDate("data_atendimento")),
 						enumAtendimento.getEnum(resultSet.getString("status")),
 						resultSet.getInt("servico_id"),
 						resultSet.getString("descricao"));

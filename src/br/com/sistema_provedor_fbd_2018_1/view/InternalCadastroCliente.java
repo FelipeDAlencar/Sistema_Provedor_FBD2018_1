@@ -104,7 +104,7 @@ public class InternalCadastroCliente extends TelaInternal {
 		
 
 		// Informacoes Endereco
-		ruaLabel = new JLabel("Endereço:");
+		ruaLabel = new JLabel("Rua:");
 		ruaLabel.setBounds(238, 125, 100, 50);
 		panelCliente.add(ruaLabel);
 

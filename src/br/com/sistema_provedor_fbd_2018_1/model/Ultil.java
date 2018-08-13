@@ -37,7 +37,6 @@ public class Ultil {
 		try {
 			DateFormat f = DateFormat.getDateInstance();
 			java.util.Date d;
-
 			d = f.parse(txt);
 			return d;
 		} catch (ParseException e) {

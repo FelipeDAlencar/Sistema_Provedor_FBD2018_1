@@ -61,8 +61,12 @@ public class InternalCadastroMovimentacao extends TelaInternal {
 		lblTipo.setBounds(46, 281, 46, 14);
 		getContentPane().add(lblTipo);
 		
+		tipocomboBox = new JComboBox<>();
+		
 		tipocomboBox.addItem("Entrada");
 		tipocomboBox.addItem("Saída");
+		tipocomboBox.setBounds(46, 306, 232, 30);
+		getContentPane().add(tipocomboBox);
 		
 		
 	}

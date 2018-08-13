@@ -12,6 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
+
+import com.toedter.calendar.JDateChooser;
+
 import javax.swing.JComboBox;
 
 @SuppressWarnings("serial")
@@ -19,7 +22,7 @@ public class InternalCadastroAtendimentos extends TelaInternal {
 	private JTextField motivoField;
 	private Botao btnSalvar;
 	private JLabel lblDataDeAtendimento;
-	private JtextFieldGenerico dataField;
+	private JDateChooser dataField;
 	private JComboBox<String> servicosCombo;
 
 	public InternalCadastroAtendimentos(TelaPrincipal telaPrincipal, ActionListener actionListener)
@@ -50,25 +53,17 @@ public class InternalCadastroAtendimentos extends TelaInternal {
 		lblDataDeAtendimento.setBounds(272, 24, 146, 14);
 		getContentPane().add(lblDataDeAtendimento);
 
-		dataField = new JtextFieldGenerico("1234567890");
+		dataField = new JDateChooser();
 		dataField.setBounds(272, 49, 126, 30);
 		getContentPane().add(dataField);
-		dataField.setColumns(10);
 
-		try {
-			dataField.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
+		JLabel lblServico = new JLabel("Servico:");
+		lblServico.setBounds(40, 24, 46, 14);
+		getContentPane().add(lblServico);
 
-			JLabel lblServico = new JLabel("Servico:");
-			lblServico.setBounds(40, 24, 46, 14);
-			getContentPane().add(lblServico);
-
-			servicosCombo = new JComboBox<>();
-			servicosCombo.setBounds(40, 49, 211, 31);
-			getContentPane().add(servicosCombo);
-
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		servicosCombo = new JComboBox<>();
+		servicosCombo.setBounds(40, 49, 211, 31);
+		getContentPane().add(servicosCombo);
 
 	}
 
@@ -77,11 +72,11 @@ public class InternalCadastroAtendimentos extends TelaInternal {
 			IFachada fachada = new Fachada();
 			List<ServicoCliente> servicos;
 			servicos = fachada.buscarServicosPorCliente(cliente_id);
+			
 			for (ServicoCliente servicoCliente : servicos) {
 				servicosCombo.addItem(servicoCliente.getDescricao());
 			}
 		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -98,7 +93,7 @@ public class InternalCadastroAtendimentos extends TelaInternal {
 		return lblDataDeAtendimento;
 	}
 
-	public JtextFieldGenerico getDataField() {
+	public JDateChooser getDataField() {
 		return dataField;
 	}
 
