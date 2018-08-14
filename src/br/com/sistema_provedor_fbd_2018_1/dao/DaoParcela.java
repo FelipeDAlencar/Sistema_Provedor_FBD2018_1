@@ -72,7 +72,6 @@ public class DaoParcela implements IDaoParcela {
 
 			ResultSet resultSet = statement.executeQuery();
 			Parcela parcela;
-
 			if (resultSet.next()) {
 				parcela = new Parcela(resultSet.getInt("id"), resultSet.getInt("contrato_id"),
 						resultSet.getDouble("valor"),

@@ -23,65 +23,57 @@ public class PanelFinanceiro extends JPanel {
 	private JScrollPane scrollPane = null;
 	private Fachada fachada = new Fachada();
 	private ArrayList<Parcela> parcelas;
-	private ArrayList<JTable> tabelas= new ArrayList<>();
+	private ArrayList<JTable> tabelas = new ArrayList<>();
 
 	public PanelFinanceiro() {
 		setLayout(null);
-		btnNovoContrato = new Botao("","Novo Contrato");
-		btnNovoContrato.setBounds(50,20,176,40);
+		btnNovoContrato = new Botao("", "Novo Contrato");
+		btnNovoContrato.setBounds(10, 20, 176, 40);
 		add(btnNovoContrato);
-		
-		panelTabelas = new JPanel();
-		panelTabelas.setLayout(null);
-			
+
+		modelTable = new DefaultTableModel();
+		modelTable.addColumn("Código");
+		modelTable.addColumn("Valor Mensal");
+		modelTable.addColumn("Data de Vencimento");
 
 	}
-	
+
 	public void carregarTabelas(ArrayList<Contrato> contratos) {
+
 		try {
 			int largura = 925;
 			int altura = 230;
-			int x = 10, y = 10;
+			int x = 10, y = 100;
 
-			
 			for (int i = 0; i < contratos.size(); i++) {
-				
+
 				modelTable = new DefaultTableModel();
 				modelTable.addColumn("Código");
 				modelTable.addColumn("Valor Mensal");
 				modelTable.addColumn("Data de Vencimento");
 
 				tabela = new JTable(modelTable);
-				tabela.setSize(1200,300);
-				
+				tabela.setSize(1200, 300);
+
 				parcelas = fachada.buscarParcelaPorContratoID(contratos.get(i).getId());
+
 				modelTable.setNumRows(0);
+
 				for (Parcela parcela : parcelas) {
-					if (parcela.getStatus()==enumParcela.ABERTO) {
-						String[] linha = { String.valueOf(parcela.getId()), String.valueOf(parcela.getValor()),
-								parcela.getData_vencimento() };
-						modelTable.addRow(linha);
-					}
+					
+					String[] linha = { String.valueOf(parcela.getId()), String.valueOf(parcela.getValor()),
+							parcela.getData_vencimento() };
+					modelTable.addRow(linha);
+
 				}
-				
+
 				scrollPane = new JScrollPane(tabela);
 				tabelas.add(tabela);
-				scrollPanes.add(scrollPane);
-			}
-
-			for (JScrollPane jScrollPaneAtual : scrollPanes) {
-				jScrollPaneAtual.setBounds(x, y, largura, altura);
-				panelTabelas.add(jScrollPaneAtual);
+				scrollPane.setBounds(x, y, largura, altura);
+				add(scrollPane);
 				y += altura;
 			}
-			
-			
-			
-			panelTabelas.setPreferredSize(new Dimension(935, y+50 ));
-			scrollFinanceiro = new JScrollPane(panelTabelas);
-			scrollFinanceiro.setBounds(50,65,950,200);
-			add(scrollFinanceiro);
-			
+
 		} catch (BusinessException e) {
 			e.printStackTrace();
 		}

@@ -90,7 +90,7 @@ public class InternalLocalizarCliente  extends TelaInternal{
 	}
 
 
-	public Botao getBtnEditar() {
+	public Botao getBtnSelcionar() {
 		return btnEditar;
 	}
 

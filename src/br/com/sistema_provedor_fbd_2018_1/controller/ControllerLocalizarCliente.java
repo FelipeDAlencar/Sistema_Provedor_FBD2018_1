@@ -29,7 +29,7 @@ public class ControllerLocalizarCliente implements Listeners {
 				String busca = internalLocalizarCliente.getBuscarField().getText();
 				internalLocalizarCliente.carregarClientes(fachada.buscarClientePorBusca(busca));
 			}
-			if (e.getSource() == internalLocalizarCliente.getBtnEditar()) {
+			if (e.getSource() == internalLocalizarCliente.getBtnSelcionar()) {
 				
 				int row = internalLocalizarCliente.getTabela().getSelectedRow();
 				int id = Integer.parseInt(internalLocalizarCliente.getTabela().getValueAt(row, 0).toString());
@@ -39,8 +39,11 @@ public class ControllerLocalizarCliente implements Listeners {
 				telaPrincipal.getDesktopPane().add(internalVerCliente);
 				controllerVerCliente.setInternalVerCliente(internalVerCliente);
 				controllerVerCliente.carregarDados();
+				
 				internalVerCliente.getPanelFinanceiro().carregarTabelas(fachada.buscarContratoPorClienteID(cliente.getId()));
+				
 				controllerVerCliente.addListeners();
+				System.out.println("Aqui");
 				internalVerCliente.setVisible(true);
 
 			}
@@ -57,7 +60,7 @@ public class ControllerLocalizarCliente implements Listeners {
 	@Override
 	public void addListeners() {
 		internalLocalizarCliente.getBtnBuscar().addActionListener(this);
-		internalLocalizarCliente.getBtnEditar().addActionListener(this);
+		internalLocalizarCliente.getBtnSelcionar().addActionListener(this);
 	}
 
 	public InternalLocalizarCliente getInternalLocalizarCliente() {

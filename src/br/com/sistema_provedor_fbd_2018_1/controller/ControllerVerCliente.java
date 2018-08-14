@@ -15,6 +15,7 @@ import br.com.sistema_provedor_fbd_2018_1.entidade.Cidade;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Cliente;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Contato;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Endereco;
+import br.com.sistema_provedor_fbd_2018_1.entidade.Movimentacao;
 import br.com.sistema_provedor_fbd_2018_1.entidade.Parcela;
 import br.com.sistema_provedor_fbd_2018_1.entidade.ServicoCliente;
 import br.com.sistema_provedor_fbd_2018_1.enuns.enumAtendimento;
@@ -140,13 +141,13 @@ public class ControllerVerCliente implements Listeners {
 				int linha = internalVerCliente.getPanelAtendimento().getTabela().getSelectedRow();
 				int id = Integer.parseInt(
 						internalVerCliente.getPanelAtendimento().getModelTable().getValueAt(linha, 0).toString());
-				
+
 				Atendimento atendimento = fachada.buscarAtendimentoPorId(id);
-				
+
 				atendimento.setStatus(enumAtendimento.CONCLUIDO);
-				
+
 				fachada.salvarOuEditarAtendimento(atendimento);
-				
+
 				List<Atendimento> atendimentos = fachada.buscarAtendimentoPorCliente(cliente.getId());
 				internalVerCliente.getPanelAtendimento().carregarAtendimento(atendimentos);
 			}
@@ -236,9 +237,18 @@ public class ControllerVerCliente implements Listeners {
 							public void actionPerformed(ActionEvent e) {
 								parcela.setStatus(enumParcela.PAGO);
 								try {
+
+									Movimentacao movimentacao = new Movimentacao(
+											"Nº Contrato" + parcela.getContrato_id().toString(), "pago", "entrada",
+											Ultil.dataAtualEmString(), parcela.getValor(), true);
+									fachada.salvarOuEditarMovimentacao(movimentacao);
 									fachada.salvarOuEditar(parcela);
+
+									internalVerCliente.getPanelFinanceiro()
+											.carregarTabelas(fachada.buscarContratoPorClienteID(cliente.getId()));
+									System.out.println(cliente.getId());
+
 								} catch (BusinessException e1) {
-									// TODO Auto-generated catch block
 									e1.printStackTrace();
 								}
 							}
@@ -251,6 +261,9 @@ public class ControllerVerCliente implements Listeners {
 								parcela.setStatus(enumParcela.CANCELADA);
 								try {
 									fachada.salvarOuEditar(parcela);
+
+									internalVerCliente.getPanelFinanceiro()
+											.carregarTabelas(fachada.buscarContratoPorClienteID(cliente.getId()));
 								} catch (BusinessException e1) {
 									// TODO Auto-generated catch block
 									e1.printStackTrace();
@@ -269,7 +282,13 @@ public class ControllerVerCliente implements Listeners {
 						menu.add(cancelar);
 						menu.add(sair);
 						menu.show(table, e.getX(), e.getY());
-
+					} catch (BusinessException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					try {
+						internalVerCliente.getPanelFinanceiro()
+								.carregarTabelas(fachada.buscarContratoPorClienteID(cliente.getId()));
 					} catch (BusinessException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

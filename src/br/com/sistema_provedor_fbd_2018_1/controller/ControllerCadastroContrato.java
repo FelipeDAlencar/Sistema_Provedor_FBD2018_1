@@ -26,6 +26,7 @@ public class ControllerCadastroContrato implements Listeners {
 		this.cliente = cliente;
 		this.internalVerCliente = internalVerCliente;
 		fachada = new Fachada();
+		System.out.println(cliente.getId());
 	}
 
 	@Override
@@ -49,12 +50,11 @@ public class ControllerCadastroContrato implements Listeners {
 	
 				internalVerCliente.getPanelFinanceiro()
 						.carregarTabelas(fachada.buscarContratoPorClienteID(cliente.getId()));
+				
+				
 				internal.getValorInstalacaoField().setText("");
 				internal.getValorMensalField().setText("");
 				internal.getNumeroParcelasField().setText("");
-				
-				internalVerCliente.getPanelFinanceiro()
-						.carregarTabelas(fachada.buscarContratoPorClienteID(cliente.getId()));
 
 				Menssagens.menssagem("CONTRATO INSERIDO COM SUCESSO.", 1);
 

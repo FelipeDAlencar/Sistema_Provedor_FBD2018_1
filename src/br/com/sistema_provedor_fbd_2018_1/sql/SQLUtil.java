@@ -228,9 +228,9 @@ public class SQLUtil {
 		
 		public static String UPDATE = "update parcela set status = ? where id = ?";
 		
-		public static String SELECT_ID = "select * from parcela where id = ?";
+		public static String SELECT_ID = "select * from parcela where id = ? and status = 'em aberto'";
 		
-		public static String SELECT_PORCOTRATOID = "select * from parcela where contrato_id = ?"; 
+		public static String SELECT_PORCOTRATOID = "select * from parcela where contrato_id = ? and status = 'em aberto'"; 
 	}
 	
 	public static class ServicoCliente{
